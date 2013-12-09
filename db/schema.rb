@@ -11,18 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131209164412) do
+ActiveRecord::Schema.define(version: 20131209170848) do
 
   create_table "operators", force: true do |t|
     t.string   "name"
     t.string   "email"
     t.string   "country"
-    t.string   "reg_code_prefix", limit: 2
+    t.string   "reg_code_prefix",        limit: 2
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "encrypted_password",               default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
   end
 
+  add_index "operators", ["confirmation_token"], name: "index_operators_on_confirmation_token", unique: true
   add_index "operators", ["email"], name: "index_operators_on_email", unique: true
+  add_index "operators", ["reset_password_token"], name: "index_operators_on_reset_password_token", unique: true
 
   create_table "player_groups", force: true do |t|
     t.integer  "operator_id"
@@ -62,9 +72,19 @@ ActiveRecord::Schema.define(version: 20131209164412) do
     t.date     "birth_date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
   end
 
+  add_index "players", ["confirmation_token"], name: "index_players_on_confirmation_token", unique: true
   add_index "players", ["email"], name: "index_players_on_email", unique: true
+  add_index "players", ["reset_password_token"], name: "index_players_on_reset_password_token", unique: true
   add_index "players", ["username"], name: "index_players_on_username", unique: true
 
   create_table "system_admins", force: true do |t|
@@ -73,8 +93,18 @@ ActiveRecord::Schema.define(version: 20131209164412) do
     t.string   "last_name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
   end
 
+  add_index "system_admins", ["confirmation_token"], name: "index_system_admins_on_confirmation_token", unique: true
   add_index "system_admins", ["email"], name: "index_system_admins_on_email", unique: true
+  add_index "system_admins", ["reset_password_token"], name: "index_system_admins_on_reset_password_token", unique: true
 
 end

@@ -25,6 +25,7 @@ class Admin::SystemAdminsController < Admin::AdminController
   # POST /admin/system_admins.json
   def create
     @admin_system_admin = Admin::SystemAdmin.new(admin_system_admin_params)
+    @admin_system_admin.password = Devise.friendly_token.first(8)
 
     respond_to do |format|
       if @admin_system_admin.save

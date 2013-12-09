@@ -3,5 +3,9 @@
 
 These variables should be set on production environment
 
-* MAIL_HOST_AND_PORT (example: localhost:3000)
-
+* HTTP_HOST
+* SMTP_HOST (example: smtp.gmail.com)
+* SMTP_PORT
+* SMTP_DOMAIN (example: mail.google.com)
+* SMTP_USERNAME
+* SMTP_PASSWORD
