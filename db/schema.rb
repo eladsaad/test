@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131209125353) do
+ActiveRecord::Schema.define(version: 20131209163421) do
 
   create_table "operators", force: true do |t|
     t.string   "name"
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20131209125353) do
 
   add_index "player_groups", ["operator_id"], name: "index_player_groups_on_operator_id"
   add_index "player_groups", ["player_organization_id"], name: "index_player_groups_on_player_organization_id"
-  add_index "player_groups", ["reg_code"], name: "index_player_groups_on_reg_code"
+  add_index "player_groups", ["reg_code"], name: "index_player_groups_on_reg_code", unique: true
 
   create_table "player_organizations", force: true do |t|
     t.string   "org_type"
