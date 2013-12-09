@@ -52,6 +52,8 @@ ActiveRecord::Schema.define(version: 20131209125353) do
     t.integer  "operator_id"
   end
 
+  add_index "player_organizations", ["operator_id"], name: "index_player_organizations_on_operator_id"
+
   create_table "system_admins", force: true do |t|
     t.string   "email"
     t.string   "first_name"
