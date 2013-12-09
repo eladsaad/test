@@ -6,4 +6,8 @@ class Operator < ActiveRecord::Base
 	validates :country, :presence => true
 	validates :reg_code_prefix, :presence => true, :length => {is: 2}
 
+	# == ASSOCIATIONS ==
+	has_many :player_groups
+	has_many :player_organizations
+
 end

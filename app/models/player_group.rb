@@ -7,4 +7,8 @@ class PlayerGroup < ActiveRecord::Base
 	validates :name, :presence => true
 	validates :player_organization_id, :presence => true
 
+	# == ASSOCIATIONS ==
+	belongs_to :operator
+	belongs_to :player_organization
+
 end
