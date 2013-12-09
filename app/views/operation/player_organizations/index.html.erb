@@ -3,6 +3,7 @@
 <table>
   <thead>
     <tr>
+      <th>Operator</th>
       <th>Org type</th>
       <th>Name</th>
       <th>Address</th>
@@ -19,6 +20,7 @@
   <tbody>
     <% @operation_player_organizations.each do |operation_player_organization| %>
       <tr>
+        <td><%= operation_player_organization.operator_id %></td>
         <td><%= operation_player_organization.org_type %></td>
         <td><%= operation_player_organization.name %></td>
         <td><%= operation_player_organization.address %></td>
