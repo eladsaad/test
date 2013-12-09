@@ -69,6 +69,6 @@ class Operation::PlayerGroupsController < Operation::OperationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def operation_player_group_params
-      params.require(:operation_player_group).permit(:operator_id, :reg_code, :program_start_date, :name, :description, :player_organization_id)
+      params.require(:operation_player_group).permit(:reg_code, :program_start_date, :name, :description, :player_organization_id)
     end
 end
