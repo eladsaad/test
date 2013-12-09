@@ -10,5 +10,9 @@ class CreatePlayerGroups < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :player_groups, :operator_id
+    add_index :player_groups, :reg_code
+    add_index :player_groups, :player_organization_id
   end
 end

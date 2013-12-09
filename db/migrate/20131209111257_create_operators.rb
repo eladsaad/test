@@ -4,9 +4,11 @@ class CreateOperators < ActiveRecord::Migration
       t.string :name
       t.string :email
       t.string :country
-      t.string :reg_code_prefix
+      t.string :reg_code_prefix, limit: 2
 
       t.timestamps
     end
+
+    add_index :operators, :email, unique: true
   end
 end
