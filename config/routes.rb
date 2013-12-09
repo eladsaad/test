@@ -1,16 +1,22 @@
 Cinemadrive::Application.routes.draw do
 
   # / - basic site
-  devise_for :players
+  devise_for :players, :controllers => {
+      :sessions => 'players/sessions',
+      :passwords => 'players/passwords',
+      :confirmations => 'players/confirmations',
+      :registrations => 'players/registrations'
+    }
   root :to => "players#index"
   resources :players
 
   # /admin - system administration
   namespace :admin do
+
     devise_for :system_admins, :controllers => {
-      :sessions => 'admin/system_admin_sessions',
-      :passwords => 'admin/system_admin_passwords',
-      :confirmations => 'admin/system_admin_confirmations'
+      :sessions => 'admin/system_admins/sessions',
+      :passwords => 'admin/system_admins/passwords',
+      :confirmations => 'admin/system_admins/confirmations'
     }
     root :to => "operators#index"
     resources :system_admins
@@ -20,9 +26,9 @@ Cinemadrive::Application.routes.draw do
   # /operation - operators administration
   namespace :operation do
     devise_for :operators, :controllers => {
-      :sessions => 'operation/operator_sessions',
-      :passwords => 'operation/operator_passwords',
-      :confirmations => 'operation/operator_confirmations'
+      :sessions => 'operation/operators/sessions',
+      :passwords => 'operation/operators/passwords',
+      :confirmations => 'operation/operators/confirmations'
     }
     root :to => "player_groups#index"
     resources :player_organizations
