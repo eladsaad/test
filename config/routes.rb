@@ -1,5 +1,7 @@
 Cinemadrive::Application.routes.draw do
 
+  resources :players
+
   # /admin - system administration
   namespace :admin do
     resources :system_admins
