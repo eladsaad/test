@@ -1,0 +1,41 @@
+<%= form_for(@player_group) do |f| %>
+  <% if @player_group.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@player_group.errors.count, "error") %> prohibited this player_group from being saved:</h2>
+
+      <ul>
+      <% @player_group.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :operator_id %><br>
+    <%= f.number_field :operator_id %>
+  </div>
+  <div class="field">
+    <%= f.label :reg_code %><br>
+    <%= f.text_field :reg_code %>
+  </div>
+  <div class="field">
+    <%= f.label :program_start_date %><br>
+    <%= f.date_select :program_start_date %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :player_organization_id %><br>
+    <%= f.number_field :player_organization_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

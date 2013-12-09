@@ -1,0 +1,39 @@
+<h1>Listing player_organizations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Org type</th>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Contact name</th>
+      <th>Contact position</th>
+      <th>Contact email</th>
+      <th>Contact phone</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @player_organizations.each do |player_organization| %>
+      <tr>
+        <td><%= player_organization.org_type %></td>
+        <td><%= player_organization.name %></td>
+        <td><%= player_organization.address %></td>
+        <td><%= player_organization.contact_name %></td>
+        <td><%= player_organization.contact_position %></td>
+        <td><%= player_organization.contact_email %></td>
+        <td><%= player_organization.contact_phone %></td>
+        <td><%= link_to 'Show', player_organization %></td>
+        <td><%= link_to 'Edit', edit_player_organization_path(player_organization) %></td>
+        <td><%= link_to 'Destroy', player_organization, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Player organization', new_player_organization_path %>

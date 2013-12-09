@@ -1,0 +1,33 @@
+<h1>Listing operators</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Country</th>
+      <th>Reg code prefix</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @operators.each do |operator| %>
+      <tr>
+        <td><%= operator.name %></td>
+        <td><%= operator.email %></td>
+        <td><%= operator.country %></td>
+        <td><%= operator.reg_code_prefix %></td>
+        <td><%= link_to 'Show', operator %></td>
+        <td><%= link_to 'Edit', edit_operator_path(operator) %></td>
+        <td><%= link_to 'Destroy', operator, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Operator', new_operator_path %>

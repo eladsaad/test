@@ -1,0 +1,37 @@
+<h1>Listing player_groups</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Operator</th>
+      <th>Reg code</th>
+      <th>Program start date</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Player organization</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @player_groups.each do |player_group| %>
+      <tr>
+        <td><%= player_group.operator_id %></td>
+        <td><%= player_group.reg_code %></td>
+        <td><%= player_group.program_start_date %></td>
+        <td><%= player_group.name %></td>
+        <td><%= player_group.description %></td>
+        <td><%= player_group.player_organization_id %></td>
+        <td><%= link_to 'Show', player_group %></td>
+        <td><%= link_to 'Edit', edit_player_group_path(player_group) %></td>
+        <td><%= link_to 'Destroy', player_group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Player group', new_player_group_path %>

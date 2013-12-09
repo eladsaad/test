@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  operator_id: 1
+  reg_code: MyString
+  program_start_date: 2013-12-09
+  name: MyString
+  description: MyText
+  player_organization_id: 1
+
+two:
+  operator_id: 1
+  reg_code: MyString
+  program_start_date: 2013-12-09
+  name: MyString
+  description: MyText
+  player_organization_id: 1

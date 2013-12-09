@@ -1,4 +1,12 @@
 Cinemadrive::Application.routes.draw do
+  resources :player_groups
+
+  resources :player_organizations
+
+  resources :operators
+
+  resources :system_admins
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
