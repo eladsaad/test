@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Operator:</strong>
+  <%= @operation_player_group.operator_id %>
+</p>
+
+<p>
+  <strong>Reg code:</strong>
+  <%= @operation_player_group.reg_code %>
+</p>
+
+<p>
+  <strong>Program start date:</strong>
+  <%= @operation_player_group.program_start_date %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @operation_player_group.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @operation_player_group.description %>
+</p>
+
+<p>
+  <strong>Player organization:</strong>
+  <%= @operation_player_group.player_organization_id %>
+</p>
+
+<%= link_to 'Edit', edit_operation_player_group_path(@operation_player_group) %> |
+<%= link_to 'Back', operation_player_groups_path %>

@@ -1,0 +1,31 @@
+<h1>Listing admin_system_admins</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>First name</th>
+      <th>Last name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @admin_system_admins.each do |admin_system_admin| %>
+      <tr>
+        <td><%= admin_system_admin.email %></td>
+        <td><%= admin_system_admin.first_name %></td>
+        <td><%= admin_system_admin.last_name %></td>
+        <td><%= link_to 'Show', admin_system_admin %></td>
+        <td><%= link_to 'Edit', edit_admin_system_admin_path(admin_system_admin) %></td>
+        <td><%= link_to 'Destroy', admin_system_admin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New System admin', new_admin_system_admin_path %>

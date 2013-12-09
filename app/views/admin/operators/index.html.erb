@@ -1,0 +1,33 @@
+<h1>Listing admin_operators</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Country</th>
+      <th>Reg code prefix</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @admin_operators.each do |admin_operator| %>
+      <tr>
+        <td><%= admin_operator.name %></td>
+        <td><%= admin_operator.email %></td>
+        <td><%= admin_operator.country %></td>
+        <td><%= admin_operator.reg_code_prefix %></td>
+        <td><%= link_to 'Show', admin_operator %></td>
+        <td><%= link_to 'Edit', edit_admin_operator_path(admin_operator) %></td>
+        <td><%= link_to 'Destroy', admin_operator, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Operator', new_admin_operator_path %>

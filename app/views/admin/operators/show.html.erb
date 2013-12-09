@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @admin_operator.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @admin_operator.email %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @admin_operator.country %>
+</p>
+
+<p>
+  <strong>Reg code prefix:</strong>
+  <%= @admin_operator.reg_code_prefix %>
+</p>
+
+<%= link_to 'Edit', edit_admin_operator_path(@admin_operator) %> |
+<%= link_to 'Back', admin_operators_path %>

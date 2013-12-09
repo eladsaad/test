@@ -1,0 +1,45 @@
+<%= form_for(@operation_player_organization) do |f| %>
+  <% if @operation_player_organization.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@operation_player_organization.errors.count, "error") %> prohibited this operation_player_organization from being saved:</h2>
+
+      <ul>
+      <% @operation_player_organization.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :org_type %><br>
+    <%= f.text_field :org_type %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :address %><br>
+    <%= f.text_area :address %>
+  </div>
+  <div class="field">
+    <%= f.label :contact_name %><br>
+    <%= f.text_field :contact_name %>
+  </div>
+  <div class="field">
+    <%= f.label :contact_position %><br>
+    <%= f.text_field :contact_position %>
+  </div>
+  <div class="field">
+    <%= f.label :contact_email %><br>
+    <%= f.text_field :contact_email %>
+  </div>
+  <div class="field">
+    <%= f.label :contact_phone %><br>
+    <%= f.text_field :contact_phone %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
