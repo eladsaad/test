@@ -1,6 +1,6 @@
 <h1>Listing admin_operators</h1>
 
-<table>
+<table class="records-table">
   <thead>
     <tr>
       <th>Name</th>
@@ -20,9 +20,9 @@
         <td><%= admin_operator.email %></td>
         <td><%= admin_operator.country %></td>
         <td><%= admin_operator.reg_code_prefix %></td>
-        <td><%= link_to 'Show', admin_operator %></td>
-        <td><%= link_to 'Edit', edit_admin_operator_path(admin_operator) %></td>
-        <td><%= link_to 'Destroy', admin_operator, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', admin_operator, class: 'show-record-link' %></td>
+        <td><%= link_to 'Edit', edit_admin_operator_path(admin_operator), class: 'edit-record-link' %></td>
+        <td><%= link_to 'Destroy', admin_operator, method: :delete, data: { confirm: 'Are you sure?' }, class: 'destroy-record-link' %></td>
       </tr>
     <% end %>
   </tbody>

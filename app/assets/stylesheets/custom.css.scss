@@ -1,0 +1,81 @@
+@import "bootstrap.min";
+body { padding-top: 70px; } // because of fixed navbar
+
+
+// Blocks
+
+.main-container {
+	@extend .container;
+}
+
+
+// Records table
+
+.records-table {
+	@extend .table;
+	@extend .table-striped;
+}
+
+.show-record-link {
+	@extend .btn;
+	@extend .btn-mini;
+}
+
+.edit-record-link {
+	@extend .btn;
+	@extend .btn-mini;
+}
+
+.destroy-record-link {
+	@extend .btn;
+	@extend .btn-mini;
+	@extend .btn-danger;
+}
+
+
+// Forms
+
+.field_with_errors {
+	@extend .has-error;
+}
+
+#error_explanation {
+	@extend .alert;
+	@extend .alert-warning;	
+}
+
+.field {
+	@extend .form-group;
+}
+
+.field input {
+	@extend .form-control;
+}
+
+input[type=submit] {
+	@extend .btn;
+	@extend .btn-primary;
+}
+
+
+// Flash messages
+
+.alert-msg-notice {
+	@extend .alert;
+	@extend .alert-info;
+}
+
+.alert-msg-success {
+	@extend .alert;
+	@extend .alert-success;
+}
+
+.alert-msg-error {
+	@extend .alert;
+	@extend .alert-warning;	
+}
+
+.alert-msg-alert {
+	@extend .alert;
+	@extend .alert-danger;	
+}

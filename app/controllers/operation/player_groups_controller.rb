@@ -25,6 +25,7 @@ class Operation::PlayerGroupsController < Operation::OperationController
   # POST /operation/player_groups.json
   def create
     @operation_player_group = Operation::PlayerGroup.new(operation_player_group_params)
+    @operation_player_group.operator_id = current_operation_operator.id
 
     respond_to do |format|
       if @operation_player_group.save

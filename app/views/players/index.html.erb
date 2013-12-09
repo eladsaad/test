@@ -1,6 +1,6 @@
 <h1>Listing players</h1>
 
-<table>
+<table class="records-table">
   <thead>
     <tr>
       <th>Username</th>
@@ -22,9 +22,9 @@
         <td><%= player.first_name %></td>
         <td><%= player.last_name %></td>
         <td><%= player.birth_date %></td>
-        <td><%= link_to 'Show', player %></td>
-        <td><%= link_to 'Edit', edit_player_path(player) %></td>
-        <td><%= link_to 'Destroy', player, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', player, class: 'show-record-link' %></td>
+        <td><%= link_to 'Edit', edit_player_path(player), class: 'edit-record-link' %></td>
+        <td><%= link_to 'Destroy', player, method: :delete, data: { confirm: 'Are you sure?' }, class: 'destroy-record-link' %></td>
       </tr>
     <% end %>
   </tbody>
