@@ -10,4 +10,10 @@ class SystemAdmin < ActiveRecord::Base
 		   :recoverable, :rememberable, :validatable,
 		   :authentication_keys => [:email]
 
+	# == UTILS ==
+
+	def full_name
+		"#{self.first_name} #{self.last_name}"
+	end
+
 end

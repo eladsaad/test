@@ -1,15 +1,5 @@
 <%= form_for(@operation_player_organization) do |f| %>
-  <% if @operation_player_organization.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@operation_player_organization.errors.count, "error") %> prohibited this operation_player_organization from being saved:</h2>
-
-      <ul>
-      <% @operation_player_organization.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render 'shared/form_errors', object: @operation_player_organization %>
 
   <div class="field">
     <%= f.label :org_type %><br>

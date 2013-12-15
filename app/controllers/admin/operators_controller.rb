@@ -25,6 +25,7 @@ class Admin::OperatorsController < Admin::AdminController
   # POST /admin/operators.json
   def create
     @admin_operator = Admin::Operator.new(admin_operator_params)
+    @admin_operator.password = Devise.friendly_token.first(8)
 
     respond_to do |format|
       if @admin_operator.save
