@@ -10,9 +10,15 @@ class Operator < ActiveRecord::Base
 	has_many :player_groups
 	has_many :player_organizations
 
-	# == DEVISE ==
+	# == DEVISE Authentication ==
 	devise :database_authenticatable, :confirmable,
 		   :recoverable, :rememberable, :validatable,
 		   :authentication_keys => [:email]
+
+	# == CANCAN Authorization ==
+	def ability
+		@ability ||= Operation::OperatorAbility.new(self)
+	end
+	delegate :can?, :cannot?, :to => :ability
 
 end

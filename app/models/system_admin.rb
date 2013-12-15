@@ -5,10 +5,17 @@ class SystemAdmin < ActiveRecord::Base
 	validates :first_name, :presence => true
 	validates :last_name, :presence => true
 
-	# == DEVISE ==
+	# == DEVISE Authentication ==
 	devise :database_authenticatable, :confirmable,
 		   :recoverable, :rememberable, :validatable,
 		   :authentication_keys => [:email]
+
+
+	# == CANCAN Authorization ==
+	def ability
+		@ability ||= Admin::SystemAdminAbility.new(self)
+	end
+	delegate :can?, :cannot?, :to => :ability
 
 	# == UTILS ==
 

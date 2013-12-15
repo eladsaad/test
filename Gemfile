@@ -8,6 +8,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'devise'
+gem 'cancan'
 # gem 'therubyracer', platforms: :ruby
 
 group :development, :test do

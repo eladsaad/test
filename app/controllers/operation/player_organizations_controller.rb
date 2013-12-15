@@ -4,21 +4,25 @@ class Operation::PlayerOrganizationsController < Operation::OperationController
   # GET /operation/player_organizations
   # GET /operation/player_organizations.json
   def index
-    @operation_player_organizations = Operation::PlayerOrganization.all
+    authorize! :index, PlayerOrganization
+    @operation_player_organizations = Operation::PlayerOrganization.accessible_by(current_ability, :read)
   end
 
   # GET /operation/player_organizations/1
   # GET /operation/player_organizations/1.json
   def show
+    authorize! :read, @operation_player_organization
   end
 
   # GET /operation/player_organizations/new
   def new
+    authorize! :new, PlayerOrganization
     @operation_player_organization = Operation::PlayerOrganization.new
   end
 
   # GET /operation/player_organizations/1/edit
   def edit
+    authorize! :edit, @operation_player_organization
   end
 
   # POST /operation/player_organizations
@@ -26,6 +30,7 @@ class Operation::PlayerOrganizationsController < Operation::OperationController
   def create
     @operation_player_organization = Operation::PlayerOrganization.new(operation_player_organization_params)
     @operation_player_organization.operator_id = current_operation_operator.id
+    authorize! :create, @operation_player_organization
 
     respond_to do |format|
       if @operation_player_organization.save
@@ -41,6 +46,7 @@ class Operation::PlayerOrganizationsController < Operation::OperationController
   # PATCH/PUT /operation/player_organizations/1
   # PATCH/PUT /operation/player_organizations/1.json
   def update
+    authorize! :update, @operation_player_organization
     respond_to do |format|
       if @operation_player_organization.update(operation_player_organization_params)
         format.html { redirect_to @operation_player_organization, notice: 'Player organization was successfully updated.' }
@@ -55,6 +61,7 @@ class Operation::PlayerOrganizationsController < Operation::OperationController
   # DELETE /operation/player_organizations/1
   # DELETE /operation/player_organizations/1.json
   def destroy
+    authorize! :destroy, @operation_player_organization
     @operation_player_organization.destroy
     respond_to do |format|
       format.html { redirect_to operation_player_organizations_url }

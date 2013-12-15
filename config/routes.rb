@@ -12,7 +12,6 @@ Cinemadrive::Application.routes.draw do
 
   # /admin - system administration
   namespace :admin do
-
     devise_for :system_admins, :controllers => {
       :sessions => 'admin/system_admins/sessions',
       :passwords => 'admin/system_admins/passwords',

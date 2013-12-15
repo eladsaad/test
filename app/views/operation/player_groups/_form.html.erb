@@ -19,7 +19,7 @@
   </div>
   <div class="field">
     <%= f.label :player_organization_id %><br>
-    <%= f.number_field :player_organization_id %>
+    <%= f.collection_select :player_organization_id, Operator::PlayerOrganization.accessible_by(current_ability), :id, :name %>
   </div>
   <div class="actions">
     <%= f.submit %>

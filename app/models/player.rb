@@ -7,10 +7,17 @@ class Player < ActiveRecord::Base
 	validates :last_name, :presence => true
 	validates :birth_date, :presence => true
 
-	# == DEVISE ==
+	# == DEVISE Authentication ==
 	devise :database_authenticatable, :registerable, :confirmable,
 		   :recoverable, :rememberable, :validatable,
 		   :authentication_keys => [:username]
+
+	# == CANCAN Authorization ==
+	def ability
+		@ability ||= PlayerAbility.new(self)
+	end
+	delegate :can?, :cannot?, :to => :ability
+
 
 	# == UTILS ==
 

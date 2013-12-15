@@ -4,21 +4,25 @@ class Admin::SystemAdminsController < Admin::AdminController
   # GET /admin/system_admins
   # GET /admin/system_admins.json
   def index
-    @admin_system_admins = Admin::SystemAdmin.all
+    authorize! :index, SystemAdmin
+    @admin_system_admins = Admin::SystemAdmin.accessible_by(current_ability, :read)
   end
 
   # GET /admin/system_admins/1
   # GET /admin/system_admins/1.json
   def show
+    authorize! :read, @admin_system_admin
   end
 
   # GET /admin/system_admins/new
   def new
+    authorize! :new, SystemAdmin
     @admin_system_admin = Admin::SystemAdmin.new
   end
 
   # GET /admin/system_admins/1/edit
   def edit
+    authorize! :edit, @admin_system_admin
   end
 
   # POST /admin/system_admins
@@ -26,6 +30,7 @@ class Admin::SystemAdminsController < Admin::AdminController
   def create
     @admin_system_admin = Admin::SystemAdmin.new(admin_system_admin_params)
     @admin_system_admin.password = Devise.friendly_token.first(8)
+    authorize! :create, @admin_system_admin
 
     respond_to do |format|
       if @admin_system_admin.save
@@ -41,6 +46,7 @@ class Admin::SystemAdminsController < Admin::AdminController
   # PATCH/PUT /admin/system_admins/1
   # PATCH/PUT /admin/system_admins/1.json
   def update
+    authorize! :update, @admin_system_admin
     respond_to do |format|
       if @admin_system_admin.update(admin_system_admin_params)
         format.html { redirect_to @admin_system_admin, notice: 'System admin was successfully updated.' }
@@ -55,6 +61,7 @@ class Admin::SystemAdminsController < Admin::AdminController
   # DELETE /admin/system_admins/1
   # DELETE /admin/system_admins/1.json
   def destroy
+    authorize! :destroy, @admin_system_admin
     @admin_system_admin.destroy
     respond_to do |format|
       format.html { redirect_to admin_system_admins_url }

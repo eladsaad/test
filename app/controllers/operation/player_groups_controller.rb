@@ -4,21 +4,25 @@ class Operation::PlayerGroupsController < Operation::OperationController
   # GET /operation/player_groups
   # GET /operation/player_groups.json
   def index
-    @operation_player_groups = Operation::PlayerGroup.all
+    authorize! :index, PlayerGroup
+    @operation_player_groups = Operation::PlayerGroup.accessible_by(current_ability, :read)
   end
 
   # GET /operation/player_groups/1
   # GET /operation/player_groups/1.json
   def show
+    authorize! :read, @operation_player_group
   end
 
   # GET /operation/player_groups/new
   def new
+    authorize! :new, PlayerGroup
     @operation_player_group = Operation::PlayerGroup.new
   end
 
   # GET /operation/player_groups/1/edit
   def edit
+    authorize! :edit, @operation_player_group
   end
 
   # POST /operation/player_groups
@@ -26,6 +30,7 @@ class Operation::PlayerGroupsController < Operation::OperationController
   def create
     @operation_player_group = Operation::PlayerGroup.new(operation_player_group_params)
     @operation_player_group.operator_id = current_operation_operator.id
+    authorize! :create, @operation_player_group
 
     respond_to do |format|
       if @operation_player_group.save
@@ -41,6 +46,7 @@ class Operation::PlayerGroupsController < Operation::OperationController
   # PATCH/PUT /operation/player_groups/1
   # PATCH/PUT /operation/player_groups/1.json
   def update
+    authorize! :update, @operation_player_group
     respond_to do |format|
       if @operation_player_group.update(operation_player_group_params)
         format.html { redirect_to @operation_player_group, notice: 'Player group was successfully updated.' }
@@ -55,6 +61,7 @@ class Operation::PlayerGroupsController < Operation::OperationController
   # DELETE /operation/player_groups/1
   # DELETE /operation/player_groups/1.json
   def destroy
+    authorize! :destroy, @operation_player_group
     @operation_player_group.destroy
     respond_to do |format|
       format.html { redirect_to operation_player_groups_url }
