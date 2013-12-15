@@ -17,3 +17,6 @@
 
 # Ignore vagrant
 /.vagrant
+
+# Ignore dev scripts
+/.dev
