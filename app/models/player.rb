@@ -7,6 +7,9 @@ class Player < ActiveRecord::Base
 	validates :last_name, :presence => true
 	validates :birth_date, :presence => true
 
+	# == ASSOCIATIONS ==
+	has_many :player_sessions
+
 	# == DEVISE Authentication ==
 	devise :database_authenticatable, :registerable, :confirmable,
 		   :recoverable, :rememberable, :validatable,

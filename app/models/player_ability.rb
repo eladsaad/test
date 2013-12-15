@@ -3,7 +3,9 @@ class PlayerAbility
   include CanCan::Ability
 
   def initialize(player)
-    # define player abilities here ....
+    
+    can :manage, Player # TEMPORARY - REMOVE!
+
   end
 
 end

@@ -21,4 +21,11 @@ class Operator < ActiveRecord::Base
 	end
 	delegate :can?, :cannot?, :to => :ability
 
+	# == Registration Codes ==
+	def fetch_registration_codes(amount = 1)
+		reg_codes = RegistrationCode.fetch(amount, self.last_reg_code_id)
+		self.update({last_reg_code_id: reg_codes.last.id})
+		return reg_codes.map { |reg_code| reg_code.code }
+	end
+
 end

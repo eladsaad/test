@@ -17,6 +17,9 @@ class Operation::OperatorAbility
     	can [:read, :edit, :update, :destroy], PlayerOrganization, operator_id: operator.id
     	can [:new, :create, :index], PlayerOrganization
 
+      # registration codes
+      can :reg_codes, Operator, id: operator.id
+
 	end
 
   end

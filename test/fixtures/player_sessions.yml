@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  player_id: 1
+  sign_in_at: 2013-12-15 14:21:23
+  sign_out_at: 2013-12-15 14:21:23
+  ip_address: MyString
+  session_id: MyString
+
+two:
+  player_id: 1
+  sign_in_at: 2013-12-15 14:21:23
+  sign_out_at: 2013-12-15 14:21:23
+  ip_address: MyString
+  session_id: MyString

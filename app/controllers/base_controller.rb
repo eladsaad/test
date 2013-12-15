@@ -4,4 +4,5 @@ class BaseController < ApplicationController
 	def current_ability
 		current_player.ability
 	end
+
 end

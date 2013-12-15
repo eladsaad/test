@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131209170848) do
+ActiveRecord::Schema.define(version: 20131215155723) do
 
   create_table "operators", force: true do |t|
     t.string   "name"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20131209170848) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
+    t.integer  "last_reg_code_id"
   end
 
   add_index "operators", ["confirmation_token"], name: "index_operators_on_confirmation_token", unique: true
@@ -64,6 +65,16 @@ ActiveRecord::Schema.define(version: 20131209170848) do
 
   add_index "player_organizations", ["operator_id"], name: "index_player_organizations_on_operator_id"
 
+  create_table "player_sessions", force: true do |t|
+    t.integer  "player_id"
+    t.datetime "sign_in_at"
+    t.datetime "sign_out_at"
+    t.string   "ip_address"
+    t.string   "session_id"
+  end
+
+  add_index "player_sessions", ["player_id"], name: "index_player_sessions_on_player_id"
+
   create_table "players", force: true do |t|
     t.string   "username"
     t.string   "email"
@@ -86,6 +97,10 @@ ActiveRecord::Schema.define(version: 20131209170848) do
   add_index "players", ["email"], name: "index_players_on_email", unique: true
   add_index "players", ["reset_password_token"], name: "index_players_on_reset_password_token", unique: true
   add_index "players", ["username"], name: "index_players_on_username", unique: true
+
+  create_table "registration_codes", force: true do |t|
+    t.string "code"
+  end
 
   create_table "system_admins", force: true do |t|
     t.string   "email"

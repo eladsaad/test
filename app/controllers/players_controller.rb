@@ -4,27 +4,32 @@ class PlayersController < BaseController
   # GET /players
   # GET /players.json
   def index
+    authorize! :index, Player
     @players = Player.all
   end
 
   # GET /players/1
   # GET /players/1.json
   def show
+    authorize! :read, @player
   end
 
   # GET /players/new
   def new
     @player = Player.new
+    authorize! :new, Player
   end
 
   # GET /players/1/edit
   def edit
+    authorize! :edit, @player
   end
 
   # POST /players
   # POST /players.json
   def create
     @player = Player.new(player_params)
+    authorize! :create, @player
 
     respond_to do |format|
       if @player.save
@@ -40,6 +45,7 @@ class PlayersController < BaseController
   # PATCH/PUT /players/1
   # PATCH/PUT /players/1.json
   def update
+    authorize! :update, @player
     respond_to do |format|
       if @player.update(player_params)
         format.html { redirect_to @player, notice: 'Player was successfully updated.' }
@@ -54,6 +60,7 @@ class PlayersController < BaseController
   # DELETE /players/1
   # DELETE /players/1.json
   def destroy
+    authorize! :destroy, @player
     @player.destroy
     respond_to do |format|
       format.html { redirect_to players_url }

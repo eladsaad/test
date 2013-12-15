@@ -30,6 +30,7 @@ class Operation::PlayerGroupsController < Operation::OperationController
   def create
     @operation_player_group = Operation::PlayerGroup.new(operation_player_group_params)
     @operation_player_group.operator_id = current_operation_operator.id
+    @operation_player_group.reg_code = current_operation_operator.fetch_registration_codes.last if @operation_player_group.reg_code.blank?
     authorize! :create, @operation_player_group
 
     respond_to do |format|
