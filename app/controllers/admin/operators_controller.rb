@@ -47,9 +47,15 @@ class Admin::OperatorsController < Admin::AdminController
   # PATCH/PUT /admin/operators/1.json
   def update
     authorize! :update, @admin_operator
+    send_pass_reset_instructions = false
+    if (admin_operator_params.include?(:email) && admin_operator_params[:email] != @admin_operator.email)
+      @admin_operator.password = Devise.friendly_token.first(8)
+      send_pass_reset_instructions = true
+    end
+
     respond_to do |format|
       if @admin_operator.update(admin_operator_params)
-        Admin::Operator.find(params[:id]).confirm!
+        Admin::Operator.find(params[:id]).send_reset_password_instructions if send_pass_reset_instructions
         format.html { redirect_to @admin_operator, notice: 'Operator was successfully updated.' }
         format.json { head :no_content }
       else
