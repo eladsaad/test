@@ -1,7 +1,7 @@
 
 == ENVIRONMENT VARIABLES
 
-These variables should be set on production environment
+These variables should be set on production environment:
 
 * HTTP_HOST
 * SMTP_HOST (example: smtp.gmail.com)
@@ -12,3 +12,11 @@ These variables should be set on production environment
 * FACEBOOK_APP_ID
 * FACEBOOK_APP_SECRET
 * DEVISE_SECRET_KEY
+
+
+== RAKE TASKS
+
+The following tasks are available:
+
+* db:add_system_admin
+* db:fill_reg_codes
