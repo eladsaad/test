@@ -49,6 +49,7 @@ class Admin::OperatorsController < Admin::AdminController
     authorize! :update, @admin_operator
     respond_to do |format|
       if @admin_operator.update(admin_operator_params)
+        Admin::Operator.find(params[:id]).confirm!
         format.html { redirect_to @admin_operator, notice: 'Operator was successfully updated.' }
         format.json { head :no_content }
       else
