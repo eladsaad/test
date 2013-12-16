@@ -59,17 +59,6 @@ class Operation::PlayerGroupsController < Operation::OperationController
     end
   end
 
-  # DELETE /operation/player_groups/1
-  # DELETE /operation/player_groups/1.json
-  def destroy
-    authorize! :destroy, @operation_player_group
-    @operation_player_group.destroy
-    respond_to do |format|
-      format.html { redirect_to operation_player_groups_url }
-      format.json { head :no_content }
-    end
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_operation_player_group

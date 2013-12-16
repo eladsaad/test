@@ -31,8 +31,8 @@ Cinemadrive::Application.routes.draw do
       :confirmations => 'operation/operators/confirmations'
     }
     root :to => "player_groups#index"
-    resources :player_organizations
-    resources :player_groups
+    resources :player_organizations, only: [:index, :show, :new, :edit, :create, :update]
+    resources :player_groups, only: [:index, :show, :new, :edit, :create, :update]
     get '/registration_codes/fetch/:amount' => "registration_codes#fetch", :as => :fetch_registration_codes
   end
 
