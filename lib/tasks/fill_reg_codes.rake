@@ -1,6 +1,6 @@
 namespace :db do
   desc "Fill DB with new registration codes"
-  task fill_registration_codes: :environment do
+  task fill_reg_codes: :environment do
 
     # get parameters
     amount = ENV['amount']
@@ -19,7 +19,7 @@ namespace :db do
       new_codes.in_groups_of(1000, false) do |code_group|
         inserts = []
         code_group.each do |new_code|
-          inserts << {code: new_code}
+          inserts << {code: new_code.to_s.rjust(5, '0')}
         end
         insert_count += inserts.length
         puts "Adding #{insert_count}/#{amount} new codes..."
