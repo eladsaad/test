@@ -5,7 +5,8 @@ Cinemadrive::Application.routes.draw do
       :sessions => 'players/sessions',
       :passwords => 'players/passwords',
       :confirmations => 'players/confirmations',
-      :registrations => 'players/registrations'
+      :registrations => 'players/registrations',
+      :omniauth_callbacks => "players/authentication_callbacks"
     }
   root :to => "players#index"
   resources :players

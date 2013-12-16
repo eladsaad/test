@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131215155723) do
+ActiveRecord::Schema.define(version: 20131216081246) do
 
   create_table "operators", force: true do |t|
     t.string   "name"
@@ -34,6 +34,18 @@ ActiveRecord::Schema.define(version: 20131215155723) do
   add_index "operators", ["confirmation_token"], name: "index_operators_on_confirmation_token", unique: true
   add_index "operators", ["email"], name: "index_operators_on_email", unique: true
   add_index "operators", ["reset_password_token"], name: "index_operators_on_reset_password_token", unique: true
+
+  create_table "player_authentications", force: true do |t|
+    t.integer  "player_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "token"
+    t.string   "token_secret"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "player_authentications", ["player_id"], name: "index_player_authentications_on_player_id", unique: true
 
   create_table "player_groups", force: true do |t|
     t.integer  "operator_id"

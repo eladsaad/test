@@ -9,3 +9,5 @@ These variables should be set on production environment
 * SMTP_DOMAIN (example: mail.google.com)
 * SMTP_USERNAME
 * SMTP_PASSWORD
+* FACEBOOK_APP_ID
+* FACEBOOK_APP_SECRET

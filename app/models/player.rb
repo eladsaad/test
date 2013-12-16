@@ -9,10 +9,12 @@ class Player < ActiveRecord::Base
 
 	# == ASSOCIATIONS ==
 	has_many :player_sessions
+	has_many :player_authentications
 
 	# == DEVISE Authentication ==
 	devise :database_authenticatable, :registerable, :confirmable,
-		   :recoverable, :rememberable, :validatable,
+		   :recoverable, :rememberable, :validatable, :omniauthable,
+		   :omniauth_providers => [:facebook],
 		   :authentication_keys => [:username]
 
 	# == CANCAN Authorization ==
