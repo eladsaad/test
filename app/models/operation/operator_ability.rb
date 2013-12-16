@@ -10,11 +10,11 @@ class Operation::OperatorAbility
     	can [:read, :edit, :update], Operator, id: operator.id
 
     	# player groups
-    	can [:read, :edit, :update, :destroy], PlayerGroup, operator_id: operator.id
+    	can [:read, :edit, :update], PlayerGroup, operator_id: operator.id
     	can [:new, :create, :index], PlayerGroup
 
     	# player organizations
-    	can [:read, :edit, :update, :destroy], PlayerOrganization, operator_id: operator.id
+    	can [:read, :edit, :update], PlayerOrganization, operator_id: operator.id
     	can [:new, :create, :index], PlayerOrganization
 
       # registration codes
