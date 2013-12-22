@@ -19,7 +19,11 @@
   </div>
   <div class="field">
     <%= f.label :player_organization_id %><br>
-    <%= f.collection_select :player_organization_id, Operator::PlayerOrganization.accessible_by(current_ability), :id, :name %>
+    <%= f.collection_select :player_organization_id, Operator::PlayerOrganization.accessible_by(current_ability), :id, :name, :include_blank => t(:choose) %>
+  </div>
+  <div class="field">
+    <%= f.label :mobile_station_code %><br>
+    <%= f.collection_select :mobile_station_code, Operator::OperatorMobileStation.accessible_by(current_ability), :code, :code, :include_blank => t(:choose) %>
   </div>
   <div class="actions">
     <%= f.submit %>

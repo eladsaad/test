@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131222130741) do
+ActiveRecord::Schema.define(version: 20131222133404) do
 
   create_table "operator_mobile_stations", force: true do |t|
     t.integer  "operator_id"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 20131222130741) do
     t.integer  "player_organization_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "mobile_station_code"
   end
 
   add_index "player_groups", ["operator_id"], name: "index_player_groups_on_operator_id"
