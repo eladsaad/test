@@ -20,7 +20,10 @@ class Operation::OperatorAbility
       # registration codes
       can :reg_codes, Operator, id: operator.id
 
-	end
+      # operator mobile stations
+      can :manage, OperatorMobileStation, operator_id: operator.id
+
+    end
 
   end
 

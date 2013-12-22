@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131222124115) do
+ActiveRecord::Schema.define(version: 20131222130741) do
+
+  create_table "operator_mobile_stations", force: true do |t|
+    t.integer  "operator_id"
+    t.string   "code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "operator_mobile_stations", ["operator_id"], name: "index_operator_mobile_stations_on_operator_id"
 
   create_table "operators", force: true do |t|
     t.string   "name"

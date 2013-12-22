@@ -33,6 +33,7 @@ Cinemadrive::Application.routes.draw do
     root :to => "player_groups#index"
     resources :player_organizations, only: [:index, :show, :new, :edit, :create, :update]
     resources :player_groups, only: [:index, :show, :new, :edit, :create, :update]
+    resources :operator_mobile_stations
     get '/registration_codes/fetch/:amount' => "registration_codes#fetch", :as => :fetch_registration_codes
   end
 

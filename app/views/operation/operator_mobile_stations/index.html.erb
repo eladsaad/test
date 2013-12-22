@@ -1,0 +1,27 @@
+<h1>Listing operation_operator_mobile_stations</h1>
+
+<table class="records-table">
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @operation_operator_mobile_stations.each do |operation_operator_mobile_station| %>
+      <tr>
+        <td><%= operation_operator_mobile_station.code %></td>
+        <td><%= link_to 'Show', operation_operator_mobile_station, class: 'show-record-link' %></td>
+        <td><%= link_to 'Edit', edit_operation_operator_mobile_station_path(operation_operator_mobile_station), class: 'edit-record-link' %></td>
+        <td><%= link_to 'Destroy', operation_operator_mobile_station, method: :delete, data: { confirm: 'Are you sure?' }, class: 'destroy-record-link' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Operator mobile station', new_operation_operator_mobile_station_path %>
