@@ -20,7 +20,11 @@ Cinemadrive::Application.routes.draw do
     }
     root :to => "operators#index"
     resources :system_admins
-    resources :operators
+    resources :operators do
+      member do
+        get :impersonate
+      end
+    end
   end
 
   # /operation - operators administration

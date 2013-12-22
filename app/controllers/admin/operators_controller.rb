@@ -1,5 +1,5 @@
 class Admin::OperatorsController < Admin::AdminController
-  before_action :set_admin_operator, only: [:show, :edit, :update, :destroy]
+  before_action :set_admin_operator, only: [:show, :edit, :update, :destroy, :impersonate]
 
   # GET /admin/operators
   # GET /admin/operators.json
@@ -75,6 +75,13 @@ class Admin::OperatorsController < Admin::AdminController
       format.json { head :no_content }
     end
   end
+
+  def impersonate
+    authorize! :impersonate, @admin_operator
+    sign_in(Operator, @admin_operator, :bypass => true)
+    redirect_to operation_root_url
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

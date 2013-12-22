@@ -9,6 +9,14 @@ body { padding-top: 70px; } // because of fixed navbar
 }
 
 
+// Misc
+
+.special-btn {
+	@extend .btn;
+	@extend .btn-mini;
+	@extend .btn-success;
+}
+
 // Records table
 
 .records-table {
