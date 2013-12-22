@@ -12,6 +12,7 @@ These variables should be set on production environment:
 * FACEBOOK_APP_ID
 * FACEBOOK_APP_SECRET
 * DEVISE_SECRET_KEY
+* BASE_SECRET_KEY
 
 
 == RAKE TASKS

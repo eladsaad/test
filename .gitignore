@@ -20,3 +20,6 @@
 
 # Ignore dev scripts
 /.dev
+
+# Ignore rubymine project files
+.idea

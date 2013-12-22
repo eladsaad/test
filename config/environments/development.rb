@@ -27,4 +27,7 @@ Cinemadrive::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
+  # Allow vagrant access to better_errors
+  BetterErrors::Middleware.allow_ip! "10.0.2.2" if defined?(BetterErrors)
+
 end

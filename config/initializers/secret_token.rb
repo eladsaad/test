@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Cinemadrive::Application.config.secret_key_base = 'fd5a4528ee4a458c50c452a407f70552a2931a97317d517d28622556e9e941dbb74957d7a17ad55bfad635545c0f9bb2d859f948ae3c47191c5ae2eaca999460'
+Cinemadrive::Application.config.secret_key_base = ENV['BASE_SECRET_KEY']
