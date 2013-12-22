@@ -1,6 +1,6 @@
 namespace :db do
-  desc "Add a new System Admin"
-  task add_system_admin: :environment do
+  desc "Add a new Super System Admin"
+  task add_super_system_admin: :environment do
 
     # get parameters
     email = ENV['email']
@@ -19,6 +19,7 @@ namespace :db do
         system_admin.email = email
         system_admin.first_name = first_name
         system_admin.last_name = last_name
+        system_admin.super_admin = true
         system_admin.password = password
         system_admin.save!
       else

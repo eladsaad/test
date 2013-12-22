@@ -48,7 +48,7 @@ body { padding-top: 70px; } // because of fixed navbar
 	@extend .form-group;
 }
 
-.field input {
+.field input:not([type=checkbox]) {
 	@extend .form-control;
 }
 

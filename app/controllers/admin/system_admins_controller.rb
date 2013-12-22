@@ -77,6 +77,6 @@ class Admin::SystemAdminsController < Admin::AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_system_admin_params
-      params.require(:admin_system_admin).permit(:email, :first_name, :last_name)
+      params.require(:admin_system_admin).permit(:email, :first_name, :last_name, :super_admin)
     end
 end

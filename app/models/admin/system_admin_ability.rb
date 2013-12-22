@@ -7,7 +7,9 @@ class Admin::SystemAdminAbility
     unless system_admin.nil?
     	
     	# system admins
-    	can :manage, SystemAdmin
+      if (system_admin.super_admin)
+        can :manage, SystemAdmin
+      end
 
     	# operators
     	can :manage, Operator    	 
