@@ -17,9 +17,10 @@
 
 # Ignore vagrant
 /.vagrant
+/Vagrantfile
 
 # Ignore dev scripts
 /.dev
 
 # Ignore rubymine project files
-.idea
+/.idea
