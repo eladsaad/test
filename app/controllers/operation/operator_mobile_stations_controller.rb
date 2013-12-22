@@ -5,7 +5,7 @@ class Operation::OperatorMobileStationsController < Operation::OperationControll
   # GET /operation/operator_mobile_stations.json
   def index
     authorize! :index, OperatorMobileStation
-    @operation_operator_mobile_stations = Operation::OperatorMobileStation.all
+    @operation_operator_mobile_stations = Operation::OperatorMobileStation.accessible_by(current_ability, :read)
   end
 
   # GET /operation/operator_mobile_stations/1

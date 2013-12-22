@@ -21,7 +21,8 @@ class Operation::OperatorAbility
       can :reg_codes, Operator, id: operator.id
 
       # operator mobile stations
-      can :manage, OperatorMobileStation, operator_id: operator.id
+      can [:read, :edit, :update], OperatorMobileStation, operator_id: operator.id
+      can [:new, :create, :index], OperatorMobileStation
 
     end
 
