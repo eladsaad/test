@@ -1,15 +1,17 @@
 <h1>Listing operation_player_groups</h1>
 
+<%= render 'shared/search_table_form', objects_index_path: operation_player_groups_path %>
+
 <table class="records-table">
   <thead>
     <tr>
-      <th>Operator</th>
-      <th>Reg code</th>
-      <th>Program start date</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Player organization</th>
-      <th>Mobile station code</th>
+      <th><%= sortable_column :operator_id, t('activerecord.attributes.player_group.operator_id') %></th>
+      <th><%= sortable_column :reg_code, t('activerecord.attributes.player_group.reg_code') %></th>
+      <th><%= sortable_column :program_start_date, t('activerecord.attributes.player_group.program_start_date') %></th>
+      <th><%= sortable_column :name, t('activerecord.attributes.player_group.name') %></th>
+      <th><%= sortable_column :description, t('activerecord.attributes.player_group.description') %></th>
+      <th><%= sortable_column :player_organization_id, t('activerecord.attributes.player_group.player_organization_id') %></th>
+      <th><%= sortable_column :mobile_station_code, t('activerecord.attributes.player_group.mobile_station_code') %></th>
       <th></th>
       <th></th>
     </tr>
@@ -31,6 +33,8 @@
     <% end %>
   </tbody>
 </table>
+
+<%= will_paginate @operation_player_groups %>
 
 <br>
 

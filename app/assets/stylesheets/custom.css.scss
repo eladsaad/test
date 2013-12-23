@@ -40,6 +40,20 @@ body { padding-top: 70px; } // because of fixed navbar
 	@extend .btn-danger;
 }
 
+.column-sort-asc {
+	padding-right: 12px;  
+	background-repeat: no-repeat;  
+	background-position: right center;
+	background-image: url(/images/up_arrow.gif);
+}
+
+.column-sort-desc {
+	padding-right: 12px;  
+	background-repeat: no-repeat;  
+	background-position: right center;
+	background-image: url(/images/down_arrow.gif);
+}
+
 
 // Forms
 

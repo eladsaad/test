@@ -1,16 +1,18 @@
 <h1>Listing operation_player_organizations</h1>
 
+<%= render 'shared/search_table_form', objects_index_path: operation_player_organizations_path %>
+
 <table class="records-table">
   <thead>
     <tr>
-      <th>Operator</th>
-      <th>Org type</th>
-      <th>Name</th>
-      <th>Address</th>
-      <th>Contact name</th>
-      <th>Contact position</th>
-      <th>Contact email</th>
-      <th>Contact phone</th>
+      <th><%= sortable_column :operator_id, t('activerecord.attributes.player_organization.operator_id') %></th>
+      <th><%= sortable_column :org_type, t('activerecord.attributes.player_organization.org_type') %></th>
+      <th><%= sortable_column :name, t('activerecord.attributes.player_organization.name') %></th>
+      <th><%= sortable_column :address, t('activerecord.attributes.player_organization.address') %></th>
+      <th><%= sortable_column :contact_name, t('activerecord.attributes.player_organization.contact_name') %></th>
+      <th><%= sortable_column :contact_position, t('activerecord.attributes.player_organization.contact_position') %></th>
+      <th><%= sortable_column :contact_email, t('activerecord.attributes.player_organization.contact_email') %></th>
+      <th><%= sortable_column :contact_phone, t('activerecord.attributes.player_organization.contact_phone') %></th>
       <th></th>
       <th></th>
     </tr>
@@ -33,6 +35,7 @@
     <% end %>
   </tbody>
 </table>
+<%= will_paginate @operation_player_organizations %>
 
 <br>
 

@@ -10,6 +10,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'devise'
 gem 'cancan'
 gem 'omniauth-facebook'
+gem 'will_paginate'
 # gem 'therubyracer', platforms: :ruby
 
 group :development, :test do

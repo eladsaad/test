@@ -1,13 +1,17 @@
 class Operation::PlayerGroupsController < Operation::OperationController
   before_action :set_operation_player_group, only: [:show, :edit, :update, :destroy]
+  helper_method :sort_column, :sort_direction
 
   # GET /operation/player_groups
   # GET /operation/player_groups.json
   def index
     authorize! :index, PlayerGroup
     @operation_player_groups = Operation::PlayerGroup.accessible_by(current_ability, :read)
+    @operation_player_groups = @operation_player_groups.search(params[:search]) unless params[:search].blank?
+    @operation_player_groups = @operation_player_groups.order("#{sort_column} #{sort_direction}") unless sort_column.blank?
+    @operation_player_groups = @operation_player_groups.paginate(page: params[:page], per_page: 5)
   end
-
+  
   # GET /operation/player_groups/1
   # GET /operation/player_groups/1.json
   def show
@@ -68,5 +72,15 @@ class Operation::PlayerGroupsController < Operation::OperationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def operation_player_group_params
       params.require(:operation_player_group).permit(:reg_code, :program_start_date, :name, :description, :player_organization_id, :mobile_station_code)
+    end
+
+    # set sort column
+    def sort_column
+      Operation::PlayerGroup.column_names.include?(params[:sort]) ? params[:sort] : nil
+    end  
+      
+    # set sort direction
+    def sort_direction  
+      ['asc', 'desc'].include?(params[:direction]) ?  params[:direction] : "asc"  
     end
 end

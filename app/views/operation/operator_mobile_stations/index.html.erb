@@ -1,9 +1,11 @@
 <h1>Listing operation_operator_mobile_stations</h1>
 
+<%= render 'shared/search_table_form', objects_index_path: operation_operator_mobile_stations_path %>
+
 <table class="records-table">
   <thead>
     <tr>
-      <th>Code</th>
+      <th><%= sortable_column :code, t('activerecord.attributes.operator_mobile_station.code') %></th>
       <th></th>
       <th></th>
       <th></th>
@@ -21,6 +23,8 @@
     <% end %>
   </tbody>
 </table>
+
+<%= will_paginate @operation_operator_mobile_stations %>
 
 <br>
 

@@ -1,11 +1,15 @@
 class Admin::OperatorsController < Admin::AdminController
   before_action :set_admin_operator, only: [:show, :edit, :update, :destroy, :impersonate]
+  helper_method :sort_column, :sort_direction
 
   # GET /admin/operators
   # GET /admin/operators.json
   def index
     authorize! :index, Operator
     @admin_operators = Admin::Operator.accessible_by(current_ability, :read)
+    @admin_operators = @admin_operators.search(params[:search]) unless params[:search].blank?
+    @admin_operators = @admin_operators.order("#{sort_column} #{sort_direction}") unless sort_column.blank?
+    @admin_operators = @admin_operators.paginate(page: params[:page], per_page: 5)
   end
 
   # GET /admin/operators/1
@@ -93,4 +97,15 @@ class Admin::OperatorsController < Admin::AdminController
     def admin_operator_params
       params.require(:admin_operator).permit(:name, :email, :country, :reg_code_prefix, :disabled)
     end
+
+    # set sort column
+    def sort_column
+      Admin::Operator.column_names.include?(params[:sort]) ? params[:sort] : nil
+    end  
+      
+    # set sort direction
+    def sort_direction  
+      ['asc', 'desc'].include?(params[:direction]) ?  params[:direction] : "asc"  
+    end
+
 end

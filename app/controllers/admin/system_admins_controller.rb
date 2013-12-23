@@ -1,11 +1,15 @@
 class Admin::SystemAdminsController < Admin::AdminController
   before_action :set_admin_system_admin, only: [:show, :edit, :update, :destroy]
+  helper_method :sort_column, :sort_direction
 
   # GET /admin/system_admins
   # GET /admin/system_admins.json
   def index
     authorize! :index, SystemAdmin
     @admin_system_admins = Admin::SystemAdmin.accessible_by(current_ability, :read)
+    @admin_system_admins = @admin_system_admins.search(params[:search]) unless params[:search].blank?
+    @admin_system_admins = @admin_system_admins.order("#{sort_column} #{sort_direction}") unless sort_column.blank?
+    @admin_system_admins = @admin_system_admins.paginate(page: params[:page], per_page: 5)
   end
 
   # GET /admin/system_admins/1
@@ -78,5 +82,15 @@ class Admin::SystemAdminsController < Admin::AdminController
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_system_admin_params
       params.require(:admin_system_admin).permit(:email, :first_name, :last_name, :super_admin)
+    end
+
+      # set sort column
+    def sort_column
+      Admin::SystemAdmin.column_names.include?(params[:sort]) ? params[:sort] : nil
+    end  
+      
+    # set sort direction
+    def sort_direction  
+      ['asc', 'desc'].include?(params[:direction]) ?  params[:direction] : "asc"  
     end
 end

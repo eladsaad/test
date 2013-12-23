@@ -18,9 +18,17 @@ class SystemAdmin < ActiveRecord::Base
 	delegate :can?, :cannot?, :to => :ability
 
 	# == UTILS ==
-
 	def full_name
 		"#{self.first_name} #{self.last_name}"
+	end
+
+	# == SEARCH ==
+	def self.search(search)
+		if search
+			where('email LIKE ? or first_name LIKE ? or last_name LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%")
+		else
+			scoped
+		end
 	end
 
 end

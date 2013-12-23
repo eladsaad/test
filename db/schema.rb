@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131222153907) do
+ActiveRecord::Schema.define(version: 20131223114258) do
 
   create_table "operator_mobile_stations", force: true do |t|
     t.integer  "operator_id"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20131222153907) do
     t.datetime "updated_at"
   end
 
+  add_index "operator_mobile_stations", ["code"], name: "index_operator_mobile_stations_on_code"
   add_index "operator_mobile_stations", ["operator_id"], name: "index_operator_mobile_stations_on_operator_id"
 
   create_table "operators", force: true do |t|
@@ -43,6 +44,7 @@ ActiveRecord::Schema.define(version: 20131222153907) do
 
   add_index "operators", ["confirmation_token"], name: "index_operators_on_confirmation_token", unique: true
   add_index "operators", ["email"], name: "index_operators_on_email", unique: true
+  add_index "operators", ["name"], name: "index_operators_on_name"
   add_index "operators", ["reset_password_token"], name: "index_operators_on_reset_password_token", unique: true
 
   create_table "player_authentications", force: true do |t|
@@ -69,6 +71,8 @@ ActiveRecord::Schema.define(version: 20131222153907) do
     t.string   "mobile_station_code"
   end
 
+  add_index "player_groups", ["description"], name: "index_player_groups_on_description"
+  add_index "player_groups", ["name"], name: "index_player_groups_on_name"
   add_index "player_groups", ["operator_id"], name: "index_player_groups_on_operator_id"
   add_index "player_groups", ["player_organization_id"], name: "index_player_groups_on_player_organization_id"
   add_index "player_groups", ["reg_code"], name: "index_player_groups_on_reg_code", unique: true
@@ -86,6 +90,8 @@ ActiveRecord::Schema.define(version: 20131222153907) do
     t.integer  "operator_id"
   end
 
+  add_index "player_organizations", ["contact_email"], name: "index_player_organizations_on_contact_email"
+  add_index "player_organizations", ["name"], name: "index_player_organizations_on_name"
   add_index "player_organizations", ["operator_id"], name: "index_player_organizations_on_operator_id"
 
   create_table "player_sessions", force: true do |t|
@@ -144,6 +150,8 @@ ActiveRecord::Schema.define(version: 20131222153907) do
 
   add_index "system_admins", ["confirmation_token"], name: "index_system_admins_on_confirmation_token", unique: true
   add_index "system_admins", ["email"], name: "index_system_admins_on_email", unique: true
+  add_index "system_admins", ["first_name"], name: "index_system_admins_on_first_name"
+  add_index "system_admins", ["last_name"], name: "index_system_admins_on_last_name"
   add_index "system_admins", ["reset_password_token"], name: "index_system_admins_on_reset_password_token", unique: true
 
 end

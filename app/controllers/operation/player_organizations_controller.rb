@@ -1,11 +1,15 @@
 class Operation::PlayerOrganizationsController < Operation::OperationController
   before_action :set_operation_player_organization, only: [:show, :edit, :update, :destroy]
+  helper_method :sort_column, :sort_direction
 
   # GET /operation/player_organizations
   # GET /operation/player_organizations.json
   def index
     authorize! :index, PlayerOrganization
     @operation_player_organizations = Operation::PlayerOrganization.accessible_by(current_ability, :read)
+    @operation_player_organizations = @operation_player_organizations.search(params[:search]) unless params[:search].blank?
+    @operation_player_organizations = @operation_player_organizations.order("#{sort_column} #{sort_direction}") unless sort_column.blank?
+    @operation_player_organizations = @operation_player_organizations.paginate(page: params[:page], per_page: 5)
   end
 
   # GET /operation/player_organizations/1
@@ -67,5 +71,15 @@ class Operation::PlayerOrganizationsController < Operation::OperationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def operation_player_organization_params
       params.require(:operation_player_organization).permit(:org_type, :name, :address, :contact_name, :contact_position, :contact_email, :contact_phone)
+    end
+
+    # set sort column
+    def sort_column
+      Operation::PlayerOrganization.column_names.include?(params[:sort]) ? params[:sort] : nil
+    end  
+      
+    # set sort direction
+    def sort_direction  
+      ['asc', 'desc'].include?(params[:direction]) ?  params[:direction] : "asc"  
     end
 end

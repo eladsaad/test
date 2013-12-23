@@ -1,12 +1,14 @@
 <h1>Listing admin_system_admins</h1>
 
+<%= render 'shared/search_table_form', objects_index_path: admin_system_admins_path %>
+
 <table class="records-table">
   <thead>
     <tr>
-      <th>Email</th>
-      <th>First name</th>
-      <th>Last name</th>
-      <th>Super Admin</th>
+      <th><%= sortable_column :email, t('activerecord.attributes.system_admin.email') %></th>
+      <th><%= sortable_column :first_name, t('activerecord.attributes.system_admin.first_name') %></th>
+      <th><%= sortable_column :last_name, t('activerecord.attributes.system_admin.last_name') %></th>
+      <th><%= sortable_column :super_admin, t('activerecord.attributes.system_admin.super_admin') %></th>
       <th></th>
       <th></th>
       <th></th>
@@ -27,6 +29,8 @@
     <% end %>
   </tbody>
 </table>
+
+<%= will_paginate @admin_system_admins %>
 
 <br>
 

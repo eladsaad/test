@@ -11,4 +11,13 @@ class PlayerGroup < ActiveRecord::Base
 	belongs_to :operator
 	belongs_to :player_organization
 
+	# == SEARCH ==
+	def self.search(search)
+		if search
+			where('name LIKE ? or description LIKE ? or reg_code LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%")
+		else
+			scoped
+		end
+	end
+
 end

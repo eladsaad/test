@@ -1,11 +1,15 @@
 class Operation::OperatorMobileStationsController < Operation::OperationController
   before_action :set_operation_operator_mobile_station, only: [:show, :edit, :update, :destroy]
+  helper_method :sort_column, :sort_direction
 
   # GET /operation/operator_mobile_stations
   # GET /operation/operator_mobile_stations.json
   def index
     authorize! :index, OperatorMobileStation
     @operation_operator_mobile_stations = Operation::OperatorMobileStation.accessible_by(current_ability, :read)
+    @operation_operator_mobile_stations = @operation_operator_mobile_stations.search(params[:search]) unless params[:search].blank?
+    @operation_operator_mobile_stations = @operation_operator_mobile_stations.order("#{sort_column} #{sort_direction}") unless sort_column.blank?
+    @operation_operator_mobile_stations = @operation_operator_mobile_stations.paginate(page: params[:page], per_page: 5)
   end
 
   # GET /operation/operator_mobile_stations/1
@@ -78,5 +82,15 @@ class Operation::OperatorMobileStationsController < Operation::OperationControll
     # Never trust parameters from the scary internet, only allow the white list through.
     def operation_operator_mobile_station_params
       params.require(:operation_operator_mobile_station).permit(:code)
+    end
+
+    # set sort column
+    def sort_column
+      Operation::OperatorMobileStation.column_names.include?(params[:sort]) ? params[:sort] : nil
+    end  
+      
+    # set sort direction
+    def sort_direction  
+      ['asc', 'desc'].include?(params[:direction]) ?  params[:direction] : "asc"  
     end
 end
