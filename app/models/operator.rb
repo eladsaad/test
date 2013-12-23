@@ -9,6 +9,7 @@ class Operator < ActiveRecord::Base
 	# == ASSOCIATIONS ==
 	has_many :player_groups
 	has_many :player_organizations
+	has_many :operator_mobile_stations
 
 	# == DEVISE Authentication ==
 	devise :database_authenticatable, :confirmable,
