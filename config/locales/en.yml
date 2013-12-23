@@ -4,3 +4,4 @@ en:
   cinema_drive_operation: "Cinema Drive Operation"
   leave_empty_for_automatic: "Leave empty for automatic"
   choose: "Choose"
+  logged_in_as_operator: "You are now logged in as operator - %{operator_email}"

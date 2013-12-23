@@ -78,8 +78,8 @@ class Admin::OperatorsController < Admin::AdminController
 
   def impersonate
     authorize! :impersonate, @admin_operator
-    sign_in(Operator, @admin_operator, :bypass => true)
-    redirect_to operation_root_url
+    sign_in(@admin_operator, :bypass => true)
+    redirect_to operation_root_url, :notice => t(:logged_in_as_operator, operator_email: @admin_operator.email)
   end
 
 
@@ -91,6 +91,6 @@ class Admin::OperatorsController < Admin::AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_operator_params
-      params.require(:admin_operator).permit(:name, :email, :country, :reg_code_prefix)
+      params.require(:admin_operator).permit(:name, :email, :country, :reg_code_prefix, :disabled)
     end
 end

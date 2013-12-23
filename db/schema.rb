@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131222133404) do
+ActiveRecord::Schema.define(version: 20131222153907) do
 
   create_table "operator_mobile_stations", force: true do |t|
     t.integer  "operator_id"
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20131222133404) do
     t.string   "reg_code_prefix",        limit: 2
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "encrypted_password",               default: "", null: false
+    t.string   "encrypted_password",               default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20131222133404) do
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
     t.integer  "last_reg_code_id"
+    t.boolean  "disabled",                         default: false
   end
 
   add_index "operators", ["confirmation_token"], name: "index_operators_on_confirmation_token", unique: true

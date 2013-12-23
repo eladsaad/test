@@ -7,6 +7,7 @@
       <th>Email</th>
       <th>Country</th>
       <th>Reg code prefix</th>
+      <th>Disabled</th>
       <th></th>
       <th></th>
       <th></th>
@@ -21,6 +22,7 @@
         <td><%= admin_operator.email %></td>
         <td><%= admin_operator.country %></td>
         <td><%= admin_operator.reg_code_prefix %></td>
+        <td><%= admin_operator.disabled? %></td>
         <td><%= link_to 'Show', admin_operator, class: 'show-record-link' %></td>
         <td><%= link_to 'Edit', edit_admin_operator_path(admin_operator), class: 'edit-record-link' %></td>
         <td><%= link_to 'Destroy', admin_operator, method: :delete, data: { confirm: 'Are you sure?' }, class: 'destroy-record-link' %></td>

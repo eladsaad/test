@@ -20,5 +20,10 @@
   <%= @admin_operator.reg_code_prefix %>
 </p>
 
+<p>
+  <strong>Disabled:</strong>
+  <%= @admin_operator.disabled? %>
+</p>
+
 <%= link_to 'Edit', edit_admin_operator_path(@admin_operator) %> |
 <%= link_to 'Back', admin_operators_path %>
