@@ -1,6 +1,7 @@
 class Operation::PlayerOrganizationsController < Operation::OperationController
   before_action :set_operation_player_organization, only: [:show, :edit, :update, :destroy]
-  helper_method :sort_column, :sort_direction
+  
+  allowed_sort_columns Operation::PlayerOrganization 
 
   # GET /operation/player_organizations
   # GET /operation/player_organizations.json
@@ -73,13 +74,4 @@ class Operation::PlayerOrganizationsController < Operation::OperationController
       params.require(:operation_player_organization).permit(:org_type, :name, :address, :contact_name, :contact_position, :contact_email, :contact_phone)
     end
 
-    # set sort column
-    def sort_column
-      Operation::PlayerOrganization.column_names.include?(params[:sort]) ? params[:sort] : nil
-    end  
-      
-    # set sort direction
-    def sort_direction  
-      ['asc', 'desc'].include?(params[:direction]) ?  params[:direction] : "asc"  
-    end
 end

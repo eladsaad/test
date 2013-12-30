@@ -1,6 +1,7 @@
 class Operation::PlayerGroupsController < Operation::OperationController
   before_action :set_operation_player_group, only: [:show, :edit, :update, :destroy]
-  helper_method :sort_column, :sort_direction
+
+  allowed_sort_columns Operation::PlayerGroup 
 
   # GET /operation/player_groups
   # GET /operation/player_groups.json
@@ -74,13 +75,7 @@ class Operation::PlayerGroupsController < Operation::OperationController
       params.require(:operation_player_group).permit(:reg_code, :program_start_date, :name, :description, :player_organization_id, :mobile_station_code)
     end
 
-    # set sort column
-    def sort_column
-      Operation::PlayerGroup.column_names.include?(params[:sort]) ? params[:sort] : nil
-    end  
+    
       
-    # set sort direction
-    def sort_direction  
-      ['asc', 'desc'].include?(params[:direction]) ?  params[:direction] : "asc"  
-    end
+    
 end

@@ -1,6 +1,7 @@
 class Operation::OperatorMobileStationsController < Operation::OperationController
   before_action :set_operation_operator_mobile_station, only: [:show, :edit, :update, :destroy]
-  helper_method :sort_column, :sort_direction
+  
+  allowed_sort_columns Operation::OperatorMobileStation
 
   # GET /operation/operator_mobile_stations
   # GET /operation/operator_mobile_stations.json
@@ -84,13 +85,4 @@ class Operation::OperatorMobileStationsController < Operation::OperationControll
       params.require(:operation_operator_mobile_station).permit(:code)
     end
 
-    # set sort column
-    def sort_column
-      Operation::OperatorMobileStation.column_names.include?(params[:sort]) ? params[:sort] : nil
-    end  
-      
-    # set sort direction
-    def sort_direction  
-      ['asc', 'desc'].include?(params[:direction]) ?  params[:direction] : "asc"  
-    end
 end

@@ -1,6 +1,7 @@
 class Admin::OperatorsController < Admin::AdminController
   before_action :set_admin_operator, only: [:show, :edit, :update, :destroy, :impersonate]
-  helper_method :sort_column, :sort_direction
+  
+  allowed_sort_columns Admin::Operator
 
   # GET /admin/operators
   # GET /admin/operators.json
@@ -96,16 +97,6 @@ class Admin::OperatorsController < Admin::AdminController
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_operator_params
       params.require(:admin_operator).permit(:name, :email, :country, :reg_code_prefix, :disabled)
-    end
-
-    # set sort column
-    def sort_column
-      Admin::Operator.column_names.include?(params[:sort]) ? params[:sort] : nil
-    end  
-      
-    # set sort direction
-    def sort_direction  
-      ['asc', 'desc'].include?(params[:direction]) ?  params[:direction] : "asc"  
     end
 
 end

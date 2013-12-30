@@ -1,6 +1,7 @@
 class Admin::SystemAdminsController < Admin::AdminController
   before_action :set_admin_system_admin, only: [:show, :edit, :update, :destroy]
-  helper_method :sort_column, :sort_direction
+  
+  allowed_sort_columns Admin::SystemAdmin
 
   # GET /admin/system_admins
   # GET /admin/system_admins.json
@@ -84,13 +85,4 @@ class Admin::SystemAdminsController < Admin::AdminController
       params.require(:admin_system_admin).permit(:email, :first_name, :last_name, :super_admin)
     end
 
-      # set sort column
-    def sort_column
-      Admin::SystemAdmin.column_names.include?(params[:sort]) ? params[:sort] : nil
-    end  
-      
-    # set sort direction
-    def sort_direction  
-      ['asc', 'desc'].include?(params[:direction]) ?  params[:direction] : "asc"  
-    end
 end

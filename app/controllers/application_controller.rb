@@ -14,4 +14,16 @@ class ApplicationController < ActionController::Base
   	end
   end
 
+  # == Sorting
+  
+  def self.allowed_sort_columns(model_class)
+    define_method :sort_column do
+      model_class.column_names.include?(params[:sort]) ? params[:sort] : nil
+    end
+    define_method :sort_direction do
+      ['asc', 'desc'].include?(params[:direction]) ?  params[:direction] : "asc"
+    end
+    helper_method :sort_column, :sort_direction
+  end
+
 end
