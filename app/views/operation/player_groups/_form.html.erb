@@ -22,12 +22,12 @@
     <i>(<%= t(:start_typing_for_autocomplete) %>)</i><br>
     <%= f.hidden_field :player_organization_id, id: 'player_group_player_organization_id' %>
     <% player_organization_name = @operation_player_group.player_organization ? @operation_player_group.player_organization.name : nil  %>
-    <%= text_field_tag 'autocomplete_player_organization', player_organization_name, :class => 'autocomplete-field',
+    <%= f.text_field :player_organization_id, value: player_organization_name, name: 'player_organization_autocomplete', :class => 'autocomplete-field',
         data: {
           autocomplete_source: operation_player_organizations_path(format: :json),
           autocomplete_label_att: 'name',
           autocomplete_value_att: 'id',
-          autocomplete_value_obj_id: 'player_group_player_organization_id'
+          autocomplete_value_input_id: 'player_group_player_organization_id'
         } %>
   </div>
   <div class="field">
