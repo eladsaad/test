@@ -14,5 +14,4 @@
 //= require jquery_ujs
 //= require jquery.ui.autocomplete
 //= require bootstrap.min
-//= require turbolinks
 //= require_tree .
