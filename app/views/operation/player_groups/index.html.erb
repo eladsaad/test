@@ -1,4 +1,4 @@
-<h1>Listing operation_player_groups</h1>
+<h1><%= t('activerecord.models.player_groups') %></h1>
 
 <%= render 'shared/search_table_form', objects_index_path: operation_player_groups_path %>
 
@@ -27,8 +27,8 @@
         <td><%= operation_player_group.description %></td>
         <td><%= operation_player_group.player_organization_id %></td>
         <td><%= operation_player_group.mobile_station_code %></td>
-        <td><%= link_to 'Show', operation_player_group, class: 'show-record-link' %></td>
-        <td><%= link_to 'Edit', edit_operation_player_group_path(operation_player_group), class: 'edit-record-link' %></td>
+        <td><%= link_to t(:show), operation_player_group, class: 'show-record-link' %></td>
+        <td><%= link_to t(:edit), edit_operation_player_group_path(operation_player_group), class: 'edit-record-link' %></td>
       </tr>
     <% end %>
   </tbody>
@@ -38,6 +38,6 @@
 
 <br>
 
-<%= link_to 'New Player Group', new_operation_player_group_path %> | 
+<%= link_to t(:new) + ' ' + t('activerecord.models.player_group'), new_operation_player_group_path %> | 
 <%= link_to 'Fetch 10 New Registration Codes', operation_fetch_registration_codes_path(amount:10)%>
 

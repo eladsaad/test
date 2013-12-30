@@ -1,29 +1,11 @@
-<p id="notice"><%= notice %></p>
+<h1><%= t('activerecord.models.operator') %></h1>
 
-<p>
-  <strong>Name:</strong>
-  <%= @admin_operator.name %>
-</p>
+<% [:id, :name, :email, :country, :reg_code_prefix, :disabled, :created_at, :updated_at].each do |attribute| %>
+    <p>
+      <strong><%= t("activerecord.attributes.operator.#{attribute}") %>:</strong>
+      <%= @admin_operator.send(attribute) %>
+    </p>
+<% end %>
 
-<p>
-  <strong>Email:</strong>
-  <%= @admin_operator.email %>
-</p>
-
-<p>
-  <strong>Country:</strong>
-  <%= @admin_operator.country %>
-</p>
-
-<p>
-  <strong>Reg code prefix:</strong>
-  <%= @admin_operator.reg_code_prefix %>
-</p>
-
-<p>
-  <strong>Disabled:</strong>
-  <%= @admin_operator.disabled? %>
-</p>
-
-<%= link_to 'Edit', edit_admin_operator_path(@admin_operator) %> |
-<%= link_to 'Back', admin_operators_path %>
+<%= link_to t(:edit), edit_admin_operator_path(@admin_operator) %> |
+<%= link_to t(:back), admin_operators_path %>

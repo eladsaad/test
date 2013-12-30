@@ -1,6 +1,6 @@
-<h1>Editing admin_operator</h1>
+<h1><%= t('activerecord.models.operator') %></h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @admin_operator %> |
-<%= link_to 'Back', admin_operators_path %>
+<%= link_to t(:show), @admin_operator %> |
+<%= link_to t(:back), admin_operators_path %>

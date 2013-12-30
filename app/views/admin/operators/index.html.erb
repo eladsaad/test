@@ -1,4 +1,4 @@
-<h1>Listing admin_operators</h1>
+<h1><%= t('activerecord.models.operators') %></h1>
 
 <%= render 'shared/search_table_form', objects_index_path: admin_operators_path %>
 
@@ -25,10 +25,10 @@
         <td><%= admin_operator.country %></td>
         <td><%= admin_operator.reg_code_prefix %></td>
         <td><%= admin_operator.disabled? %></td>
-        <td><%= link_to 'Show', admin_operator, class: 'show-record-link' %></td>
-        <td><%= link_to 'Edit', edit_admin_operator_path(admin_operator), class: 'edit-record-link' %></td>
-        <td><%= link_to 'Destroy', admin_operator, method: :delete, data: { confirm: 'Are you sure?' }, class: 'destroy-record-link' %></td>
-        <td><%= link_to 'Impersonate', impersonate_admin_operator_path(admin_operator), class: 'special-btn' %></td>
+        <td><%= link_to t(:show), admin_operator, class: 'show-record-link' %></td>
+        <td><%= link_to t(:edit), edit_admin_operator_path(admin_operator), class: 'edit-record-link' %></td>
+        <td><%= link_to t(:destroy), admin_operator, method: :delete, data: { confirm: t(:are_you_sure_?) }, class: 'destroy-record-link' %></td>
+        <td><%= link_to t(:impersonate), impersonate_admin_operator_path(admin_operator), class: 'special-btn' %></td>
       </tr>
     <% end %>
   </tbody>
@@ -38,4 +38,4 @@
 
 <br>
 
-<%= link_to 'New Operator', new_admin_operator_path %>
+<%= link_to t(:new) + ' ' + t('activerecord.models.operator'), new_admin_operator_path %>

@@ -1,4 +1,4 @@
-<h1>Listing operation_player_organizations</h1>
+<h1><%= t('activerecord.models.player_organizations') %></h1>
 
 <%= render 'shared/search_table_form', objects_index_path: operation_player_organizations_path %>
 
@@ -29,8 +29,8 @@
         <td><%= operation_player_organization.contact_position %></td>
         <td><%= operation_player_organization.contact_email %></td>
         <td><%= operation_player_organization.contact_phone %></td>
-        <td><%= link_to 'Show', operation_player_organization, class: 'show-record-link' %></td>
-        <td><%= link_to 'Edit', edit_operation_player_organization_path(operation_player_organization), class: 'edit-record-link' %></td>
+        <td><%= link_to t(:show), operation_player_organization, class: 'show-record-link' %></td>
+        <td><%= link_to t(:edit), edit_operation_player_organization_path(operation_player_organization), class: 'edit-record-link' %></td>
       </tr>
     <% end %>
   </tbody>
@@ -39,4 +39,4 @@
 
 <br>
 
-<%= link_to 'New Player organization', new_operation_player_organization_path %>
+<%= link_to t(:new) + ' ' + t('activerecord.models.player_organization'), new_operation_player_organization_path %>

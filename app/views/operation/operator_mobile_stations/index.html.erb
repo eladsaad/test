@@ -1,4 +1,4 @@
-<h1>Listing operation_operator_mobile_stations</h1>
+<h1><%= t('activerecord.models.operator_mobile_stations') %></h1>
 
 <%= render 'shared/search_table_form', objects_index_path: operation_operator_mobile_stations_path %>
 
@@ -16,9 +16,9 @@
     <% @operation_operator_mobile_stations.each do |operation_operator_mobile_station| %>
       <tr>
         <td><%= operation_operator_mobile_station.code %></td>
-        <td><%= link_to 'Show', operation_operator_mobile_station, class: 'show-record-link' %></td>
-        <td><%= link_to 'Edit', edit_operation_operator_mobile_station_path(operation_operator_mobile_station), class: 'edit-record-link' %></td>
-        <td><%= link_to 'Destroy', operation_operator_mobile_station, method: :delete, data: { confirm: 'Are you sure?' }, class: 'destroy-record-link' %></td>
+        <td><%= link_to t(:show), operation_operator_mobile_station, class: 'show-record-link' %></td>
+        <td><%= link_to t(:edit), edit_operation_operator_mobile_station_path(operation_operator_mobile_station), class: 'edit-record-link' %></td>
+        <td><%= link_to t(:destroy), operation_operator_mobile_station, method: :delete, data: { confirm: t(:are_you_sure_?) }, class: 'destroy-record-link' %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Operator mobile station', new_operation_operator_mobile_station_path %>
+<%= link_to link_to t(:new) + ' ' + t('activerecord.models.operator_mobile_station'), new_operation_operator_mobile_station_path %>

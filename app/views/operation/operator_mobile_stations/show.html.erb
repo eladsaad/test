@@ -1,14 +1,11 @@
-<p id="notice"><%= notice %></p>
+<h1><%= t('activerecord.models.operator_mobile_station') %></h1>
 
-<p>
-  <strong>Operator:</strong>
-  <%= @operation_operator_mobile_station.operator_id %>
-</p>
+<% [:id, :operator_id, :code, :created_at, :updated_at].each do |attribute| %>
+    <p>
+      <strong><%= t("activerecord.attributes.operator_mobile_station.#{attribute}") %>:</strong>
+      <%= @operation_operator_mobile_station.send(attribute) %>
+    </p>
+<% end %>
 
-<p>
-  <strong>Code:</strong>
-  <%= @operation_operator_mobile_station.code %>
-</p>
-
-<%= link_to 'Edit', edit_operation_operator_mobile_station_path(@operation_operator_mobile_station) %> |
-<%= link_to 'Back', operation_operator_mobile_stations_path %>
+<%= link_to t(:edit), edit_operation_operator_mobile_station_path(@operation_operator_mobile_station) %> |
+<%= link_to t(:back), operation_operator_mobile_stations_path %>

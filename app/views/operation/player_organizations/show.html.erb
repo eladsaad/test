@@ -1,44 +1,11 @@
-<p id="notice"><%= notice %></p>
+<h1><%= t('activerecord.models.player_organization') %></h1>
 
-<p>
-  <strong>Operator:</strong>
-  <%= @operation_player_organization.operator_id %>
-</p>
+<% [:id, :operator_id, :org_type, :name, :address, :contact_name, :contact_position, :contact_email, :contact_phone, :created_at, :updated_at].each do |attribute| %>
+    <p>
+      <strong><%= t("activerecord.attributes.player_organization.#{attribute}") %>:</strong>
+      <%= @operation_player_organization.send(attribute) %>
+    </p>
+<% end %>
 
-<p>
-  <strong>Org type:</strong>
-  <%= @operation_player_organization.org_type %>
-</p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @operation_player_organization.name %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @operation_player_organization.address %>
-</p>
-
-<p>
-  <strong>Contact name:</strong>
-  <%= @operation_player_organization.contact_name %>
-</p>
-
-<p>
-  <strong>Contact position:</strong>
-  <%= @operation_player_organization.contact_position %>
-</p>
-
-<p>
-  <strong>Contact email:</strong>
-  <%= @operation_player_organization.contact_email %>
-</p>
-
-<p>
-  <strong>Contact phone:</strong>
-  <%= @operation_player_organization.contact_phone %>
-</p>
-
-<%= link_to 'Edit', edit_operation_player_organization_path(@operation_player_organization) %> |
-<%= link_to 'Back', operation_player_organizations_path %>
+<%= link_to t(:edit), edit_operation_player_organization_path(@operation_player_organization) %> |
+<%= link_to t(:back), operation_player_organizations_path %>

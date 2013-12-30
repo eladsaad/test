@@ -1,39 +1,11 @@
-<p id="notice"><%= notice %></p>
+<h1><%= t('activerecord.models.player_group') %></h1>
 
-<p>
-  <strong>Operator:</strong>
-  <%= @operation_player_group.operator_id %>
-</p>
+<% [:id, :operator_id, :reg_code, :program_start_date, :name, :description, :player_organization_id, :mobile_station_code, :created_at, :updated_at].each do |attribute| %>
+  <p>
+    <strong><%= t("activerecord.attributes.player_group.#{attribute}") %>:</strong>
+    <%= @operation_player_group.send(attribute) %>
+  </p>
+<% end %>
 
-<p>
-  <strong>Reg code:</strong>
-  <%= @operation_player_group.reg_code %>
-</p>
-
-<p>
-  <strong>Program start date:</strong>
-  <%= @operation_player_group.program_start_date %>
-</p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @operation_player_group.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @operation_player_group.description %>
-</p>
-
-<p>
-  <strong>Player organization:</strong>
-  <%= @operation_player_group.player_organization_id %>
-</p>
-
-<p>
-  <strong>Mobile Station code:</strong>
-  <%= @operation_player_group.mobile_station_code %>
-</p>
-
-<%= link_to 'Edit', edit_operation_player_group_path(@operation_player_group) %> |
-<%= link_to 'Back', operation_player_groups_path %>
+<%= link_to t(:edit), edit_operation_player_group_path(@operation_player_group) %> |
+<%= link_to t(:back), operation_player_groups_path %>
