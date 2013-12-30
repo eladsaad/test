@@ -5,3 +5,26 @@ en:
   leave_empty_for_automatic: "Leave empty for automatic"
   choose: "Choose"
   logged_in_as_operator: "You are now logged in as operator - %{operator_email}"
+  search: "Search"
+
+  activerecord:
+    models:
+      player: "Player"
+      players: "Players"
+      player_group: "Player Group"
+      player_groups: "Player Groups"
+      operator: "Operator"
+      operators: "Operators"
+    attributes:
+      player:
+        username: "Username"
+        email: "Email"
+        first_name: "First Name"
+        last_name: "Last Name"
+        birth_date: "Birth Date"
+      operator:
+        name: "Name"
+        email: "Email"
+        country: "Country"
+        reg_code_prefix: "Registration Code Prefix"
+        disabled: "Disabled"
