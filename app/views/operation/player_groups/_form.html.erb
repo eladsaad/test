@@ -19,11 +19,23 @@
   </div>
   <div class="field">
     <%= f.label :player_organization_id %><br>
-    <%= f.collection_select :player_organization_id, Operator::PlayerOrganization.accessible_by(current_ability), :id, :name, :include_blank => t(:choose) %>
+    <%= f.hidden_field :player_organization_id, id: 'player_group_player_organization_id' %>
+    <%= text_field_tag 'autocomplete_player_organization', nil, :class => 'autocomplete-field',
+        data: {
+          autocomplete_source: operation_player_organizations_path(format: :json),
+          autocomplete_label_att: 'name',
+          autocomplete_value_att: 'id',
+          autocomplete_value_obj_id: 'player_group_player_organization_id'
+        } %>
   </div>
   <div class="field">
     <%= f.label :mobile_station_code %><br>
-    <%= f.collection_select :mobile_station_code, Operator::OperatorMobileStation.accessible_by(current_ability), :code, :code, :include_blank => t(:choose) %>
+    <%= f.text_field :mobile_station_code, :class => 'autocomplete-field',
+        data: {
+          autocomplete_source: operation_operator_mobile_stations_path(format: :json),
+          autocomplete_label_att: 'code',
+          autocomplete_value_att: 'code'
+        } %>
   </div>
   <div class="actions">
     <%= f.submit %>

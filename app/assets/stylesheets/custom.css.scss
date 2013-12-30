@@ -66,6 +66,10 @@ body { padding-top: 70px; } // because of fixed navbar
 	@extend .alert-warning;	
 }
 
+.ui-autocomplete-loading {
+    background: url('/images/ajax_loader.gif') no-repeat 98% 50% !important;
+}
+
 .field {
 	@extend .form-group;
 }
