@@ -27,11 +27,13 @@ body { padding-top: 70px; } // because of fixed navbar
 .show-record-link {
 	@extend .btn;
 	@extend .btn-mini;
+	@extend .btn-default;
 }
 
 .edit-record-link {
 	@extend .btn;
 	@extend .btn-mini;
+	@extend .btn-default;
 }
 
 .destroy-record-link {

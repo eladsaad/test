@@ -18,9 +18,11 @@
     <%= f.text_field :description %>
   </div>
   <div class="field">
-    <%= f.label :player_organization_id %><br>
+    <%= label_tag t('activerecord.models.player_organization') %>
+    <i>(<%= t(:start_typing_for_autocomplete) %>)</i><br>
     <%= f.hidden_field :player_organization_id, id: 'player_group_player_organization_id' %>
-    <%= text_field_tag 'autocomplete_player_organization', nil, :class => 'autocomplete-field',
+    <% player_organization_name = @operation_player_group.player_organization ? @operation_player_group.player_organization.name : nil  %>
+    <%= text_field_tag 'autocomplete_player_organization', player_organization_name, :class => 'autocomplete-field',
         data: {
           autocomplete_source: operation_player_organizations_path(format: :json),
           autocomplete_label_att: 'name',
@@ -29,7 +31,8 @@
         } %>
   </div>
   <div class="field">
-    <%= f.label :mobile_station_code %><br>
+    <%= f.label :mobile_station_code %>
+    <i>(<%= t(:start_typing_for_autocomplete) %>)</i><br>
     <%= f.text_field :mobile_station_code, :class => 'autocomplete-field',
         data: {
           autocomplete_source: operation_operator_mobile_stations_path(format: :json),

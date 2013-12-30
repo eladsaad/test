@@ -24,6 +24,7 @@ en:
   are_you_sure_?: "Are you sure ?"
   error: "Error"
   please_fix: "Please fix"
+  start_typing_for_autocomplete: "start typing for autocomplete"
 
   # active record
   activerecord:

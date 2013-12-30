@@ -1,6 +1,18 @@
 <h1><%= t('activerecord.models.player_group') %></h1>
 
-<% [:id, :operator_id, :reg_code, :program_start_date, :name, :description, :player_organization_id, :mobile_station_code, :created_at, :updated_at].each do |attribute| %>
+<% [:id, :reg_code, :program_start_date, :name, :description].each do |attribute| %>
+  <p>
+    <strong><%= t("activerecord.attributes.player_group.#{attribute}") %>:</strong>
+    <%= @operation_player_group.send(attribute) %>
+  </p>
+<% end %>
+
+<p>
+	<strong><%= t('activerecord.models.player_organization') %>:</strong>
+	<%= link_to @operation_player_group.player_organization.name, operation_player_organization_path(@operation_player_group.player_organization) %>
+</p>
+
+<% [:mobile_station_code, :created_at, :updated_at].each do |attribute| %>
   <p>
     <strong><%= t("activerecord.attributes.player_group.#{attribute}") %>:</strong>
     <%= @operation_player_group.send(attribute) %>
