@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131223114258) do
+ActiveRecord::Schema.define(version: 20140105160813) do
 
   create_table "operator_mobile_stations", force: true do |t|
     t.integer  "operator_id"
@@ -58,6 +58,17 @@ ActiveRecord::Schema.define(version: 20131223114258) do
   end
 
   add_index "player_authentications", ["player_id"], name: "index_player_authentications_on_player_id", unique: true
+
+  create_table "player_group_associations", force: true do |t|
+    t.integer  "player_id"
+    t.integer  "player_group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "player_group_associations", ["player_group_id", "player_id"], name: "index_player_group_assoc_on_player_group_id_and_player_id", unique: true
+  add_index "player_group_associations", ["player_group_id"], name: "index_player_group_associations_on_player_group_id"
+  add_index "player_group_associations", ["player_id"], name: "index_player_group_associations_on_player_id"
 
   create_table "player_groups", force: true do |t|
     t.integer  "operator_id"

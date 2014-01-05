@@ -10,6 +10,7 @@ class PlayerGroup < ActiveRecord::Base
 	# == ASSOCIATIONS ==
 	belongs_to :operator
 	belongs_to :player_organization
+	has_and_belongs_to_many :players, join_table: :player_group_associations
 
 	# == SEARCH ==
 	def self.search(search)

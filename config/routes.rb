@@ -10,6 +10,7 @@ Cinemadrive::Application.routes.draw do
     }
   root :to => "players#index"
   resources :players
+  resources :player_group_associations, only: [:new, :create]
 
   # /admin - system administration
   namespace :admin do

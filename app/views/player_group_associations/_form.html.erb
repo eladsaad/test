@@ -1,0 +1,11 @@
+<%= form_for(@player_group_association) do |f| %>
+  <%= render 'shared/form_errors', object: @player_group_association %>
+
+  <div class="field">
+    <%= label_tag :reg_code %><br>
+    <%= text_field_tag :reg_code %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

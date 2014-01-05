@@ -10,6 +10,7 @@ class Player < ActiveRecord::Base
 	# == ASSOCIATIONS ==
 	has_many :player_sessions
 	has_many :player_authentications
+	has_and_belongs_to_many :player_groups, join_table: :player_group_associations
 
 	# == DEVISE Authentication ==
 	devise :database_authenticatable, :registerable, :confirmable,
@@ -28,6 +29,10 @@ class Player < ActiveRecord::Base
 
 	def full_name
 		"#{self.first_name} #{self.last_name}"
+	end
+
+	def current_player_group
+		self.player_groups.last
 	end
 
 

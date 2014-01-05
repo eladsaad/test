@@ -1,6 +1,15 @@
 class PlayersController < BaseController
   before_action :set_player, only: [:show, :edit, :update, :destroy]
 
+
+  def join_group
+    authorize! :join_group, PlayerGroup
+    given_reg_code = params[:reg_code]
+    group = PlayerGroup.where(reg_code: given_reg_code)
+    group.add_player(current_player)
+    
+  end
+
   # GET /players
   # GET /players.json
   def index
