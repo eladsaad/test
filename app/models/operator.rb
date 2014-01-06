@@ -32,4 +32,8 @@ class Operator < ActiveRecord::Base
 		return reg_codes.map { |reg_code| self.reg_code_prefix + reg_code.code }
 	end
 
+	def valid_code?(code)
+		(code[0..1] == self.reg_code_prefix) && RegistrationCode.pluck(:code).include?(code[2..-1])
+	end
+
 end

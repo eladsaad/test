@@ -29,6 +29,7 @@ en:
   start_typing_for_autocomplete: "start typing for autocomplete"
   male: "Male"
   female: "Female"
+  is_invalid: "is invalid"
 
   # active record
   activerecord:

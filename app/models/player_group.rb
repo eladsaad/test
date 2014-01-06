@@ -3,6 +3,7 @@ class PlayerGroup < ActiveRecord::Base
 	# == VALIDATIONS ==
 	validates :operator_id, :presence => true
 	validates :reg_code, :presence => true, :uniqueness => true
+	validate :validate_reg_code_with_operator, :on => :create
 	validates :program_start_date, :presence => true
 	validates :name, :presence => true
 	validates :player_organization_id, :presence => true
@@ -16,5 +17,15 @@ class PlayerGroup < ActiveRecord::Base
 
 	# == SEARCH ==
 	search_columns [:name, :description, :reg_code]
+
+	# == SETTINGS ==
+	attr_readonly :reg_code
+
+
+	private
+
+		def validate_reg_code_with_operator
+			errors.add(:reg_code, I18n.translate(:is_invalid)) unless self.operator.valid_code?(self.reg_code)			
+		end
 
 end
