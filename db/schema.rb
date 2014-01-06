@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140106080934) do
+ActiveRecord::Schema.define(version: 20140106110731) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,6 +73,24 @@ ActiveRecord::Schema.define(version: 20140106080934) do
   add_index "player_group_associations", ["player_group_id"], name: "index_player_group_associations_on_player_group_id", using: :btree
   add_index "player_group_associations", ["player_id"], name: "index_player_group_associations_on_player_id", using: :btree
 
+  create_table "player_group_exts", force: true do |t|
+    t.integer  "player_group_id"
+    t.string   "custom_01"
+    t.string   "custom_02"
+    t.string   "custom_03"
+    t.string   "custom_04"
+    t.string   "custom_05"
+    t.string   "custom_06"
+    t.string   "custom_07"
+    t.string   "custom_08"
+    t.string   "custom_09"
+    t.string   "custom_10"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "player_group_exts", ["player_group_id"], name: "index_player_group_exts_on_player_group_id", unique: true, using: :btree
+
   create_table "player_groups", force: true do |t|
     t.integer  "operator_id"
     t.string   "reg_code"
@@ -90,6 +108,24 @@ ActiveRecord::Schema.define(version: 20140106080934) do
   add_index "player_groups", ["operator_id"], name: "index_player_groups_on_operator_id", using: :btree
   add_index "player_groups", ["player_organization_id"], name: "index_player_groups_on_player_organization_id", using: :btree
   add_index "player_groups", ["reg_code"], name: "index_player_groups_on_reg_code", unique: true, using: :btree
+
+  create_table "player_organization_exts", force: true do |t|
+    t.integer  "player_organization_id"
+    t.string   "custom_01"
+    t.string   "custom_02"
+    t.string   "custom_03"
+    t.string   "custom_04"
+    t.string   "custom_05"
+    t.string   "custom_06"
+    t.string   "custom_07"
+    t.string   "custom_08"
+    t.string   "custom_09"
+    t.string   "custom_10"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "player_organization_exts", ["player_organization_id"], name: "index_player_organization_exts_on_player_organization_id", unique: true, using: :btree
 
   create_table "player_organizations", force: true do |t|
     t.string   "org_type"

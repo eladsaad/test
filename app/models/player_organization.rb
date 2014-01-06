@@ -7,6 +7,9 @@ class PlayerOrganization < ActiveRecord::Base
 
 	# == ASSOCIATIONS ==
 	belongs_to :operator
+	has_one :extension_params, :class_name => "PlayerOrganizationExt", dependent: :destroy
+	accepts_nested_attributes_for :extension_params
+
 
 	# == SEARCH ==
 	search_columns [:name, :contact_email]

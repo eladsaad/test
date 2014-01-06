@@ -23,11 +23,13 @@ class Operation::PlayerGroupsController < Operation::OperationController
   def new
     authorize! :new, PlayerGroup
     @operation_player_group = Operation::PlayerGroup.new
+    @operation_player_group.build_extension_params
   end
 
   # GET /operation/player_groups/1/edit
   def edit
     authorize! :edit, @operation_player_group
+    @operation_player_group.build_extension_params unless @operation_player_group.extension_params
   end
 
   # POST /operation/player_groups
@@ -72,7 +74,17 @@ class Operation::PlayerGroupsController < Operation::OperationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def operation_player_group_params
-      params.require(:operation_player_group).permit(:reg_code, :program_start_date, :name, :description, :player_organization_id, :mobile_station_code)
+      params.require(:operation_player_group).permit(
+        :reg_code,
+        :program_start_date,
+        :name, :description,
+        :player_organization_id,
+        :mobile_station_code,
+        :extension_params_attributes => [
+          :custom_01, :custom_02, :custom_03, :custom_04, :custom_05,
+          :custom_06, :custom_07, :custom_08, :custom_09, :custom_10
+        ]
+      )
     end
 
     

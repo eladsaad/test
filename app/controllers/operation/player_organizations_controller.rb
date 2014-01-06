@@ -23,11 +23,13 @@ class Operation::PlayerOrganizationsController < Operation::OperationController
   def new
     authorize! :new, PlayerOrganization
     @operation_player_organization = Operation::PlayerOrganization.new
+    @operation_player_organization.build_extension_params
   end
 
   # GET /operation/player_organizations/1/edit
   def edit
     authorize! :edit, @operation_player_organization
+    @operation_player_organization.build_extension_params unless @operation_player_organization.extension_params
   end
 
   # POST /operation/player_organizations
@@ -71,7 +73,19 @@ class Operation::PlayerOrganizationsController < Operation::OperationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def operation_player_organization_params
-      params.require(:operation_player_organization).permit(:org_type, :name, :address, :contact_name, :contact_position, :contact_email, :contact_phone)
+      params.require(:operation_player_organization).permit(
+        :org_type,
+        :name,
+        :address,
+        :contact_name,
+        :contact_position,
+        :contact_email,
+        :contact_phone,
+        :extension_params_attributes => [
+          :custom_01, :custom_02, :custom_03, :custom_04, :custom_05,
+          :custom_06, :custom_07, :custom_08, :custom_09, :custom_10
+        ]
+      )
     end
 
 end

@@ -40,6 +40,20 @@
           autocomplete_value_att: 'code'
         } %>
   </div>
+
+  <%= f.fields_for :extension_params do |ext_f| %>
+
+    <% (1..10).each do |custom_index| %>
+      <% custom_key = 'custom_' + custom_index.to_s.rjust(2, '0') %>
+      <div class="field">
+        <%= ext_f.label custom_key %><br>
+        <%= ext_f.text_field custom_key %>
+      </div>
+
+    <% end %>
+
+  <% end %>
+
   <div class="actions">
     <%= f.submit %>
   </div>

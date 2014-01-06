@@ -11,6 +11,8 @@ class PlayerGroup < ActiveRecord::Base
 	belongs_to :operator
 	belongs_to :player_organization
 	has_and_belongs_to_many :players, join_table: :player_group_associations
+	has_one :extension_params, :class_name => "PlayerGroupExt", dependent: :destroy
+	accepts_nested_attributes_for :extension_params
 
 	# == SEARCH ==
 	search_columns [:name, :description, :reg_code]

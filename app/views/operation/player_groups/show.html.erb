@@ -19,5 +19,15 @@
   </p>
 <% end %>
 
+<% if @operation_player_group.extension_params %>
+  <% [:custom_01, :custom_02, :custom_03, :custom_04, :custom_05,
+    :custom_06, :custom_07, :custom_08, :custom_09, :custom_10].each do |ext_attribute| %>
+    <p>
+        <strong><%= t("activerecord.attributes.player_organization.#{ext_attribute}") %>:</strong>
+        <%= @operation_player_group.extension_params.send(ext_attribute) %>
+      </p>
+  <% end %>
+<% end %>
+
 <%= link_to t(:edit), edit_operation_player_group_path(@operation_player_group) %> |
 <%= link_to t(:back), operation_player_groups_path %>
