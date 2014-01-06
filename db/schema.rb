@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140106080934) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "operator_mobile_stations", force: true do |t|
     t.integer  "operator_id"
     t.string   "code"
@@ -20,8 +23,8 @@ ActiveRecord::Schema.define(version: 20140106080934) do
     t.datetime "updated_at"
   end
 
-  add_index "operator_mobile_stations", ["code"], name: "index_operator_mobile_stations_on_code"
-  add_index "operator_mobile_stations", ["operator_id"], name: "index_operator_mobile_stations_on_operator_id"
+  add_index "operator_mobile_stations", ["code"], name: "index_operator_mobile_stations_on_code", using: :btree
+  add_index "operator_mobile_stations", ["operator_id"], name: "index_operator_mobile_stations_on_operator_id", using: :btree
 
   create_table "operators", force: true do |t|
     t.string   "name"
@@ -42,10 +45,10 @@ ActiveRecord::Schema.define(version: 20140106080934) do
     t.boolean  "disabled",                         default: false
   end
 
-  add_index "operators", ["confirmation_token"], name: "index_operators_on_confirmation_token", unique: true
-  add_index "operators", ["email"], name: "index_operators_on_email", unique: true
-  add_index "operators", ["name"], name: "index_operators_on_name"
-  add_index "operators", ["reset_password_token"], name: "index_operators_on_reset_password_token", unique: true
+  add_index "operators", ["confirmation_token"], name: "index_operators_on_confirmation_token", unique: true, using: :btree
+  add_index "operators", ["email"], name: "index_operators_on_email", unique: true, using: :btree
+  add_index "operators", ["name"], name: "index_operators_on_name", using: :btree
+  add_index "operators", ["reset_password_token"], name: "index_operators_on_reset_password_token", unique: true, using: :btree
 
   create_table "player_authentications", force: true do |t|
     t.integer  "player_id"
@@ -57,7 +60,7 @@ ActiveRecord::Schema.define(version: 20140106080934) do
     t.datetime "updated_at"
   end
 
-  add_index "player_authentications", ["player_id"], name: "index_player_authentications_on_player_id", unique: true
+  add_index "player_authentications", ["player_id"], name: "index_player_authentications_on_player_id", unique: true, using: :btree
 
   create_table "player_group_associations", force: true do |t|
     t.integer  "player_id"
@@ -66,9 +69,9 @@ ActiveRecord::Schema.define(version: 20140106080934) do
     t.datetime "updated_at"
   end
 
-  add_index "player_group_associations", ["player_group_id", "player_id"], name: "index_player_group_assoc_on_player_group_id_and_player_id", unique: true
-  add_index "player_group_associations", ["player_group_id"], name: "index_player_group_associations_on_player_group_id"
-  add_index "player_group_associations", ["player_id"], name: "index_player_group_associations_on_player_id"
+  add_index "player_group_associations", ["player_group_id", "player_id"], name: "index_player_group_assoc_on_player_group_id_and_player_id", unique: true, using: :btree
+  add_index "player_group_associations", ["player_group_id"], name: "index_player_group_associations_on_player_group_id", using: :btree
+  add_index "player_group_associations", ["player_id"], name: "index_player_group_associations_on_player_id", using: :btree
 
   create_table "player_groups", force: true do |t|
     t.integer  "operator_id"
@@ -82,11 +85,11 @@ ActiveRecord::Schema.define(version: 20140106080934) do
     t.string   "mobile_station_code"
   end
 
-  add_index "player_groups", ["description"], name: "index_player_groups_on_description"
-  add_index "player_groups", ["name"], name: "index_player_groups_on_name"
-  add_index "player_groups", ["operator_id"], name: "index_player_groups_on_operator_id"
-  add_index "player_groups", ["player_organization_id"], name: "index_player_groups_on_player_organization_id"
-  add_index "player_groups", ["reg_code"], name: "index_player_groups_on_reg_code", unique: true
+  add_index "player_groups", ["description"], name: "index_player_groups_on_description", using: :btree
+  add_index "player_groups", ["name"], name: "index_player_groups_on_name", using: :btree
+  add_index "player_groups", ["operator_id"], name: "index_player_groups_on_operator_id", using: :btree
+  add_index "player_groups", ["player_organization_id"], name: "index_player_groups_on_player_organization_id", using: :btree
+  add_index "player_groups", ["reg_code"], name: "index_player_groups_on_reg_code", unique: true, using: :btree
 
   create_table "player_organizations", force: true do |t|
     t.string   "org_type"
@@ -101,9 +104,9 @@ ActiveRecord::Schema.define(version: 20140106080934) do
     t.integer  "operator_id"
   end
 
-  add_index "player_organizations", ["contact_email"], name: "index_player_organizations_on_contact_email"
-  add_index "player_organizations", ["name"], name: "index_player_organizations_on_name"
-  add_index "player_organizations", ["operator_id"], name: "index_player_organizations_on_operator_id"
+  add_index "player_organizations", ["contact_email"], name: "index_player_organizations_on_contact_email", using: :btree
+  add_index "player_organizations", ["name"], name: "index_player_organizations_on_name", using: :btree
+  add_index "player_organizations", ["operator_id"], name: "index_player_organizations_on_operator_id", using: :btree
 
   create_table "player_sessions", force: true do |t|
     t.integer  "player_id"
@@ -113,7 +116,7 @@ ActiveRecord::Schema.define(version: 20140106080934) do
     t.string   "session_id"
   end
 
-  add_index "player_sessions", ["player_id"], name: "index_player_sessions_on_player_id"
+  add_index "player_sessions", ["player_id"], name: "index_player_sessions_on_player_id", using: :btree
 
   create_table "players", force: true do |t|
     t.string   "username"
@@ -134,10 +137,10 @@ ActiveRecord::Schema.define(version: 20140106080934) do
     t.string   "gender"
   end
 
-  add_index "players", ["confirmation_token"], name: "index_players_on_confirmation_token", unique: true
-  add_index "players", ["email"], name: "index_players_on_email", unique: true
-  add_index "players", ["reset_password_token"], name: "index_players_on_reset_password_token", unique: true
-  add_index "players", ["username"], name: "index_players_on_username", unique: true
+  add_index "players", ["confirmation_token"], name: "index_players_on_confirmation_token", unique: true, using: :btree
+  add_index "players", ["email"], name: "index_players_on_email", unique: true, using: :btree
+  add_index "players", ["reset_password_token"], name: "index_players_on_reset_password_token", unique: true, using: :btree
+  add_index "players", ["username"], name: "index_players_on_username", unique: true, using: :btree
 
   create_table "registration_codes", force: true do |t|
     t.string "code"
@@ -160,10 +163,10 @@ ActiveRecord::Schema.define(version: 20140106080934) do
     t.boolean  "super_admin"
   end
 
-  add_index "system_admins", ["confirmation_token"], name: "index_system_admins_on_confirmation_token", unique: true
-  add_index "system_admins", ["email"], name: "index_system_admins_on_email", unique: true
-  add_index "system_admins", ["first_name"], name: "index_system_admins_on_first_name"
-  add_index "system_admins", ["last_name"], name: "index_system_admins_on_last_name"
-  add_index "system_admins", ["reset_password_token"], name: "index_system_admins_on_reset_password_token", unique: true
+  add_index "system_admins", ["confirmation_token"], name: "index_system_admins_on_confirmation_token", unique: true, using: :btree
+  add_index "system_admins", ["email"], name: "index_system_admins_on_email", unique: true, using: :btree
+  add_index "system_admins", ["first_name"], name: "index_system_admins_on_first_name", using: :btree
+  add_index "system_admins", ["last_name"], name: "index_system_admins_on_last_name", using: :btree
+  add_index "system_admins", ["reset_password_token"], name: "index_system_admins_on_reset_password_token", unique: true, using: :btree
 
 end

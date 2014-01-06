@@ -13,11 +13,16 @@ These variables should be set on production environment:
 * FACEBOOK_APP_SECRET
 * DEVISE_SECRET_KEY
 * BASE_SECRET_KEY
+* DATABASE_NAME
+* DATABASE_USER_NAME
+* DATABASE_USER_PASSWORD
+* DATABASE_HOST
+* DATABASE_PORT
 
 
 == RAKE TASKS
 
 The following tasks are available:
 
-* db:add_system_admin
+* db:add_super_system_admin
 * db:fill_reg_codes

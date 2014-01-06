@@ -11,11 +11,8 @@ gem 'devise'
 gem 'cancan'
 gem 'omniauth-facebook'
 gem 'will_paginate'
+gem 'pg'
 # gem 'therubyracer', platforms: :ruby
-
-group :development, :test do
-	gem 'sqlite3'
-end
 
 group :development do
 	gem 'better_errors'

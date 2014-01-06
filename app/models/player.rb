@@ -15,9 +15,9 @@ class Player < ActiveRecord::Base
 
 	# == DEVISE Authentication ==
 	devise :database_authenticatable, :registerable, :confirmable,
-		   :recoverable, :rememberable, :validatable, :omniauthable,
-		   :omniauth_providers => [:facebook],
-		   :authentication_keys => [:username]
+	:recoverable, :rememberable, :validatable, :omniauthable,
+	:omniauth_providers => [:facebook],
+	:authentication_keys => [:username]
 
 	# == CANCAN Authorization ==
 	def ability
@@ -40,51 +40,65 @@ class Player < ActiveRecord::Base
 	# == FACEBOOK ==
 
 	def copy_missing_data_from_facebook_oauth(auth)
-		self.email = auth.info.try(:email) if self.email.blank?
-		self.username = auth.info.try(:email) if self.username.blank?
-	 	self.first_name = auth.info.try(:first_name) if self.first_name.blank?
-	 	self.last_name = auth.info.try(:last_name) if self.last_name.blank?
-	 	self.gender = auth.extra.raw_info.try(:gender).try(:downcase) if self.gender.blank?
-	 	self.birth_date = Date.strptime(auth.extra.raw_info.try(:birthday), '%m/%d/%Y') if self.birth_date.blank?
- 	end
+		self.email = auth.extra.raw_info.try(:email) if self.email.blank?
+		self.username = auth.extra.raw_info.try(:email) if self.username.blank?
+		self.first_name = auth.extra.raw_info.try(:first_name) if self.first_name.blank?
+		self.last_name = auth.extra.raw_info.try(:last_name) if self.last_name.blank?
+		self.gender = auth.extra.raw_info.try(:gender).try(:downcase) if self.gender.blank?
+		self.birth_date = Date.strptime(auth.extra.raw_info.try(:birthday), '%m/%d/%Y') if self.birth_date.blank?
+	end
 
 
 	def self.find_for_facebook_oauth(auth, signed_in_player=nil)
-
 		authentication = PlayerAuthentication.find_by_provider_and_uid(auth.provider, auth.uid)
 		
 		# facebook authentication already exists in db
 		if authentication
 			return authentication.player
-
+		
 		# player exists without facebook authentication
 		elsif signed_in_player
-		 
-			signed_in_player.player_authentications.create!(
+			signed_in_player.player_authentications.build(
 				:provider => auth.provider,
 				:uid => auth.uid,
 				:token => auth.credentials.token,
 				:token_secret => auth.credentials.secret
 			)
-
 			signed_in_player.copy_missing_data_from_facebook_oauth(auth)
 			signed_in_player.save! if signed_in_player.changed?
-
 			return signed_in_player
-
+		
 		# unknown player registering via facebook
 		else
-			return nil
+			# create a new player
+			player = Player.new_from_omni_auth(auth)
+			player.copy_missing_data_from_facebook_oauth(auth)
+			player.password = Devise.friendly_token.first(8) # random password
+			player.skip_confirmation!
+			player.save!
+			return player
 		end
 	end
 
 
+	def self.new_from_omni_auth(auth)
+		player = Player.new
+		player.player_authentications.build(
+			:provider => auth.provider,
+			:uid => auth.uid,
+			:token => auth.credentials.token,
+			:token_secret => auth.credentials.secret
+		)
+		return player
+	end
+
+
 	def self.new_with_session(params, session)
-	    super.tap do |player|
-	      if session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
-	        player.copy_missing_data_from_facebook_oauth(session["devise.facebook_data"])
-	      end
-	    end
-	  end
+		super.tap do |player|
+			if session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
+				player.copy_missing_data_from_facebook_oauth(session["devise.facebook_data"])
+			end
+		end
+	end
 
 end
