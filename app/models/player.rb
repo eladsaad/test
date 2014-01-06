@@ -6,6 +6,7 @@ class Player < ActiveRecord::Base
 	validates :first_name, :presence => true
 	validates :last_name, :presence => true
 	validates :birth_date, :presence => true
+	validates :gender, :inclusion => { :in => ['male', 'female'] }
 
 	# == ASSOCIATIONS ==
 	has_many :player_sessions
@@ -39,10 +40,12 @@ class Player < ActiveRecord::Base
 	# == FACEBOOK ==
 
 	def copy_missing_data_from_facebook_oauth(auth)
-		self.email = auth['extra']['raw_info'].email if self.email.blank?
-		self.username = auth['extra']['raw_info'].email if self.username.blank?
-	 	self.first_name = auth['extra']['raw_info'].first_name if self.first_name.blank?
-	 	self.last_name = auth['extra']['raw_info'].last_name if self.last_name.blank?
+		self.email = auth.info.try(:email) if self.email.blank?
+		self.username = auth.info.try(:email) if self.username.blank?
+	 	self.first_name = auth.info.try(:first_name) if self.first_name.blank?
+	 	self.last_name = auth.info.try(:last_name) if self.last_name.blank?
+	 	self.gender = auth.extra.raw_info.try(:gender).try(:downcase) if self.gender.blank?
+	 	self.birth_date = Date.strptime(auth.extra.raw_info.try(:birthday), '%m/%d/%Y') if self.birth_date.blank?
  	end
 
 

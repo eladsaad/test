@@ -27,6 +27,8 @@ en:
   error: "Error"
   please_fix: "Please fix"
   start_typing_for_autocomplete: "start typing for autocomplete"
+  male: "Male"
+  female: "Female"
 
   # active record
   activerecord:

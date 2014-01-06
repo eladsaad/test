@@ -12,6 +12,11 @@
     <%= f.label :last_name %><br>
     <%= f.text_field :last_name %>
   </div>
+
+  <div class="field">
+    <%= f.label :gender %><br>
+    <%= f.select :gender, [[t(:male), 'male'], [t(:female), 'female']] %>
+  </div>
   
   <div class="field">
     <%= f.label :birth_date %><br>

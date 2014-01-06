@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140105160813) do
+ActiveRecord::Schema.define(version: 20140106080934) do
 
   create_table "operator_mobile_stations", force: true do |t|
     t.integer  "operator_id"
@@ -131,6 +131,7 @@ ActiveRecord::Schema.define(version: 20140105160813) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
+    t.string   "gender"
   end
 
   add_index "players", ["confirmation_token"], name: "index_players_on_confirmation_token", unique: true
