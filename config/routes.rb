@@ -8,8 +8,8 @@ Cinemadrive::Application.routes.draw do
       :registrations => 'players/registrations',
       :omniauth_callbacks => "players/omniauth_callbacks"
     }
-  root :to => "players#index"
-  resources :players
+  root :to => "players#dashboard"
+  get '/dashboard' => "players#dashboard", :as => :player_dashboard
   resources :player_group_associations, only: [:new, :create]
 
   # /admin - system administration
