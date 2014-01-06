@@ -9,12 +9,6 @@ class PlayerOrganization < ActiveRecord::Base
 	belongs_to :operator
 
 	# == SEARCH ==
-	def self.search(search)
-		if search
-			where('name LIKE ? or contact_email LIKE ?', "%#{search}%", "%#{search}%")
-		else
-			scoped
-		end
-	end
+	search_columns [:name, :contact_email]
 
 end

@@ -16,6 +16,9 @@ class Operator < ActiveRecord::Base
 		   :recoverable, :rememberable, :validatable,
 		   :authentication_keys => [:email]
 
+	# == SEARCH ==
+	search_columns [:name, :email]
+	
 	# == CANCAN Authorization ==
 	def ability
 		@ability ||= Operation::OperatorAbility.new(self)
@@ -27,15 +30,6 @@ class Operator < ActiveRecord::Base
 		reg_codes = RegistrationCode.fetch(amount, self.last_reg_code_id)
 		self.update({last_reg_code_id: reg_codes.last.id})
 		return reg_codes.map { |reg_code| self.reg_code_prefix + reg_code.code }
-	end
-
-	# == SEARCH ==
-	def self.search(search)
-		if search
-			where('name LIKE ? or email LIKE ?', "%#{search}%", "%#{search}%")
-		else
-			scoped
-		end
 	end
 
 end

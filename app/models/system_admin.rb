@@ -23,12 +23,6 @@ class SystemAdmin < ActiveRecord::Base
 	end
 
 	# == SEARCH ==
-	def self.search(search)
-		if search
-			where('email LIKE ? or first_name LIKE ? or last_name LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%")
-		else
-			scoped
-		end
-	end
+	search_columns [:email, :first_name, :last_name]
 
 end

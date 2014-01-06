@@ -4,12 +4,6 @@ class OperatorMobileStation < ActiveRecord::Base
 	belongs_to :operator
 
 	# == SEARCH ==
-	def self.search(search)
-		if search
-			where('code LIKE ?', "%#{search}%")
-		else
-			scoped
-		end
-	end
+	search_columns [:code]
 	
 end

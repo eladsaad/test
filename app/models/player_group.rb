@@ -13,12 +13,6 @@ class PlayerGroup < ActiveRecord::Base
 	has_and_belongs_to_many :players, join_table: :player_group_associations
 
 	# == SEARCH ==
-	def self.search(search)
-		if search
-			where('name LIKE ? or description LIKE ? or reg_code LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%")
-		else
-			scoped
-		end
-	end
+	search_columns [:name, :description, :reg_code]
 
 end
