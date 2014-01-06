@@ -75,7 +75,7 @@ class Player < ActiveRecord::Base
 			player.copy_missing_data_from_facebook_oauth(auth)
 			player.password = Devise.friendly_token.first(8) # random password
 			player.skip_confirmation!
-			player.save!
+			player.save
 			return player
 		end
 	end
