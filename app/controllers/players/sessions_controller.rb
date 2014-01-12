@@ -3,6 +3,7 @@ class Players::SessionsController < Devise::SessionsController
 	# Audit player sign in
 	def after_sign_in_path_for(player)
 		if player.is_a?(Player) # just to verify
+			# log player's sign-in
 			player_session = PlayerSession.create!({
 				player_id: current_player.id,
 				sign_in_at: Time.now,
@@ -11,12 +12,13 @@ class Players::SessionsController < Devise::SessionsController
 			});
 			session[:player_session_id] = player_session.id
 		end
-		root_url
+		player_dashboard_path
 	end
 
 	# Audit player sign in
 	def after_sign_out_path_for(player_symbol)
 		if player_symbol == :player # just to verify
+			# log player's sign-out
 			session_id = session[:player_session_id]
 			if session_id.nil?
 				Rails.logger.error "No [player_session_id] stored in session"
