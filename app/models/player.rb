@@ -39,6 +39,10 @@ class Player < ActiveRecord::Base
 
 	# == FACEBOOK ==
 
+	def get_token(provider)
+		self.player_authentications.find_by_provider(provider).try(:token)
+	end
+
 	def copy_missing_data_from_facebook_oauth(auth)
 		self.email = auth.extra.raw_info.try(:email) if self.email.blank?
 		self.username = auth.extra.raw_info.try(:email) if self.username.blank?
@@ -46,6 +50,7 @@ class Player < ActiveRecord::Base
 		self.last_name = auth.extra.raw_info.try(:last_name) if self.last_name.blank?
 		self.gender = auth.extra.raw_info.try(:gender).try(:downcase) if self.gender.blank?
 		self.birth_date = Date.strptime(auth.extra.raw_info.try(:birthday), '%m/%d/%Y') if self.birth_date.blank?
+		self.profile_picture = auth.info.try(:image) if self.profile_picture.blank?
 	end
 
 
@@ -54,6 +59,13 @@ class Player < ActiveRecord::Base
 		
 		# facebook authentication already exists in db
 		if authentication
+			# update authentication token
+			if auth.credentials.token && auth.credentials.token != authentication.token
+		   		authentication.update_attribute(:token, auth.credentials.token)
+		 	end
+		 	authentication.player.copy_missing_data_from_facebook_oauth(auth)
+		 	authentication.player.save! if authentication.player.changed?
+
 			return authentication.player
 		
 		# player exists without facebook authentication

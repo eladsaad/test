@@ -16,7 +16,14 @@
       <% if player_signed_in? %>
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_player.full_name %> <b class="caret"></b></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <% if current_player.profile_picture %>
+                <%= image_tag current_player.profile_picture, class: 'profile-photo-icon', size: '30x30' %>
+              <% else %>
+                <%= current_player.full_name %>
+              <% end %>
+              <b class="caret"></b>
+            </a>
             <ul class="dropdown-menu">
               <li><%= link_to t(:sign_out), destroy_player_session_path, :method => :delete %></li>
             </ul>

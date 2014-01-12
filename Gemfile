@@ -12,6 +12,7 @@ gem 'cancan'
 gem 'omniauth-facebook'
 gem 'will_paginate'
 gem 'pg'
+# gem 'koala' # ENABLE FOR FACEBOOK GRAPH API 
 # gem 'therubyracer', platforms: :ruby
 
 group :development do
