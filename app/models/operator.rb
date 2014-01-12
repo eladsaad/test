@@ -33,7 +33,10 @@ class Operator < ActiveRecord::Base
 	end
 
 	def valid_code?(code)
-		(code[0..1] == self.reg_code_prefix) && RegistrationCode.pluck(:code).include?(code[2..-1])
+		# starts with operator's prefix
+		(code[0..1] == self.reg_code_prefix) &&
+		# exists in db before the current code
+		RegistrationCode.get_codes_before_id(self.last_reg_code_id).include?(code[2..-1])
 	end
 
 end
