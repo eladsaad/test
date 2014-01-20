@@ -7,13 +7,13 @@ gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
-gem 'jquery-ui-rails'
-gem 'jbuilder', '~> 1.2'
-gem 'devise'
-gem 'cancan'
-gem 'omniauth-facebook'
-gem 'will_paginate'
-gem 'pg'
+gem 'jquery-ui-rails' # used for autocomplete
+gem 'jbuilder', '~> 1.2' # json builder
+gem 'devise' # authentication
+gem 'cancan' # authorization
+gem 'omniauth-facebook' # authentication via facebook
+gem 'will_paginate' # pagination
+gem 'pg' # postgresql
 # gem 'koala' # ENABLE FOR FACEBOOK GRAPH API 
 # gem 'therubyracer', platforms: :ruby
 
@@ -22,9 +22,9 @@ group :production do
 end
 
 group :development do
-	gem 'better_errors'
+	gem 'better_errors' # error page with interactive console
 	gem 'binding_of_caller'
-	gem 'meta_request'
+	gem 'meta_request' # rails tab in chrome developer tools
 end
 
 group :doc do
