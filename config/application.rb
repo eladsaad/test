@@ -22,5 +22,10 @@ module Cinemadrive
     I18n.enforce_available_locales = true
     config.i18n.default_locale = :en
 
+    # enable loading the app via iframe (for facebook)
+    config.action_dispatch.default_headers = {
+        'X-Frame-Options' => 'ALLOWALL'
+    }
+
   end
 end
