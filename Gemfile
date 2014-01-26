@@ -14,7 +14,6 @@ gem 'cancan' # authorization
 gem 'omniauth-facebook' # authentication via facebook
 gem 'will_paginate' # pagination
 gem 'pg' # postgresql
-gem 'koala' # facebook graph api
 # gem 'therubyracer', platforms: :ruby
 
 group :production do
