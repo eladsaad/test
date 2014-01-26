@@ -4,7 +4,6 @@ class PlayerAbility
 
   def initialize(player)
     
-    can :manage, Player # TEMPORARY - REMOVE!
     can :read, :player_dashboard
 
     can :new, PlayerGroupAssociation
