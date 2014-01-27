@@ -34,9 +34,12 @@ class Operator < ActiveRecord::Base
 
 	def valid_code?(code)
 		# starts with operator's prefix
-		(code[0..1] == self.reg_code_prefix) &&
-		# exists in db before the current code
-		RegistrationCode.get_codes_before_id(self.last_reg_code_id).include?(code[2..-1])
+		return false unless (code[0..1] == self.reg_code_prefix)
+		# exists in db
+		existing_code = RegistrationCode.find_by_code(code[2..-1])
+		return false if existing_code.nil?
+		# was previously fetched
+		return existing_code.id <= self.last_reg_code_id
 	end
 
 end
