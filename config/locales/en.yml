@@ -1,11 +1,11 @@
 en:
 
   # titles
-  main_title: "Cinema Drive"
-  administration_title: "Cinema Drive Administration"
-  operation_title: "Cinema Drive Operation"
+  main_title: "Six Weeks Experience"
+  administration_title: "Six Weeks Experience - Administration Panel"
+  operation_title: "LCE Operator Panel"
   
-  # flashe messages
+  # flash messages
   logged_in_as_operator: "You are now logged in as operator - %{operator_email}"
   logged_in_successfully: "Logged in Successfully"
   authentication_successful: "Authentication successful"
@@ -16,10 +16,11 @@ en:
   sign_out: "Sign Out"
   show: "Show"
   edit: "Edit"
-  destroy: "Destroy"
+  delete: "Delete"
   back: "Back"
   impersonate: "Impersonate"
   new: "New"
+  list: "List"
 
   # other
   leave_empty_for_automatic: "Leave empty for automatic"
@@ -34,18 +35,18 @@ en:
   # active record
   activerecord:
     models:
-      operator: "Operator"
-      operators: "Operators"
-      operator_mobile_station: "Mobile Station"
-      operator_mobile_stations: "Mobile Stations"
+      operator: "LCE Operator"
+      operators: "LCE Operators"
+      operator_mobile_station: "Team"
+      operator_mobile_stations: "Teams"
       player: "Player"
       players: "Players"
-      player_group: "Player Group"
-      player_groups: "Player Groups"
+      player_group: "Group"
+      player_groups: "Groups"
       player_organization: "Organization"
       player_organizations: "Organizations"
-      registration_code: "Registration Code"
-      registration_codes: "Registration Codes"
+      registration_code: "Group Registration Code"
+      registration_codes: "Group Registration Codes"
       system_admin: "System Administrator"
       system_admins: "System Administrators"      
     attributes:
@@ -54,7 +55,7 @@ en:
         name: "Name"
         email: "Email"
         country: "Country"
-        reg_code_prefix: "Registration Code Prefix"
+        reg_code_prefix: "Group Code Prefix"
         disabled: "Disabled"
         created_at: "Created At"
         updated_at: "Updated At"
@@ -76,17 +77,17 @@ en:
       player_group:
         id: "ID"
         operator_id: "Operator ID"
-        reg_code: "Registration Code"
-        program_start_date: "Online Program Start Date"
+        reg_code: "Code"
+        screening_date: "Screening Date"
         name: "Name"
-        description: "Description"
+        description: "Comments"
         player_organization_id: "Player Organization ID"
-        mobile_station_code: "Mobile Station Code"
+        mobile_station_code: "Team"
         created_at: "Created At"
         updated_at: "Updated At"
       player_organization:
         id: "ID"
-        org_type: "Organization type"
+        org_type: "Type"
         name: "Name"
         address: "Address"
         contact_name: "Contact's Name"

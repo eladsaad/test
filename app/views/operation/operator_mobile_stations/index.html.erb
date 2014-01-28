@@ -1,4 +1,4 @@
-<h1><%= t('activerecord.models.operator_mobile_stations') %></h1>
+<h1><%= t('activerecord.models.operator_mobile_stations') + ' ' + t(:list) %></h1>
 
 <%= render 'shared/search_table_form', objects_index_path: operation_operator_mobile_stations_path %>
 
@@ -6,9 +6,9 @@
   <thead>
     <tr>
       <th><%= sortable_column :code, t('activerecord.attributes.operator_mobile_station.code') %></th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th class="action-column"></th>
+      <th class="action-column"></th>
+      <th class="action-column"></th>
     </tr>
   </thead>
 
@@ -18,7 +18,7 @@
         <td><%= operation_operator_mobile_station.code %></td>
         <td><%= link_to t(:show), operation_operator_mobile_station, class: 'show-record-link' %></td>
         <td><%= link_to t(:edit), edit_operation_operator_mobile_station_path(operation_operator_mobile_station), class: 'edit-record-link' %></td>
-        <td><%= link_to t(:destroy), operation_operator_mobile_station, method: :delete, data: { confirm: t(:are_you_sure_?) }, class: 'destroy-record-link' %></td>
+        <td><%= link_to t(:delete), operation_operator_mobile_station, method: :delete, data: { confirm: t(:are_you_sure_?) }, class: 'destroy-record-link' %></td>
       </tr>
     <% end %>
   </tbody>

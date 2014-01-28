@@ -18,7 +18,7 @@ class Operation::PlayerGroupsControllerTest < ActionController::TestCase
 
   test "should create operation_player_group" do
     assert_difference('Operation::PlayerGroup.count') do
-      post :create, operation_player_group: { description: @operation_player_group.description, name: @operation_player_group.name, operator_id: @operation_player_group.operator_id, player_organization_id: @operation_player_group.player_organization_id, program_start_date: @operation_player_group.program_start_date, reg_code: @operation_player_group.reg_code }
+      post :create, operation_player_group: { description: @operation_player_group.description, name: @operation_player_group.name, operator_id: @operation_player_group.operator_id, player_organization_id: @operation_player_group.player_organization_id, screening_date: @operation_player_group.screening_date, reg_code: @operation_player_group.reg_code }
     end
 
     assert_redirected_to operation_player_group_path(assigns(:operation_player_group))
@@ -35,7 +35,7 @@ class Operation::PlayerGroupsControllerTest < ActionController::TestCase
   end
 
   test "should update operation_player_group" do
-    patch :update, id: @operation_player_group, operation_player_group: { description: @operation_player_group.description, name: @operation_player_group.name, operator_id: @operation_player_group.operator_id, player_organization_id: @operation_player_group.player_organization_id, program_start_date: @operation_player_group.program_start_date, reg_code: @operation_player_group.reg_code }
+    patch :update, id: @operation_player_group, operation_player_group: { description: @operation_player_group.description, name: @operation_player_group.name, operator_id: @operation_player_group.operator_id, player_organization_id: @operation_player_group.player_organization_id, screening_date: @operation_player_group.screening_date, reg_code: @operation_player_group.reg_code }
     assert_redirected_to operation_player_group_path(assigns(:operation_player_group))
   end
 

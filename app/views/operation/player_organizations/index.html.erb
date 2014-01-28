@@ -1,4 +1,4 @@
-<h1><%= t('activerecord.models.player_organizations') %></h1>
+<h1><%= t('activerecord.models.player_organizations') + ' ' + t(:list) %></h1>
 
 <%= render 'shared/search_table_form', objects_index_path: operation_player_organizations_path %>
 
@@ -12,8 +12,8 @@
       <th><%= sortable_column :contact_position, t('activerecord.attributes.player_organization.contact_position') %></th>
       <th><%= sortable_column :contact_email, t('activerecord.attributes.player_organization.contact_email') %></th>
       <th><%= sortable_column :contact_phone, t('activerecord.attributes.player_organization.contact_phone') %></th>
-      <th></th>
-      <th></th>
+      <th class="action-column"></th>
+      <th class="action-column"></th>
     </tr>
   </thead>
 

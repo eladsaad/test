@@ -1,4 +1,4 @@
-<h1><%= t('activerecord.models.system_admins') %></h1>
+<h1><%= t('activerecord.models.system_admins') + ' ' + t(:list) %></h1>
 
 <%= render 'shared/search_table_form', objects_index_path: admin_system_admins_path %>
 
@@ -9,9 +9,9 @@
       <th><%= sortable_column :first_name, t('activerecord.attributes.system_admin.first_name') %></th>
       <th><%= sortable_column :last_name, t('activerecord.attributes.system_admin.last_name') %></th>
       <th><%= sortable_column :super_admin, t('activerecord.attributes.system_admin.super_admin') %></th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th class="action-column"></th>
+      <th class="action-column"></th>
+      <th class="action-column"></th>
     </tr>
   </thead>
 
@@ -24,7 +24,7 @@
         <td><%= admin_system_admin.super_admin %></td>
         <td><%= link_to t(:show), admin_system_admin, class: 'show-record-link' %></td>
         <td><%= link_to t(:edit), edit_admin_system_admin_path(admin_system_admin), class: 'edit-record-link' %></td>
-        <td><%= link_to t(:destroy), admin_system_admin, method: :delete, data: { confirm: t(:are_you_sure_?) }, class: 'destroy-record-link' %></td>
+        <td><%= link_to t(:delete), admin_system_admin, method: :delete, data: { confirm: t(:are_you_sure_?) }, class: 'destroy-record-link' %></td>
       </tr>
     <% end %>
   </tbody>

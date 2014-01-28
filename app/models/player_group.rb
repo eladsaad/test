@@ -4,7 +4,7 @@ class PlayerGroup < ActiveRecord::Base
 	validates :operator_id, :presence => true
 	validates :reg_code, :presence => true, :uniqueness => true
 	validate :validate_reg_code_with_operator, :on => :create
-	validates :program_start_date, :presence => true
+	validates :screening_date, :presence => true
 	validates :name, :presence => true
 	validates :player_organization_id, :presence => true
 
@@ -29,3 +29,4 @@ class PlayerGroup < ActiveRecord::Base
 		end
 
 end
+

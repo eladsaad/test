@@ -22,6 +22,7 @@ body { padding-top: 70px; } // because of fixed navbar
 .records-table {
 	@extend .table;
 	@extend .table-striped;
+	@extend .table-hover;
 }
 
 .show-record-link {
@@ -56,6 +57,15 @@ body { padding-top: 70px; } // because of fixed navbar
 	background-image: url(/images/down_arrow.gif);
 }
 
+
+.action-column {
+	@extend .shrinked-column;
+}
+
+.shrinked-column {
+	width: 1px;
+	white-space: nowrap !important;
+}
 
 // Forms
 

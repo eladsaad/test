@@ -76,7 +76,7 @@ class Operation::PlayerGroupsController < Operation::OperationController
     def operation_player_group_params
       params.require(:operation_player_group).permit(
         :reg_code,
-        :program_start_date,
+        :screening_date,
         :name, :description,
         :player_organization_id,
         :mobile_station_code,
