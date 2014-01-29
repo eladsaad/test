@@ -17,6 +17,14 @@ body { padding-top: 70px; } // because of fixed navbar
 	@extend .btn-success;
 }
 
+.table-toolbar-right {
+	float: right;
+}
+
+.table-toolbar-left {
+	float: left;
+}
+
 // Records table
 
 .records-table {
@@ -69,14 +77,14 @@ body { padding-top: 70px; } // because of fixed navbar
 
 // Forms
 
-// .field_with_errors {
-// 	@extend .has-error;
-// }
+.field_with_errors {
+	@extend .has-error;
+}
 
-// #error_explanation {
-// 	@extend .alert;
-// 	@extend .alert-warning;	
-// }
+#error_explanation {
+	@extend .alert;
+	@extend .alert-warning;	
+}
 
 .ui-autocomplete-loading {
     background: url('/images/ajax_loader.gif') no-repeat 98% 50% !important;

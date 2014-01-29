@@ -16,11 +16,13 @@ class PlayerGroup < ActiveRecord::Base
 	accepts_nested_attributes_for :extension_params
 
 	# == SEARCH ==
-	search_columns [:name, :description, :reg_code]
+	search_columns [:name, :description, :reg_code, :mobile_station_code]
 
 	# == SETTINGS ==
 	attr_readonly :reg_code
 
+	# == SOFT DELETE ==
+	has_soft_delete
 
 	private
 

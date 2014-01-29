@@ -1,4 +1,4 @@
-module ActiveRecordExtension
+module SearchColumns
 
   extend ActiveSupport::Concern
 
@@ -23,4 +23,4 @@ module ActiveRecordExtension
 end
 
 # include the extension 
-ActiveRecord::Base.send(:include, ActiveRecordExtension)
+ActiveRecord::Base.send(:include, SearchColumns)

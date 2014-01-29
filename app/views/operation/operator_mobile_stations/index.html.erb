@@ -1,6 +1,13 @@
 <h1><%= t('activerecord.models.operator_mobile_stations') + ' ' + t(:list) %></h1>
 
-<%= render 'shared/search_table_form', objects_index_path: operation_operator_mobile_stations_path %>
+<div class="table-toolbar">
+  <div class="table-toolbar-left">
+    <%= render 'shared/search_table_form', objects_index_path: operation_operator_mobile_stations_path %>
+  </div>
+  <div class="table-toolbar-right">
+    <%= link_to link_to t(:new) + ' ' + t('activerecord.models.operator_mobile_station'), new_operation_operator_mobile_station_path %>
+  </div>
+</div>
 
 <table class="records-table">
   <thead>
@@ -25,7 +32,3 @@
 </table>
 
 <%= will_paginate @operation_operator_mobile_stations %>
-
-<br>
-
-<%= link_to link_to t(:new) + ' ' + t('activerecord.models.operator_mobile_station'), new_operation_operator_mobile_station_path %>

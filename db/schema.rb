@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140127115342) do
+ActiveRecord::Schema.define(version: 20140129160430) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(version: 20140127115342) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "mobile_station_code"
+    t.datetime "deleted_at"
   end
 
   add_index "player_groups", ["description"], name: "index_player_groups_on_description", using: :btree
@@ -138,6 +139,7 @@ ActiveRecord::Schema.define(version: 20140127115342) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "operator_id"
+    t.datetime "deleted_at"
   end
 
   add_index "player_organizations", ["contact_email"], name: "index_player_organizations_on_contact_email", using: :btree

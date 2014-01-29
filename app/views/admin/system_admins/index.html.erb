@@ -1,6 +1,13 @@
 <h1><%= t('activerecord.models.system_admins') + ' ' + t(:list) %></h1>
 
-<%= render 'shared/search_table_form', objects_index_path: admin_system_admins_path %>
+<div class="table-toolbar">
+  <div class="table-toolbar-left">
+    <%= render 'shared/search_table_form', objects_index_path: admin_system_admins_path %>
+  </div>
+  <div class="table-toolbar-right">
+    <%= link_to t(:new) + ' ' + t('activerecord.models.system_admin'), new_admin_system_admin_path %>
+  </div>
+</div>
 
 <table class="records-table">
   <thead>
@@ -31,7 +38,3 @@
 </table>
 
 <%= will_paginate @admin_system_admins %>
-
-<br>
-
-<%= link_to t(:new) + ' ' + t('activerecord.models.system_admin'), new_admin_system_admin_path %>
