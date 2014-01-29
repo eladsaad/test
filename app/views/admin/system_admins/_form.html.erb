@@ -1,23 +1,11 @@
-<%= form_for(@admin_system_admin) do |f| %>
+<%= simple_form_for(@admin_system_admin) do |f| %>
   <%= render 'shared/form_errors', object: @admin_system_admin %>
 
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :first_name %><br>
-    <%= f.text_field :first_name %>
-  </div>
-  <div class="field">
-    <%= f.label :last_name %><br>
-    <%= f.text_field :last_name %>
-  </div>
-  <div class="field">
-    <%= f.label :super_admin %><br>
-    <%= f.check_box :super_admin %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= f.input :email %>
+  <%= f.input :first_name %>
+  <%= f.input :last_name %>
+  <%= f.input :super_admin %>
+  
+  <%= f.button :submit %>
+
 <% end %>

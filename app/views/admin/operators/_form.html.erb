@@ -1,27 +1,12 @@
-<%= form_for(@admin_operator) do |f| %>
+<%= simple_form_for(@admin_operator) do |f| %>
   <%= render 'shared/form_errors', object: @admin_operator %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :country %><br>
-    <%= f.text_field :country %>
-  </div>
-  <div class="field">
-    <%= f.label :reg_code_prefix %><br>
-    <%= f.text_field :reg_code_prefix %>
-  </div>
-  <div class="field">
-    <%= f.label :disabled %><br>
-    <%= f.check_box :disabled %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= f.input :name %>
+  <%= f.input :email %>
+  <%= f.input :country, :as => :string %>
+  <%= f.input :reg_code_prefix %>
+  <%= f.input :disabled %>
+  
+  <%= f.button :submit %>
+
 <% end %>

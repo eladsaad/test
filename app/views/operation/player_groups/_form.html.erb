@@ -1,60 +1,45 @@
-<%= form_for(@operation_player_group) do |f| %>
+<%= simple_form_for(@operation_player_group) do |f| %>
   <%= render 'shared/form_errors', object: @operation_player_group %>
 
-  <div class="field">
-    <%= f.label :reg_code %><br>
-    <%= f.text_field :reg_code, placeholder: t(:leave_empty_for_automatic) %>
-  </div>
-  <div class="field">
-    <%= f.label :screening_date %><br>
-    <%= f.date_select :screening_date %>
-  </div>
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_field :description %>
-  </div>
-  <div class="field">
-    <%= label_tag t('activerecord.models.player_organization') %>
-    <i>(<%= t(:start_typing_for_autocomplete) %>)</i><br>
-    <%= f.hidden_field :player_organization_id, id: 'player_group_player_organization_id' %>
-    <% player_organization_name = @operation_player_group.player_organization ? @operation_player_group.player_organization.name : nil  %>
-    <%= f.text_field :player_organization_id, value: player_organization_name, name: 'player_organization_autocomplete', :class => 'autocomplete-field',
+  <%= f.input :reg_code, placeholder: t(:leave_empty_for_automatic) %>
+  <%= f.input :screening_date %>
+  <%= f.input :name %>
+  <%= f.input :description %>
+
+  <%= f.input :player_organization_id, as: :hidden,
+      input_html: { id: 'player_group_player_organization_id' } %>
+  <%= f.input :player_organization_autocomplete, as: :string,
+      placeholder: t(:start_typing_for_autocomplete),
+      input_html: {
+        value: @operation_player_group.try(:player_organization).try(:name),
+        class: 'autocomplete-field',
         data: {
           autocomplete_source: operation_player_organizations_path(format: :json),
           autocomplete_label_att: 'name',
           autocomplete_value_att: 'id',
           autocomplete_value_input_id: 'player_group_player_organization_id'
-        } %>
-  </div>
-  <div class="field">
-    <%= f.label :mobile_station_code %>
-    <i>(<%= t(:start_typing_for_autocomplete) %>)</i><br>
-    <%= f.text_field :mobile_station_code, :class => 'autocomplete-field',
-        data: {
-          autocomplete_source: operation_operator_mobile_stations_path(format: :json),
-          autocomplete_label_att: 'code',
-          autocomplete_value_att: 'code'
-        } %>
-  </div>
+        }
+      }
+  %>
 
-  <%= f.fields_for :extension_params do |ext_f| %>
+  <%= f.input :mobile_station_code,
+          placeholder: t(:start_typing_for_autocomplete),
+          input_html: {
+            class: 'autocomplete-field',
+            data: {
+              autocomplete_source: operation_operator_mobile_stations_path(format: :json),
+              autocomplete_label_att: 'code',
+              autocomplete_value_att: 'code'
+            }
+          }
+  %>
 
+  <%= f.simple_fields_for :extension_params do |ext_f| %>
     <% (1..10).each do |custom_index| %>
-      <% custom_key = 'custom_' + custom_index.to_s.rjust(2, '0') %>
-      <div class="field">
-        <%= ext_f.label custom_key %><br>
-        <%= ext_f.text_field custom_key %>
-      </div>
-
+      <%= ext_f.input 'custom_' + custom_index.to_s.rjust(2, '0') %>
     <% end %>
-
   <% end %>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= f.button :submit %>
+
 <% end %>

@@ -1,49 +1,20 @@
-<%= form_for(@operation_player_organization) do |f| %>
+<%= simple_form_for(@operation_player_organization) do |f| %>
   <%= render 'shared/form_errors', object: @operation_player_organization %>
 
-  <div class="field">
-    <%= f.label :org_type %><br>
-    <%= f.text_field :org_type %>
-  </div>
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :address %><br>
-    <%= f.text_area :address %>
-  </div>
-  <div class="field">
-    <%= f.label :contact_name %><br>
-    <%= f.text_field :contact_name %>
-  </div>
-  <div class="field">
-    <%= f.label :contact_position %><br>
-    <%= f.text_field :contact_position %>
-  </div>
-  <div class="field">
-    <%= f.label :contact_email %><br>
-    <%= f.text_field :contact_email %>
-  </div>
-  <div class="field">
-    <%= f.label :contact_phone %><br>
-    <%= f.text_field :contact_phone %>
-  </div>
-
-  <%= f.fields_for :extension_params do |ext_f| %>
-
+  <%= f.input :org_type %>
+  <%= f.input :name %>
+  <%= f.input :address %>
+  <%= f.input :contact_name %>
+  <%= f.input :contact_position %>
+  <%= f.input :contact_email %>
+  <%= f.input :contact_phone %>
+  
+  <%= f.simple_fields_for :extension_params do |ext_f| %>
     <% (1..10).each do |custom_index| %>
-      <% custom_key = 'custom_' + custom_index.to_s.rjust(2, '0') %>
-      <div class="field">
-        <%= ext_f.label custom_key %><br>
-        <%= ext_f.text_field custom_key %>
-      </div>
-
+      <%= ext_f.input 'custom_' + custom_index.to_s.rjust(2, '0') %>
     <% end %>
-
   <% end %>
   
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= f.button :submit %>
+
 <% end %>
