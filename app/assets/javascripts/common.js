@@ -1,4 +1,10 @@
 $(function() {
+
+  $('.datepicker').datepicker({
+    dateFormat: "yy-mm-dd"
+  });
+
+
   $('.autocomplete-field').each(function(){
 
     // data source url
@@ -35,6 +41,11 @@ $(function() {
         // update value on the chosen input field
         if (autocomplete_value_input_id) {
           $('#'+autocomplete_value_input_id).val( ui.item.hidden_value );
+        }
+      },
+      change: function( event, ui ) {
+        if(!ui.item){
+          $(this).val("");
         }
       }
     });

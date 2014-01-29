@@ -81,7 +81,7 @@ en:
         screening_date: "Screening Date"
         name: "Name"
         description: "Comments"
-        player_organization_id: "Player Organization ID"
+        player_organization_id: "Organization"
         mobile_station_code: "Team"
         created_at: "Created At"
         updated_at: "Updated At"
