@@ -17,12 +17,35 @@ body { padding-top: 70px; } // because of fixed navbar
 	@extend .btn-success;
 }
 
+// Table Toolbar
+
 .table-toolbar-right {
-	float: right;
+	@extend .pull-right;
+	div {
+		@extend .pull-right;
+		padding-left: 10px;
+	}
 }
 
 .table-toolbar-left {
-	float: left;
+	@extend .pull-left;
+	div {
+		@extend .pull-left;
+		padding-right: 10px;
+	}
+}
+
+.table-toolbar {
+	padding-bottom: 60px;
+	form {
+		@extend .form-inline;
+		.input-group {
+			@extend .input-group-sm;
+			input:not([type="submit"]) {
+				@extend .form-control;
+			}
+		}
+	}
 }
 
 // Records table
@@ -35,19 +58,16 @@ body { padding-top: 70px; } // because of fixed navbar
 
 .show-record-link {
 	@extend .btn;
-	@extend .btn-mini;
 	@extend .btn-default;
 }
 
 .edit-record-link {
 	@extend .btn;
-	@extend .btn-mini;
 	@extend .btn-default;
 }
 
 .destroy-record-link {
 	@extend .btn;
-	@extend .btn-mini;
 	@extend .btn-danger;
 }
 

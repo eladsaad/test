@@ -3,7 +3,7 @@
 
 <div class="table-toolbar">
   <div class="table-toolbar-left">
-    <%= render 'shared/search_table_form', objects_index_path: operation_player_groups_path %>
+    <div><%= render 'shared/search_and_filter_table_form', objects_index_path: operation_player_groups_path, filter_attribute: :screening_date %></div>
   </div>
   <div class="table-toolbar-right">
     <%= link_to t(:new) + ' ' + t('activerecord.models.player_group'), new_operation_player_group_path %> | 

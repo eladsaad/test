@@ -9,6 +9,8 @@ class Operation::PlayerGroupsController < Operation::OperationController
     authorize! :index, PlayerGroup
     @operation_player_groups = Operation::PlayerGroup.accessible_by(current_ability, :read)
     @operation_player_groups = @operation_player_groups.search(params[:search]) unless params[:search].blank?
+    @operation_player_groups = @operation_player_groups.where('screening_date >= ?',params[:screening_date_from]) unless params[:screening_date_from].blank?
+    @operation_player_groups = @operation_player_groups.where('screening_date <= ?',params[:screening_date_to]) unless params[:screening_date_to].blank?
     @operation_player_groups = @operation_player_groups.order("#{sort_column} #{sort_direction}") unless sort_column.blank?
     @operation_player_groups = @operation_player_groups.paginate(page: params[:page], per_page: params[:per_page] || 100)
   end

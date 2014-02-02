@@ -1,0 +1,23 @@
+<%= form_tag objects_index_path, :method => 'get' do %>
+	<div class="input-group" style="width: 400px;">
+
+		<%= hidden_field_tag :direction, params[:direction] %>
+		<%= hidden_field_tag :sort, params[:sort] %>
+
+		<div class="form-group">
+			<%= text_field_tag :search, params[:search] %>
+		</div>
+
+		<div class="form-group">
+			<%= text_field_tag "#{filter_attribute}_from", params["#{filter_attribute}_from"],
+						placeholder: t(:from), class: 'datepicker', style: 'width:50%;' %>
+			<%= text_field_tag "#{filter_attribute}_to", params["#{filter_attribute}_to"],
+						placeholder: t(:to), class: 'datepicker', style: 'width:50%;' %>
+		</div>
+
+		<span class="input-group-btn">
+			<%= submit_tag t(:filter), :name => nil %>
+		</span>
+
+	</div>
+<% end %>

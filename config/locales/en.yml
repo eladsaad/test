@@ -13,6 +13,8 @@ en:
   # actions
   choose: "Choose"
   search: "Search"
+  filter: "Filter"
+  filter_attribute: "Filter by %{attribute}"
   sign_out: "Sign Out"
   show: "Show"
   edit: "Edit"
@@ -31,6 +33,8 @@ en:
   male: "Male"
   female: "Female"
   is_invalid: "is invalid"
+  from: "From"
+  to: "To"
 
   # active record
   activerecord:
