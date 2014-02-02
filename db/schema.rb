@@ -132,13 +132,14 @@ ActiveRecord::Schema.define(version: 20140129162555) do
   create_table "player_groups", force: true do |t|
     t.integer  "operator_id"
     t.string   "reg_code"
-    t.date     "program_start_date"
+    t.date     "screening_date"
     t.string   "name"
     t.text     "description"
     t.integer  "player_organization_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "mobile_station_code"
+    t.datetime "deleted_at"
   end
 
   add_index "player_groups", ["description"], name: "index_player_groups_on_description", using: :btree
@@ -176,6 +177,7 @@ ActiveRecord::Schema.define(version: 20140129162555) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "operator_id"
+    t.datetime "deleted_at"
   end
 
   add_index "player_organizations", ["contact_email"], name: "index_player_organizations_on_contact_email", using: :btree

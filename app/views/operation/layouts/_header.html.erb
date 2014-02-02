@@ -12,8 +12,8 @@
     <div class="collapse navbar-collapse">
       <% if operation_operator_signed_in? %>
         <ul class="nav navbar-nav">
+        <li class="<%=is_active_class?(operation_player_groups_path)%>"><%= link_to t('activerecord.models.player_groups'), operation_player_groups_path %></li>
           <li class="<%=is_active_class?(operation_player_organizations_path)%>"><%= link_to t('activerecord.models.player_organizations'), operation_player_organizations_path %></li>
-          <li class="<%=is_active_class?(operation_player_groups_path)%>"><%= link_to t('activerecord.models.player_groups'), operation_player_groups_path %></li>
           <li class="<%=is_active_class?(operation_operator_mobile_stations_path)%>"><%= link_to t('activerecord.models.operator_mobile_stations'), operation_operator_mobile_stations_path %></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">

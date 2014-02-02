@@ -1,6 +1,6 @@
 <h1><%= t('activerecord.models.player_group') %></h1>
 
-<% [:id, :reg_code, :program_start_date, :name, :description].each do |attribute| %>
+<% [:id, :reg_code, :screening_date, :name, :description].each do |attribute| %>
   <p>
     <strong><%= t("activerecord.attributes.player_group.#{attribute}") %>:</strong>
     <%= @operation_player_group.send(attribute) %>

@@ -10,7 +10,7 @@ class Admin::SystemAdminsController < Admin::AdminController
     @admin_system_admins = Admin::SystemAdmin.accessible_by(current_ability, :read)
     @admin_system_admins = @admin_system_admins.search(params[:search]) unless params[:search].blank?
     @admin_system_admins = @admin_system_admins.order("#{sort_column} #{sort_direction}") unless sort_column.blank?
-    @admin_system_admins = @admin_system_admins.paginate(page: params[:page], per_page: 5)
+    @admin_system_admins = @admin_system_admins.paginate(page: params[:page], per_page: params[:per_page] || 100)
   end
 
   # GET /admin/system_admins/1

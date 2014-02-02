@@ -1,5 +1,8 @@
 class OperatorMobileStation < ActiveRecord::Base
 
+	# == VALIDATIONS ==
+	validates :code, :presence => true
+
 	# == ASSOCIATIONS ==
 	belongs_to :operator
 

@@ -10,7 +10,7 @@ class Admin::OperatorsController < Admin::AdminController
     @admin_operators = Admin::Operator.accessible_by(current_ability, :read)
     @admin_operators = @admin_operators.search(params[:search]) unless params[:search].blank?
     @admin_operators = @admin_operators.order("#{sort_column} #{sort_direction}") unless sort_column.blank?
-    @admin_operators = @admin_operators.paginate(page: params[:page], per_page: 5)
+    @admin_operators = @admin_operators.paginate(page: params[:page], per_page: params[:per_page] || 100)
   end
 
   # GET /admin/operators/1

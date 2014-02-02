@@ -4,7 +4,7 @@ class PlayerGroup < ActiveRecord::Base
 	validates :operator_id, :presence => true
 	validates :reg_code, :presence => true, :uniqueness => true
 	validate :validate_reg_code_with_operator, :on => :create
-	validates :program_start_date, :presence => true
+	validates :screening_date, :presence => true
 	validates :name, :presence => true
 	validates :player_organization_id, :presence => true
 
@@ -16,11 +16,13 @@ class PlayerGroup < ActiveRecord::Base
 	accepts_nested_attributes_for :extension_params
 
 	# == SEARCH ==
-	search_columns [:name, :description, :reg_code]
+	search_columns [:name, :description, :reg_code, :mobile_station_code]
 
 	# == SETTINGS ==
 	attr_readonly :reg_code
 
+	# == SOFT DELETE ==
+	has_soft_delete
 
 	private
 
@@ -29,3 +31,4 @@ class PlayerGroup < ActiveRecord::Base
 		end
 
 end
+

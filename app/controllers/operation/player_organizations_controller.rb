@@ -10,7 +10,7 @@ class Operation::PlayerOrganizationsController < Operation::OperationController
     @operation_player_organizations = Operation::PlayerOrganization.accessible_by(current_ability, :read)
     @operation_player_organizations = @operation_player_organizations.search(params[:search]) unless params[:search].blank?
     @operation_player_organizations = @operation_player_organizations.order("#{sort_column} #{sort_direction}") unless sort_column.blank?
-    @operation_player_organizations = @operation_player_organizations.paginate(page: params[:page], per_page: 5)
+    @operation_player_organizations = @operation_player_organizations.paginate(page: params[:page], per_page: params[:per_page] || 100)
   end
 
   # GET /operation/player_organizations/1
@@ -62,6 +62,17 @@ class Operation::PlayerOrganizationsController < Operation::OperationController
         format.html { render action: 'edit' }
         format.json { render json: @operation_player_organization.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  # DELETE /operation/player_organizations/1
+  # DELETE /operation/player_organizations/1.json
+  def destroy
+    authorize! :destroy, @operation_player_organization
+    @operation_player_organization.soft_delete!
+    respond_to do |format|
+      format.html { redirect_to operation_player_organizations_path }
+      format.json { head :no_content }
     end
   end
 

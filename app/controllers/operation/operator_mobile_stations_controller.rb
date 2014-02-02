@@ -10,7 +10,7 @@ class Operation::OperatorMobileStationsController < Operation::OperationControll
     @operation_operator_mobile_stations = Operation::OperatorMobileStation.accessible_by(current_ability, :read)
     @operation_operator_mobile_stations = @operation_operator_mobile_stations.search(params[:search]) unless params[:search].blank?
     @operation_operator_mobile_stations = @operation_operator_mobile_stations.order("#{sort_column} #{sort_direction}") unless sort_column.blank?
-    @operation_operator_mobile_stations = @operation_operator_mobile_stations.paginate(page: params[:page], per_page: 5)
+    @operation_operator_mobile_stations = @operation_operator_mobile_stations.paginate(page: params[:page], per_page: 100)
   end
 
   # GET /operation/operator_mobile_stations/1

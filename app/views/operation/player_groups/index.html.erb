@@ -1,18 +1,28 @@
-<h1><%= t('activerecord.models.player_groups') %></h1>
+<h1><%= t('activerecord.models.player_groups') + ' ' + t(:list) %></h1>
 
-<%= render 'shared/search_table_form', objects_index_path: operation_player_groups_path %>
+
+<div class="table-toolbar">
+  <div class="table-toolbar-left">
+    <div><%= render 'shared/search_and_filter_table_form', objects_index_path: operation_player_groups_path, filter_attribute: :screening_date %></div>
+  </div>
+  <div class="table-toolbar-right">
+    <%= link_to t(:new) + ' ' + t('activerecord.models.player_group'), new_operation_player_group_path %> | 
+    <%= link_to 'Fetch 10 New Registration Codes', operation_fetch_registration_codes_path(amount:10)%>
+  </div>
+</div>
 
 <table class="records-table">
   <thead>
     <tr>
       <th><%= sortable_column :reg_code, t('activerecord.attributes.player_group.reg_code') %></th>
-      <th><%= sortable_column :program_start_date, t('activerecord.attributes.player_group.program_start_date') %></th>
-      <th><%= sortable_column :name, t('activerecord.attributes.player_group.name') %></th>
-      <th><%= sortable_column :description, t('activerecord.attributes.player_group.description') %></th>
       <th><%= sortable_column :player_organization_id, t('activerecord.models.player_organization') %></th>
+      <th><%= sortable_column :screening_date, t('activerecord.attributes.player_group.screening_date') %></th>
+      <th><%= sortable_column :name, t('activerecord.attributes.player_group.name') %></th>
       <th><%= sortable_column :mobile_station_code, t('activerecord.attributes.player_group.mobile_station_code') %></th>
-      <th></th>
-      <th></th>
+      <th><%= sortable_column :description, t('activerecord.attributes.player_group.description') %></th>  
+      <th class="action-column"></th>
+      <th class="action-column"></th>
+      <th class="action-column"></th>
     </tr>
   </thead>
 
@@ -20,22 +30,17 @@
     <% @operation_player_groups.includes(:player_organization).each do |operation_player_group| %>
       <tr>
         <td><%= operation_player_group.reg_code %></td>
-        <td><%= operation_player_group.program_start_date %></td>
-        <td><%= operation_player_group.name %></td>
-        <td><%= operation_player_group.description %></td>
         <td><%= link_to operation_player_group.player_organization.name, operation_player_organization_path(operation_player_group.player_organization) %></td>
+        <td><%= operation_player_group.screening_date %></td>
+        <td><%= operation_player_group.name %></td>
         <td><%= operation_player_group.mobile_station_code %></td>
+        <td><%= operation_player_group.description %></td>
         <td><%= link_to t(:show), operation_player_group, class: 'show-record-link' %></td>
         <td><%= link_to t(:edit), edit_operation_player_group_path(operation_player_group), class: 'edit-record-link' %></td>
+        <td><%= link_to t(:delete), operation_player_group, method: :delete, data: { confirm: t(:are_you_sure_?) }, class: 'destroy-record-link' %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <%= will_paginate @operation_player_groups %>
-
-<br>
-
-<%= link_to t(:new) + ' ' + t('activerecord.models.player_group'), new_operation_player_group_path %> | 
-<%= link_to 'Fetch 10 New Registration Codes', operation_fetch_registration_codes_path(amount:10)%>
-

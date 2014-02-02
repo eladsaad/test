@@ -1,6 +1,14 @@
-<h1><%= t('activerecord.models.operators') %></h1>
+<h1><%= t('activerecord.models.operators') + ' ' + t(:list) %></h1>
 
-<%= render 'shared/search_table_form', objects_index_path: admin_operators_path %>
+<div class="table-toolbar">
+  <div class="table-toolbar-left">
+    <%= render 'shared/search_table_form', objects_index_path: admin_operators_path %>
+  </div>
+  <div class="table-toolbar-right">
+    <%= link_to t(:new) + ' ' + t('activerecord.models.operator'), new_admin_operator_path %>
+  </div>
+</div>
+
 
 <table class="records-table">
   <thead>
@@ -10,10 +18,10 @@
       <th><%= sortable_column :country,  t('activerecord.attributes.operator.country') %></th>
       <th><%= sortable_column :reg_code_prefix,  t('activerecord.attributes.operator.reg_code_prefix') %></th>
       <th><%= sortable_column :disabled,  t('activerecord.attributes.operator.disabled') %></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th class="action-column"></th>
+      <th class="action-column"></th>
+      <th class="action-column"></th>
+      <th class="action-column"></th>
     </tr>
   </thead>
 
@@ -27,7 +35,7 @@
         <td><%= admin_operator.disabled? %></td>
         <td><%= link_to t(:show), admin_operator, class: 'show-record-link' %></td>
         <td><%= link_to t(:edit), edit_admin_operator_path(admin_operator), class: 'edit-record-link' %></td>
-        <td><%= link_to t(:destroy), admin_operator, method: :delete, data: { confirm: t(:are_you_sure_?) }, class: 'destroy-record-link' %></td>
+        <td><%= link_to t(:delete), admin_operator, method: :delete, data: { confirm: t(:are_you_sure_?) }, class: 'destroy-record-link' %></td>
         <td><%= link_to t(:impersonate), impersonate_admin_operator_path(admin_operator), class: 'special-btn' %></td>
       </tr>
     <% end %>
@@ -35,7 +43,3 @@
 </table>
 
 <%= will_paginate @admin_operators %>
-
-<br>
-
-<%= link_to t(:new) + ' ' + t('activerecord.models.operator'), new_admin_operator_path %>

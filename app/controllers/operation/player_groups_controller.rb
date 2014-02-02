@@ -9,8 +9,10 @@ class Operation::PlayerGroupsController < Operation::OperationController
     authorize! :index, PlayerGroup
     @operation_player_groups = Operation::PlayerGroup.accessible_by(current_ability, :read)
     @operation_player_groups = @operation_player_groups.search(params[:search]) unless params[:search].blank?
+    @operation_player_groups = @operation_player_groups.where('screening_date >= ?',params[:screening_date_from]) unless params[:screening_date_from].blank?
+    @operation_player_groups = @operation_player_groups.where('screening_date <= ?',params[:screening_date_to]) unless params[:screening_date_to].blank?
     @operation_player_groups = @operation_player_groups.order("#{sort_column} #{sort_direction}") unless sort_column.blank?
-    @operation_player_groups = @operation_player_groups.paginate(page: params[:page], per_page: 5)
+    @operation_player_groups = @operation_player_groups.paginate(page: params[:page], per_page: params[:per_page] || 100)
   end
   
   # GET /operation/player_groups/1
@@ -66,6 +68,17 @@ class Operation::PlayerGroupsController < Operation::OperationController
     end
   end
 
+  # DELETE /operation/player_groups/1
+  # DELETE /operation/player_groups/1.json
+  def destroy
+    authorize! :destroy, @operation_player_group
+    @operation_player_group.soft_delete!
+    respond_to do |format|
+      format.html { redirect_to operation_player_groups_path }
+      format.json { head :no_content }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_operation_player_group
@@ -76,7 +89,7 @@ class Operation::PlayerGroupsController < Operation::OperationController
     def operation_player_group_params
       params.require(:operation_player_group).permit(
         :reg_code,
-        :program_start_date,
+        :screening_date,
         :name, :description,
         :player_organization_id,
         :mobile_station_code,
