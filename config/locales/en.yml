@@ -67,6 +67,8 @@ en:
       videos: "Videos"
       interactive_video: "Interactive Video"
       interactive_videos: "Interactive Videos"
+      online_program: "Online Program"
+      online_programs: "Online Programs"
     attributes:
       operator:
         id: "ID"
@@ -164,3 +166,12 @@ en:
         name: "Name"
         language_code: "Language Code"
         description: "Description"
+      online_program:
+        name: "Name"
+        codename: "Code Name"
+        language_code_id: "Language code"
+        description: "Decription"
+        background_image_id: "Background Image"
+        promo_video_id: "Promo Video"
+        created_at: "Created At"
+        updated_at: "Updated At"

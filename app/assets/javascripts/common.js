@@ -4,7 +4,6 @@ $(function() {
     dateFormat: "yy-mm-dd"
   });
 
-
   $('.autocomplete-field').each(function(){
 
     // data source url

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140129162555) do
+ActiveRecord::Schema.define(version: 20140202163909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,45 @@ ActiveRecord::Schema.define(version: 20140129162555) do
     t.datetime "updated_at"
     t.integer  "language_code"
   end
+
+  create_table "online_program_notifications", force: true do |t|
+    t.integer  "online_program_id"
+    t.integer  "notification_id"
+    t.datetime "relative_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "online_program_notifications", ["notification_id"], name: "index_online_program_notifications_on_notification_id", using: :btree
+  add_index "online_program_notifications", ["online_program_id"], name: "index_online_program_notifications_on_online_program_id", using: :btree
+
+  create_table "online_program_videos", force: true do |t|
+    t.integer  "online_program_id"
+    t.integer  "video_id"
+    t.datetime "relative_time"
+    t.integer  "pre_survey_id"
+    t.integer  "post_survey_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "online_program_videos", ["online_program_id"], name: "index_online_program_videos_on_online_program_id", using: :btree
+  add_index "online_program_videos", ["video_id"], name: "index_online_program_videos_on_video_id", using: :btree
+
+  create_table "online_programs", force: true do |t|
+    t.string   "name"
+    t.string   "codename"
+    t.integer  "language_code_id"
+    t.text     "description"
+    t.integer  "background_image_id"
+    t.integer  "promo_video_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "online_programs", ["codename"], name: "index_online_programs_on_codename", using: :btree
+  add_index "online_programs", ["language_code_id"], name: "index_online_programs_on_language_code_id", using: :btree
+  add_index "online_programs", ["name"], name: "index_online_programs_on_name", using: :btree
 
   create_table "operator_mobile_stations", force: true do |t|
     t.integer  "operator_id"

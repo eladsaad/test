@@ -26,14 +26,17 @@ class Admin::SystemAdminAbility
       # language codes
       can :manage, LanguageCode
 
-      # notifications
+      # images
       can :manage, Image
 
-      # notifications
+      # videos
       can :manage, Video
 
-      # notifications
+      # interactive videos
       can :manage, InteractiveVideo
+
+      # online programs
+      can :manage, OnlineProgram
 
     end
 

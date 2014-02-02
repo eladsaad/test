@@ -1,0 +1,44 @@
+<h1><%= t('activerecord.models.online_programs') + ' ' + t(:list) %></h1>
+
+<div class="table-toolbar">
+  <div class="table-toolbar-left">
+    <%= render 'shared/search_table_form', objects_index_path: admin_online_programs_path %>
+  </div>
+  <div class="table-toolbar-right">
+    <%= link_to t(:new) + ' ' + t('activerecord.models.online_program'), new_admin_online_program_path %>
+  </div>
+</div>
+
+<table class="records-table">
+  <thead>
+    <tr>
+      <th><%= sortable_column :name, t('activerecord.attributes.online_program.name') %></th>
+      <th><%= sortable_column :codename, t('activerecord.attributes.online_program.codename') %></th>
+      <th><%= t('activerecord.attributes.online_program.language_code_id') %></th>
+      <th><%= t('activerecord.attributes.online_program.description') %></th>
+      <th><%= t('activerecord.attributes.online_program.background_image_id') %></th>
+      <th><%= t('activerecord.attributes.online_program.promo_video_id') %></th>
+      <th class="action-column"></th>
+      <th class="action-column"></th>
+      <th class="action-column"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @admin_online_programs.each do |admin_online_program| %>
+      <tr>
+        <td><%= admin_online_program.name %></td>
+        <td><%= admin_online_program.codename %></td>
+        <td><%= admin_online_program.language_code_id %></td>
+        <td><%= admin_online_program.description %></td>
+        <td><%= admin_online_program.background_image_id %></td>
+        <td><%= admin_online_program.promo_video_id %></td>
+        <td><%= link_to t(:show), admin_online_program, class: 'show-record-link' %></td>
+        <td><%= link_to t(:edit), edit_admin_online_program_path(admin_online_program), class: 'edit-record-link' %></td>
+        <td><%= link_to t(:delete), admin_online_program, method: :delete, data: { confirm: 'Are you sure?' }, class: 'destroy-record-link' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

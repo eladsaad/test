@@ -1,0 +1,16 @@
+<%= simple_form_for(@admin_online_program) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :codename %>
+    <%= f.input :language_code_id, collection: LanguageCode.all, label_method: :label, value_method: :id,  prompt: 'Please Select' %>
+    <%= f.input :description %>
+    <%= f.input :background_image_id %>
+    <%= f.input :promo_video_id %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
