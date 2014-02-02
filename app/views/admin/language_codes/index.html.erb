@@ -1,0 +1,32 @@
+<h1><%= t('activerecord.models.language_codes') %></h1>
+
+<table class="records-table">
+  <thead>
+    <tr>
+
+      <th><%= sortable_column :name, t('activerecord.attributes.language_code.name') %></th>
+      <th><%= sortable_column :code,  t('activerecord.attributes.language_code.code') %></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @admin_language_codes.each do |admin_language_code| %>
+      <tr>
+        <td><%= admin_language_code.name %></td>
+        <td><%= admin_language_code.code %></td>
+        <td><%= link_to 'Show', admin_language_code %></td>
+        <td><%= link_to 'Edit', edit_admin_language_code_path(admin_language_code) %></td>
+        <td><%= link_to 'Destroy', admin_language_code, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @admin_language_codes %>
+
+<br>
+
+<%= link_to 'New Language code', new_admin_language_code_path %>

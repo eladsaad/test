@@ -1,2 +1,2 @@
-class Video
+class Admin::Video < Video
 end

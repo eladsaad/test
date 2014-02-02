@@ -1,2 +1,2 @@
-class Question
+class Admin::Question < Question
 end

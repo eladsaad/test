@@ -11,10 +11,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140112134430) do
+ActiveRecord::Schema.define(version: 20140129162555) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "images", force: true do |t|
+    t.string   "url"
+    t.string   "thumbnail_url"
+    t.string   "name"
+    t.text     "description"
+    t.string   "format"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "interactive_videos", force: true do |t|
+    t.string   "name"
+    t.text     "content"
+    t.integer  "language_code_id"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "language_codes", force: true do |t|
+    t.string   "name"
+    t.string   "code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "notifications", force: true do |t|
+    t.string   "name"
+    t.integer  "language_code_id"
+    t.text     "description"
+    t.text     "title"
+    t.text     "facebook_content"
+    t.text     "email_content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "language_code"
+  end
 
   create_table "operator_mobile_stations", force: true do |t|
     t.integer  "operator_id"
@@ -179,8 +217,33 @@ ActiveRecord::Schema.define(version: 20140112134430) do
   add_index "players", ["reset_password_token"], name: "index_players_on_reset_password_token", unique: true, using: :btree
   add_index "players", ["username"], name: "index_players_on_username", unique: true, using: :btree
 
+  create_table "questions", force: true do |t|
+    t.string   "name"
+    t.integer  "language_code_id"
+    t.text     "question"
+    t.text     "answers"
+    t.integer  "correct_answer"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "questions_surveys", force: true do |t|
+    t.integer  "question_id"
+    t.integer  "survey_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "registration_codes", force: true do |t|
     t.string "code"
+  end
+
+  create_table "surveys", force: true do |t|
+    t.string   "name"
+    t.integer  "language_code_id"
+    t.text     "question_ids"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "system_admins", force: true do |t|
@@ -205,5 +268,15 @@ ActiveRecord::Schema.define(version: 20140112134430) do
   add_index "system_admins", ["first_name"], name: "index_system_admins_on_first_name", using: :btree
   add_index "system_admins", ["last_name"], name: "index_system_admins_on_last_name", using: :btree
   add_index "system_admins", ["reset_password_token"], name: "index_system_admins_on_reset_password_token", unique: true, using: :btree
+
+  create_table "videos", force: true do |t|
+    t.string   "url"
+    t.string   "thumbnail_url"
+    t.string   "name"
+    t.integer  "language_code_id"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

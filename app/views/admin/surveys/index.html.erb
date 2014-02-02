@@ -1,0 +1,38 @@
+<h1><%= t('activerecord.models.surveys') %></h1>
+
+
+<%= render 'shared/search_table_form', objects_index_path: admin_surveys_path %>
+
+<table class="records-table">
+  <thead>
+    <tr>
+      <th><%= sortable_column :id, t('activerecord.attributes.question.id') %></th>
+      <th><%= sortable_column :name, t('activerecord.attributes.question.name') %></th>
+      <th><%= sortable_column :language_code, t('activerecord.attributes.question.language_code') %></th>
+      <th><%= t('activerecord.models.questions') %></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @admin_surveys.each do |admin_survey| %>
+      <tr>
+        <td><%= admin_survey.id %></td>
+        <td><%= admin_survey.name %></td>
+        <td><%= admin_survey.language_code.code %> (<%= admin_survey.language_code.name %>)</td>
+        <td><%= admin_survey.questions.length %></td>
+        <td><%= link_to 'Show', admin_survey %></td>
+        <td><%= link_to 'Edit', edit_admin_survey_path(admin_survey) %></td>
+        <td><%= link_to 'Destroy', admin_survey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @admin_surveys %>
+
+<br>
+
+<%= link_to 'New Survey', new_admin_survey_path %>

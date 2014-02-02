@@ -1,2 +1,2 @@
-class InteractiveVideo
+class Admin::InteractiveVideo < InteractiveVideo
 end

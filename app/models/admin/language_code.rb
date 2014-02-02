@@ -1,2 +1,2 @@
-class LanguageCode
+class Admin::LanguageCode < LanguageCode
 end

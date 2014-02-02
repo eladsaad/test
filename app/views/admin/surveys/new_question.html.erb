@@ -1,0 +1,29 @@
+<h1>Create new question for "<%= @admin_survey.name %>" survey</h1>
+
+<%= form_for @admin_question, url: create_question_admin_survey_path(id: @admin_survey.id) do |f| %>
+
+    <div class="field">
+      <%= f.label :name %><br>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label :language_code_id %><br>
+      <%= f.collection_select(:language_code_id, @language_codes, :id, :name, :include_blank => "Please select") %>
+    </div>
+    <div class="field">
+      <%= f.label :question %><br>
+      <%= f.text_field :question %>
+    </div>
+    <div class="field">
+      <%= f.label :answers %><br>
+      <%= f.text_field :answers %>
+    </div>
+    <div class="field">
+      <%= f.label :correct_answer %><br>
+      <%= f.text_field :correct_answer %>
+    </div>
+
+    <%= f.submit "Submit" %>
+<% end %>
+
+<%= link_to 'Back', create_question_admin_survey_path %>

@@ -1,2 +1,2 @@
-class
+class Admin::Survey < Survey
 end

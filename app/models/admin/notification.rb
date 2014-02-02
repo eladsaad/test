@@ -1,2 +1,2 @@
-class Notification
+class Admin::Notification < Notification
 end

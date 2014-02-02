@@ -1,0 +1,29 @@
+<h1><%= t('activerecord.models.notification') %></h1>
+
+<p>
+  <strong>Name:</strong>
+  <%= @admin_notification.name %>
+</p>
+
+<p>
+  <strong><%= t("activerecord.attributes.notification.language_code") %>:</strong>
+  <%= @admin_notification.language_code.code %> (<%= @admin_notification.language_code.name %>) %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @admin_notification.title %>
+</p>
+
+<p>
+  <strong>Email content:</strong>
+  <%= @admin_notification.email_content %>
+</p>
+
+<p>
+  <strong>Facebook content:</strong>
+  <%= @admin_notification.facebook_content %>
+</p>
+
+<%= link_to 'Edit', edit_admin_notification_path(@admin_notification) %> |
+<%= link_to 'Back', admin_notifications_path %>

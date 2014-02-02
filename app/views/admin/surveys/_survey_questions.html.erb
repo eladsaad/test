@@ -1,0 +1,22 @@
+<table class="records-table">
+  <thead>
+  <tr>
+    <th><%= sortable_column :name, t('activerecord.attributes.question.name') %></th>
+    <th><%= sortable_column :language_code, t('activerecord.attributes.question.language_code') %></th>
+    <th><%= sortable_column :question, t('activerecord.attributes.question.question') %></th>
+    <th></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% admin_questions.each do |admin_question| %>
+      <tr>
+        <td><%= admin_question.name %></td>
+        <td><%= admin_question.name %></td>
+        <td><%= admin_question.language_code %></td>
+        <td><%= admin_question.question %></td>
+        <td><%= link_to 'Show', admin_question %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

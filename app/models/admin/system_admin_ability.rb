@@ -12,9 +12,30 @@ class Admin::SystemAdminAbility
       end
 
     	# operators
-    	can :manage, Operator    	 
-    	
-	end
+    	can :manage, Operator
+
+      # questions
+      can :manage, Question
+
+      # surveys
+      can :manage, Survey
+
+      # notifications
+      can :manage, Notification
+
+      # language codes
+      can :manage, LanguageCode
+
+      # notifications
+      can :manage, Image
+
+      # notifications
+      can :manage, Video
+
+      # notifications
+      can :manage, InteractiveVideo
+
+    end
 
   end
 

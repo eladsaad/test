@@ -1,0 +1,30 @@
+<h1><%= t('activerecord.models.question') %></h1>
+
+
+<p>
+  <strong><%= t("activerecord.attributes.question.name") %>:</strong>
+  <%= @admin_question.name %>
+</p>
+
+<p>
+  <strong><%= t("activerecord.attributes.question.language_code") %>:</strong>
+  <%= @admin_question.language_code.code %> (<%= @admin_question.language_code.name %>)
+</p>
+
+<p>
+  <strong><%= t("activerecord.attributes.question.question") %>:</strong>
+  <%= @admin_question.question %>
+</p>
+
+<p>
+  <strong><%= t("activerecord.attributes.question.answers") %>:</strong>
+  <code><%= @admin_question.answers %></code>
+</p>
+
+<p>
+  <strong><%= t("activerecord.attributes.question.correct_answer") %>:</strong>
+  <%= @admin_question.correct_answer %>
+</p>
+
+<%= link_to 'Edit', edit_admin_question_path(@admin_question) %> |
+<%= link_to 'Back', :back %>

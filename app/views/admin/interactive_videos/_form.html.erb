@@ -1,0 +1,24 @@
+<%= form_for(@admin_interactive_video) do |f| %>
+  <%= render 'shared/form_errors', object: @admin_interactive_video %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :language_code_id %><br>
+    <%= f.collection_select(:language_code_id, @language_codes, :id, :name, :include_blank => "Please select") %>
+    <%#= f.text_field :language_code_id %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :content %><br>
+    <%= f.text_area :content %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,27 @@
+<%= form_for(@admin_notification) do |f| %>
+  <%= render 'shared/form_errors', object: @admin_notification %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :language_code_id %><br>
+    <%= f.collection_select(:language_code_id, @language_codes, :id, :name, :include_blank => "Please select") %>
+  </div>
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :email_content %><br>
+    <%= f.text_field :email_content %>
+  </div>
+  <div class="field">
+    <%= f.label :facebook_content %><br>
+    <%= f.text_field :facebook_content %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

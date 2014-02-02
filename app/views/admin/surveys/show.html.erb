@@ -1,0 +1,19 @@
+<h1><%= t('activerecord.models.survey') %></h1>
+
+<p>
+  <strong><%= t("activerecord.attributes.survey.name") %>:</strong>
+  <%= @admin_survey.name %>
+</p>
+
+<p>
+  <strong><%= t("activerecord.attributes.survey.language_code") %>:</strong>
+  <%= @admin_survey.language_code.code %> (<%= @admin_survey.language_code.name %>)
+</p>
+
+
+<%= link_to "#{@admin_survey.questions.count} #{t('activerecord.models.questions')} - edit ",
+            controller: "surveys", action: "edit_questions", id: @admin_survey %>
+<br/><br/>
+
+<%= link_to 'Edit', edit_admin_survey_path(@admin_survey) %> |
+<%= link_to 'Back', admin_surveys_path %>

@@ -26,6 +26,25 @@ Cinemadrive::Application.routes.draw do
         get :impersonate
       end
     end
+    resources :questions
+    resources :surveys do
+      member do
+        get :edit_questions
+        put :add_question
+        put :remove_question
+        get :new_question
+        post :create_question
+      end
+    end
+    resources :notifications
+    #resources :images
+    resources :videos
+    resources :language_codes
+    resources :interactive_videos do
+      member do
+        get :content
+      end
+    end
   end
 
   # /operation - operators administration
