@@ -113,4 +113,24 @@ class Player < ActiveRecord::Base
 		end
 	end
 
+	def send_facebook_notifications(message, callback_url)
+		facebook_user_id = self.player_authentications.find_by_provider(:facebook).try(:uid)
+		return nil if facebook_user_id.nil?
+
+		uri = URI.encode("https://graph.facebook.com/#{facebook_user_id}/notifications")
+		uri = URI.parse(uri)
+		http = Net::HTTP.new(uri.host, uri.port)
+		http.use_ssl = true
+		http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+		fb_req = Net::HTTP::Post.new(uri.request_uri)
+		fb_req.set_form_data(
+			'access_token' => ENV['FACEBOOK_APP_ACCESS_TOKEN'],
+			'href' => callback_url,
+			'template' => message,
+			)
+
+		http.request(fb_req) # return response
+	end
+
 end
