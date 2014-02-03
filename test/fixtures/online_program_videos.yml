@@ -3,13 +3,13 @@
 one:
   online_program_id: 1
   video_id: 1
-  relative_time: 2014-02-02 16:38:03
+  relative_time_sec: 2014-02-02 16:38:03
   pre_survey_id: 1
   post_survey_id: 1
 
 two:
   online_program_id: 1
   video_id: 1
-  relative_time: 2014-02-02 16:38:03
+  relative_time_sec: 2014-02-02 16:38:03
   pre_survey_id: 1
   post_survey_id: 1

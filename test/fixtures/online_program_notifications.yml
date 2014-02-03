@@ -3,9 +3,9 @@
 one:
   online_program_id: 1
   notification_id: 1
-  relative_time: 2014-02-02 16:39:09
+  relative_time_sec: 2014-02-02 16:39:09
 
 two:
   online_program_id: 1
   notification_id: 1
-  relative_time: 2014-02-02 16:39:09
+  relative_time_sec: 2014-02-02 16:39:09

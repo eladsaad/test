@@ -1,7 +1,7 @@
 class OnlineProgramNotification < ActiveRecord::Base
 
 	# == VALIDATIONS ==
-	validates :online_program_id, :presence => true
+	validates :online_program, :presence => true
 	validates :notification_id, :presence => true
 
 	# == ASSOCIATIONS ==

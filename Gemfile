@@ -15,6 +15,7 @@ gem 'omniauth-facebook' # authentication via facebook
 gem 'will_paginate' # pagination
 gem 'pg' # postgresql
 gem 'simple_form'
+gem 'nested_form'
 # gem 'therubyracer', platforms: :ruby
 
 group :production do

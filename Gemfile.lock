@@ -81,6 +81,7 @@ GEM
     multi_json (1.8.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+    nested_form (0.3.2)
     oauth2 (0.9.3)
       faraday (>= 0.8, < 0.10)
       jwt (~> 0.1.8)
@@ -174,6 +175,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   meta_request
+  nested_form
   omniauth-facebook
   pg
   rails (= 4.0.2)

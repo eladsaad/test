@@ -37,7 +37,7 @@ Cinemadrive::Application.routes.draw do
       end
     end
     resources :notifications
-    #resources :images
+    resources :images
     resources :videos
     resources :language_codes
     resources :interactive_videos do

@@ -23,6 +23,7 @@ en:
   impersonate: "Impersonate"
   new: "New"
   list: "List"
+  add: "Add"
 
   # other
   leave_empty_for_automatic: "Leave empty for automatic"
@@ -35,6 +36,7 @@ en:
   is_invalid: "is invalid"
   from: "From"
   to: "To"
+  please_select: "Please Select..."
 
   # active record
   activerecord:
@@ -69,6 +71,10 @@ en:
       interactive_videos: "Interactive Videos"
       online_program: "Online Program"
       online_programs: "Online Programs"
+      online_program_video: "Video"
+      online_program_videos: "Videos"
+      online_program_notification: "Notification"
+      online_program_notifications: "Notifications"
     attributes:
       operator:
         id: "ID"
@@ -175,3 +181,13 @@ en:
         promo_video_id: "Promo Video"
         created_at: "Created At"
         updated_at: "Updated At"
+      online_program_video:
+        online_program_id: "Online Program"
+        video_id: "Video"
+        relative_time_sec: "Seconds After Program Start"
+        pre_survey_id: "Pre Survey"
+        post_survey_id: "Post Survey"
+      online_program_notification:
+        online_program_id: "Online Program"
+        notification_id: "Notification"
+        relative_time_sec: "Seconds After Program Start"

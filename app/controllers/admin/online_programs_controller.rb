@@ -22,12 +22,16 @@ class Admin::OnlineProgramsController < Admin::AdminController
   # GET /admin/online_programs/new
   def new
     @admin_online_program = Admin::OnlineProgram.new
+    @admin_online_program.online_program_videos.build
+    @admin_online_program.online_program_notifications.build
     authorize! :new, @admin_online_program
   end
 
   # GET /admin/online_programs/1/edit
   def edit
     authorize! :edit, @admin_online_program
+    @admin_online_program.online_program_videos.build unless @admin_online_program.online_program_videos.any?
+    @admin_online_program.online_program_notifications.build unless @admin_online_program.online_program_notifications.any?
   end
 
   # POST /admin/online_programs
@@ -83,6 +87,27 @@ class Admin::OnlineProgramsController < Admin::AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_online_program_params
-      params.require(:admin_online_program).permit(:name, :codename, :language_code_id, :description, :background_image_id, :promo_video_id)
+      params.require(:admin_online_program).permit(
+        :name,
+        :codename,
+        :language_code_id,
+        :description,
+        :background_image_id,
+        :promo_video_id,
+        :online_program_videos_attributes => [
+          :video_id,
+          :relative_time_sec,
+          :pre_survey_id,
+          :post_survey_id,
+          :id,
+          :_destroy
+        ],
+        :online_program_notifications_attributes => [
+          :notification_id,
+          :relative_time_sec,
+          :id,
+          :_destroy
+        ]
+      )
     end
 end

@@ -11,7 +11,7 @@
 
 <p>
   <strong>Language code:</strong>
-  <%= @admin_online_program.language_code_id %>
+  <%= @admin_online_program.language_code.try(:label) %>
 </p>
 
 <p>
@@ -21,13 +21,16 @@
 
 <p>
   <strong>Background image:</strong>
-  <%= @admin_online_program.background_image_id %>
+  <%= @admin_online_program.background_image.try(:name) %>
 </p>
 
 <p>
   <strong>Promo video:</strong>
-  <%= @admin_online_program.promo_video_id %>
+  <%= @admin_online_program.promo_video.try(:name) %>
 </p>
+
+<%= render 'videos_table', videos: @admin_online_program.online_program_videos %>
+<%= render 'notifications_table', notifications: @admin_online_program.online_program_notifications %>
 
 <%= link_to 'Edit', edit_admin_online_program_path(@admin_online_program) %> |
 <%= link_to 'Back', admin_online_programs_path %>

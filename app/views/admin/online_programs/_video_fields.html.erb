@@ -1,0 +1,7 @@
+<tr class="fields">
+	<td><%= f.association :video, prompt: t(:please_select), label: false %></td>
+	<td><%= f.input :relative_time_sec, prompt: t(:please_select), label: false %></td>
+	<td><%= f.association :pre_survey, prompt: t(:please_select), label: false %></td>
+	<td><%= f.association :post_survey, prompt: t(:please_select), label: false %></td>
+    <td><%= f.link_to_remove t(:remove) %></td>
+</tr>

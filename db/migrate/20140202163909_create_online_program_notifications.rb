@@ -3,7 +3,7 @@ class CreateOnlineProgramNotifications < ActiveRecord::Migration
     create_table :online_program_notifications do |t|
       t.integer :online_program_id
       t.integer :notification_id
-      t.datetime :relative_time
+      t.datetime :relative_time_sec
 
       t.timestamps
     end

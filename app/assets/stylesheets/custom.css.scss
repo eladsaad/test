@@ -110,6 +110,11 @@ body { padding-top: 70px; } // because of fixed navbar
     background: url('/images/ajax_loader.gif') no-repeat 98% 50% !important;
 }
 
+.association-table {
+	@extend .table;
+	margin-bottom: 2px;
+}
+
 // .field {
 // 	@extend .form-group;
 // }
