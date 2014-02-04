@@ -34,6 +34,7 @@ en:
   male: "Male"
   female: "Female"
   is_invalid: "is invalid"
+  is_not_allowed: "is not allowed"
   from: "From"
   to: "To"
   please_select: "Please Select..."
@@ -83,6 +84,7 @@ en:
         country: "Country"
         reg_code_prefix: "Group Code Prefix"
         disabled: "Disabled"
+        online_programs: "Allowed Online Programs"
         created_at: "Created At"
         updated_at: "Updated At"
       operator_mobile_station:

@@ -24,6 +24,9 @@ class Operation::OperatorAbility
       can [:read, :create, :edit, :update, :destroy], OperatorMobileStation, operator_id: operator.id
       can [:new, :index], OperatorMobileStation
 
+      # allowed online programs
+      can :read, OnlineProgram, id: operator.online_programs.pluck(:id)
+
     end
 
   end

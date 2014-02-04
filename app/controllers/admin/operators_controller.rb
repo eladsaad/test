@@ -96,7 +96,14 @@ class Admin::OperatorsController < Admin::AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_operator_params
-      params.require(:admin_operator).permit(:name, :email, :country, :reg_code_prefix, :disabled)
+      params.require(:admin_operator).permit(
+        :name,
+        :email,
+        :country,
+        :reg_code_prefix,
+        :disabled,
+        :online_program_ids => []
+      )
     end
 
 end

@@ -6,6 +6,9 @@
   <%= f.input :country, :as => :string %>
   <%= f.input :reg_code_prefix %>
   <%= f.input :disabled %>
+
+  <h3><%= t('activerecord.attributes.operator.online_programs') %></h3>
+  <%= f.association :online_programs, as: :check_boxes, label: false %>
   
   <%= f.button :submit %>
 

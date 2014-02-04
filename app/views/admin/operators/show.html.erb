@@ -7,5 +7,12 @@
     </p>
 <% end %>
 
+<h3><%= t('activerecord.attributes.operator.online_programs') %></h3>
+<ul>
+<% @admin_operator.online_programs.each do |prog| %>
+	<li><%= prog.name %></li>
+<% end %>
+</ul>
+
 <%= link_to t(:edit), edit_admin_operator_path(@admin_operator) %> |
 <%= link_to t(:back), admin_operators_path %>

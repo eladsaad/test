@@ -17,6 +17,8 @@ class OnlineProgram < ActiveRecord::Base
 
 	belongs_to :language_code
 
+	has_and_belongs_to_many :operators
+
 	# == SEARCH ==
 	search_columns [:name, :codename]
 	

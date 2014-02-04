@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140204091957) do
+ActiveRecord::Schema.define(version: 20140204100626) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,6 +94,16 @@ ActiveRecord::Schema.define(version: 20140204091957) do
   add_index "online_programs", ["codename"], name: "index_online_programs_on_codename", using: :btree
   add_index "online_programs", ["language_code_id"], name: "index_online_programs_on_language_code_id", using: :btree
   add_index "online_programs", ["name"], name: "index_online_programs_on_name", using: :btree
+
+  create_table "online_programs_operators", force: true do |t|
+    t.integer  "online_program_id"
+    t.integer  "operator_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "online_programs_operators", ["operator_id", "online_program_id"], name: "online_program_operator_index", unique: true, using: :btree
+  add_index "online_programs_operators", ["operator_id"], name: "index_online_programs_operators_on_operator_id", using: :btree
 
   create_table "operator_mobile_stations", force: true do |t|
     t.integer  "operator_id"
