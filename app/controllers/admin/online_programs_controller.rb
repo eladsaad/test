@@ -96,7 +96,8 @@ class Admin::OnlineProgramsController < Admin::AdminController
         :promo_video_id,
         :online_program_videos_attributes => [
           :video_id,
-          :relative_time_sec,
+          :start_after_days,
+          :start_time,
           :pre_survey_id,
           :post_survey_id,
           :id,
@@ -104,7 +105,8 @@ class Admin::OnlineProgramsController < Admin::AdminController
         ],
         :online_program_notifications_attributes => [
           :notification_id,
-          :relative_time_sec,
+          :start_after_days,
+          :start_time,
           :id,
           :_destroy
         ]

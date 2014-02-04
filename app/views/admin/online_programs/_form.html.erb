@@ -9,37 +9,10 @@
     <%= f.association :background_image %>
     <%= f.association :promo_video %>
   
-    <p>
-      <h3><%= t('activerecord.models.online_program_videos') %></h3>
-      <table id="online-program-videos" class="association-table">
-          <tr>
-            <th><%= t('activerecord.attributes.online_program_video.video_id') %></th>
-            <th><%= t('activerecord.attributes.online_program_video.relative_time_sec') %></th>
-            <th><%= t('activerecord.attributes.online_program_video.pre_survey_id') %></th>
-            <th><%= t('activerecord.attributes.online_program_video.post_survey_id') %></th>
-            <th class="action-column"></th>
-          </tr>
-          <%= f.fields_for :online_program_videos, :wrapper => false do |builder| %>
-            <%= render 'video_fields', :f => builder %>
-          <% end %>
-      </table>
-      <%= f.link_to_add t(:add), :online_program_videos, :data => { :target => "#online-program-videos" } %>
-    </p>
+    <%= render 'videos_form', :f => f %>
 
-    <p>
-      <h3><%= t('activerecord.models.online_program_notifications') %></h3>
-      <table id="online-program-notifications" class="association-table">
-          <tr>
-            <th><%= t('activerecord.attributes.online_program_notification.notification_id') %></th>
-            <th><%= t('activerecord.attributes.online_program_notification.relative_time_sec') %></th>
-            <th class="action-column"></th>
-          </tr>
-         <%= f.fields_for :online_program_notifications, :wrapper => false do |builder| %>
-            <%= render 'notification_fields', :f => builder %>
-          <% end %>
-      </table>
-      <%= f.link_to_add t(:add), :online_program_notifications, :data => { :target => "#online-program-notifications" } %>
-    </p>
+    <%= render 'notifications_form', :f => f %>
+
   </div>
 
   <div class="form-actions">

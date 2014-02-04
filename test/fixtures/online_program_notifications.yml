@@ -3,9 +3,11 @@
 one:
   online_program_id: 1
   notification_id: 1
-  relative_time_sec: 2014-02-02 16:39:09
+  start_after_days: 1
+  start_time: 16:39:09
 
 two:
   online_program_id: 1
   notification_id: 1
-  relative_time_sec: 2014-02-02 16:39:09
+  start_after_days: 1
+  start_time: 16:39:09

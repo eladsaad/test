@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140203135013) do
+ActiveRecord::Schema.define(version: 20140202163909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,9 +57,10 @@ ActiveRecord::Schema.define(version: 20140203135013) do
   create_table "online_program_notifications", force: true do |t|
     t.integer  "online_program_id"
     t.integer  "notification_id"
+    t.integer  "start_after_days"
+    t.time     "start_time"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "relative_time_sec"
   end
 
   add_index "online_program_notifications", ["notification_id"], name: "index_online_program_notifications_on_notification_id", using: :btree
@@ -68,11 +69,12 @@ ActiveRecord::Schema.define(version: 20140203135013) do
   create_table "online_program_videos", force: true do |t|
     t.integer  "online_program_id"
     t.integer  "video_id"
+    t.integer  "start_after_days"
+    t.time     "start_time"
     t.integer  "pre_survey_id"
     t.integer  "post_survey_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "relative_time_sec"
   end
 
   add_index "online_program_videos", ["online_program_id"], name: "index_online_program_videos_on_online_program_id", using: :btree

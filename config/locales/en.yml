@@ -184,10 +184,12 @@ en:
       online_program_video:
         online_program_id: "Online Program"
         video_id: "Video"
-        relative_time_sec: "Seconds After Program Start"
+        start_after_days: "Start After Days"
+        start_time, label: "Start Time"
         pre_survey_id: "Pre Survey"
         post_survey_id: "Post Survey"
       online_program_notification:
         online_program_id: "Online Program"
         notification_id: "Notification"
-        relative_time_sec: "Seconds After Program Start"
+        start_after_days: "Start After Days"
+        start_time, label: "Start Time"
