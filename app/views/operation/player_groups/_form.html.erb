@@ -1,47 +1,53 @@
 <%= simple_form_for(@operation_player_group) do |f| %>
   <%= render 'shared/form_errors', object: @operation_player_group %>
 
-  <%= f.input :reg_code, placeholder: t(:leave_empty_for_automatic), required: false %>
-  <%= f.input :screening_date, as: :string, input_html: { class: 'datepicker' }%>
-  <%= f.input :name %>
-  <%= f.input :description %>
+  <div class="form-inputs">
+    <%= f.input :reg_code, placeholder: t(:leave_empty_for_automatic), required: false %>
+    <%= f.input :screening_date, as: :string, input_html: { class: 'datepicker' }%>
+    <%= f.input :name %>
+    <%= f.input :description %>
 
-  <%= f.input :player_organization_id, as: :hidden, required: true,
-      input_html: { id: 'player_group_player_organization_id' } %>
-  <%= f.input :player_organization_autocomplete, as: :string, required: true,
-      placeholder: t(:start_typing_for_autocomplete),
-      input_html: {
-        value: @operation_player_group.try(:player_organization).try(:name),
-        class: 'autocomplete-field',
-        data: {
-          autocomplete_source: operation_player_organizations_path(format: :json),
-          autocomplete_label_att: 'name',
-          autocomplete_value_att: 'id',
-          autocomplete_value_input_id: 'player_group_player_organization_id'
-        }
-      }
-  %>
-
-  <%= f.input :mobile_station_code,
-          placeholder: t(:start_typing_for_autocomplete),
-          input_html: {
-            class: 'autocomplete-field',
-            data: {
-              autocomplete_source: operation_operator_mobile_stations_path(format: :json),
-              autocomplete_label_att: 'code',
-              autocomplete_value_att: 'code'
-            }
+    <%= f.input :player_organization_id, as: :hidden, required: true,
+        input_html: { id: 'player_group_player_organization_id' } %>
+    <%= f.input :player_organization_autocomplete, as: :string, required: true,
+        placeholder: t(:start_typing_for_autocomplete),
+        input_html: {
+          value: @operation_player_group.try(:player_organization).try(:name),
+          class: 'autocomplete-field',
+          data: {
+            autocomplete_source: operation_player_organizations_path(format: :json),
+            autocomplete_label_att: 'name',
+            autocomplete_value_att: 'id',
+            autocomplete_value_input_id: 'player_group_player_organization_id'
           }
-  %>
+        }
+    %>
 
-  <%= f.association :online_program, collection: @operation_player_group.allowed_online_programs, prompt: t(:please_select) %>
+    <%= f.input :mobile_station_code,
+            placeholder: t(:start_typing_for_autocomplete),
+            input_html: {
+              class: 'autocomplete-field',
+              data: {
+                autocomplete_source: operation_operator_mobile_stations_path(format: :json),
+                autocomplete_label_att: 'code',
+                autocomplete_value_att: 'code'
+              }
+            }
+    %>
 
-  <%= f.simple_fields_for :extension_params do |ext_f| %>
-    <% (1..10).each do |custom_index| %>
-      <%= ext_f.input 'custom_' + custom_index.to_s.rjust(2, '0') %>
+    <%= f.association :online_program, collection: @operation_player_group.allowed_online_programs, prompt: t(:please_select) %>
+
+    <%= f.simple_fields_for :extension_params do |ext_f| %>
+      <% (1..10).each do |custom_index| %>
+        <%= ext_f.input 'custom_' + custom_index.to_s.rjust(2, '0') %>
+      <% end %>
     <% end %>
-  <% end %>
 
-  <%= f.button :submit %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+
 
 <% end %>

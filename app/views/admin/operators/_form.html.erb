@@ -1,15 +1,19 @@
 <%= simple_form_for(@admin_operator) do |f| %>
   <%= render 'shared/form_errors', object: @admin_operator %>
 
-  <%= f.input :name %>
-  <%= f.input :email %>
-  <%= f.input :country, :as => :string %>
-  <%= f.input :reg_code_prefix %>
-  <%= f.input :disabled %>
+  <div class="form-inputs">
+	  <%= f.input :name %>
+	  <%= f.input :email %>
+	  <%= f.input :country, :as => :string %>
+	  <%= f.input :reg_code_prefix %>
+	  <%= f.input :disabled %>
 
-  <h3><%= t('activerecord.attributes.operator.online_programs') %></h3>
-  <%= f.association :online_programs, as: :check_boxes, label: false %>
-  
-  <%= f.button :submit %>
+	  <h3><%= t('activerecord.attributes.operator.online_programs') %></h3>
+	  <%= f.association :online_programs, as: :check_boxes, label: false %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
 
 <% end %>

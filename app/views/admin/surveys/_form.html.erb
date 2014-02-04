@@ -1,23 +1,21 @@
-<%= form_for(@admin_survey) do |f| %>
+<%= simple_form_for(@admin_survey) do |f| %>
     <%= render 'shared/form_errors', object: @admin_survey %>
 
-    <div class="field">
-      <%= f.label :name %><br>
-      <%= f.text_field :name %>
-    </div>
-    <div class="field">
-      <%= f.label :language_code_id %><br>
-      <%= f.collection_select(:language_code_id, @language_codes, :id, :name, :include_blank => "Please select") %>
-    </div>
-    <!--<div class="field">
-      <%#= f.label :question_ids %><br>
-      <%#= f.text_field :question_ids %>
-    </div>-->
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :language_code_id, collection: LanguageCode.all, label_method: :label, value_method: :id, prompt: t(:please_select) %>
+    <%= f.input :question_ids %>
+
     <%= render "survey_questions", admin_questions: @admin_survey.questions %>
-    <br/><br/>
+    <br><br>
+
     <%= render "survey_questions", admin_questions: Admin::Question.where.not(id: @admin_survey.questions.pluck(:id)) %>
-    <br/><br/>
-    <div class="actions">
-      <%= f.submit %>
-    </div>
+    <br><br>
+
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+
 <% end %>
