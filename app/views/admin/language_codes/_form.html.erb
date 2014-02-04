@@ -1,15 +1,13 @@
-<%= form_for(@admin_language_code) do |f| %>
+<%= simple_form_for(@admin_language_code) do |f| %>
     <%= render 'shared/form_errors', object: @admin_language_code %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :code %><br>
-    <%= f.text_field :code %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="form-inputs">
+      <%= f.input :name %><br>
+      <%= f.input :code %><br>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit %>
+    </div>
+
 <% end %>

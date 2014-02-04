@@ -1,5 +1,5 @@
 <%= simple_nested_form_for(@admin_online_program) do |f| %>
-  <%= f.error_notification %>
+  <%= render 'shared/form_errors', object: @admin_online_program %>
 
   <div class="form-inputs">
     <%= f.input :name %>

@@ -1,28 +1,16 @@
-<%= form_for(@admin_video) do |f| %>
+<%= simple_form_for(@admin_video) do |f| %>
   <%= render 'shared/form_errors', object: @admin_video %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :url %>
+    <%= f.input :language_code_id, collection: LanguageCode.all, label_method: :label, value_method: :id, prompt: t(:please_select) %>
+    <%= f.input :thumbnail_url %>
+    <%= f.input :description %>
   </div>
-  <div class="field">
-    <%= f.label :url %><br>
-    <%= f.text_field :url %>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
   </div>
-  <div class="field">
-    <%= f.label :language_code_id %><br>
-    <%= f.collection_select(:language_code_id, @language_codes, :id, :name, :include_blank => "Please select") %>
-    <%#= f.text_field :language_code_id %>
-  </div>
-  <div class="field">
-    <%= f.label :thumbnail_url %><br>
-    <%= f.text_field :thumbnail_url %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_field :description %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
 <% end %>

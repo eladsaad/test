@@ -1,8 +1,12 @@
 <%= simple_form_for(@player_group_association) do |f| %>
-  <%= render 'shared/form_errors', object: @player_group_association %>
+	<%= render 'shared/form_errors', object: @player_group_association %>
 
-  <%= f.input :reg_code %>
-  
-  <%= f.button :submit %
+	<div class="form-inputs">
+		<%= f.input :reg_code %>
+	</div>
+
+	<div class="form-actions">
+		<%= f.button :submit %>
+	</div>
 
 <% end %>

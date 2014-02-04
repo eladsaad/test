@@ -1,20 +1,24 @@
 <%= simple_form_for(@operation_player_organization) do |f| %>
   <%= render 'shared/form_errors', object: @operation_player_organization %>
-
-  <%= f.input :org_type %>
-  <%= f.input :name %>
-  <%= f.input :address %>
-  <%= f.input :contact_name %>
-  <%= f.input :contact_position %>
-  <%= f.input :contact_email %>
-  <%= f.input :contact_phone %>
   
-  <%= f.simple_fields_for :extension_params do |ext_f| %>
-    <% (1..10).each do |custom_index| %>
-      <%= ext_f.input 'custom_' + custom_index.to_s.rjust(2, '0') %>
+  <div class="form-inputs">
+    <%= f.input :org_type %>
+    <%= f.input :name %>
+    <%= f.input :address %>
+    <%= f.input :contact_name %>
+    <%= f.input :contact_position %>
+    <%= f.input :contact_email %>
+    <%= f.input :contact_phone %>
+  
+    <%= f.simple_fields_for :extension_params do |ext_f| %>
+      <% (1..10).each do |custom_index| %>
+        <%= ext_f.input 'custom_' + custom_index.to_s.rjust(2, '0') %>
+      <% end %>
     <% end %>
-  <% end %>
-  
-  <%= f.button :submit %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
 
 <% end %>

@@ -1,9 +1,12 @@
-<%= form_for(@admin_question) do |f| %>
+<%= simple_form_for(@admin_question) do |f| %>
     <%= render 'shared/form_errors', object: @admin_question %>
 
+  <div class="form-inputs">
     <%= render 'question_fields', f: f %>
+  </div>
 
-    <div class="actions">
-      <%= f.submit %>
-    </div>
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+
 <% end %>
