@@ -38,6 +38,11 @@ en:
   from: "From"
   to: "To"
   please_select: "Please Select..."
+  accounts: "Accounts"
+  programs: "Programs"
+  surveys: "Surveys"
+  media: "Media"
+  other: "Other"
 
   # active record
   activerecord:
