@@ -12,6 +12,11 @@
 	<%= link_to @operation_player_group.player_organization.name, operation_player_organization_path(@operation_player_group.player_organization) %>
 </p>
 
+<p>
+  <strong><%= t('activerecord.attributes.player_group.online_program_id') %>:</strong>
+  <%= @operation_player_group.online_program.try(:name) %>
+</p>
+
 <% [:mobile_station_code, :created_at, :updated_at].each do |attribute| %>
   <p>
     <strong><%= t("activerecord.attributes.player_group.#{attribute}") %>:</strong>

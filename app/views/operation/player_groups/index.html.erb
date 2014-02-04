@@ -19,6 +19,7 @@
       <th><%= sortable_column :screening_date, t('activerecord.attributes.player_group.screening_date') %></th>
       <th><%= sortable_column :name, t('activerecord.attributes.player_group.name') %></th>
       <th><%= sortable_column :mobile_station_code, t('activerecord.attributes.player_group.mobile_station_code') %></th>
+      <th><%= sortable_column :description, t('activerecord.attributes.player_group.online_program_id') %></th> 
       <th><%= sortable_column :description, t('activerecord.attributes.player_group.description') %></th>  
       <th class="action-column"></th>
       <th class="action-column"></th>
@@ -34,6 +35,7 @@
         <td><%= operation_player_group.screening_date %></td>
         <td><%= operation_player_group.name %></td>
         <td><%= operation_player_group.mobile_station_code %></td>
+        <td><%= operation_player_group.online_program.try(:name) %></td>
         <td><%= operation_player_group.description %></td>
         <td><%= link_to t(:show), operation_player_group, class: 'show-record-link' %></td>
         <td><%= link_to t(:edit), edit_operation_player_group_path(operation_player_group), class: 'edit-record-link' %></td>

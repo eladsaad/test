@@ -34,6 +34,8 @@
           }
   %>
 
+  <%= f.association :online_program %>
+
   <%= f.simple_fields_for :extension_params do |ext_f| %>
     <% (1..10).each do |custom_index| %>
       <%= ext_f.input 'custom_' + custom_index.to_s.rjust(2, '0') %>

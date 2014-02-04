@@ -109,6 +109,7 @@ en:
         description: "Comments"
         player_organization_id: "Organization"
         mobile_station_code: "Team"
+        online_program_id: "Online Program"
         created_at: "Created At"
         updated_at: "Updated At"
       player_organization:

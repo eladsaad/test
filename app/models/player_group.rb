@@ -11,6 +11,7 @@ class PlayerGroup < ActiveRecord::Base
 	# == ASSOCIATIONS ==
 	belongs_to :operator
 	belongs_to :player_organization
+	belongs_to :online_program
 	has_and_belongs_to_many :players, join_table: :player_group_associations
 	has_one :extension_params, :class_name => "PlayerGroupExt", dependent: :destroy
 	accepts_nested_attributes_for :extension_params
