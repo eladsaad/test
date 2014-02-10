@@ -1,18 +1,31 @@
 Cinemadrive::Application.routes.draw do
 
-  # / - basic site
-  devise_for :players, :controllers => {
-      :sessions => 'players/sessions',
-      :passwords => 'players/passwords',
-      :confirmations => 'players/confirmations',
-      :registrations => 'players/registrations',
-      :omniauth_callbacks => "players/omniauth_callbacks"
+  # program subdomain
+  constraints subdomain: /.+/ do
+    
+    devise_for :players, :controllers => {
+        :sessions => 'players/sessions',
+        :passwords => 'players/passwords',
+        :confirmations => 'players/confirmations',
+        :registrations => 'players/registrations',
+        :omniauth_callbacks => "players/omniauth_callbacks"
     }
-  root :to => "players#dashboard"
-  get '/dashboard' => "players#dashboard", :as => :player_dashboard
-  resources :player_group_associations, only: [:new, :create]
-  get '/campaigns/click/:id' => "campaigns#click", :as => :click_campaign
+    devise_scope :player do
+      get '/players/registrations/pre_sign_up' => 'players/registrations#pre_sign_up', :as => :player_pre_sign_up
+    end
+    
+    get '/' => 'static_pages#welcome'
 
+    resources :player_group_associations, only: [:new, :create]
+
+    get '/dashboard' => "players#dashboard", :as => :player_dashboard
+
+    get '/campaigns/click/:id' => "campaigns#click", :as => :click_campaign
+    
+  end
+
+  # if no subdomain
+  root :to => "static_pages#programs"
 
   # /admin - system administration
   namespace :admin do

@@ -4,7 +4,12 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   # == CANCAN Authorization ==
-  check_authorization :unless => :devise_controller?
+  check_authorization :unless => :check_authorization_controllers
+
+  def check_authorization_controllers
+    devise_controller? || is_a?(StaticPagesController)
+  end 
+
   rescue_from CanCan::AccessDenied do |exception|
   	Rails.logger.debug "Access denied on #{exception.action} #{exception.subject.inspect}"
   	if request.env["HTTP_REFERER"].present?
@@ -24,6 +29,19 @@ class ApplicationController < ActionController::Base
       ['asc', 'desc'].include?(params[:direction]) ?  params[:direction] : "asc"
     end
     helper_method :sort_column, :sort_direction
+  end
+
+
+  # == Current Online Program
+
+  def current_online_program
+    program = nil
+    if (current_player)
+      program ||= current_player.try(:current_player_group).try(:current_online_program)
+    else
+      program ||= OnlineProgram.find_by_codename(request.subdomain)
+    end
+    program
   end
 
   # == Pagination Headers
