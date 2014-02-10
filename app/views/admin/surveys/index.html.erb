@@ -1,7 +1,13 @@
 <h1><%= t('activerecord.models.surveys') %></h1>
 
-
-<%= render 'shared/search_table_form', objects_index_path: admin_surveys_path %>
+<div class="table-toolbar">
+  <div class="table-toolbar-left">
+    <%= render 'shared/search_table_form', objects_index_path: admin_surveys_path %>
+  </div>
+  <div class="table-toolbar-right">
+    <%= link_to t(:new) + ' ' + t('activerecord.models.survey'), new_admin_survey_path %>
+  </div>
+</div>
 
 <table class="records-table">
   <thead>
@@ -10,9 +16,9 @@
       <th><%= sortable_column :name, t('activerecord.attributes.question.name') %></th>
       <th><%= sortable_column :language_code, t('activerecord.attributes.question.language_code') %></th>
       <th><%= t('activerecord.models.questions') %></th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th class="action-column"></th>
+      <th class="action-column"></th>
+      <th class="action-column"></th>
     </tr>
   </thead>
 
@@ -23,16 +29,12 @@
         <td><%= admin_survey.name %></td>
         <td><%= admin_survey.language_code.code %> (<%= admin_survey.language_code.name %>)</td>
         <td><%= admin_survey.questions.length %></td>
-        <td><%= link_to 'Show', admin_survey %></td>
-        <td><%= link_to 'Edit', edit_admin_survey_path(admin_survey) %></td>
-        <td><%= link_to 'Destroy', admin_survey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to t(:show), admin_survey, class: 'show-record-link' %></td>
+        <td><%= link_to t(:edit), edit_admin_survey_path(admin_survey), class: 'edit-record-link' %></td>
+        <td><%= link_to t(:delete), admin_survey, method: :delete, data: { confirm: 'Are you sure?' }, class: 'destroy-record-link' %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <%= will_paginate @admin_surveys %>
-
-<br>
-
-<%= link_to 'New Survey', new_admin_survey_path %>

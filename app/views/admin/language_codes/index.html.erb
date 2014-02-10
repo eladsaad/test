@@ -1,14 +1,22 @@
 <h1><%= t('activerecord.models.language_codes') %></h1>
 
+<div class="table-toolbar">
+  <div class="table-toolbar-left">
+    <%= render 'shared/search_table_form', objects_index_path: admin_language_codes_path %>
+  </div>
+  <div class="table-toolbar-right">
+    <%= link_to t(:new) + ' ' + t('activerecord.models.language_code'), new_admin_language_code_path %>
+  </div>
+</div>
+
 <table class="records-table">
   <thead>
     <tr>
-
       <th><%= sortable_column :name, t('activerecord.attributes.language_code.name') %></th>
       <th><%= sortable_column :code,  t('activerecord.attributes.language_code.code') %></th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th class="action-column"></th>
+      <th class="action-column"></th>
+      <th class="action-column"></th>
     </tr>
   </thead>
 
@@ -17,9 +25,9 @@
       <tr>
         <td><%= admin_language_code.name %></td>
         <td><%= admin_language_code.code %></td>
-        <td><%= link_to 'Show', admin_language_code %></td>
-        <td><%= link_to 'Edit', edit_admin_language_code_path(admin_language_code) %></td>
-        <td><%= link_to 'Destroy', admin_language_code, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to t(:show), admin_language_code, class: 'show-record-link' %></td>
+        <td><%= link_to t(:edit), edit_admin_language_code_path(admin_language_code), class: 'edit-record-link' %></td>
+        <td><%= link_to t(:delete), admin_language_code, method: :delete, data: { confirm: 'Are you sure?' }, class: 'destroy-record-link' %></td>
       </tr>
     <% end %>
   </tbody>
@@ -27,6 +35,3 @@
 
 <%= will_paginate @admin_language_codes %>
 
-<br>
-
-<%= link_to 'New Language code', new_admin_language_code_path %>

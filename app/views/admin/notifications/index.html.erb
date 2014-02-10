@@ -1,7 +1,13 @@
 <h1><%= t('activerecord.models.notifications') %></h1>
 
-<%= render 'shared/search_table_form', objects_index_path: admin_operators_path %>
-
+<div class="table-toolbar">
+  <div class="table-toolbar-left">
+    <%= render 'shared/search_table_form', objects_index_path: admin_notifications_path %>
+  </div>
+  <div class="table-toolbar-right">
+    <%= link_to t(:new) + ' ' + t('activerecord.models.notification'), new_admin_notification_path %>
+  </div>
+</div>
 <table class="records-table">
   <thead>
     <tr>
@@ -10,9 +16,9 @@
       <th><%= sortable_column :title, t('activerecord.attributes.notification.title') %></th>
       <th><%= sortable_column :email_content, t('activerecord.attributes.notification.email_content') %></th>
       <th><%= sortable_column :facebook_content, t('activerecord.attributes.notification.facebook_content   ') %></th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th class="action-column"></th>
+      <th class="action-column"></th>
+      <th class="action-column"></t
     </tr>
   </thead>
 
@@ -24,17 +30,12 @@
         <td><%= admin_notification.title %></td>
         <td><%= admin_notification.email_content %></td>
         <td><%= admin_notification.facebook_content %></td>
-        <td><%= link_to 'Show', admin_notification, class: 'show-record-link' %></td>
-        <td><%= link_to 'Edit', edit_admin_notification_path(admin_notification), class: 'edit-record-link' %></td>
-        <td><%= link_to 'Destroy', admin_notification, method: :delete, data: { confirm: 'Are you sure?' },
-                        class: 'destroy-record-link' %></td>
+        <td><%= link_to t(:show), admin_notification, class: 'show-record-link' %></td>
+        <td><%= link_to t(:edit), edit_admin_notification_path(admin_notification), class: 'edit-record-link' %></td>
+        <td><%= link_to t(:delete), admin_notification, method: :delete, data: { confirm: 'Are you sure?' }, class: 'destroy-record-link' %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <%= will_paginate @admin_notifications %>
-
-<br>
-
-<%= link_to 'New Notification', new_admin_notification_path %>

@@ -1,6 +1,13 @@
 <h1><%= t('activerecord.models.questions') %></h1>
 
-<%= render 'shared/search_table_form', objects_index_path: admin_questions_path %>
+<div class="table-toolbar">
+  <div class="table-toolbar-left">
+    <%= render 'shared/search_table_form', objects_index_path: admin_questions_path %>
+  </div>
+  <div class="table-toolbar-right">
+    <%= link_to t(:new) + ' ' + t('activerecord.models.question'), new_admin_question_path %>
+  </div>
+</div>
 
 <table class="records-table">
   <thead>
@@ -10,9 +17,9 @@
       <th><%= sortable_column :question, t('activerecord.attributes.question.question') %></th>
       <th><%= sortable_column :answers, t('activerecord.attributes.question.answers') %></th>
       <th><%= sortable_column :correct_answer, t('activerecord.attributes.question.correct_answer') %></th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th class="action-column"></th>
+      <th class="action-column"></th>
+      <th class="action-column"></th>
     </tr>
   </thead>
 
@@ -24,9 +31,9 @@
         <td><%= admin_question.question %></td>
         <td><%= admin_question.answers %></td>
         <td><%= admin_question.correct_answer %></td>
-        <td><%= link_to 'Show', admin_question %></td>
-        <td><%= link_to 'Edit', edit_admin_question_path(admin_question) %></td>
-        <td><%= link_to 'Destroy', admin_question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to t(:show), admin_question, class: 'show-record-link' %></td>
+        <td><%= link_to t(:edit), edit_admin_question_path(admin_question), class: 'edit-record-link' %></td>
+        <td><%= link_to t(:delete), admin_question, method: :delete, data: { confirm: 'Are you sure?' }, class: 'destroy-record-link' %></td>
       </tr>
     <% end %>
   </tbody>
@@ -34,6 +41,3 @@
 
 <%= will_paginate @admin_questions %>
 
-<br>
-
-<%= link_to 'New Question', new_admin_question_path %>

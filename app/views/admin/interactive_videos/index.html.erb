@@ -1,6 +1,13 @@
 <h1><%= t('activerecord.models.interactive_videos') %></h1>
 
-<%= render 'shared/search_table_form', objects_index_path: admin_operators_path %>
+<div class="table-toolbar">
+  <div class="table-toolbar-left">
+    <%= render 'shared/search_table_form', objects_index_path: admin_interactive_videos_path %>
+  </div>
+  <div class="table-toolbar-right">
+    <%= link_to t(:new) + ' ' + t('activerecord.models.interactive_video'), new_admin_interactive_video_path %>
+  </div>
+</div>
 
 <table class="records-table">
   <thead>
@@ -8,9 +15,9 @@
       <th><%= sortable_column :name, t('activerecord.attributes.interactive_video.name') %></th>
       <th><%= sortable_column :language_code_id, t('activerecord.attributes.interactive_video.language_code') %></th>
       <th><%= sortable_column :description, t('activerecord.attributes.interactive_video.description') %></th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th class="action-column"></th>
+      <th class="action-column"></th>
+      <th class="action-column"></th>
     </tr>
   </thead>
 
@@ -20,16 +27,12 @@
         <td><%= admin_interactive_video.name %></td>
         <td><%= admin_interactive_video.language_code.code %> (<%= admin_interactive_video.language_code.name %>)</td>
         <td><%= admin_interactive_video.description %></td>
-        <td><%= link_to 'Show', admin_interactive_video %></td>
-        <td><%= link_to 'Edit', edit_admin_interactive_video_path(admin_interactive_video) %></td>
-        <td><%= link_to 'Destroy', admin_interactive_video, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to t(:show), admin_interactive_video, class: 'show-record-link' %></td>
+        <td><%= link_to t(:edit), edit_admin_interactive_video_path(admin_interactive_video), class: 'edit-record-link' %></td>
+        <td><%= link_to t(:delete), admin_interactive_video, method: :delete, data: { confirm: 'Are you sure?' }, class: 'destroy-record-link' %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <%= will_paginate @admin_interactive_videos %>
-
-<br>
-
-<%= link_to 'New Interactive video', new_admin_interactive_video_path %>
