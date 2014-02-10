@@ -11,6 +11,8 @@ Cinemadrive::Application.routes.draw do
   root :to => "players#dashboard"
   get '/dashboard' => "players#dashboard", :as => :player_dashboard
   resources :player_group_associations, only: [:new, :create]
+  get '/campaigns/click/:id' => "campaigns#click", :as => :click_campaign
+
 
   # /admin - system administration
   namespace :admin do
