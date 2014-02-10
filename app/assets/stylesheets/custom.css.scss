@@ -103,6 +103,7 @@ body { padding-top: 70px; } // because of fixed navbar
 
 .association-table {
 	@extend .table;
+	width: auto;
 	margin-bottom: 2px;
 }
 

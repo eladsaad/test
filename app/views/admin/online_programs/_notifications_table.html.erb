@@ -14,7 +14,7 @@
       <tr>
         <td><%= notification.notification.name %></td>
         <td><%= notification.start_after_days %></td>
-        <td><%= notification.start_time %></td>
+        <td><%= notification.start_time.strftime('%H:%M:%S') %></td>
       </tr>
     <% end %>
   </tbody>

@@ -8,7 +8,7 @@
       <th class="action-column"></th>
     </tr>
     <%= f.fields_for :online_program_notifications, :wrapper => false do |ff| %>
-      <tr class="fields">
+      <tr class="fields form-inline">
         <td><%= ff.association :notification, prompt: t(:please_select), label: false %></td>
         <td><%= ff.input :start_after_days, label: false %></td>
         <td><%= ff.input :start_time, label: false %></td>

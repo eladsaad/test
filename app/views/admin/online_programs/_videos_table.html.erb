@@ -16,7 +16,7 @@
       <tr>
         <td><%= video.video.name %></td>
         <td><%= video.start_after_days %></td>
-        <td><%= video.start_time %></td>
+        <td><%= video.start_time.strftime('%H:%M:%S') %></td>
         <td><%= video.pre_survey.try(:name) %></td>
         <td><%= video.post_survey.try(:name) %></td>
       </tr>
