@@ -1,0 +1,1 @@
+json.extract! @admin_campaign, :id, :name, :max_views, :views, :clicks, :trophy_name, :landing_page, :banner_html_01, :banner_html_02, :banner_html_03, :banner_html_04, :banner_html_05, :banner_html_06, :banner_html_07, :banner_html_08, :banner_html_09, :banner_html_10, :created_at, :updated_at

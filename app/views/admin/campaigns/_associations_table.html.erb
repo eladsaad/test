@@ -1,0 +1,19 @@
+<h3><%= t('activerecord.attributes.campaign.operator_program_associations') %></h3>
+
+<table class="association-table">
+  <thead>
+    <tr>
+      <th><%= t('activerecord.attributes.campaign_operator_program.operator_id') %></th>
+      <th><%= t('activerecord.attributes.campaign_operator_program.campaign_id') %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% objects.each do |obj| %>
+      <tr>
+        <td><%= obj.operator.name %></td>
+        <td><%= obj.online_program.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

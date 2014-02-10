@@ -1,0 +1,18 @@
+<p>
+  <h3><%= t('activerecord.attributes.campaign.operator_program_associations') %></h3>
+  <table id="operator-program-associations" class="association-table">
+      <tr>
+        <th><%= t('activerecord.attributes.campaign_operator_program.operator_id') %></th>
+        <th><%= t('activerecord.attributes.campaign_operator_program.campaign_id') %></th>
+        <th class="action-column"></th>
+      </tr>
+      <%= f.fields_for :campaign_operator_programs, :wrapper => false do |ff| %>
+        <tr class="fields form-inline">
+          <td><%= ff.association :operator, prompt: t(:please_select), label: false %></td>
+          <td><%= ff.association :online_program, prompt: t(:please_select), label: false %></td>
+          <td><%= ff.link_to_remove t(:remove) %></td>
+        </tr>
+      <% end %>
+  </table>
+  <%= f.link_to_add t(:add), :campaign_operator_programs, :data => { :target => "#operator-program-associations" } %>
+</p>

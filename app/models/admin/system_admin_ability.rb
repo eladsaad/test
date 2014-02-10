@@ -38,6 +38,9 @@ class Admin::SystemAdminAbility
       # online programs
       can :manage, OnlineProgram
 
+      # campaigns
+      can :manage, Campaign
+
     end
 
   end

@@ -1,0 +1,42 @@
+<h1><%= t('activerecord.models.campaigns') + ' ' + t(:list) %></h1>
+
+<div class="table-toolbar">
+  <div class="table-toolbar-left">
+    <%= render 'shared/search_table_form', objects_index_path: admin_campaigns_path %>
+  </div>
+  <div class="table-toolbar-right">
+    <%= link_to t(:new) + ' ' + t('activerecord.models.campaign'), new_admin_campaign_path %>
+  </div>
+</div>
+
+<table class="records-table">
+  <thead>
+    <tr>
+      <th><%= sortable_column :name, t('activerecord.attributes.campaign.name') %></th>
+      <th><%= t('activerecord.attributes.campaign.max_views') %></th>
+      <th><%= t('activerecord.attributes.campaign.views') %></th>
+      <th><%= t('activerecord.attributes.campaign.clicks') %></th>
+      <th><%= t('activerecord.attributes.campaign.trophy_name') %></th>
+      <th><%= t('activerecord.attributes.campaign.landing_page') %></th>
+      <th class="action-column"></th>
+      <th class="action-column"></th>
+      <th class="action-column"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @admin_campaigns.each do |admin_campaign| %>
+      <tr>
+        <td><%= admin_campaign.name %></td>
+        <td><%= admin_campaign.max_views %></td>
+        <td><%= admin_campaign.views %></td>
+        <td><%= admin_campaign.clicks %></td>
+        <td><%= admin_campaign.trophy_name %></td>
+        <td><%= admin_campaign.landing_page %></td>
+        <td><%= link_to t(:show), admin_campaign, class: 'show-record-link' %></td>
+        <td><%= link_to t(:edit), edit_admin_campaign_path(admin_campaign), class: 'edit-record-link' %></td>
+        <td><%= link_to t(:delete), admin_campaign, method: :delete, data: { confirm: 'Are you sure?' }, class: 'destroy-record-link' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
