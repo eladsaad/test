@@ -1,0 +1,24 @@
+<h1><%= t('activerecord.models.campaign') %></h1>
+
+
+<% [:name, :max_views, :views, :clicks, :trophy_name, :landing_page].each do |attribute| %>
+  <p>
+    <strong><%= t("activerecord.attributes.campaign.#{attribute}") %>:</strong>
+    <%= @admin_campaign.send(attribute) %>
+  </p>
+<% end %>
+
+
+<% [:banner_html_01, :banner_html_02, :banner_html_03, :banner_html_04, :banner_html_05,
+    :banner_html_06, :banner_html_07, :banner_html_08, :banner_html_09, :banner_html_10].each do |attribute| %>
+  <p>
+    <strong><%= t("activerecord.attributes.campaign.#{attribute}") %>:</strong>
+    <%= h @admin_campaign.send(attribute) %>
+  </p>
+<% end %>
+
+<%= render 'associations_table', objects: @admin_campaign.campaign_operator_programs %>
+
+
+<%= link_to t(:edit), edit_admin_campaign_path(@admin_campaign) %> |
+<%= link_to t(:back), admin_campaigns_path %>

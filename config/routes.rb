@@ -46,6 +46,7 @@ Cinemadrive::Application.routes.draw do
       end
     end
     resources :online_programs
+    resources :campaigns
   end
 
   # /operation - operators administration

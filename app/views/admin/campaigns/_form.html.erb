@@ -1,0 +1,31 @@
+<%= simple_nested_form_for(@admin_campaign) do |f| %>
+
+  <%= render 'shared/form_errors', object: @admin_campaign %>
+
+  <div class="form-inputs">
+
+    <h3><%= t(:general) %></h3>
+    <%= f.input :name %>
+    <%= f.input :max_views %>
+    <%= f.input :trophy_name %>
+    <%= f.input :landing_page %>
+
+    <h3><%= t('activerecord.attributes.campaign.banners') %></h3>
+    <%= f.input :banner_html_01 %>
+    <%= f.input :banner_html_02 %>
+    <%= f.input :banner_html_03 %>
+    <%= f.input :banner_html_04 %>
+    <%= f.input :banner_html_05 %>
+    <%= f.input :banner_html_06 %>
+    <%= f.input :banner_html_07 %>
+    <%= f.input :banner_html_08 %>
+    <%= f.input :banner_html_09 %>
+    <%= f.input :banner_html_10 %>
+
+    <%= render 'associations_form', :f => f %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

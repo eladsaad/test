@@ -11,10 +11,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140204100626) do
+ActiveRecord::Schema.define(version: 20140210094954) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "campaign_operator_programs", force: true do |t|
+    t.integer  "campaign_id"
+    t.integer  "operator_id"
+    t.integer  "online_program_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "campaign_operator_programs", ["campaign_id"], name: "index_campaign_operator_programs_on_campaign_id", using: :btree
+  add_index "campaign_operator_programs", ["operator_id", "online_program_id"], name: "index_operator_online_program", unique: true, using: :btree
+
+  create_table "campaigns", force: true do |t|
+    t.string   "name"
+    t.integer  "max_views"
+    t.integer  "views",                       default: 0
+    t.integer  "clicks",                      default: 0
+    t.string   "trophy_name"
+    t.string   "landing_page",   limit: 1000
+    t.text     "banner_html_01"
+    t.text     "banner_html_02"
+    t.text     "banner_html_03"
+    t.text     "banner_html_04"
+    t.text     "banner_html_05"
+    t.text     "banner_html_06"
+    t.text     "banner_html_07"
+    t.text     "banner_html_08"
+    t.text     "banner_html_09"
+    t.text     "banner_html_10"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "campaigns", ["name"], name: "index_campaigns_on_name", using: :btree
 
   create_table "images", force: true do |t|
     t.string   "url"
