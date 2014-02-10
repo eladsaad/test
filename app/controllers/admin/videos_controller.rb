@@ -3,6 +3,8 @@ class Admin::VideosController < Admin::AdminController
 
   allowed_sort_columns Admin::Video
 
+  set_pagination_headers :admin_videos, only: [:index]
+
   # GET /admin/videos
   # GET /admin/videos.json
   def index

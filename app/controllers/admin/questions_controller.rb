@@ -3,6 +3,8 @@ class Admin::QuestionsController < Admin::AdminController
 
   allowed_sort_columns Admin::Question
 
+  set_pagination_headers :admin_questions, only: [:index]
+
   # GET /admin/questions
   # GET /admin/questions.json
   def index

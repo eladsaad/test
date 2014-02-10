@@ -3,6 +3,8 @@ class Admin::NotificationsController < Admin::AdminController
 
   allowed_sort_columns Admin::Operator
 
+  set_pagination_headers :admin_notifications, only: [:index]
+
   # GET /admin/notifications
   # GET /admin/notifications.json
   def index

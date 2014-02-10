@@ -3,6 +3,8 @@ class Admin::OperatorsController < Admin::AdminController
   
   allowed_sort_columns Admin::Operator
 
+  set_pagination_headers :admin_operators, only: [:index]
+
   # GET /admin/operators
   # GET /admin/operators.json
   def index

@@ -1,7 +1,9 @@
 class Operation::PlayerGroupsController < Operation::OperationController
   before_action :set_operation_player_group, only: [:show, :edit, :update, :destroy]
 
-  allowed_sort_columns Operation::PlayerGroup 
+  allowed_sort_columns Operation::PlayerGroup
+
+  set_pagination_headers :operation_player_groups, only: [:index]
 
   # GET /operation/player_groups
   # GET /operation/player_groups.json

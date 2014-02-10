@@ -5,6 +5,8 @@ class Admin::SurveysController < Admin::AdminController
 
   allowed_sort_columns Admin::Survey
 
+  set_pagination_headers :admin_surveys, only: [:index]
+
   # GET /admin/surveys
   # GET /admin/surveys.json
   def index

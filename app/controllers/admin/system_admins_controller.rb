@@ -3,6 +3,8 @@ class Admin::SystemAdminsController < Admin::AdminController
   
   allowed_sort_columns Admin::SystemAdmin
 
+  set_pagination_headers :admin_system_admins, only: [:index]
+
   # GET /admin/system_admins
   # GET /admin/system_admins.json
   def index

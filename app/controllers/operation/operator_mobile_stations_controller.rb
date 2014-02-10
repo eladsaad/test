@@ -3,6 +3,8 @@ class Operation::OperatorMobileStationsController < Operation::OperationControll
   
   allowed_sort_columns Operation::OperatorMobileStation
 
+  set_pagination_headers :operation_operator_mobile_stations, only: [:index]
+
   # GET /operation/operator_mobile_stations
   # GET /operation/operator_mobile_stations.json
   def index

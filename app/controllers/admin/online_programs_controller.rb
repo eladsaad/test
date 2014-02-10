@@ -3,6 +3,8 @@ class Admin::OnlineProgramsController < Admin::AdminController
 
   allowed_sort_columns Admin::OnlineProgram 
 
+  set_pagination_headers :admin_online_programs, only: [:index]
+
   # GET /admin/online_programs
   # GET /admin/online_programs.json
   def index

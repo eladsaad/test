@@ -3,6 +3,8 @@ class Admin::InteractiveVideosController < Admin::AdminController
 
   allowed_sort_columns Admin::InteractiveVideo
 
+  set_pagination_headers :admin_interactive_videos, only: [:index]
+
   # GET /admin/interactive_videos
   # GET /admin/interactive_videos.json
   def index

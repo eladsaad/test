@@ -3,6 +3,8 @@ class Admin::LanguageCodesController < Admin::AdminController
 
   allowed_sort_columns Admin::LanguageCode
 
+  set_pagination_headers :admin_language_codes, only: [:index]
+
   # GET /admin/language_codes
   # GET /admin/language_codes.json
   def index

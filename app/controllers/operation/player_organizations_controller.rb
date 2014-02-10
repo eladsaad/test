@@ -3,6 +3,8 @@ class Operation::PlayerOrganizationsController < Operation::OperationController
   
   allowed_sort_columns Operation::PlayerOrganization 
 
+  set_pagination_headers :operation_player_organizations, only: [:index]
+
   # GET /operation/player_organizations
   # GET /operation/player_organizations.json
   def index
