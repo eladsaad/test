@@ -120,6 +120,11 @@ input[type=submit] {
 	@extend .btn-primary;
 }
 
+.cancel-form-link {
+	@extend .btn;
+	@extend .btn-default;
+}
+
 
 // Flash messages
 

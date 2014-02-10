@@ -34,7 +34,7 @@
         <td><%= admin_question.question %></td>
         <td><%= admin_question.answers %></td>
         <td><%= admin_question.correct_answer %></td>
-        <td><%= link_to 'Show', admin_question_path(admin_question) %></td>
+        <td><%= link_to t(:show), admin_question_path(admin_question) %></td>
         <td><%= link_to 'Remove from survey', remove_question_admin_survey_path(
                 id: @admin_survey, question_id: admin_question), :method => :put,
                         data: { confirm: 'Are you sure?' } %></td>
@@ -81,4 +81,3 @@
     No questions to add with "<%= @admin_survey.language_code.code %>" langauge code
 <% end %>
 <br/><br/>
-<%= link_to 'Back', @admin_survey %>

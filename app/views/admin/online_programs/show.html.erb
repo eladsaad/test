@@ -32,5 +32,4 @@
 <%= render 'videos_table', videos: @admin_online_program.online_program_videos %>
 <%= render 'notifications_table', notifications: @admin_online_program.online_program_notifications %>
 
-<%= link_to 'Edit', edit_admin_online_program_path(@admin_online_program) %> |
-<%= link_to 'Back', admin_online_programs_path %>
+<%= link_to t(:edit), edit_admin_online_program_path(@admin_online_program) %>
