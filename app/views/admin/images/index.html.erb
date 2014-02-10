@@ -1,0 +1,38 @@
+<h1><%= t('activerecord.models.images') %></h1>
+
+<div class="table-toolbar">
+  <div class="table-toolbar-left">
+    <%= render 'shared/search_table_form', objects_index_path: admin_images_path %>
+  </div>
+  <div class="table-toolbar-right">
+    <%= link_to t(:new) + ' ' + t('activerecord.models.image'), new_admin_image_path %>
+  </div>
+</div>
+
+<table class="records-table">
+  <thead>
+    <tr>
+      <th><%= sortable_column :name, t('activerecord.attributes.image.name') %></th>
+      <th><%= t('activerecord.attributes.image.thumbnail') %></th>
+      <th><%= t('activerecord.attributes.image.description') %></th>
+      <th><%= t('activerecord.attributes.image.format') %></th>
+      <th class="action-column"></th>
+      <th class="action-column"></th>
+      <th class="action-column"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @admin_images.each do |admin_image| %>
+      <tr>
+        <td><%= admin_image.name %></td>
+        <td><%= '<To Implement>' %></td>
+        <td><%= admin_image.description %></td>
+        <td><%= admin_image.format %></td>
+        <td><%= link_to t(:show), admin_image, class: 'show-record-link' %></td>
+        <td><%= link_to t(:edit), edit_admin_image_path(admin_image), class: 'edit-record-link' %></td>
+        <td><%= link_to t(:delete), admin_image, method: :delete, data: { confirm: 'Are you sure?' }, class: 'destroy-record-link' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

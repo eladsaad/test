@@ -1,0 +1,29 @@
+<h1><%= t('activerecord.models.image') %></h1>
+
+<p>
+  <strong>Url:</strong>
+  <%= @admin_image.url %>
+</p>
+
+<p>
+  <strong>Thumbnail url:</strong>
+  <%= @admin_image.thumbnail_url %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @admin_image.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @admin_image.description %>
+</p>
+
+<p>
+  <strong>Format:</strong>
+  <%= @admin_image.format %>
+</p>
+
+<%= link_to t(:edit), edit_admin_image_path(@admin_image) %> |
+<%= link_to t(:back), admin_images_path %>

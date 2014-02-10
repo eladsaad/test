@@ -171,6 +171,7 @@ en:
         thumbnail_url: "Thumbnail url"
         description: "Description"
         format: "Format"
+        thumbnail: "Thumbnail"
       video:
         url: "Url"
         name: "Name"
@@ -178,6 +179,7 @@ en:
         description: "Description"
         language_code: "Language Code"
         description: "Description"
+        thumbnail: "Thumbnail"
       language_code:
         name: "Name"
         code: "Code"
