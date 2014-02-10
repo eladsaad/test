@@ -45,6 +45,7 @@ en:
   other: "Other"
   date_form: "Date from"
   date_to: "Date to"
+  search_text: "Search text"
 
   # active record
   activerecord:
