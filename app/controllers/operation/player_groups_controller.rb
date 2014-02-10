@@ -25,6 +25,7 @@ class Operation::PlayerGroupsController < Operation::OperationController
   def new
     authorize! :new, PlayerGroup
     @operation_player_group = Operation::PlayerGroup.new
+    @operation_player_group.operator_id = current_operation_operator.id
     @operation_player_group.build_extension_params
   end
 
