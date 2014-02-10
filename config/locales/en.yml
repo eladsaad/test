@@ -43,6 +43,8 @@ en:
   surveys: "Surveys"
   media: "Media"
   other: "Other"
+  date_form: "Date from"
+  date_to: "Date to"
 
   # active record
   activerecord:

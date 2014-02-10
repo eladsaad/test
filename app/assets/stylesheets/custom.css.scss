@@ -37,15 +37,6 @@ body { padding-top: 70px; } // because of fixed navbar
 
 .table-toolbar {
 	padding-bottom: 60px;
-	form {
-		@extend .form-inline;
-		.input-group {
-			@extend .input-group-sm;
-			input:not([type="submit"]) {
-				@extend .form-control;
-			}
-		}
-	}
 }
 
 // Records table
