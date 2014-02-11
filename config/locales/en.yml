@@ -199,7 +199,7 @@ en:
         updated_at: "Updated At"
       online_program_video:
         online_program_id: "Online Program"
-        video_id: "Video"
+        interactive_video_id: "Interactive Video"
         start_after_days: "Start After Days"
         start_time, label: "Start Time"
         pre_survey_id: "Pre Survey"

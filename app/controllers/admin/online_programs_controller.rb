@@ -97,7 +97,7 @@ class Admin::OnlineProgramsController < Admin::AdminController
         :background_image_id,
         :promo_video_id,
         :online_program_videos_attributes => [
-          :video_id,
+          :interactive_video_id,
           :start_after_days,
           :start_time,
           :pre_survey_id,

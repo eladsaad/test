@@ -2,7 +2,7 @@
 
 one:
   online_program_id: 1
-  video_id: 1 
+  interactive_video_id: 1 
   start_after_days: 1
   start_time: 16:38:03
   pre_survey_id: 1
@@ -10,7 +10,7 @@ one:
 
 two:
   online_program_id: 1
-  video_id: 1
+  interactive_video_id: 1
   start_after_days: 1
   start_time: 16:38:03
   pre_survey_id: 1

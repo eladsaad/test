@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140210094954) do
+ActiveRecord::Schema.define(version: 20140211154206) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,7 +102,7 @@ ActiveRecord::Schema.define(version: 20140210094954) do
 
   create_table "online_program_videos", force: true do |t|
     t.integer  "online_program_id"
-    t.integer  "video_id"
+    t.integer  "interactive_video_id"
     t.integer  "start_after_days"
     t.time     "start_time"
     t.integer  "pre_survey_id"
@@ -111,8 +111,8 @@ ActiveRecord::Schema.define(version: 20140210094954) do
     t.datetime "updated_at"
   end
 
+  add_index "online_program_videos", ["interactive_video_id"], name: "index_online_program_videos_on_interactive_video_id", using: :btree
   add_index "online_program_videos", ["online_program_id"], name: "index_online_program_videos_on_online_program_id", using: :btree
-  add_index "online_program_videos", ["video_id"], name: "index_online_program_videos_on_video_id", using: :btree
 
   create_table "online_programs", force: true do |t|
     t.string   "name"
