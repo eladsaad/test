@@ -9,6 +9,9 @@ class Question < ActiveRecord::Base
   validates :question, :presence => true
   validates :answers, :presence => true
 
+  # == SETTINGS ==
+  serialize :answers
+
   # == SEARCH ==
   search_columns [:name, :language_code, :question]
 end

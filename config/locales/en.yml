@@ -25,6 +25,7 @@ en:
   list: "List"
   add: "Add"
   cancel: "Cancel"
+  remove: "Remove"
 
   # other
   leave_empty_for_automatic: "Leave empty for automatic"

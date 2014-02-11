@@ -1,8 +1,48 @@
 <%= simple_form_for(@admin_question) do |f| %>
-    <%= render 'shared/form_errors', object: @admin_question %>
+  <%= render 'shared/form_errors', object: @admin_question %>
 
   <div class="form-inputs">
-    <%= render 'question_fields', f: f %>
+  	<%= f.input :name %>
+	<%= f.input :language_code_id, collection: LanguageCode.all, label_method: :label, value_method: :id, prompt: t(:please_select) %>
+	<%= f.input :question %>
+
+<p>
+	<%= f.label :answers %>
+	<%= f.simple_fields_for :answers do |ff| %>
+		<% @admin_question.answers.try(:each) do |answer| %>
+			<%= ff.input '', label: false, hint: "#{link_to t(:remove), '#', class: 'remove-answer-link'}".html_safe, input_html: { value: answer }, wrapper_html: { class: 'answer-input-field' } %>
+		<% end %>
+
+
+
+<script>
+	$(function() {
+
+		// add answer
+		$(document).on("click", ".add-answer-link", function(e){
+			var new_input = '<%= ff.input '', label: false, hint: "#{link_to t(:remove), '#', class: 'remove-answer-link'}".html_safe, wrapper_html: { class: 'answer-input-field' } %>';
+
+			$('#after-answers').prepend(new_input);
+			return false;
+		});
+
+		// remove answer
+		$(document).on("click", ".remove-answer-link", function(){
+			$(this).parents('.answer-input-field').remove();
+			return false;
+		});
+
+	});
+
+</script>
+
+
+		<span id='after-answers'></span>
+	<% end %>
+  	<%= link_to t(:add), '#', class: 'add-answer-link' %>
+ </p>
+
+	<%= f.input :correct_answer %>
   </div>
 
   <div class="form-actions">
@@ -10,4 +50,8 @@
     <%= link_to t(:cancel), :back, class: 'cancel-form-link' %>
   </div>
 
+
 <% end %>
+
+
+
