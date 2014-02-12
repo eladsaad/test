@@ -44,11 +44,8 @@ Cinemadrive::Application.routes.draw do
     resources :questions
     resources :surveys do
       member do
-        get :edit_questions
         put :add_question
         put :remove_question
-        get :new_question
-        post :create_question
       end
     end
     resources :notifications

@@ -18,7 +18,11 @@
 
 <p>
   <strong><%= t("activerecord.attributes.question.answers") %>:</strong>
-  <code><%= @admin_question.answers %></code>
+  <ul>
+  <% @admin_question.answers.try(:each) do |answer| %>
+    <li><%= answer %></li>
+  <% end %>
+  </ul>
 </p>
 
 <p>

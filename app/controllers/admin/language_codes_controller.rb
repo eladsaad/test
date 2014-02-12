@@ -12,7 +12,7 @@ class Admin::LanguageCodesController < Admin::AdminController
     @admin_language_codes = Admin::LanguageCode.accessible_by(current_ability, :read)
     @admin_language_codes = @admin_language_codes.search(params[:search]) unless params[:search].blank?
     @admin_language_codes = @admin_language_codes.order("#{sort_column} #{sort_direction}") unless sort_column.blank?
-    @admin_language_codes = @admin_language_codes.paginate(page: params[:page], per_page: 5)
+    @admin_language_codes = @admin_language_codes.paginate(page: params[:page], per_page: params[:per_page] || 100)
   end
 
   # GET /admin/language_codes/1

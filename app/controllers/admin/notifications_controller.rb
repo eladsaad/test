@@ -12,7 +12,7 @@ class Admin::NotificationsController < Admin::AdminController
     @admin_notifications = Admin::Notification.accessible_by(current_ability, :read)
     @admin_notifications = @admin_notifications.search(params[:search]) unless params[:search].blank?
     @admin_notifications = @admin_notifications.order("#{sort_column} #{sort_direction}") unless sort_column.blank?
-    @admin_notifications = @admin_notifications.paginate(page: params[:page], per_page: 5)
+    @admin_notifications = @admin_notifications.paginate(page: params[:page], per_page: params[:per_page] || 100)
   end
 
   # GET /admin/notifications/1

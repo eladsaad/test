@@ -12,7 +12,7 @@ class Admin::ImagesController < Admin::AdminController
     @admin_images = Admin::Image.accessible_by(current_ability, :read)
     @admin_images = @admin_images.search(params[:search]) unless params[:search].blank?
     @admin_images = @admin_images.order("#{sort_column} #{sort_direction}") unless sort_column.blank?
-    @admin_images = @admin_images.paginate(page: params[:page], per_page: 5)
+    @admin_images = @admin_images.paginate(page: params[:page], per_page: params[:per_page] || 100)
   end
 
   # GET /admin/images/1

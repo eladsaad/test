@@ -12,7 +12,7 @@ class Admin::InteractiveVideosController < Admin::AdminController
     @admin_interactive_videos = Admin::InteractiveVideo.accessible_by(current_ability, :read)
     @admin_interactive_videos = @admin_interactive_videos.search(params[:search]) unless params[:search].blank?
     @admin_interactive_videos = @admin_interactive_videos.order("#{sort_column} #{sort_direction}") unless sort_column.blank?
-    @admin_interactive_videos = @admin_interactive_videos.paginate(page: params[:page], per_page: 5)
+    @admin_interactive_videos = @admin_interactive_videos.paginate(page: params[:page], per_page: params[:per_page] || 100)
   end
 
   # GET /admin/interactive_videos/1

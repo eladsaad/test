@@ -12,7 +12,7 @@ class Admin::QuestionsController < Admin::AdminController
     @admin_questions = Admin::Question.accessible_by(current_ability, :read)
     @admin_questions = @admin_questions.search(params[:search]) unless params[:search].blank?
     @admin_questions = @admin_questions.order("#{sort_column} #{sort_direction}") unless sort_column.blank?
-    @admin_questions = @admin_questions.paginate(page: params[:page], per_page: 5)
+    @admin_questions = @admin_questions.paginate(page: params[:page], per_page: params[:per_page] || 100)
   end
 
   # GET /admin/questions/1

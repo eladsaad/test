@@ -61,6 +61,11 @@ body { padding-top: 70px; } // because of fixed navbar
 	@extend .btn-danger;
 }
 
+.add-record-link {
+	@extend .btn;
+	@extend .btn-info;
+}
+
 .column-sort-asc {
 	padding-right: 12px;  
 	background-repeat: no-repeat;  

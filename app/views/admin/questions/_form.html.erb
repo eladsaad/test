@@ -13,31 +13,9 @@
 			<%= ff.input '', label: false, hint: "#{link_to t(:remove), '#', class: 'remove-answer-link'}".html_safe, input_html: { value: answer }, wrapper_html: { class: 'answer-input-field' } %>
 		<% end %>
 
-
-
-<script>
-	$(function() {
-
-		// add answer
-		$(document).on("click", ".add-answer-link", function(e){
+		<script>
 			var new_input = '<%= ff.input '', label: false, hint: "#{link_to t(:remove), '#', class: 'remove-answer-link'}".html_safe, wrapper_html: { class: 'answer-input-field' } %>';
-
-			$('#after-answers').prepend(new_input);
-			return false;
-		});
-
-		// remove answer
-		$(document).on("click", ".remove-answer-link", function(){
-			$(this).parents('.answer-input-field').remove();
-			return false;
-		});
-
-	});
-
-</script>
-
-
-		<span id='after-answers'></span>
+		</script>
 	<% end %>
   	<%= link_to t(:add), '#', class: 'add-answer-link' %>
  </p>
@@ -54,4 +32,21 @@
 <% end %>
 
 
+<script>
+	$(function() {
 
+		// add answer
+		$(document).on("click", ".add-answer-link", function(e){
+			$(this).before(new_input);
+			return false;
+		});
+
+		// remove answer
+		$(document).on("click", ".remove-answer-link", function(){
+			$(this).parents('.answer-input-field').remove();
+			return false;
+		});
+
+	});
+
+</script>

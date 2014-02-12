@@ -1,22 +1,27 @@
-<table class="records-table">
-  <thead>
-  <tr>
-    <th><%= sortable_column :name, t('activerecord.attributes.question.name') %></th>
-    <th><%= sortable_column :language_code, t('activerecord.attributes.question.language_code') %></th>
-    <th><%= sortable_column :question, t('activerecord.attributes.question.question') %></th>
-    <th></th>
-  </tr>
-  </thead>
-
-  <tbody>
-  <% admin_questions.each do |admin_question| %>
+<% if admin_questions.any? %>
+  <table class="records-table">
+    <thead>
       <tr>
-        <td><%= admin_question.name %></td>
-        <td><%= admin_question.name %></td>
-        <td><%= admin_question.language_code %></td>
-        <td><%= admin_question.question %></td>
-        <td><%= link_to t(:show), admin_question %></td>
+        <th><%= t('activerecord.attributes.question.name') %></th>
+        <th><%= t('activerecord.attributes.question.question') %></th>
+        <th class="action-column"></th>
+        <th class="action-column"></th>
       </tr>
-  <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% admin_questions.each do |admin_question| %>
+          <tr>
+            <td><%= admin_question.name %></td>
+            <td><%= admin_question.question %></td>
+            <td><%= link_to t(:show), admin_question_path, class: 'show-record-link' %></td>
+            <td><%= link_to t(:remove), remove_question_admin_survey_path(
+                    id: @admin_survey, question_id: admin_question), :method => :put,
+                            data: { confirm: 'Are you sure?' }, class: 'destroy-record-link' %></td>
+          </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <%= t(:none) %>
+<% end %>
