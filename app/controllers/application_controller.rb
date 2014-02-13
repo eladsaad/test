@@ -1,4 +1,7 @@
 class ApplicationController < ActionController::Base
+
+  layout :set_layout
+
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -62,6 +65,10 @@ class ApplicationController < ActionController::Base
         offset: results.offset
       }.to_json
     end
+  end
+
+  def set_layout
+    false if params[:no_layout]
   end
   
 
