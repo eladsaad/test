@@ -1,18 +1,25 @@
-<h2>Sign in</h2>
+<!-- SIGN IN PAGE -->
+<h1><div>SIGN IN</div></h1>
+<p>or <%= link_to "create an account", new_registration_path(resource_name) %></p>
+<br/><br/><br/>
 
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
   
-  <div><%= f.label :username %><br />
-  <%= f.text_field :username, :autofocus => true %></div>
+  <!--[if lt IE 9]>
+  <div class="ie7-fix">
+  <![endif]-->
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
+  <%= f.text_field :username, autofocus: true, placeholder: "USER NAME" %>
 
-  <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-  <% end -%>
+  <div id="password-area">
+    <%= f.password_field :password, id: 'login-password', placeholder: "PASSWORD", style: 'float: left'  %></div>
+    <br><p></p> <!-- IE fix -->
+    <%= link_to 'I forgot my password', new_password_path(resource_name) %>
+  </div>
 
-  <div><%= f.submit "Sign in" %></div>
+  <!--[if lt IE 9]>
+  </div>
+  <![endif]-->
+
+  <div><%= f.submit "SIGN IN", id: 'login-btn', class: 'button' %></div>
 <% end %>
-
-<%= render "players/shared/links" %>

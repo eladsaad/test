@@ -10,4 +10,7 @@
  *
  *= require_self
  *= require bootstrap.min
+ *= require bootstrap-theme.min
+ *= require bigvideo
+ *= require main
  */
