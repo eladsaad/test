@@ -17,6 +17,7 @@ gem 'pg' # postgresql
 gem 'simple_form'
 gem 'nested_form'
 # gem 'therubyracer', platforms: :ruby
+gem 'swf_fu'
 
 group :production do
 	gem 'rails_12factor' # heroku logging and assets
