@@ -14,12 +14,13 @@ class Campaign < ActiveRecord::Base
 	# == METHODS ==
 
 	def self.get_by_player_group(player_group)
-		self.where(
-			operator_id: player_group.operator_id,
-			online_program_id: player_group.online_program_id
-		).where(
-			"views < max_views"
-		).first
+		allowed_campaigns = CampaignOperatorProgram.where(
+				operator_id: player_group.operator_id,
+				online_program_id: player_group.online_program_id
+			).pluck(:campaign_id)
+
+		self.where(id: allowed_campaigns).where("views < max_views").first
+		# TODO: what to do if no banner is available ?
 	end
 
 	def show_banner_content(banner_number)
