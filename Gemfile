@@ -20,6 +20,7 @@ gem 'nested_form'
 
 group :production do
 	gem 'rails_12factor' # heroku logging and assets
+	gem 'rails_serve_static_assets'
 end
 
 group :development do
