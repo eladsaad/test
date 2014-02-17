@@ -186,7 +186,6 @@ DEPENDENCIES
   pg
   rails (= 4.0.2)
   rails_12factor
-  rails_serve_static_assets
   sass-rails (~> 4.0.0)
   sdoc
   seed_dump (~> 3.1.0)

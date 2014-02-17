@@ -27,3 +27,9 @@ The following tasks are available:
 
 * db:add_super_system_admin
 * db:fill_reg_codes
+
+== HEROKU
+
+Execute this before applying environment variables:
+
+* heroku labs:enable user-env-compile
