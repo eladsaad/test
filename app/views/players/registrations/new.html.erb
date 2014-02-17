@@ -1,14 +1,8 @@
-<h2>Sign up</h2>
-
-<% if !params[:reg_code].blank? %>
-  <%= "Given reg code was: #{params[:reg_code]}" %>
-<% else %>
-  <%= "No reg code given" %>
-<% end %>
+<h2><%= t(:create_an_account) %></h2>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
-  
+
   <div class="field">
     <%= f.label :first_name %><br>
     <%= f.text_field :first_name %>
@@ -20,18 +14,8 @@
   </div>
 
   <div class="field">
-    <%= f.label :gender %><br>
-    <%= f.select :gender, [[t(:male), 'male'], [t(:female), 'female']], include_blank: true %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :birth_date %><br>
-    <%= f.date_select :birth_date, include_blank: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :username %><br>
-    <%= f.text_field :username %>
+    <%= f.label :age %><br>
+    <%= f.select  :age, 8..20 %>
   </div>
   
   <div class="field">
@@ -41,7 +25,7 @@
 
   <div class="field">
     <%= f.label :password %><br>
-    <%= f.password_field :password %>
+    <%= f.password_field :password, :autocomplete => "off" %>
   </div>
 
   <div class="field">
@@ -50,8 +34,7 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit t(:next) %>
   </div>
-<% end %>
 
-<%= render "players/shared/links" %>
+<% end %>

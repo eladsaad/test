@@ -1,11 +1,10 @@
 class Player < ActiveRecord::Base
 
 	# == VALIDATIONS ==
-	validates :username, :presence => true, :uniqueness => true
+	#validates :username, :presence => true, :uniqueness => true
 	#validates :email, :uniqueness => true, :format => {with: /@/}
 	validates :first_name, :presence => true
 	validates :last_name, :presence => true
-	validates :birth_date, :presence => true
 	validates :gender, :inclusion => { :in => ['male', 'female'] }
 
 	# == ASSOCIATIONS ==
@@ -17,7 +16,7 @@ class Player < ActiveRecord::Base
 	devise :database_authenticatable, :registerable, :confirmable,
 	:recoverable, :rememberable, :validatable, :omniauthable,
 	:omniauth_providers => [:facebook],
-	:authentication_keys => [:username]
+	:authentication_keys => [:email]
 
 	# == CANCAN Authorization ==
 	def ability

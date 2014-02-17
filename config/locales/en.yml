@@ -16,6 +16,7 @@ en:
   filter: "Filter"
   filter_attribute: "Filter by %{attribute}"
   sign_out: "Sign Out"
+  sign_in: "Sign In"
   show: "Show"
   edit: "Edit"
   delete: "Delete"
@@ -26,6 +27,7 @@ en:
   add: "Add"
   cancel: "Cancel"
   remove: "Remove"
+  next: "Next"
 
   # other
   leave_empty_for_automatic: "Leave empty for automatic"
@@ -49,6 +51,7 @@ en:
   date_to: "Date to"
   search_text: "Search text"
   none: "None"
+  create_an_account: "Create An Account"
 
   # active record
   activerecord:

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140211154206) do
+ActiveRecord::Schema.define(version: 20140217100200) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -298,6 +298,7 @@ ActiveRecord::Schema.define(version: 20140211154206) do
     t.string   "unconfirmed_email"
     t.string   "gender"
     t.string   "profile_picture"
+    t.integer  "age"
   end
 
   add_index "players", ["confirmation_token"], name: "index_players_on_confirmation_token", unique: true, using: :btree
