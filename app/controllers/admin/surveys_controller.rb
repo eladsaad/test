@@ -3,6 +3,7 @@ class Admin::SurveysController < Admin::AdminController
                                           :edit_questions, :add_question, :remove_question]
 
   allowed_sort_columns Admin::Survey
+  
 
   set_pagination_headers :admin_surveys, only: [:index]
 
