@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140217100200) do
+ActiveRecord::Schema.define(version: 20140217121135) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,6 +88,20 @@ ActiveRecord::Schema.define(version: 20140217100200) do
     t.integer  "language_code"
   end
 
+  create_table "online_program_interactive_videos", force: true do |t|
+    t.integer  "online_program_id"
+    t.integer  "interactive_video_id"
+    t.integer  "start_after_days"
+    t.time     "start_time"
+    t.integer  "pre_survey_id"
+    t.integer  "post_survey_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "online_program_interactive_videos", ["interactive_video_id"], name: "index_online_program_interactive_videos_on_interactive_video_id", using: :btree
+  add_index "online_program_interactive_videos", ["online_program_id"], name: "index_online_program_interactive_videos_on_online_program_id", using: :btree
+
   create_table "online_program_notifications", force: true do |t|
     t.integer  "online_program_id"
     t.integer  "notification_id"
@@ -100,20 +114,6 @@ ActiveRecord::Schema.define(version: 20140217100200) do
   add_index "online_program_notifications", ["notification_id"], name: "index_online_program_notifications_on_notification_id", using: :btree
   add_index "online_program_notifications", ["online_program_id"], name: "index_online_program_notifications_on_online_program_id", using: :btree
 
-  create_table "online_program_videos", force: true do |t|
-    t.integer  "online_program_id"
-    t.integer  "interactive_video_id"
-    t.integer  "start_after_days"
-    t.time     "start_time"
-    t.integer  "pre_survey_id"
-    t.integer  "post_survey_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "online_program_videos", ["interactive_video_id"], name: "index_online_program_videos_on_interactive_video_id", using: :btree
-  add_index "online_program_videos", ["online_program_id"], name: "index_online_program_videos_on_online_program_id", using: :btree
-
   create_table "online_programs", force: true do |t|
     t.string   "name"
     t.string   "codename"
@@ -123,6 +123,7 @@ ActiveRecord::Schema.define(version: 20140217100200) do
     t.integer  "promo_video_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "sign_up_survey_id"
   end
 
   add_index "online_programs", ["codename"], name: "index_online_programs_on_codename", using: :btree

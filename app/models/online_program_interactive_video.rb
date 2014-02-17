@@ -1,4 +1,4 @@
-class OnlineProgramVideo < ActiveRecord::Base
+class OnlineProgramInteractiveVideo < ActiveRecord::Base
 
 	# == VALIDATIONS ==
 	validates :online_program, :presence => true

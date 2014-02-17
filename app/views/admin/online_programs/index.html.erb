@@ -16,8 +16,6 @@
       <th><%= sortable_column :codename, t('activerecord.attributes.online_program.codename') %></th>
       <th><%= t('activerecord.attributes.online_program.language_code_id') %></th>
       <th><%= t('activerecord.attributes.online_program.description') %></th>
-      <th><%= t('activerecord.attributes.online_program.background_image_id') %></th>
-      <th><%= t('activerecord.attributes.online_program.promo_video_id') %></th>
       <th class="action-column"></th>
       <th class="action-column"></th>
       <th class="action-column"></th>
@@ -31,8 +29,6 @@
         <td><%= admin_online_program.codename %></td>
         <td><%= admin_online_program.language_code_id %></td>
         <td><%= admin_online_program.description %></td>
-        <td><%= admin_online_program.background_image_id %></td>
-        <td><%= admin_online_program.promo_video_id %></td>
         <td><%= link_to t(:show), admin_online_program, class: 'show-record-link' %></td>
         <td><%= link_to t(:edit), edit_admin_online_program_path(admin_online_program), class: 'edit-record-link' %></td>
         <td><%= link_to t(:delete), admin_online_program, method: :delete, data: { confirm: 'Are you sure?' }, class: 'destroy-record-link' %></td>

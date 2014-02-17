@@ -29,7 +29,12 @@
   <%= @admin_online_program.promo_video.try(:name) %>
 </p>
 
-<%= render 'videos_table', videos: @admin_online_program.online_program_videos %>
+<p>
+  <strong>Sign-Up survey:</strong>
+  <%= @admin_online_program.sign_up_survey.try(:name) %>
+</p>
+
+<%= render 'videos_table', videos: @admin_online_program.online_program_interactive_videos %>
 <%= render 'notifications_table', notifications: @admin_online_program.online_program_notifications %>
 
 <%= link_to t(:edit), edit_admin_online_program_path(@admin_online_program) %>
