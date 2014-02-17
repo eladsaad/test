@@ -84,32 +84,24 @@ class Player < ActiveRecord::Base
 		
 		# unknown player registering via facebook
 		else
-			# create a new player
-			player = Player.new_from_omni_auth(auth)
-			player.copy_missing_data_from_facebook_oauth(auth)
-			player.password = Devise.friendly_token.first(8) # random password
-			player.skip_confirmation!
-			player.save
-			return player
+			return nil
 		end
 	end
 
-
-	def self.new_from_omni_auth(auth)
-		player = Player.new
-		player.player_authentications.build(
+	def add_authentication_from_omni_auth(auth)
+		self.player_authentications.build(
 			:provider => auth.provider,
 			:uid => auth.uid,
 			:token => auth.credentials.token,
 			:token_secret => auth.credentials.secret
 		)
-		return player
 	end
 
 
 	def self.new_with_session(params, session)
 		super.tap do |player|
 			if session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
+				player.add_authentication_from_omni_auth(session["devise.facebook_data"])
 				player.copy_missing_data_from_facebook_oauth(session["devise.facebook_data"])
 			end
 		end

@@ -12,15 +12,10 @@ Cinemadrive::Application.routes.draw do
     get '/players/registrations/pre_sign_up' => 'players/registrations#pre_sign_up', :as => :player_pre_sign_up
   end
   
-  get '/' => 'static_pages#welcome'
-
-  resources :player_group_associations, only: [:new, :create]
-
   get '/dashboard' => "players#dashboard", :as => :player_dashboard
-
   get '/campaigns/click/:id' => "campaigns#click", :as => :click_campaign
-
   resources :interactive_videos, only: [:index, :show]
+  root :to => "static_pages#welcome"
     
 
   # /admin - system administration
