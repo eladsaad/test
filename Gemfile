@@ -26,6 +26,7 @@ group :development do
 	gem 'better_errors' # error page with interactive console
 	gem 'binding_of_caller'
 	gem 'meta_request' # rails tab in chrome developer tools
+	gem "seed_dump", "~> 3.1.0"
 end
 
 group :doc do

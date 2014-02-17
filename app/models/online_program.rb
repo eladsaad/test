@@ -8,6 +8,7 @@ class OnlineProgram < ActiveRecord::Base
 
 	# == ASSOCIATIONS ==
 	has_many :online_program_interactive_videos, :inverse_of => :online_program, :dependent => :destroy
+  has_many :interactive_videos, through: :online_program_interactive_videos
 	accepts_nested_attributes_for :online_program_interactive_videos, allow_destroy: true, reject_if: :all_blank
 
 	has_many :online_program_notifications, :inverse_of => :online_program, :dependent => :destroy

@@ -3,7 +3,7 @@ class InteractiveVideosController < BaseController
 
   def index
     authorize! :index, InteractiveVideo
-    @interactive_videos = InteractiveVideo.all
+    @interactive_videos = current_player.current_online_program.interactive_videos
   end
 
   def show
