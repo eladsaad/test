@@ -39,6 +39,13 @@ class Player < ActiveRecord::Base
 		self.current_player_group.online_program
 	end
 
+	def current_progress
+		PlayerProgress.find_or_create_by(
+	      player_id: self.id,
+	      player_group_id: self.current_player_group.id
+	    )
+	end
+
 	# == FACEBOOK ==
 
 	def get_token(provider)

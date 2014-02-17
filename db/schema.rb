@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140217121135) do
+ActiveRecord::Schema.define(version: 20140217154258) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -270,6 +270,16 @@ ActiveRecord::Schema.define(version: 20140217121135) do
   add_index "player_organizations", ["contact_email"], name: "index_player_organizations_on_contact_email", using: :btree
   add_index "player_organizations", ["name"], name: "index_player_organizations_on_name", using: :btree
   add_index "player_organizations", ["operator_id"], name: "index_player_organizations_on_operator_id", using: :btree
+
+  create_table "player_progresses", force: true do |t|
+    t.integer  "player_id"
+    t.integer  "player_group_id"
+    t.integer  "last_interactive_video_index", default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "player_progresses", ["player_id", "player_group_id"], name: "index_player_progresses_on_player_id_and_player_group_id", using: :btree
 
   create_table "player_sessions", force: true do |t|
     t.integer  "player_id"
