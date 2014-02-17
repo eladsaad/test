@@ -18,16 +18,10 @@ Cinemadrive::Application.routes.draw do
 
   get '/dashboard' => "players#dashboard", :as => :player_dashboard
 
-<<<<<<< HEAD
-    get '/campaigns/click/:id' => "campaigns#click", :as => :click_campaign
-
-    resources :interactive_videos, only: [:index, :show]
-    
-  end
-=======
   get '/campaigns/click/:id' => "campaigns#click", :as => :click_campaign
->>>>>>> 72818ab47c1b4d2d33713121945e662a6406d127
 
+  resources :interactive_videos, only: [:index, :show]
+    
 
   # /admin - system administration
   namespace :admin do
@@ -54,15 +48,7 @@ Cinemadrive::Application.routes.draw do
     resources :images
     resources :videos
     resources :language_codes
-<<<<<<< HEAD
-    resources :interactive_videos do
-    member do
-      get :content
-    end
-  end
-=======
     resources :interactive_videos
->>>>>>> 72818ab47c1b4d2d33713121945e662a6406d127
     resources :online_programs
     resources :campaigns
   end
