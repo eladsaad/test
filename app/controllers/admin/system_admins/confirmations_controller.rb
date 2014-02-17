@@ -2,6 +2,6 @@ class Admin::SystemAdmins::ConfirmationsController < Devise::ConfirmationsContro
 	layout 'admin/layouts/admin'
 
 	def after_confirmation_path_for(resource_name, resource)
-    	admin_root_url
+    	new_admin_system_admin_session_path
   	end
 end
