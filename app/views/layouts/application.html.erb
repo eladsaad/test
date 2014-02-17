@@ -93,18 +93,9 @@
                     }
 
                     BV.getPlayer().on("ended", function () {
-                        this.pause();
-                        delete(this);
-                        window.location = "http://www.google.com";
+                        this.currentTime(0);
+                        this.play();
                     });
-                }
-
-                function loop(video) {
-                    /*video.on("ended", function(){
-
-                    });*/
-                    $(video).attr({ 'data-setup' : '"loop": "true"' });
-
                 }
             });
         </script>
