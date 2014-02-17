@@ -3,4 +3,8 @@
 <span class="menuItem">INVITE FRIENDS</span>
 <span class="menuItem blue">POINTS & PRIZES</span>
 
-<span id="account">HI, JACK <span id="logout" class="blue">LOG OUT</span></span>
+<% if player_signed_in? %>
+<span id="account"><%= t(:hi_player, first_name: current_player.first_name).upcase %>
+	<span id="logout" class="blue"><%= link_to t(:log_out).upcase, destroy_player_session_path, :method => :delete %></span>
+</span>
+<% end %>

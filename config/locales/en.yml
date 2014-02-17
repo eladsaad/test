@@ -28,6 +28,7 @@ en:
   cancel: "Cancel"
   remove: "Remove"
   next: "Next"
+  log_out: "Log Out"
 
   # other
   leave_empty_for_automatic: "Leave empty for automatic"
@@ -53,6 +54,7 @@ en:
   none: "None"
   create_an_account: "Create An Account"
   invalid_registration_code: "Invalid Registration Code"
+  hi_player: "Hi, %{first_name}"
 
   # active record
   activerecord:
