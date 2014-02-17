@@ -52,6 +52,7 @@ en:
   search_text: "Search text"
   none: "None"
   create_an_account: "Create An Account"
+  invalid_registration_code: "Invalid Registration Code"
 
   # active record
   activerecord:

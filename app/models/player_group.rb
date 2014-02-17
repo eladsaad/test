@@ -32,6 +32,11 @@ class PlayerGroup < ActiveRecord::Base
 		self.operator.online_programs
 	end
 
+	def active?
+		Time.now >= self.screening_date &&
+		Time.now <= self.screening_date + 6.weeks
+	end
+
 	private
 
 		def validate_reg_code_with_operator

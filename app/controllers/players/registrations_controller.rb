@@ -3,11 +3,17 @@ class Players::RegistrationsController < Devise::RegistrationsController
 	before_filter :configure_permitted_parameters
 
 	def pre_sign_up
-		# TODO: verify that registration code exists
-		if params[:facebook]
-			redirect_to omniauth_authorize_path(:player, :facebook, reg_code: params[:reg_code])
+
+		group = PlayerGroup.find_by_reg_code(params[:reg_code])
+
+		if group.nil? || !group.active?
+			redirect_to :back, alert: t(:invalid_registration_code)
 		else
-			redirect_to new_player_registration_path(reg_code: params[:reg_code])
+			if params[:facebook]
+				redirect_to omniauth_authorize_path(:player, :facebook, reg_code: params[:reg_code])
+			else
+				redirect_to new_player_registration_path(reg_code: params[:reg_code])
+			end
 		end
 	end
 
