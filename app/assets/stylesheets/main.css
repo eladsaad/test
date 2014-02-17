@@ -473,6 +473,7 @@ body {
 }
 
 #logout {
+    text-decoration: none;
     cursor: pointer;
 }
 
