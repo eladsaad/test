@@ -210,15 +210,15 @@ body {
     position: relative;
     vertical-align: middle;
     *height: 49px; /* IE7 fix */
-    height: 49px\0/; /* IE8/9 fix */
+    height: 49px\0/IE8+9; /* IE8/9 fix */
 }
 .episode .episode-icon {
     width: 47px;
     *width: 49px; /* IE7 fix */
-    width: 49px\0/; /* IE8/9 fix */
+    width: 49px\0/IE8+9; /* IE8/9 fix */
     height: 48px;
     *height: 49px; /* IE7 fix */
-    height: 49px\0/; /* IE8/9 fix */
+    height: 49px\0/IE8+9; /* IE8/9 fix */
     background-color: transparent;
     background-image: url('/assets/episodes.png');
     background-repeat: no-repeat;
@@ -233,67 +233,67 @@ body {
 #episode2.disabled .episode-icon {
     background-position: -49px 0;
     *background-position: -50px 0; /* IE7 fix */
-    background-position: -50px 0\0/; /* IE8/9 fix */
+    background-position: -50px 0\0/IE8+9; /* IE8/9 fix */
 }
 #episode3.disabled .episode-icon {
     background-position: -98px 0;
     *background-position: -100px 0; /* IE7 fix */
-    background-position: -100px 0\0/; /* IE8/9 fix */
+    background-position: -100px 0\0/IE8+9; /* IE8/9 fix */
 }
 #episode4.disabled .episode-icon {
     background-position: -147px 0;
     *background-position: -150px 0; /* IE7 fix */
-    background-position: -150px 0\0/; /* IE8/9 fix */
+    background-position: -150px 0\0/IE8+9; /* IE8/9 fix */
 }
 #episode5.disabled .episode-icon {
     background-position: -195px 0;
     *background-position: -200px 0; /* IE7 fix */
-    background-position: -200px 0\0/; /* IE8/9 fix */
+    background-position: -200px 0\0/IE8+9; /* IE8/9 fix */
 }
 #episode6.disabled .episode-icon {
     background-position: -243px 0;
     *background-position: -249px 0; /* IE7 fix */
-    background-position: -249px 0\0/; /* IE8/9 fix */
+    background-position: -249px 0\0/IE8+9; /* IE8/9 fix */
 }
 #episode1.enabled .episode-icon {
     background-position: 0 -47px;
     *background-position: 0 -50px; /* IE7 fix */
-    background-position: 0 -50px\0/; /* IE8/9 fix */
+    background-position: 0 -50px\0/IE8+9; /* IE8/9 fix */
 }
 #episode2.enabled .episode-icon {
     background-position: -49px -47px;
     *background-position: -50px -50px; /* IE7 fix */
-    background-position: -50px -50px\0/; /* IE8/9 fix */
+    background-position: -50px -50px\0/IE8+9; /* IE8/9 fix */
 }
 #episode3.enabled .episode-icon {
     background-position: -98px -47px;
     *background-position: -100px -50px; /* IE7 fix */
-    background-position: -100px -50px\0/; /* IE8/9 fix */
+    background-position: -100px -50px\0/IE8+9; /* IE8/9 fix */
 }
 #episode4.enabled .episode-icon {
     background-position: -147px -47px;
     *background-position: -150px -50px; /* IE7 fix */
-    background-position: -150px -50px\0/; /* IE8/9 fix */
+    background-position: -150px -50px\0/IE8+9; /* IE8/9 fix */
 }
 #episode5.enabled .episode-icon {
     background-position: -195px -47px;
     *background-position: -200px -50px; /* IE7 fix */
-    background-position: -200px -50px\0/; /* IE8/9 fix */
+    background-position: -200px -50px\0/IE8+9; /* IE8/9 fix */
 }
 #episode6.enabled .episode-icon {
     background-position: -244px -47px;
     *background-position: -249px -50px; /* IE7 fix */
-    background-position: -249px -50px\0/; /* IE8/9 fix */
+    background-position: -249px -50px\0/IE8+9; /* IE8/9 fix */
 }
 .episode.disabled .episode-path {
     background-position: 0 -97px;
     *background-position: 0 -101px; /* IE7 fix */
-    background-position: 0 -101px\0/; /* IE8/9 fix */
+    background-position: 0 -101px\0/IE8+9; /* IE8/9 fix */
 }
 .episode.enabled .episode-path {
     background-position: 0 -95px;
     *background-position: 0 -99px; /* IE7 fix */
-    background-position: 0 -99px\0/; /* IE8/9 fix */
+    background-position: 0 -99px\0/IE8+9; /* IE8/9 fix */
 }
 .episode.enabled .episode-icon {
     cursor: pointer;
@@ -358,12 +358,12 @@ body {
 #path-to-present.enabled {
     background-position: 0 -95px;
     *background-position: 0 -99px; /* IE7 fix */
-    background-position: 0 -99px\0/; /* IE8/9 fix */
+    background-position: 0 -99px\0/IE8+9; /* IE8/9 fix */
 }
 #path-to-present.disabled {
     background-position: 0 -97px;
     *background-position: 0 -101px; /* IE7 fix */
-    background-position: 0 -101px\0/; /* IE8/9 fix */
+    background-position: 0 -101px\0/IE8+9; /* IE8/9 fix */
 }
 #present {
     position: relative;
@@ -376,7 +376,7 @@ body {
     background-size: 439px 99px;
     background-position: -353px 0;
     *background-position: -361px 0; /* IE7 fix */
-    background-position: -361px 0\0/; /* IE8/9 fix */
+    background-position: -361px 0\0/IE8+9; /* IE8/9 fix */
 
     vertical-align: middle;
 }
