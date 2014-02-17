@@ -8,7 +8,7 @@ class Admin::SystemAdmins::PasswordsController < Devise::PasswordsController
     end
 
     def after_sending_reset_password_instructions_path_for(resource)
-      admin_root_url
+      new_admin_system_admin_session_path
     end
 
 end

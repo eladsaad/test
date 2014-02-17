@@ -23,7 +23,7 @@ class Operation::Operators::PasswordsController < Devise::PasswordsController
     end
 
     def after_sending_reset_password_instructions_path_for(resource)
-      operation_root_url
+      new_operation_operator_session_path
     end
     
 end
