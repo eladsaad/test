@@ -21,6 +21,8 @@ Cinemadrive::Application.routes.draw do
     get '/dashboard' => "players#dashboard", :as => :player_dashboard
 
     get '/campaigns/click/:id' => "campaigns#click", :as => :click_campaign
+
+    resources :interactive_videos, only: [:index, :show]
     
   end
 
@@ -53,10 +55,10 @@ Cinemadrive::Application.routes.draw do
     resources :videos
     resources :language_codes
     resources :interactive_videos do
-      member do
-        get :content
-      end
+    member do
+      get :content
     end
+  end
     resources :online_programs
     resources :campaigns
   end
