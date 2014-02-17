@@ -12,7 +12,7 @@ class Players::SessionsController < Devise::SessionsController
 			});
 			session[:player_session_id] = player_session.id
 		end
-		player_dashboard_path
+		interactive_videos_path
 	end
 
 	# Audit player sign in

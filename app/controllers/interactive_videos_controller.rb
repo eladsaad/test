@@ -3,7 +3,9 @@ class InteractiveVideosController < BaseController
 
   def index
     authorize! :index, InteractiveVideo
-    @interactive_videos = current_player.current_online_program.interactive_videos
+    @interactive_videos = current_player.current_online_program.online_program_interactive_videos.order(:start_after_days)
+    @last_watched_index = current_player.current_progress.last_interactive_video_index
+    @last_enabled_index = current_player.current_online_program.enabled_interactive_videos(current_player.current_player_group).size
   end
 
   def show

@@ -12,7 +12,6 @@ Cinemadrive::Application.routes.draw do
     get '/players/registrations/pre_sign_up' => 'players/registrations#pre_sign_up', :as => :player_pre_sign_up
   end
   
-  get '/dashboard' => "players#dashboard", :as => :player_dashboard
   get '/campaigns/click/:id' => "campaigns#click", :as => :click_campaign
   resources :interactive_videos, only: [:index, :show] do
     member do
