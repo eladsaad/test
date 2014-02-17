@@ -12,7 +12,7 @@ class InteractiveVideo < ActiveRecord::Base
 
   # == UTILS ==
   def index_in_program(online_program)
-  	online_program.online_program_interactive_videos.pluck(:id).order(:start_after_days).index(self.id)+1
+  	online_program.online_program_interactive_videos.order(:start_after_days).pluck(:interactive_video_id).index(self.id)+1
   end
 
 
