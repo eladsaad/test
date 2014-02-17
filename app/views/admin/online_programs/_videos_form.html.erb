@@ -1,15 +1,15 @@
 <p>
-  <h3><%= t('activerecord.models.online_program_videos') %></h3>
+  <h3><%= t('activerecord.models.online_program_interactive_videos') %></h3>
   <table id="online-program-videos" class="association-table">
       <tr>
-        <th><%= t('activerecord.attributes.online_program_video.interactive_video_id') %></th>
-        <th><%= t('activerecord.attributes.online_program_video.start_after_days') %></th>
-        <th><%= t('activerecord.attributes.online_program_video.start_time') %></th>
-        <th><%= t('activerecord.attributes.online_program_video.pre_survey_id') %></th>
-        <th><%= t('activerecord.attributes.online_program_video.post_survey_id') %></th>
+        <th><%= t('activerecord.attributes.online_program_interactive_video.interactive_video_id') %></th>
+        <th><%= t('activerecord.attributes.online_program_interactive_video.start_after_days') %></th>
+        <th><%= t('activerecord.attributes.online_program_interactive_video.start_time') %></th>
+        <th><%= t('activerecord.attributes.online_program_interactive_video.pre_survey_id') %></th>
+        <th><%= t('activerecord.attributes.online_program_interactive_video.post_survey_id') %></th>
         <th class="action-column"></th>
       </tr>
-      <%= f.fields_for :online_program_videos, :wrapper => false do |ff| %>
+      <%= f.fields_for :online_program_interactive_videos, :wrapper => false do |ff| %>
         <tr class="fields form-inline">
           <td><%= ff.association :interactive_video, prompt: t(:please_select), label: false %></td>
           <td><%= ff.input :start_after_days, label: false %></td>
@@ -20,5 +20,5 @@
         </tr>
       <% end %>
   </table>
-  <%= f.link_to_add t(:add), :online_program_videos, :data => { :target => "#online-program-videos" } %>
+  <%= f.link_to_add t(:add), :online_program_interactive_videos, :data => { :target => "#online-program-videos" } %>
 </p>

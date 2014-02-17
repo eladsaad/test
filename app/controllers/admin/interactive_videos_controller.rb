@@ -79,11 +79,6 @@ class Admin::InteractiveVideosController < Admin::AdminController
     end
   end
 
-  def content
-    authorize! :read, @admin_interactive_video
-    @content = @admin_interactive_video.content
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_admin_interactive_video

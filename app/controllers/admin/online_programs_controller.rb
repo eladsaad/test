@@ -24,7 +24,7 @@ class Admin::OnlineProgramsController < Admin::AdminController
   # GET /admin/online_programs/new
   def new
     @admin_online_program = Admin::OnlineProgram.new
-    @admin_online_program.online_program_videos.build
+    @admin_online_program.online_program_interactive_videos.build
     @admin_online_program.online_program_notifications.build
     authorize! :new, @admin_online_program
   end
@@ -32,7 +32,7 @@ class Admin::OnlineProgramsController < Admin::AdminController
   # GET /admin/online_programs/1/edit
   def edit
     authorize! :edit, @admin_online_program
-    @admin_online_program.online_program_videos.build unless @admin_online_program.online_program_videos.any?
+    @admin_online_program.online_program_interactive_videos.build unless @admin_online_program.online_program_interactive_videos.any?
     @admin_online_program.online_program_notifications.build unless @admin_online_program.online_program_notifications.any?
   end
 
@@ -96,7 +96,8 @@ class Admin::OnlineProgramsController < Admin::AdminController
         :description,
         :background_image_id,
         :promo_video_id,
-        :online_program_videos_attributes => [
+        :sign_up_survey_id,
+        :online_program_interactive_videos_attributes => [
           :interactive_video_id,
           :start_after_days,
           :start_time,

@@ -1,12 +1,14 @@
 class OnlineProgram < ActiveRecord::Base
 
+	DEFAULT_PROGRAM_CODE_NAME = 'cinemadrive' # TODO: remove this and usages once we have more than one program
+
 	# == VALIDATIONS ==
 	validates :name, :presence => true
 	validates :codename, :presence => true, :uniqueness => true
 
 	# == ASSOCIATIONS ==
-	has_many :online_program_videos, :inverse_of => :online_program, :dependent => :destroy
-	accepts_nested_attributes_for :online_program_videos, allow_destroy: true, reject_if: :all_blank
+	has_many :online_program_interactive_videos, :inverse_of => :online_program, :dependent => :destroy
+	accepts_nested_attributes_for :online_program_interactive_videos, allow_destroy: true, reject_if: :all_blank
 
 	has_many :online_program_notifications, :inverse_of => :online_program, :dependent => :destroy
 	accepts_nested_attributes_for :online_program_notifications, allow_destroy: true, reject_if: :all_blank
@@ -16,6 +18,8 @@ class OnlineProgram < ActiveRecord::Base
 	belongs_to :promo_video, foreign_key: :promo_video_id, class_name: Video
 
 	belongs_to :language_code
+
+	belongs_to :sign_up_survey, foreign_key: :sign_up_survey_id, class_name: Survey
 
 	has_and_belongs_to_many :operators
 

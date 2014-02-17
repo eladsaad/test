@@ -9,7 +9,7 @@
   <div class="ie7-fix">
   <![endif]-->
 
-  <%= f.text_field :username, autofocus: true, placeholder: "USER NAME" %>
+  <%= f.text_field :email, autofocus: true, placeholder: "EMAIL" %>
 
   <div id="password-area">
     <%= f.password_field :password, id: 'login-password', placeholder: "PASSWORD"  %>
@@ -21,5 +21,5 @@
   </div>
   <![endif]-->
 
-  <%= f.submit "SIGN IN", id: 'login-btn', class: 'button' %>
+  <%= f.submit t(:sign_in).upcase, id: 'login-btn', class: 'button' %>
 <% end %>

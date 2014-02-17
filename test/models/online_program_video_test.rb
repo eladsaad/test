@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class OnlineProgramVideoTest < ActiveSupport::TestCase
+class OnlineProgramInteractiveVideoTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

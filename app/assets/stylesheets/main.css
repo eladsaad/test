@@ -88,6 +88,10 @@ body {
     color: #fff;
 }
 
+.main select {
+    font-family: 'roboto_condensedbold', sans-serif;
+}
+
 .main input[type="text"],
 .main input[type="password"] {
     float: left;

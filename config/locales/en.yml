@@ -16,6 +16,7 @@ en:
   filter: "Filter"
   filter_attribute: "Filter by %{attribute}"
   sign_out: "Sign Out"
+  sign_in: "Sign In"
   show: "Show"
   edit: "Edit"
   delete: "Delete"
@@ -26,6 +27,7 @@ en:
   add: "Add"
   cancel: "Cancel"
   remove: "Remove"
+  next: "Next"
 
   # other
   leave_empty_for_automatic: "Leave empty for automatic"
@@ -49,6 +51,8 @@ en:
   date_to: "Date to"
   search_text: "Search text"
   none: "None"
+  create_an_account: "Create An Account"
+  invalid_registration_code: "Invalid Registration Code"
 
   # active record
   activerecord:
@@ -83,8 +87,8 @@ en:
       interactive_videos: "Interactive Videos"
       online_program: "Online Program"
       online_programs: "Online Programs"
-      online_program_video: "Interactive Video"
-      online_program_videos: "Interactive Videos"
+      online_program_interactive_video: "Interactive Video"
+      online_program_interactive_videos: "Interactive Videos"
       online_program_notification: "Notification"
       online_program_notifications: "Notifications"
       campaign: "Campaign"
@@ -202,7 +206,7 @@ en:
         promo_video_id: "Promo Video"
         created_at: "Created At"
         updated_at: "Updated At"
-      online_program_video:
+      online_program_interactive_video:
         online_program_id: "Online Program"
         interactive_video_id: "Interactive Video"
         start_after_days: "Start After Days"

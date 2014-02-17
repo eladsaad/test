@@ -42,7 +42,7 @@ class ApplicationController < ActionController::Base
     if (current_player)
       program ||= current_player.try(:current_player_group).try(:current_online_program)
     else
-      program ||= OnlineProgram.find_by_codename(request.subdomain)
+      program ||= OnlineProgram.find_by_codename(OnlineProgram::DEFAULT_PROGRAM_CODE_NAME)
     end
     program
   end
