@@ -27,5 +27,6 @@ module Cinemadrive
         'X-Frame-Options' => 'ALLOWALL'
     }
 
+    config.assets.debug = true
   end
 end

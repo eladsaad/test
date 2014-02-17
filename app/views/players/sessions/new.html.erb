@@ -12,7 +12,7 @@
   <%= f.text_field :username, autofocus: true, placeholder: "USER NAME" %>
 
   <div id="password-area">
-    <%= f.password_field :password, id: 'login-password', placeholder: "PASSWORD", style: 'float: left'  %></div>
+    <%= f.password_field :password, id: 'login-password', placeholder: "PASSWORD"  %>
     <br><p></p> <!-- IE fix -->
     <%= link_to 'I forgot my password', new_password_path(resource_name) %>
   </div>
@@ -21,5 +21,5 @@
   </div>
   <![endif]-->
 
-  <div><%= f.submit "SIGN IN", id: 'login-btn', class: 'button' %></div>
+  <%= f.submit "SIGN IN", id: 'login-btn', class: 'button' %>
 <% end %>

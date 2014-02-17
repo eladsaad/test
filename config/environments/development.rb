@@ -25,7 +25,7 @@ Cinemadrive::Application.configure do
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
-  config.assets.debug = false
+  config.assets.debug = true
 
   # Allow vagrant access to better_errors
   BetterErrors::Middleware.allow_ip! "10.0.2.2" if defined?(BetterErrors)
