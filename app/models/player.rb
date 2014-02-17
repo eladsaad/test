@@ -35,6 +35,9 @@ class Player < ActiveRecord::Base
 		self.player_groups.last
 	end
 
+	def current_online_program
+		self.current_player_group.online_program
+	end
 
 	# == FACEBOOK ==
 

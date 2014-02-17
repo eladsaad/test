@@ -35,18 +35,6 @@ class ApplicationController < ActionController::Base
   end
 
 
-  # == Current Online Program
-
-  def current_online_program
-    program = nil
-    if (current_player)
-      program ||= current_player.try(:current_player_group).try(:current_online_program)
-    else
-      program ||= OnlineProgram.find_by_codename(OnlineProgram::DEFAULT_PROGRAM_CODE_NAME)
-    end
-    program
-  end
-
   # == Pagination Headers
 
   protected
