@@ -52,11 +52,7 @@ Cinemadrive::Application.routes.draw do
     resources :images
     resources :videos
     resources :language_codes
-    resources :interactive_videos do
-      member do
-        get :content
-      end
-    end
+    resources :interactive_videos
     resources :online_programs
     resources :campaigns
   end
