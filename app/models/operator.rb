@@ -4,7 +4,7 @@ class Operator < ActiveRecord::Base
 	validates :name, :presence => true
 	validates :email, :presence => true # other validations by devise
 	validates :country, :presence => true
-	validates :reg_code_prefix, :presence => true, :length => {is: 2}
+	validates :reg_code_prefix, :presence => true, :length => {is: 2}, uniqueness: true
 
 	# == ASSOCIATIONS ==
 	has_many :player_groups
