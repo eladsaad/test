@@ -5,7 +5,7 @@ class Player < ActiveRecord::Base
 	#validates :email, :uniqueness => true, :format => {with: /@/}
 	validates :first_name, :presence => true
 	validates :last_name, :presence => true
-	validates :gender, :inclusion => { :in => ['male', 'female'] }
+	#validates :gender, :inclusion => { :in => ['male', 'female'] }
 
 	# == ASSOCIATIONS ==
 	has_many :player_sessions
