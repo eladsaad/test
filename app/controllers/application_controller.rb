@@ -40,9 +40,10 @@ class ApplicationController < ActionController::Base
   def current_online_program
     program = nil
     if (current_player)
-      program ||= current_player.try(:current_player_group).try(:current_online_program)
+      program ||= current_player.current_online_program
     else
       program ||= OnlineProgram.find_by_codename(OnlineProgram::DEFAULT_PROGRAM_CODE_NAME)
+      # TODO: change to fetch by subdomain
     end
     program
   end

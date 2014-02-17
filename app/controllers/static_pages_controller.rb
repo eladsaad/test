@@ -8,7 +8,6 @@ class StaticPagesController < ApplicationController
   # GET /players/dashboard
   def welcome
     #TODO: implement
-    @online_program = current_online_program
   end
 
   def about
