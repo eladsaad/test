@@ -38,7 +38,7 @@
             }
     %>
 
-    <%= f.association :online_program, collection: @operation_player_group.allowed_online_programs, prompt: t(:please_select) %>
+    <%= f.association :online_program, collection: @operation_player_group.allowed_online_programs, prompt: t(:please_select), required: true %>
 
     <%= f.simple_fields_for :extension_params do |ext_f| %>
       <% (1..10).each do |custom_index| %>

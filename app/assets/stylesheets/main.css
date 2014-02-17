@@ -555,3 +555,9 @@ body {
 .vjs-default-skin .vjs-fullscreen-control {
     display: none;  /* Hide Video.js statistics */
 }
+
+
+#flashContent { 
+    width: 100%;
+    height: 100%;
+}

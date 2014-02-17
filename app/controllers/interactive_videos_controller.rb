@@ -1,5 +1,5 @@
 class InteractiveVideosController < BaseController
-  before_action :set_interactive_video, only: [:show]
+  before_action :set_interactive_video, only: [:show, :content]
 
   def index
     authorize! :index, InteractiveVideo
@@ -7,7 +7,13 @@ class InteractiveVideosController < BaseController
   end
 
   def show
+    render :layout => false
     authorize! :read, @interactive_video
+  end
+
+  def content
+    authorize! :read, @interactive_video
+    render :text => @interactive_video.content, :content_type => Mime::XML
   end
 
   private
