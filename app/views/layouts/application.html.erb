@@ -15,12 +15,12 @@
 
         <script src="/assets/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
-    <body>
+    <body data-controller="<%= controller_name %>" data-action="<%= action_name %>">
 
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
-        
+
         <!-- Main page content -->
         <span class="main">
     
@@ -45,9 +45,10 @@
                 <%= render partial: "layouts/footer" %>
             </div>
         </span>
-        
-        
-        
+
+
+
+        <div class="gray"></div>
         <!-- Backgroung image -->
         <img src="/assets/web_960x600.jpg" id="bg" alt="">
         
@@ -82,11 +83,11 @@
                     var BV = new $.BigVideo();
                     BV.init();
                     if (Modernizr.video.h264) {
-                        BV.show('/assets/Beachfront B-Roll-Winter_Traffic.mp4', {ambient:true, doLoop:true});
+                        BV.show('/assets/winter_traffic.mp4', {ambient:true, doLoop: true, controls: false});
                     } else if (Modernizr.video.ogg) {
-                        BV.show('/assets/river.ogv', {ambient:true, doLoop:true});
+                        BV.show('/assets/winter_traffic.ogv', {ambient:true, doLoop: true, controls: false});
                     } else if (Modernizr.video.webm) {
-                        BV.show('/assets/river.webm', {ambient:true, doLoop:true});
+                        BV.show('/assets/winter_traffic.webm', {ambient:true, doLoop: true, controls: false});
                     } else {
                         // browser don't support our video formats, show static background image
                         $('#bg').show();
@@ -105,6 +106,12 @@
         
         <!-- main javascript -->
         <script src="/assets/main.js"></script>
+
+        <!-- page specific script -->
+        <%= yield :js %>
+        <%#= javascript_include_tag "#{params[:controller]}_#{params[:action]}" if
+                    YourApp::Application.assets.find_asset("#{params[:controller]}_#{params[:action]}.js")
+        %>
 
 
         <!--script>

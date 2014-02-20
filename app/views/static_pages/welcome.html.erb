@@ -1,3 +1,4 @@
+<!--
 <div class="row">
   <div class="col-md-6 center">
     <h3>Sign Up</h3>
@@ -18,3 +19,44 @@
     <%= link_to 'Sign-in with email', new_player_session_path, class: "btn btn-large btn-primary" %>
   </div>
 </div>
+-->
+
+                <h1>CINEMA DRIVE</h1>
+                <div id="six-weeks-exp"></div>
+                <!--[if lt IE 9]>
+                <div class="ie7-fix">
+                <![endif]-->
+                <%= form_tag player_pre_sign_up_path, id: 'reg-signin-form', :method => 'get' do %>
+                    <span class="reg-portion">
+                        <h2>Register</h2>
+                        Enter your group code
+                        <%= text_field_tag 'reg_code', nil, placeholder: "ENTER CODE HERE", maxlength: '7',
+                                           id: 'code-field', class: 'form-control', autocomplete: 'off' %>
+                        <div id="reg-options">
+                            <%= link_to_submit '', name: 'facebook', id: 'reg-with-facebook' %>
+                            <br>
+                            <%= link_to_submit 'Sign-up with email' %>
+                        </div>
+                    </span>
+                    <span class="signin-portion">
+                        <h2>Sign in</h2>
+                        Already registered?
+                        <br>
+                        <%= link_to '', omniauth_authorize_path(:player, :facebook),
+                                           id: 'signin-with-facebook' %>
+                        <br>
+                        <%= link_to 'Sign-in with email', new_player_session_path %>
+                    </span>
+                <% end %>
+                <!--[if lt IE 9]>
+                </div>
+                <![endif]-->
+    <script>
+      //alert('<%= params[:controller] %> <%= params[:action] %>')
+    </script>
+
+<%# content_for :js do %>
+    <!--script>
+        //alert('testing 1, 2..');
+    </script-->
+<%# end %>

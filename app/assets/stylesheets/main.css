@@ -12,6 +12,11 @@ body {
     background-color:#000;
 }
 
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 /* Solid background configurations (for non-support video browsers) */
 #bg {
     z-index: -1;
@@ -36,6 +41,8 @@ body {
     font-size: 1em;
     font-family: 'robotoregular', sans-serif;
     font-weight: 400;
+
+    z-index: 1;
 }
 
 .main:before {
@@ -76,6 +83,12 @@ body {
     -webkit-font-smoothing: subpixel-antialiased;
 }
 
+.main h2 {
+    font-family: 'robotoregular', sans-serif;
+    font-size: 2em;
+    text-align: center;
+}
+
 .main p {
     font-family: 'robotomedium', sans-serif;
     font-size: 0.9em;
@@ -94,7 +107,7 @@ body {
 .main input[type="text"],
 .main input[type="password"] {
     float: left;
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(0,0,0,0.4);
     color: #fff;
     border: 2px solid #fff;
     font-family: 'robotobold', sans-serif;
@@ -426,6 +439,103 @@ body {
     background-position: 0 0;
 }
 
+/* Login / Sign-up page */
+#six-weeks-exp {
+    width: 196px;
+    height: 239px;
+    background-image: url('/assets/6_weeks_exp.png');
+    background-repeat: no-repeat;
+    background-size: 196px 239px;
+    margin-top: 28px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#reg-signin-form {
+    width: 398px;
+    height: 180px;
+    padding: 15px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+
+}
+
+.gray {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    z-index: 0;
+    position: absolute;
+    background-color: #333;
+    background-color: rgba(0, 0, 0, 0.3);
+    /* For IE 5.5 - 7*/
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#55000000, endColorstr=#55000000);
+    /* For IE 8*/
+    background: transparent\9;
+    -ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#55000000, endColorstr=#55000000)";
+    zoom: 1;
+}
+
+    .reg-signin-form a {
+        display: inline-block;
+        padding-top: 8px;
+    }
+    .reg-portion {
+        display: inline-block;
+        float: left;
+        width: 160px;
+        margin-left: auto;
+        margin-right: 22px;
+        text-align: center;
+    }
+
+        #code-field {
+            margin: 10px 0 0 0 !important;
+            font-size: 0.9em;
+            font-size: 0.85em \0/;
+            text-align: center;
+            padding: 0 15px;
+            width: 160px;
+        }
+
+        #reg-options {
+            visibility: hidden;
+        }
+
+        #reg-with-facebook {
+            margin-top: 10px;
+            display: inline-block;
+            width: 159px;
+            height: 31px;
+            padding: 0;
+            background-image: url('/assets/forms.png');
+            background-repeat: no-repeat;
+            background-size: 220px 63px;
+            background-position: -61px 0;
+        }
+
+        #signin-with-facebook {
+            margin-top: 15px;
+            display: inline-block;
+            width: 159px;
+            height: 31px;
+            padding: 0;
+            background-image: url('/assets/forms.png');
+            background-repeat: no-repeat;
+            background-size: 220px 63px;
+            background-position: -61px -32px;
+        }
+
+    .signin-portion {
+        display: inline-block;
+        width: 160px;
+        margin-left: 22px;
+        margin-right: auto;
+        text-align: center;
+    }
+
 /* Footer */
 .footer {
     color: #fff;
@@ -554,6 +664,9 @@ body {
 .vjs-default-skin .vjs-fullscreen-control {
     display: none;  /* Hide Video.js statistics */
 }
+
+.vjs-control-bar { display:none!important; }
+#big-video-control-container { display:none!important; }
 
 
 #flashContent { 

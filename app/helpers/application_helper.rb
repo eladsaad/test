@@ -19,6 +19,10 @@ module ApplicationHelper
  		css_class = (column == sort_column) ? "column-sort-#{sort_direction}" : nil
 	    direction = (column == sort_column && sort_direction == "asc") ? "desc" : "asc" 
 	    link_to title, params.merge(:sort => column, :direction => direction, :page => nil), {class: css_class}
-  	end
+  end
+
+  def link_to_submit(*args, &block)
+    link_to_function (block_given? ? capture(&block) : args[0]), "$(this).closest('form').submit()", args.extract_options!
+  end
 
 end
