@@ -1,7 +1,6 @@
 <h2><%= t(:create_an_account) %></h2>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
 
   <% if params[:reg_code] %>
     <%= hidden_field_tag :reg_code, params[:reg_code] %>
@@ -45,5 +44,7 @@
   <div class="actions">
     <%= f.submit t(:next) %>
   </div>
+
+  <%= devise_error_messages! %>
 
 <% end %>
