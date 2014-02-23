@@ -61,7 +61,7 @@ body {
 }
 
 .centered {
-    text-align: left;
+    text-align: center;
     display: inline-block;
     vertical-align: middle;
     /*border: #a0a0a0 solid 1px;*/
@@ -135,8 +135,32 @@ body {
     text-decoration: none;
 }
 
+/* Sign in page */
+.login-credentials {
+    float: none;
+    width: 180px;
+}
+.main .login-credentials input {
+    width: 180px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    float: none;
+}
+
 #login-password {
-    margin-left: 9px;
+    margin-top: 10px;
+    /*margin-left: 9px;*/
+}
+.signin-or {
+    margin: 0;
+    padding-top: 11px;
+    padding-bottom: 13px;
+}
+
+#login-btn {
+    margin-top: 10px;
+    /*margin-left: 10px;*/
 }
 
 .main .ie7-fix input {
@@ -187,10 +211,6 @@ body {
     -ms-user-select: none;
     -o-user-select: none;
     user-select: none;
-}
-
-#login-btn {
-    margin-left: 10px;
 }
 
 
@@ -402,7 +422,7 @@ body {
     z-index: 0;
     position: absolute;
     background-color: #333;
-    background-color: rgba(0, 0, 0, 0.15);
+    background-color: rgba(0, 0, 0, 0.3);
     /* For IE 5.5 - 7*/
     filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#55000000, endColorstr=#55000000);
     /* For IE 8*/
@@ -472,7 +492,7 @@ body {
 }
 
 #reg-signin-form {
-    width: 368px;
+    /*width: 368px;*/
     height: 180px;
     margin-left: auto;
     margin-right: auto;
@@ -484,30 +504,31 @@ body {
     }
     .reg-portion {
         display: inline-block;
-        float: left;
-        width: 160px;
+        /*float: left;*/
+        width: 220px;
         margin-left: auto;
-        margin-right: 22px;
+        /*margin-right: 22px;*/
         text-align: center;
     }
 
         #code-field {
-            margin: 10px 0 0 0 !important;
+            /*margin: 10px 0 0 0 !important;*/
             font-size: 0.9em;
             font-size: 0.85em \0/IE8+9;
             text-align: center;
             padding: 0 15px;
-            width: 160px;
+            width: 220px;
         }
 
         #reg-options {
-            visibility: hidden;
+            display: none;
+            /*visibility: hidden;*/
         }
 
         #reg-with-facebook {
             margin-top: 10px;
             display: inline-block;
-            width: 159px;
+            width: 180px;
             height: 31px;
             padding: 0;
             background-image: url('/assets/forms.png');
@@ -519,22 +540,38 @@ body {
         #signin-with-facebook {
             margin-top: 15px;
             display: inline-block;
-            width: 159px;
+            width: 180px;
             height: 31px;
             padding: 0;
             background-image: url('/assets/forms.png');
             background-repeat: no-repeat;
-            background-size: 220px 63px;
+            background-size: 242px 62px;
             background-position: -61px -32px;
         }
 
     .signin-portion {
-        display: inline-block;
+        /*display: inline-block;
         width: 160px;
         margin-left: 22px;
         margin-right: auto;
-        text-align: center;
+        text-align: center;*/
+        display: block;
+        font-size: 1em !important;
+
+        /*background-color: #333;
+        background-color: rgba(0, 0, 0, 0.3);
+        filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#55000000, endColorstr=#55000000);
+        background: transparent\9;
+        -ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#55000000, endColorstr=#55000000)";
+        zoom: 1;*/
     }
+
+        .signin-portion a {
+            font-family: 'robotobold';
+            text-decoration: none;
+            padding: 2px 6px;
+            /*color: #1d94d7;*/
+        }
 
 /* Header */
 .header {
@@ -594,7 +631,6 @@ body {
     text-decoration: none;
     cursor: pointer;
 }
-
 
 /* fonts */
 @font-face {

@@ -4,18 +4,21 @@
                 <div class="ie7-fix">
                 <![endif]-->
                 <%= form_tag player_pre_sign_up_path, id: 'reg-signin-form', :method => 'get' do %>
-                    <span class="reg-portion">
+                    <div class="reg-portion">
                         <h2>Sign up</h2>
-                        Enter your group code
-                        <%= text_field_tag 'reg_code', nil, placeholder: "ENTER CODE HERE", maxlength: '7',
+                        <!--Enter your group code-->
+                        <%= text_field_tag 'reg_code', nil, placeholder: "ENTER GROUP CODE HERE", maxlength: '7',
                                            id: 'code-field', class: 'form-control', autocomplete: 'off' %>
                         <div id="reg-options">
                             <%= link_to_submit '', name: 'facebook', id: 'reg-with-facebook' %>
                             <br>
                             <%= link_to_submit 'Sign-up with email' %>
                         </div>
-                    </span>
-                    <span class="signin-portion">
+                    </div>
+                    <br><br>
+                    <p class="signin-portion">Already have an account? &nbsp;
+                        <%= link_to 'Log in', new_player_session_path,class: 'btn btn-primary btn-mini' %></p>
+                    <!--span class="signin-portion">
                         <h2>Sign in</h2>
                         Already registered?
                         <br>
@@ -23,7 +26,7 @@
                                            id: 'signin-with-facebook' %>
                         <br>
                         <%= link_to 'Sign-in with email', new_player_session_path %>
-                    </span>
+                    </span-->
                 <% end %>
                 <!--[if lt IE 9]>
                 </div>

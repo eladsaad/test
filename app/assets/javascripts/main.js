@@ -21,11 +21,13 @@ CINEMA_DRIVE = {
 
                 function showRegOptions() {
                     if ($('#code-field').val().length > 6) {
-                        $('#reg-options').css('visibility', 'visible');
-                        $('#reg-signin-form').css({'height': '220px', marginBottom: '0' });
+                        //$('#reg-options').css('visibility', 'visible');
+                        $('#reg-options').show();
+                        //$('#reg-signin-form').css({'height': '220px', marginBottom: '0' });
                     } else {
-                        $('#reg-options').css('visibility', 'hidden');
-                        $('#reg-signin-form').css({'height': '190px', marginBottom: '30px' });
+                        //$('#reg-options').css('visibility', 'hidden');
+                        $('#reg-options').hide();
+                        //$('#reg-signin-form').css({'height': '190px', marginBottom: '30px' });
                     }
                 }
             }
