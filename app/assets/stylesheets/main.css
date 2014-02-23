@@ -393,6 +393,24 @@ body {
     vertical-align: middle;
 }
 
+
+/* Gray screen when the movie is playing */
+.gray {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    z-index: 0;
+    position: absolute;
+    background-color: #333;
+    background-color: rgba(0, 0, 0, 0.3);
+    /* For IE 5.5 - 7*/
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#55000000, endColorstr=#55000000);
+    /* For IE 8*/
+    background: transparent\9;
+    -ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#55000000, endColorstr=#55000000)";
+    zoom: 1;
+}
+
 /* Banner */
 .banner {
     display: none;
@@ -460,23 +478,6 @@ body {
     margin-right: auto;
     text-align: center;
 }
-
-.gray {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    z-index: 0;
-    position: absolute;
-    background-color: #333;
-    background-color: rgba(0, 0, 0, 0.3);
-    /* For IE 5.5 - 7*/
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#55000000, endColorstr=#55000000);
-    /* For IE 8*/
-    background: transparent\9;
-    -ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#55000000, endColorstr=#55000000)";
-    zoom: 1;
-}
-
     .reg-signin-form a {
         display: inline-block;
         padding-top: 8px;
@@ -493,7 +494,7 @@ body {
         #code-field {
             margin: 10px 0 0 0 !important;
             font-size: 0.9em;
-            font-size: 0.85em \0/;
+            font-size: 0.85em \0/IE8+9;
             text-align: center;
             padding: 0 15px;
             width: 160px;
@@ -535,6 +536,13 @@ body {
         text-align: center;
     }
 
+/* Header */
+.header {
+    height: 30px;
+    left: 0;
+    right: 0;
+    top: 0;
+}
 /* Footer */
 .footer {
     display: none;

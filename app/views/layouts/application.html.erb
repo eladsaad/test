@@ -25,14 +25,15 @@
         <span class="main">
     
             <span id="main-content" class="centered">
-                <%= render partial: "shared/flash_messages", flash: flash %>
                 <%= yield %> <!-- Specific page content -->
             </span>
             <!--[if lte IE 7]>
                 <span class="ie7-fix-centered"></span>
             <![endif]-->
             
-            
+            <div class="header">
+              <%= render partial: "shared/flash_messages", flash: flash %>
+            </div>
             <div id="main-banner" class="banner">
                 <%= render partial: "layouts/banner" %>
             </div>
