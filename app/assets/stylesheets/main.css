@@ -395,6 +395,7 @@ body {
 
 /* Banner */
 .banner {
+    display: none;
     position: absolute;
     height: 60px;
     bottom: 30px;
@@ -404,6 +405,7 @@ body {
 }
 
 .points-view {
+    display: none;
     background-color: #1d94d7;
     position: absolute;
     width: 225px;
@@ -452,14 +454,11 @@ body {
 }
 
 #reg-signin-form {
-    width: 398px;
+    width: 368px;
     height: 180px;
-    padding: 15px;
-    margin-top: 20px;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
-
 }
 
 .gray {
@@ -538,8 +537,8 @@ body {
 
 /* Footer */
 .footer {
+    display: none;
     color: #fff;
-    display: inline-block;
     vertical-align: middle;
     line-height: 2.2em;
     text-align: left;

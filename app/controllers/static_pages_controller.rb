@@ -8,6 +8,9 @@ class StaticPagesController < ApplicationController
   # GET /players/dashboard
   def welcome
     #TODO: implement
+    if player_signed_in?
+      redirect_to interactive_videos_path
+    end
   end
 
   def about
