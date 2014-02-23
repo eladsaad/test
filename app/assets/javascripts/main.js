@@ -17,6 +17,7 @@ CINEMA_DRIVE = {
             if ($('#code-field').length) {
                 showRegOptions();
                 $('#code-field').on('keyup input change', showRegOptions);
+                $('#code-field').on('keyup', function() { this.value = this.value.toUpperCase(); });
 
                 function showRegOptions() {
                     if ($('#code-field').val().length > 6) {

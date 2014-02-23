@@ -402,7 +402,7 @@ body {
     z-index: 0;
     position: absolute;
     background-color: #333;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.15);
     /* For IE 5.5 - 7*/
     filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#55000000, endColorstr=#55000000);
     /* For IE 8*/
@@ -538,7 +538,9 @@ body {
 
 /* Header */
 .header {
-    height: 30px;
+    display: block;
+    position: absolute;
+    height: 15px;
     left: 0;
     right: 0;
     top: 0;
