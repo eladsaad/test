@@ -1,9 +1,9 @@
 <div class="episodes-view">
   <% episode_index = 1 %>
   <% @interactive_videos.each do |interactive_video| %><span id="episode<%= episode_index%>" class="episode <%=episode_class(episode_index)%>"><!--
-     --><% if episode_index > 1%><span class="episode-path"></span><!--
-     --><% end %><%= link_to episode_class(episode_index) != 'disabled' ? interactive_video_path(id: interactive_video.interactive_video_id) : '#' do %><span class="icon-container"><!--
-         --><span class="episode-icon">
+     --><% if episode_index > 1 %><span class="episode-path"></span><!--
+     --><% end %><span class="icon-container"><!--
+         --><%= link_to episode_class(episode_index) != 'disabled' ? interactive_video_path(id: interactive_video.interactive_video_id) : '#' do %><span class="episode-icon">
             </span>
             <div class="caption-container">
               <div class="caption">Episode <%= episode_index %></div>
