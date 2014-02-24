@@ -616,6 +616,7 @@ body {
 
 /* Create new account page */
 #create-account-form {
+    margin-top: 50px;
     width: 333px;
 }
     #player_first_name {
@@ -699,7 +700,23 @@ body {
         text-decoration: underline;
     }
 
+.registration-phases {
+    display: none;
+}
 
+.registration-phase {
+    display: inline-block;
+    font-family: 'signika_negativebold';
+    font-size: 1em;
+    text-align: center;
+    line-height: 1.9em;
+    width: 28px;
+    height: 28px;
+    background-image: url('/assets/forms.png');
+    background-repeat: no-repeat;
+    background-size: 242px 93px;
+    background-position: -29px -21px;
+}
 
 
 

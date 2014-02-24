@@ -1,6 +1,12 @@
 <h1>CREATE AN ACCOUNT</h1>
 <p>or <%= link_to 'Log in', new_player_session_path %></p>
 
+<div class="registration-phases">
+  <span class="registration-phase active">1</span><!--
+  --><span class="registration-phase">2</span><!--
+  --><span class="registration-phase">3</span>
+</div>
+
 <%= form_for(resource, :html => {:id => "create-account-form"}, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
     <%= devise_error_messages! %>
 
@@ -30,7 +36,5 @@
       I agree to the <%= link_to "site terms", '#' %>
     </p>
     <%= f.submit "NEXT >", id: 'next-btn', class: 'button'  %>
-
-        <%#= f.submit t(:next) %>
 
 <% end %>
