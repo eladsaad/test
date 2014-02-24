@@ -105,6 +105,7 @@ body {
 }
 
 .main input[type="text"],
+.main input[type="email"],
 .main input[type="password"] {
     float: left;
     background-color: rgba(0,0,0,0.4);
@@ -116,6 +117,30 @@ body {
     width: 162px;
     height: 30px;
     outline: 0;
+}
+
+/* Messages */
+#error_explanation {
+    font-family: 'robotobold';
+    font-size: 1em;
+}
+#error_explanation h2 {
+    font-size: 1em;
+}
+#error_explanation ul {
+    list-style-type: none;
+    list-style: none;
+    padding: 0;
+    color: #fcff00;
+}
+.field_with_errors  {
+    display: inline;
+    border: 1px;
+    border-color: red;
+    color: red;
+}
+.field_with_errors input {
+    border-color: #fcff00 !important;
 }
 
 #password-area {
@@ -572,6 +597,17 @@ body {
             padding: 2px 6px;
             /*color: #1d94d7;*/
         }
+/* Password recovery */
+.email-recovery-area {
+    margin-top: 60px;
+}
+    #player_email {
+        float: none;
+    }
+
+    #send-btn {
+        margin-left: 10px;
+    }
 
 /* Header */
 .header {

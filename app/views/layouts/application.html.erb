@@ -84,11 +84,14 @@
                     var BV = new $.BigVideo();
                     BV.init();
                     if (Modernizr.video.h264) {
-                        BV.show('/assets/winter_traffic.mp4', {ambient:true, doLoop: true, controls: false});
+                        BV.show('//s3.amazonaws.com/cinemadrive.herokuapp.com/static/videos/winter_traffic.mp4',
+                                {ambient:true, doLoop: true, controls: false});
                     } else if (Modernizr.video.ogg) {
-                        BV.show('/assets/winter_traffic.ogv', {ambient:true, doLoop: true, controls: false});
+                        BV.show('//s3.amazonaws.com/cinemadrive.herokuapp.com/static/videos/winter_traffic.ogv',
+                                {ambient:true, doLoop: true, controls: false});
                     } else if (Modernizr.video.webm) {
-                        BV.show('/assets/winter_traffic.webm', {ambient:true, doLoop: true, controls: false});
+                        BV.show('//s3.amazonaws.com/cinemadrive.herokuapp.com/static/videos/winter_traffic.webm',
+                                {ambient:true, doLoop: true, controls: false});
                     } else {
                         // browser don't support our video formats, show static background image
                         $('#bg').show();
