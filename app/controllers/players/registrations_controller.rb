@@ -6,6 +6,8 @@ class Players::RegistrationsController < Devise::RegistrationsController
 	after_filter :add_group_from_reg_code, only: [:create]
 
 
+
+
 	def pre_sign_up
 		if params[:facebook]
 			redirect_to omniauth_authorize_path(:player, :facebook, reg_code: params[:reg_code])
@@ -37,6 +39,7 @@ class Players::RegistrationsController < Devise::RegistrationsController
           :gender,
           :age,
           :reg_code,
+          :terms_of_service,
           :player_group_association_attributes => [
               :player_group_id
             ],

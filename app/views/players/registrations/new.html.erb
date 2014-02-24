@@ -1,50 +1,36 @@
-<h2><%= t(:create_an_account) %></h2>
+<h1>CREATE AN ACCOUNT</h1>
+<p>or <%= link_to 'Log in', new_player_session_path %></p>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+<%= form_for(resource, :html => {:id => "create-account-form"}, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+    <%= devise_error_messages! %>
 
-  <% if params[:reg_code] %>
-    <%= hidden_field_tag :reg_code, params[:reg_code] %>
-  <% else %>
-    <div class="field">
-      <%= label_tag :reg_code %><br>
-      <%= text_field_tag :reg_code %>
-    </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :first_name %><br>
-    <%= f.text_field :first_name %>
-  </div>
+    <% if params[:reg_code] %>
+        <%= hidden_field_tag :reg_code, params[:reg_code] %>
+    <% else %>
+        <%= text_field_tag :reg_code, placeholder: "GROUP CODE" %>
+        <br>
+    <% end %>
+    <% if (params[:facebook_callback]) %>
+    <% else %>
+        <div class="clearfix">
+            <%= f.text_field :first_name, placeholder: "FIRST NAME"  %><!--
+            --><%= f.text_field :last_name, placeholder: "LAST NAME"  %><!--
+            --><%= f.select  :age, [['AGE', nil], *8..90] %>
+            <br>
+            <%= f.email_field :email, placeholder: "EMAIL" %><!--
+            --><%= f.password_field :password, placeholder: "PASSWORD", :autocomplete => "off" %>
+            <%= f.password_field :password_confirmation, placeholder: "CONFIRM" %>
+        </div>
+        <%= link_to "I don't have an email account", '/', class: 'gray-link' %>
+    <% end %>
 
-  <div class="field">
-    <%= f.label :last_name %><br>
-    <%= f.text_field :last_name %>
-  </div>
+    <p id="term-agree-section">
+      <%= f.check_box :terms_of_service %>
+      I agree to the <%= link_to "site terms", '#' %>
+    </p>
+    <%= f.submit "NEXT >", id: 'next-btn', class: 'button'  %>
 
-  <div class="field">
-    <%= f.label :age %><br>
-    <%= f.select  :age, 8..20 %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.email_field :email %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br>
-    <%= f.password_field :password, :autocomplete => "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br>
-    <%= f.password_field :password_confirmation %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit t(:next) %>
-  </div>
-
-  <%= devise_error_messages! %>
+        <%#= f.submit t(:next) %>
 
 <% end %>
