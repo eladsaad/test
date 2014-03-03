@@ -1,0 +1,9 @@
+$("#main-content").html('<%= escape_javascript(render "index") %>');
+
+// update csrf token after login
+$('meta[name=csrf-token]').attr('content', '<%= form_authenticity_token.to_s %>');
+
+
+$('.banner').show();
+$('.points-view').show();
+$('.footer').html('<%= escape_javascript(render partial: "layouts/footer") %>').show();

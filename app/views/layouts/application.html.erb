@@ -12,6 +12,7 @@
         
         <%= stylesheet_link_tag "application", media: "all" %>
 	    <%= csrf_meta_tags %>
+        <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
 
         <script src="/assets/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
@@ -106,10 +107,11 @@
         </script>
         
         <!-- support text place-holders for IE < 10 -->
-        <script type='text/javascript' src='/assets/jquery.html5-placeholder-shim.js'></script>
+        <!--script type='text/javascript' src='/assets/jquery.html5-placeholder-shim.js'></script-->
         
         <!-- main javascript -->
-        <script src="/assets/main.js"></script>
+        <!--script src="/assets/main.js"></script-->
+        <%= javascript_include_tag("footer") %>
 
         <!-- page specific script -->
         <%= yield :js %>

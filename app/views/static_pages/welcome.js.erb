@@ -1,0 +1,37 @@
+$("#main-content").html('<%= escape_javascript(render "welcome") %>');
+$('.banner').hide();
+$('.points-view').hide();
+$('.footer').hide();
+
+$('a').not('#email-signup').click(function() {
+    History.pushState({}, '', $(this).attr("href"));
+});
+
+$('#email-signup').click(function() {
+    History.pushState({}, '', $(this).attr("href") + '?reg_code=' + $('#code-field').val());
+});
+
+
+showRegOptions();
+$('#code-field').on('keyup input change', showRegOptions);
+var lastValue = '';
+$('#code-field').on('keyup', function() {
+    if (lastValue != this.value && /[a-z]/.test(this.value)) {
+        // If there's a change in string and lowercase letters has been typed
+        // Change string to uper case
+        this.value = this.value.toUpperCase();
+    }
+    lastValue = this.value;
+});
+
+function showRegOptions() {
+    if ($('#code-field').val().length > 6) {
+        //$('#reg-options').css('visibility', 'visible');
+        $('#reg-options').show();
+        //$('#reg-signin-form').css({'height': '220px', marginBottom: '0' });
+    } else {
+        //$('#reg-options').css('visibility', 'hidden');
+        $('#reg-options').hide();
+        //$('#reg-signin-form').css({'height': '190px', marginBottom: '30px' });
+    }
+}

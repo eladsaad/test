@@ -5,8 +5,7 @@ class Players::RegistrationsController < Devise::RegistrationsController
 	before_filter :verify_reg_code, only: [:create, :pre_sign_up]
 	after_filter :add_group_from_reg_code, only: [:create]
 
-
-
+  respond_to :html, :js
 
 	def pre_sign_up
 		if params[:facebook]

@@ -1,5 +1,6 @@
 class Players::OmniauthCallbacksController < Devise::OmniauthCallbacksController
-	
+  respond_to :html, :js
+
 	def facebook
 		@player = Player.find_for_facebook_oauth(request.env["omniauth.auth"], current_player)
 

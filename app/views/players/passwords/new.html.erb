@@ -1,12 +1,1 @@
-<h1>E-MAIL RECOVERY</h1>
-
-<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
-
-  <div class="email-recovery-area">
-      <%= devise_error_messages! %>
-      <%= f.email_field :email, :autofocus => true, placeholder: "EMAIL" %>
-      <%= f.submit "SEND", id: 'send-btn', class: 'button'  %>
-  </div>
-<% end %>
-<br><br>
-<%#= render "players/shared/links" %>
+<%= render "new" %>

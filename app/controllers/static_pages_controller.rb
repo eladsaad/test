@@ -15,6 +15,11 @@ class StaticPagesController < ApplicationController
 
   def about
     #TODO: implement
+
+    #respond_to do |format|
+    #  format.html { redirect_to '/about', notice: '' }
+    #  format.js   {}
+    #end
   end
 
 end

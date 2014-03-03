@@ -1,5 +1,17 @@
 class Players::SessionsController < Devise::SessionsController
 
+  respond_to :html, :js
+
+  def destroy
+    signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name))
+    respond_to do |format|
+      format.html { super }
+      format.js  {
+        #redirect_to '/', status: 303
+      }
+    end
+  end
+
 	# Audit player sign in
 	def after_sign_in_path_for(player)
 		if player.is_a?(Player) # just to verify

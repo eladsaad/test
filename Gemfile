@@ -19,6 +19,7 @@ gem 'nested_form'
 # gem 'therubyracer', platforms: :ruby
 gem 'swf_fu'
 gem 'unicorn'
+gem 'historyjs-rails'
 
 group :production do
 	gem 'rails_12factor' # heroku logging and assets

@@ -19,6 +19,7 @@ Cinemadrive::Application.routes.draw do
     end
   end
   root :to => "static_pages#welcome"
+  get '/about' => "static_pages#about"
     
 
   # /admin - system administration
