@@ -1,5 +1,7 @@
 //$("#main-content").html('<%#= escape_javascript(render "new") %>');
+$('#flash_messages').html('<%= escape_javascript(render partial: "shared/flash_messages", flash: flash) %>');
 
 $.getScript('/', function() {
+    window.loadRemoteScript = false;
     History.pushState({}, '', '/');
 });

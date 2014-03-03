@@ -8,11 +8,15 @@ class Players::RegistrationsController < Devise::RegistrationsController
   respond_to :html, :js
 
 	def pre_sign_up
-		if params[:facebook]
-			redirect_to omniauth_authorize_path(:player, :facebook, reg_code: params[:reg_code])
-		else
-			redirect_to new_player_registration_path(reg_code: params[:reg_code])
-		end
+    respond_to do |format|
+      if params[:facebook]
+        format.html { redirect_to omniauth_authorize_path(:player, :facebook, reg_code: params[:reg_code]) }
+        format.js { render action: 'facebook_redirect' }
+      else
+        format.html { redirect_to new_player_registration_path(reg_code: params[:reg_code]) }
+        format.js { redirect_to new_player_registration_path(reg_code: params[:reg_code]) }
+      end
+    end
 	end
 
 
@@ -56,8 +60,8 @@ class Players::RegistrationsController < Devise::RegistrationsController
         end
       end
 
-      def after_inactive_sign_up_path_for(resource)
-        '/players/sign_in'
-      end
+      #def after_inactive_sign_up_path_for(resource)
+      #  '/players/sign_in'
+      #end
 
 end

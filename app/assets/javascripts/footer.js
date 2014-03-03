@@ -3,3 +3,5 @@
 //= require history_jquery
 //= require jquery.html5-placeholder-shim.js
 //= require main.js
+//= require bootstrap.min
+//= require bootbox

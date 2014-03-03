@@ -1,8 +1,14 @@
-<div id="alerts">
-	<% flash.each do |key, value| %>
-		<div class="<%= flash_class(key) %> fade in">
+<!--<div id="alerts">
+	<%# flash.each do |key, value| %>
+		<div class="<%#= flash_class(key) %> fade in">
 			<button class="close" data-dismiss="alert">×</button>
-			<%= raw(value) %>
+			<%#= raw(value) %>
 		</div>
-	<% end %>
+	<%# end %>
 </div>
+-->
+<% flash.each do |key, value| %>
+    <div class="<%= flash_class(key) %>">
+        <%= raw(value) %>
+    </div>
+<% end %>

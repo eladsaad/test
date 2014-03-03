@@ -1,15 +1,42 @@
-$("#main-content").html('<%= escape_javascript(render "welcome") %>');
+changeMainView('<%= escape_javascript(render "welcome") %>', <%= flash.count %>,
+        '<%= escape_javascript(render partial: "shared/flash_messages", flash: flash) %>');
+//$("#main-content").html('<%#= escape_javascript(render "welcome") %>');
+//$('#flash_messages').html('<%#= escape_javascript(render partial: "shared/flash_messages", flash: flash) %>');
 $('.banner').hide();
 $('.points-view').hide();
 $('.footer').hide();
 
-$('a').not('#email-signup').click(function() {
-    History.pushState({}, '', $(this).attr("href"));
+//$(document).on('click', '[data="submit-form"]', function(e) {
+//    e.preventDefault();
+//    $(this).closest('form').submit();
+//    return false;
+//});
+
+
+$('a').not('#email-signup, #reg-with-facebook').click(function() {
+    window.loadRemoteScript = false;
+    History.pushState(null, '', $(this).attr("href"));
 });
 
-$('#email-signup').click(function() {
-    History.pushState({}, '', $(this).attr("href") + '?reg_code=' + $('#code-field').val());
+
+$('#email-signup').click(function(e) {
+    window.loadRemoteScript = false;
+    History.pushState({}, '', '/players/sign_up' + '?reg_code=' + $('#code-field').val());
+    e.preventDefault();
+    $(this).closest('form').submit();
+    return false;
 });
+
+$('#reg-with-facebook').click(function(e) {
+    e.preventDefault();
+    var input = $("<input>")
+            .attr("type", "hidden")
+            .attr("name", "facebook").val("");
+
+    $(this).closest('form').append($(input)).submit();
+    return false;
+});
+
 
 
 showRegOptions();

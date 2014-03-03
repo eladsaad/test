@@ -9,7 +9,7 @@
 
 <%= form_for(resource, :html => {:id => "create-account-form"}, :as => resource_name, :url => registration_path(resource_name), remote: true) do |f| %>
     <%= devise_error_messages! %>
-
+    <div id="error_messages"></div>
 
     <% if params[:reg_code] %>
         <%= hidden_field_tag :reg_code, params[:reg_code] %>

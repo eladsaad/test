@@ -10,10 +10,9 @@
                         <%= text_field_tag 'reg_code', nil, placeholder: "ENTER GROUP CODE HERE", maxlength: '7',
                                            id: 'code-field', class: 'form-control', autocomplete: 'off' %>
                         <div id="reg-options">
-                            <%= link_to '', '#', name: 'facebook', id: 'reg-with-facebook', data: 'submit-form' %>
+                            <%= link_to '', '#', name: 'facebook', id: 'reg-with-facebook' %>
                             <br>
-                            <%= link_to 'Sign-up with email', '/players/sign_up', id: 'email-signup',
-                                        data: 'submit-form' %>
+                            <%= link_to 'Sign-up with email', '#', id: 'email-signup', data: 'submit-form' %>
                         </div>
                     </div>
                     <br><br>

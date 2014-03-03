@@ -1,4 +1,5 @@
 $("#main-content").html('<%= escape_javascript(render "index") %>');
+$('#flash_messages').html('<%= escape_javascript(render partial: "shared/flash_messages", flash: flash) %>');
 
 // update csrf token after login
 $('meta[name=csrf-token]').attr('content', '<%= form_authenticity_token.to_s %>');
