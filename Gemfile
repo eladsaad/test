@@ -20,6 +20,7 @@ gem 'nested_form'
 gem 'swf_fu'
 gem 'unicorn'
 gem 'historyjs-rails'
+gem 'delayed_job_active_record' # async jobs queue
 
 group :production do
 	gem 'rails_12factor' # heroku logging and assets
