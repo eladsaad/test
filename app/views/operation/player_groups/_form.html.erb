@@ -27,16 +27,8 @@
     <%= f.input :description %>
 
     <%= f.input :mobile_station_code,
-            placeholder: t(:start_typing_for_autocomplete),
-            input_html: {
-              class: 'autocomplete-field',
-              data: {
-                autocomplete_source: operation_operator_mobile_stations_path(format: :json),
-                autocomplete_label_att: 'code',
-                autocomplete_value_att: 'code'
-              }
-            }
-    %>
+      collection: Operation::OperatorMobileStation.accessible_by(current_ability, :read).pluck(:code),
+      prompt: t(:please_select) %>
 
     <%= f.association :online_program, collection: @operation_player_group.allowed_online_programs, prompt: t(:please_select), required: true %>
 
