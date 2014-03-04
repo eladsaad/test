@@ -59,7 +59,7 @@ class Players::RegistrationsController < Devise::RegistrationsController
       end
 
       #def after_inactive_sign_up_path_for(resource)
-      #  '/players/sign_in'
+      #  new_player_session_path
       #end
 
 end

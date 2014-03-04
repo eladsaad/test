@@ -1,7 +1,7 @@
 Cinemadrive::Application.routes.draw do
 
   # main site
-  devise_for :players, :controllers => {
+  devise_for :players, :path => '', :controllers => {
       :sessions => 'players/sessions',
       :passwords => 'players/passwords',
       :confirmations => 'players/confirmations',
@@ -9,7 +9,7 @@ Cinemadrive::Application.routes.draw do
       :omniauth_callbacks => "players/omniauth_callbacks"
   }
   devise_scope :player do
-    get '/players/registrations/pre_sign_up' => 'players/registrations#pre_sign_up', :as => :player_pre_sign_up
+    get '/registrations/pre_sign_up' => 'players/registrations#pre_sign_up', :as => :player_pre_sign_up
   end
   
   get '/campaigns/click/:id' => "campaigns#click", :as => :click_campaign

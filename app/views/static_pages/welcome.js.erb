@@ -21,7 +21,7 @@ $('a').not('#email-signup, #reg-with-facebook').click(function() {
 
 $('#email-signup').click(function(e) {
     window.loadRemoteScript = false;
-    History.pushState({}, '', '/players/sign_up' + '?reg_code=' + $('#code-field').val());
+    History.pushState({}, '', '/sign_up' + '?reg_code=' + $('#code-field').val());
     e.preventDefault();
     $(this).closest('form').submit();
     return false;
