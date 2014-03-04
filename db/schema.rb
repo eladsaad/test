@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140217154258) do
+ActiveRecord::Schema.define(version: 20140304112709) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,22 @@ ActiveRecord::Schema.define(version: 20140217154258) do
   end
 
   add_index "campaigns", ["name"], name: "index_campaigns_on_name", using: :btree
+
+  create_table "delayed_jobs", force: true do |t|
+    t.integer  "priority",   default: 0, null: false
+    t.integer  "attempts",   default: 0, null: false
+    t.text     "handler",                null: false
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
   create_table "images", force: true do |t|
     t.string   "url"
@@ -299,7 +315,7 @@ ActiveRecord::Schema.define(version: 20140217154258) do
     t.date     "birth_date"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -310,6 +326,7 @@ ActiveRecord::Schema.define(version: 20140217154258) do
     t.string   "gender"
     t.string   "profile_picture"
     t.integer  "age"
+    t.boolean  "tos_accepted",           default: false
   end
 
   add_index "players", ["confirmation_token"], name: "index_players_on_confirmation_token", unique: true, using: :btree
@@ -337,6 +354,17 @@ ActiveRecord::Schema.define(version: 20140217154258) do
   create_table "registration_codes", force: true do |t|
     t.string "code"
   end
+
+  create_table "settings", force: true do |t|
+    t.string   "var",                   null: false
+    t.text     "value"
+    t.integer  "thing_id"
+    t.string   "thing_type", limit: 30
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "settings", ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true, using: :btree
 
   create_table "surveys", force: true do |t|
     t.string   "name"

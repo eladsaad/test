@@ -9,6 +9,7 @@ These variables should be set on production environment:
 * SMTP_DOMAIN (example: mail.google.com)
 * SMTP_USERNAME
 * SMTP_PASSWORD
+* NOTIFICATION_MAIL_SENDER
 * FACEBOOK_APP_ID
 * FACEBOOK_APP_SECRET
 * FACEBOOK_APP_ACCESS_TOKEN
@@ -27,6 +28,8 @@ The following tasks are available:
 
 * db:add_super_system_admin
 * db:fill_reg_codes
+* notifications:add_jobs
+
 
 == HEROKU
 

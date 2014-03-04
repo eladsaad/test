@@ -21,6 +21,8 @@ gem 'swf_fu'
 gem 'unicorn'
 gem 'historyjs-rails'
 gem 'delayed_job_active_record' # async jobs queue
+gem 'daemons' # required by dealyed_jobs
+gem 'rails-settings-cached', '0.3.1'
 
 group :production do
 	gem 'rails_12factor' # heroku logging and assets

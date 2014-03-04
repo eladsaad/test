@@ -1,10 +1,14 @@
-class EmailNotificationJob < Struct.new(:email, :content)
-  def perform
-    # TODO: implement
+class EmailNotificationJob
 
-    last_created_job_time = DelayedJobs.order(:created_at).last.try(:created_at) or 0
+	def initialize(email_address, content)
+		@address = email_address
+		@content = content
+		@subject = '' #TODO: ????
+	end
 
-    
+	def perform
+		Rails.logger.info "Sending email to [#{@address}]"
+    	PlayerMailer.custom_email(@address, @subject, @content).deliver
+	end
 
-  end
 end
