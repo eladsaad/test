@@ -6,8 +6,6 @@ class Notification < ActiveRecord::Base
   validates :name, :presence => true
   validates :language_code_id, :presence => true
   validates :title, :presence => true
-  validates :email_content, :presence => true
-  validates :facebook_content, :presence => true
 
   # == SEARCH ==
   search_columns [:name, :language_code, :title]
