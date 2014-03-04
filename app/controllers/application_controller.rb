@@ -52,8 +52,6 @@ class ApplicationController < ActionController::Base
 
   # == Pagination Headers
 
-  protected
-  
   def self.set_pagination_headers(name, options = {})
     after_filter(options) do |controller|
       results = instance_variable_get("@#{name}")
@@ -70,14 +68,29 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # == Layout ==
+
   def set_layout
     false if params[:no_layout]
   end
+
+  # == Cache ==
 
   def set_no_cache
     response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
     response.headers["Pragma"] = "no-cache"
     response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
+  end
+
+  # == Location Redirect ==
+
+  def store_location(store_url = request.url)
+    session[:return_to] ||= store_url
+  end
+
+  def redirect_back_or(default)
+    redirect_to(session[:return_to] || default)
+    session.delete(:return_to)
   end
   
 

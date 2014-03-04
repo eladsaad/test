@@ -20,7 +20,8 @@ Cinemadrive::Application.routes.draw do
   end
   root :to => "static_pages#welcome"
   get '/about' => "static_pages#about"
-    
+  get '/accept_tos' => 'players#edit_accept_tos', :as => "edit_accept_tos_player"
+  put '/accept_tos' => 'players#update_accept_tos', :as => "update_accept_tos_player"  
 
   # /admin - system administration
   namespace :admin do

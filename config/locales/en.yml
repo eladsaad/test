@@ -121,6 +121,7 @@ en:
         birth_date: "Birth Date"
         created_at: "Created At"
         updated_at: "Updated At"
+        tos_accepted: "Terms of Service"
       player_group:
         id: "ID"
         operator_id: "Operator ID"

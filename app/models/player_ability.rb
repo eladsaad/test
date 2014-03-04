@@ -12,6 +12,8 @@ class PlayerAbility
     can :read, InteractiveVideo # TODO: player can view only interactive video's related to program he's subscribed to
       # and only in case the group not expired
 
+    can :accept_tos, Player, id: player.id
+
   end
 
 end

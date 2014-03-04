@@ -1,5 +1,13 @@
 class BaseController < ApplicationController
 	before_filter :authenticate_player!
+	before_filter :tos_accepted
+
+	def tos_accepted
+		unless current_player.tos_accepted
+			store_location
+          	redirect_to edit_accept_tos_player_path
+		end
+	end
 
 	def current_ability
 		current_player.ability

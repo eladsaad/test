@@ -19,8 +19,6 @@ class Players::RegistrationsController < Devise::RegistrationsController
     end
 	end
 
-
-
   	protected
 
   		def verify_reg_code
@@ -42,7 +40,7 @@ class Players::RegistrationsController < Devise::RegistrationsController
           :gender,
           :age,
           :reg_code,
-          :terms_of_service,
+          :tos_accepted,
           :player_group_association_attributes => [
               :player_group_id
             ],

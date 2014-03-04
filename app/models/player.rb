@@ -5,13 +5,13 @@ class Player < ActiveRecord::Base
 	#validates :email, :uniqueness => true, :format => {with: /@/}
 	validates :first_name, :presence => true
 	validates :last_name, :presence => true
-
-  validates :terms_of_service, acceptance: true
+  	validates :tos_accepted, :acceptance => {:accept => true}
 	#validates :gender, :inclusion => { :in => ['male', 'female'] }
 
 	# == ASSOCIATIONS ==
 	has_many :player_sessions
-	has_many :player_authentications
+	has_many :player_authentications, :dependent => :destroy
+	has_many :player_group_associations, :dependent => :destroy
 	has_and_belongs_to_many :player_groups, join_table: :player_group_associations
 
 	# == DEVISE Authentication ==
@@ -65,7 +65,7 @@ class Player < ActiveRecord::Base
 	end
 
 
-	def self.find_for_facebook_oauth(auth, signed_in_player=nil)
+	def self.find_for_facebook_oauth(auth, signed_in_player=nil, reg_code=nil)
 		authentication = PlayerAuthentication.find_by_provider_and_uid(auth.provider, auth.uid)
 		
 		# facebook authentication already exists in db
@@ -81,17 +81,23 @@ class Player < ActiveRecord::Base
 		
 		# player exists without facebook authentication
 		elsif signed_in_player
-			signed_in_player.player_authentications.build(
-				:provider => auth.provider,
-				:uid => auth.uid,
-				:token => auth.credentials.token,
-				:token_secret => auth.credentials.secret
-			)
+			signed_in_player.add_authentication_from_omni_auth(auth)
 			signed_in_player.copy_missing_data_from_facebook_oauth(auth)
 			signed_in_player.save! if signed_in_player.changed?
 			return signed_in_player
 		
 		# unknown player registering via facebook
+		elsif !reg_code.nil?
+			player = Player.new
+			player.add_authentication_from_omni_auth(auth)
+			player.copy_missing_data_from_facebook_oauth(auth)
+			player.password = Devise.friendly_token.first(8)
+			player.skip_confirmation!
+			group = PlayerGroup.find_by_reg_code(reg_code)
+			player.player_group_associations.build(player_group_id: group.id)
+			player.save(validate: false)
+			return player
+		# unknown player and missing registration code
 		else
 			return nil
 		end
