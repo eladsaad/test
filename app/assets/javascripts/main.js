@@ -6,7 +6,6 @@ $(function() {
         $.getScript(location.href);
         History.Adapter.bind(window,'statechange',function(){ // Note: We are using statechange instead of popstate
             if (window.loadRemoteScript) {
-                console.log('statechange: ' + location.href);
                 $.getScript(location.href);
             }
             window.loadRemoteScript = true;
@@ -36,6 +35,7 @@ $(function() {
 function changeMainView(content, notificationsCnt, notifications) {
     $("#main-content").html(content);
     //alert('"'+ notifications + '"');
+
     if (notificationsCnt > 0) {
         bootbox.alert(notifications);
     }

@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
 
   before_filter :set_no_cache
 
+  after_filter :flash_to_headers
+
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -92,6 +94,14 @@ class ApplicationController < ActionController::Base
     redirect_to(session[:return_to] || default)
     session.delete(:return_to)
   end
-  
 
+  def flash_to_headers
+    return unless request.xhr?
+    response.headers['X-Message-Error'] = flash[:error] unless flash[:error].blank?
+    response.headers['X-Message-Warning'] = flash[:warning] unless flash[:warning].blank?
+    response.headers['X-Message-Notice'] = flash[:notice] unless flash[:notice].blank?
+    response.headers['X-Message-Alert'] = flash[:alert] unless flash[:alert].blank?
+
+    flash.discard  # don't want the flash to appear when you reload page
+  end
 end
