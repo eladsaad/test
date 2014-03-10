@@ -16,10 +16,12 @@ Cinemadrive::Application.routes.draw do
   resources :interactive_videos, only: [:index, :show] do
     member do
       get :content
+      get :post_interactive
     end
   end
   root :to => "static_pages#welcome"
   get '/about' => "static_pages#about"
+  get '/scores' => "scores#index"
   get '/accept_tos' => 'players#edit_accept_tos', :as => "edit_accept_tos_player"
   put '/accept_tos' => 'players#update_accept_tos', :as => "update_accept_tos_player"  
 

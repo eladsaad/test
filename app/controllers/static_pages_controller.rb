@@ -16,6 +16,8 @@ class StaticPagesController < ApplicationController
   def about
     #TODO: implement
 
+    flash[:points] = ["You just did something<br>and won extra" , '2000']
+
     #respond_to do |format|
     #  format.html { redirect_to '/about', notice: '' }
     #  format.js   {}

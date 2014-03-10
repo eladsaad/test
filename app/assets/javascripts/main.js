@@ -30,13 +30,45 @@ $(function() {
     function fixUrl(url) {
         return url.replace("/#", "/");
     }
+
+
+    // Score modal
+    $('.modal-view').on('click','.modal-close-btn', function() {
+        $(this).closest('.modal-view').css({ visibility: 'hidden' });
+    });
+
+    footer();
+
 });
 
-function changeMainView(content, notificationsCnt, notifications) {
+function footer () {
+    $('.footer').on('click', '#home_link', function() {
+        $.getScript('/').done(function(script, textStatus) {
+            if (textStatus == 'success') {
+                window.loadRemoteScript = false;
+                History.pushState({}, '', '/');
+            }
+        });
+    });
+
+    $('.footer').on('click', '#scores_link', function() {
+        $.getScript('/scores').done(function(script, textStatus) {
+            if (textStatus == 'success') {
+                window.loadRemoteScript = false;
+                History.pushState({}, '', '/scores');
+            }
+        });
+    });
+}
+
+function changeMainView(content, notificationsCnt, notifications, pointsNotification) {
     $("#main-content").html(content);
-    //alert('"'+ notifications + '"');
 
     if (notificationsCnt > 0) {
         bootbox.alert(notifications);
+    }
+
+    if (typeof(pointsNotification) != 'undefined' && pointsNotification != null) {
+
     }
 }

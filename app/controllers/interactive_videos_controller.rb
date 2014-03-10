@@ -1,5 +1,5 @@
 class InteractiveVideosController < BaseController
-  before_action :set_interactive_video, only: [:show, :content]
+  before_action :set_interactive_video, only: [:show, :content, :post_interactive]
 
   def index
     authorize! :index, InteractiveVideo
@@ -19,12 +19,21 @@ class InteractiveVideosController < BaseController
       progress.last_interactive_video_index = current_video_index
       progress.save!
     end
-
   end
 
   def content
     authorize! :read, @interactive_video
     render :text => @interactive_video.content, :content_type => Mime::XML
+  end
+
+  def post_interactive
+    authorize! :read, @interactive_video
+    # TODO: Check if there's a survey planed after the interactive video
+
+    flash[:points] = ["You just watched an episode<br>and won extra" , '1500']
+    # TODO: special rules for getting points
+
+    redirect_to interactive_videos_path
   end
 
   private

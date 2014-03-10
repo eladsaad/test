@@ -13,6 +13,7 @@ class Player < ActiveRecord::Base
 	has_many :player_authentications, :dependent => :destroy
 	has_many :player_group_associations, :dependent => :destroy
 	has_and_belongs_to_many :player_groups, join_table: :player_group_associations
+  has_many :scores
 
 	# == DEVISE Authentication ==
 	devise :database_authenticatable, :registerable, :confirmable,
@@ -140,6 +141,19 @@ class Player < ActiveRecord::Base
 			)
 
 		http.request(fb_req) # return response
-	end
+  end
+
+
+  def add_points(points, player_group_id = self.current_player_group.id)
+    score = Score.where(player_group_id: player_group_id, player_id: self.id).first_or_initialize
+    score.score ||= 0
+    score.score += points
+    score.save!
+  end
+
+  def score(player_group_id = self.current_player_group.id)
+    score = Score.where(player_group_id: player_group_id, player_id: self.id).first_or_initialize
+    score.score ||= 0
+  end
 
 end

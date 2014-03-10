@@ -19,10 +19,25 @@ module ApplicationHelper
  		css_class = (column == sort_column) ? "column-sort-#{sort_direction}" : nil
 	    direction = (column == sort_column && sort_direction == "asc") ? "desc" : "asc" 
 	    link_to title, params.merge(:sort => column, :direction => direction, :page => nil), {class: css_class}
-  	end
+  end
 
-  #def link_to_submit(*args, &block)
-  #  link_to_function (block_given? ? capture(&block) : args[0]), "$(this).closest('form').submit()", args.extract_options!
-  #end
+
+  def changeMainView (partial_name)
+    js_script = raw("$('#main-content').html('") + raw(escape_javascript(render partial_name)) + raw("');")
+
+    if flash[:alert] || flash[:notice] || flash[:message] || flash[:error] || flash[:success] ||flash[:warning] ||
+        flash[:failure]
+      js_script += raw("bootbox.alert('#{escape_javascript(render partial: "shared/flash_messages", flash: flash)}');")
+    end
+
+    if flash[:points]
+      js_script += raw("$('.modal-inner-content').html('#{
+          escape_javascript(render partial: "shared/score_modal",flash: flash)
+      }');")
+      js_script += raw("$('.modal-view').css({visibility: 'visible'});")
+    end
+
+    js_script
+  end
 
 end

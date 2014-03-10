@@ -14,6 +14,8 @@ class PlayerAbility
 
     can :accept_tos, Player, id: player.id
 
+    can :read, Score
+
   end
 
 end

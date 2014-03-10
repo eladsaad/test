@@ -1,0 +1,18 @@
+
+<div class="points-modal">
+  <div class="points-modal-confetti"></div>
+  <div class="points-modal-top">
+    <div class="modal-close-btn"></div>
+  </div>
+  <div class="points-modal-body">
+    <h1>CONGRATULATIONS!</h1>
+    <p><%= raw(flash[:points][0]) %><br>
+      <span class="points-modal-points"><%= raw(flash[:points][1]) %></span><br>
+      points</p>
+  </div>
+  <div class="points-modal-bottom">
+    <div class="medal-big"></div>
+    <span class="points-modal-bottom-title">YOUR CURRENT SCORE IS:</span>
+    <span class="points-modal-bottom-points">9,000</span>
+  </div>
+</div>
