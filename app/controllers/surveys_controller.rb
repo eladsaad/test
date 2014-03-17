@@ -29,12 +29,11 @@ class SurveysController < BaseController
 
     respond_to do |format|
       if PlayerAnswer.create(player_answers)
-
         format.html { redirect_to params['post_survey'] }
-        format.json { render action: 'show', status: :created, location: @player_answer }
+        format.js   { redirect_to params['post_survey'] }
       else
-        format.html { redirect_to @player_answer, alert: "Couldn't save user answers." }
-        format.json { render json: @player_answer.errors, status: :unprocessable_entity }
+        format.html { redirect_to "/", alert: "Couldn't save user answers." }
+        format.js   { redirect_to "/", alert: "Couldn't save user answers." }
       end
     end
   end

@@ -2,6 +2,8 @@ class InteractiveVideosController < BaseController
   before_action :set_interactive_video, only: [:show, :content, :post_interactive]
   before_action :check_for_pre_survey, only: [:show]
 
+  before_action :check_for_post_survey, only: [:post_interactive]
+
   def index
     authorize! :index, InteractiveVideo
     @interactive_videos = current_player.current_online_program.online_program_interactive_videos.order(:start_after_days)
@@ -12,6 +14,15 @@ class InteractiveVideosController < BaseController
   def show
     render :layout => false
     authorize! :read, @interactive_video
+  end
+
+  def content
+    authorize! :read, @interactive_video
+    render :text => InteractiveVideo.parse_text(@interactive_video.content, current_player), :content_type => Mime::XML
+  end
+
+  def post_interactive
+    authorize! :read, @interactive_video
 
     # update player's progress
     progress = current_player.current_progress
@@ -20,21 +31,12 @@ class InteractiveVideosController < BaseController
       progress.last_interactive_video_index = current_video_index
       progress.save!
     end
-  end
 
-  def content
-    authorize! :read, @interactive_video
-    render :text => @interactive_video.content, :content_type => Mime::XML
-  end
-
-  def post_interactive
-    authorize! :read, @interactive_video
-    # TODO: Check if there's a survey planed after the interactive video
 
     flash[:points] = ["You just watched an episode<br>and won extra" , '1500']
     # TODO: special rules for getting points
 
-    redirect_to interactive_videos_path
+    redirect_to '/'
   end
 
   private
@@ -60,6 +62,24 @@ class InteractiveVideosController < BaseController
     end
 
     #current_online_program.interactive_videos.where(id: @interactive_video.id)
+  end
+
+  def check_for_post_survey
+    # Check if there's a survey planed after the interactive video
+    post_survey = Survey.all.joins(
+        'join online_program_interactive_videos on surveys.id = online_program_interactive_videos.post_survey_id').
+        where('online_program_interactive_videos.id = ?', @interactive_video.id).first
+
+    if post_survey != nil
+      player_answer =  PlayerAnswer.where("player_group_id = ? AND player_id = ? AND survey_id = ?",
+                                          current_player_group.id, current_player.id, post_survey.id).first
+
+      if player_answer == nil
+        # user didn't take this survey
+        redirect_to polymorphic_path(post_survey) + "?post_survey=" +
+                        post_interactive_interactive_video_path(params[:id])
+      end
+    end
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

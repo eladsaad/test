@@ -19,21 +19,34 @@ var $navPrev = $('#nav-prev');
 $('#nav-next, #nav-prev').click(function (e) {
     e.preventDefault();
 
-    if ($(this).hasClass('on-edge')) {
-        return;
-    }
-
     var $currentPanel = $questionPanels.filter('.current');
     var $nextPanel = $currentPanel.next('.question-panel');
     var $prevPanel = $currentPanel.prev('.question-panel');
 
+    // check if the user answered the question before moving to the next panel
+    if ($currentPanel.find('li.checked').length == 0) {
+        // no answer selected
+        alert('please select an answer');
+        return false;
+    }
+
+    if ($(this).hasClass('on-edge')) {
+        // no panel to move to
+        if ($(this).attr('id') == 'nav-next') {
+            // This is the last panel - submit form
+            $('#survey-form').submit();
+            window.loadRemoteScript = false;
+            History.pushState({}, '', '/interactive_videos');
+        }
+
+        return false;
+    }
+
+
 
     // move current
     if ($(this).attr('id') == 'nav-next') {
-        $currentPanel.removeClass('current');
-        $currentPanel.addClass('hidden');
-        $nextPanel.addClass('current');
-        $nextPanel.removeClass('hidden');
+        switchPanel($currentPanel, $nextPanel);
 
         $navPrev.removeClass('on-edge');
 
@@ -42,11 +55,9 @@ $('#nav-next, #nav-prev').click(function (e) {
             $navNext.addClass('on-edge');
             $navNext.attr('value', 'SEND');
         }
+
     } else {
-        $currentPanel.removeClass('current');
-        $currentPanel.addClass('hidden');
-        $prevPanel.addClass('current');
-        $prevPanel.removeClass('hidden');
+        switchPanel($currentPanel, $prevPanel);
 
         $navNext.removeClass('on-edge');
         $navNext.attr('value', 'NEXT >');
@@ -59,3 +70,11 @@ $('#nav-next, #nav-prev').click(function (e) {
 
     return false;
 });
+
+function switchPanel(currentPanel, newPanel) {
+
+    currentPanel.removeClass('current');
+    currentPanel.addClass('hidden');
+    newPanel.addClass('current');
+    newPanel.removeClass('hidden');
+}
