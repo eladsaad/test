@@ -28,7 +28,7 @@ The following tasks are available:
 
 * db:add_super_system_admin - Creates a new super system admin account
 * db:fill_reg_codes - Adds additional group registration codes to the database
-* notifications:add_jobs - Adds delayed_job jobs for sending notifications
+* notifications:add_jobs - Adds delayed_job jobs for sending notifications - executed by heroku scheduler
 
 
 == HEROKU
