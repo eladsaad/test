@@ -1,3 +1,5 @@
+require 'net/http'
+
 class FacebookNotificationJob
 
 	def initialize(facebook_user_id, content, callback_url)
