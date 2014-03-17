@@ -24,9 +24,4 @@ class StaticPagesController < ApplicationController
     #end
   end
 
-  def facebook_canvas_page
-    render :layout => false
-    # TODO: implement
-  end
-
 end
