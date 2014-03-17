@@ -5,9 +5,9 @@ namespace :notifications do
     # get last execution time
     last_execution_timestamp = ENV['last_execution_timestamp']
     last_execution_timestamp = Time.at last_execution_timestamp.to_i unless last_execution_timestamp.blank?
-    last_execution_timestamp ||= AppSettings.last_add_notification_jobs_time
+    last_execution_timestamp ||= AppSettings.last_execution_timestamp
     if last_execution_timestamp.blank?
-      raise "ERROR - 'last_add_notification_jobs_time' missing from AppSettings and not provided as argument"
+      raise "ERROR - 'last_execution_timestamp' missing from AppSettings and not provided as argument"
     end
 
     last_execution_date = last_execution_timestamp.to_date
@@ -86,7 +86,7 @@ namespace :notifications do
     # -------------------------------------
 
     # save current execution time
-    AppSettings.last_add_notification_jobs_time = current_execution_timestamp
+    AppSettings.last_execution_timestamp = current_execution_timestamp
 
     puts 'Done'
 
