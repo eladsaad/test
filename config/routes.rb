@@ -1,7 +1,5 @@
 Cinemadrive::Application.routes.draw do
 
-  get "questions/show"
-  get "surveys/show"
   # main site
   devise_for :players, :path => '', :controllers => {
       :sessions => 'players/sessions',
@@ -32,8 +30,6 @@ Cinemadrive::Application.routes.draw do
       put :post_answers
     end
   end
-  resources :questions, only: [:show]
-  resources :player_answers
 
   # /admin - system administration
   namespace :admin do

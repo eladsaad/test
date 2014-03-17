@@ -176,7 +176,7 @@ en:
         name: "Name"
         language_code: "Language Code"
         title: "Title"
-        email_content: "e-mail content"
+        email_content: "E-Mail content"
         facebook_content: "Facebook content"
       image:
         url: "Url"

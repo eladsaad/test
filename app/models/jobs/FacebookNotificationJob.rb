@@ -1,3 +1,5 @@
+require 'net/http'
+
 class FacebookNotificationJob
 
 	def initialize(facebook_user_id, content, callback_url)
@@ -20,8 +22,7 @@ class FacebookNotificationJob
 			'template' => @content,
 			)
 
-		Rails.logger.info "Sending facebook notification to facebook user id [#{@facebook_user_id}]"
-		Rails.logger.info "DOR #{ENV['FACEBOOK_APP_ACCESS_TOKEN']}"
+		Rails.logger.debug "Sending facebook notification to facebook user id [#{@facebook_user_id}]"
 		response = http.request(fb_req)
 
 		if response.nil?
@@ -30,7 +31,6 @@ class FacebookNotificationJob
 			raise "Error sending notification to facebook user id [#{@facebook_user_id}] - #{response.body}"
 		end
 
-		Rails.logger.debug response.to_yaml
 		# TODO: investigate response ?
 	end
 

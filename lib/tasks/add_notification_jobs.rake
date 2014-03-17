@@ -3,11 +3,11 @@ namespace :notifications do
   task :add_jobs => :environment do
 
     # get last execution time
-    last_execution_timestamp = ENV['last_add_notification_jobs_time']
+    last_execution_timestamp = ENV['last_execution_timestamp']
     last_execution_timestamp = Time.at last_execution_timestamp.to_i unless last_execution_timestamp.blank?
-    last_execution_timestamp ||= AppSettings.last_add_notification_jobs_time
+    last_execution_timestamp ||= AppSettings.last_execution_timestamp
     if last_execution_timestamp.blank?
-      raise "ERROR - 'last_add_notification_jobs_time' missing from AppSettings and not provided as argument"
+      raise "ERROR - 'last_execution_timestamp' missing from AppSettings and not provided as argument"
     end
 
     last_execution_date = last_execution_timestamp.to_date
@@ -23,7 +23,7 @@ namespace :notifications do
 
     PlayerGroup.all.each do |group|
 
-      puts "Working on group id [#{group.id}"
+      puts "Working on group id [#{group.id}]"
 
       if !group.active?
         puts "Group id [#{group.id}] is not active"
@@ -34,8 +34,13 @@ namespace :notifications do
         days_until = (current_execution_date - group.screening_date).to_i
 
         program_notifications = group.online_program.online_program_notifications.where(
-          'start_after_days >= ? and start_after_days <= ? and start_time > ? and start_time <= ?',
-          days_from, days_until, last_execution_time, current_execution_time
+          "(start_after_days >= :days_from and start_after_days < :days_until) or " +
+          "(start_after_days = :days_until and start_time > :last_execution_time and start_time <= :current_execution_time)",
+          
+          days_from: days_from,
+          days_until: days_until,
+          last_execution_time: last_execution_time,
+          current_execution_time: current_execution_time
         )
 
         program_notifications = program_notifications.includes(:notification)
@@ -46,10 +51,13 @@ namespace :notifications do
 
           # schedule email notificaitons for all players
           email_content = program_notification.notification.email_content
+          email_subject = program_notification.notification.title
           unless email_content.blank?
-            group.players.pluck(:email).each do |player_email|
-              puts "Adding email job for email [#{player_email}]"
-              Delayed::Job.enqueue EmailNotificationJob.new(player_email, email_content)
+            group.players.each do |player|
+              parsed_email_content = Notification.parse_text(email_content, player)
+              parsed_email_subject = Notification.parse_text(email_subject, player)
+              puts "Adding email job for email [#{player.email}]"
+              Delayed::Job.enqueue EmailNotificationJob.new(player.email, parsed_email_subject, parsed_email_content)
             end
           end
 
@@ -57,13 +65,14 @@ namespace :notifications do
           facebook_content = program_notification.notification.facebook_content
           unless facebook_content.blank?
             callback_url = nil # TODO: implement
-            group.players.pluck(:id).each do |player_id|
-              facebook_user_id = PlayerAuthentication.find_by_provider_and_player_id(:facebook, player_id).try(:uid)
+            group.players.each do |player|
+              parsed_facebook_content = Notification.parse_text(facebook_content, player)
+              facebook_user_id = PlayerAuthentication.find_by_provider_and_player_id(:facebook, player.id).try(:uid)
               if facebook_user_id.blank?
-                puts "Missing facebook id for player id [#{player_id}]"
+                puts "Missing facebook id for player id [#{player.id}]"
               else
-                puts "Adding facebook job for player id [#{player_id}]"
-                Delayed::Job.enqueue FacebookNotificationJob.new(facebook_user_id, facebook_content, callback_url)
+                puts "Adding facebook job for player id [#{player.id}]"
+                Delayed::Job.enqueue FacebookNotificationJob.new(facebook_user_id, parsed_facebook_content, callback_url)
               end
             end
           end 
@@ -77,7 +86,7 @@ namespace :notifications do
     # -------------------------------------
 
     # save current execution time
-    AppSettings.last_add_notification_jobs_time = current_execution_timestamp
+    AppSettings.last_execution_timestamp = current_execution_timestamp
 
     puts 'Done'
 
