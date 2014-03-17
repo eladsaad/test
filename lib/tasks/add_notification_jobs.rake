@@ -49,13 +49,14 @@ namespace :notifications do
         
         program_notifications.each do |program_notification|
 
+          notification_title = program_notification.notification.title
+
           # schedule email notificaitons for all players
           email_content = program_notification.notification.email_content
-          email_subject = program_notification.notification.title
           unless email_content.blank?
             group.players.each do |player|
               parsed_email_content = Notification.parse_text(email_content, player)
-              parsed_email_subject = Notification.parse_text(email_subject, player)
+              parsed_email_subject = Notification.parse_text(notification_title, player)
               puts "Adding email job for email [#{player.email}]"
               Delayed::Job.enqueue EmailNotificationJob.new(player.email, parsed_email_subject, parsed_email_content)
             end
@@ -66,13 +67,13 @@ namespace :notifications do
           unless facebook_content.blank?
             callback_url = nil # TODO: implement
             group.players.each do |player|
-              parsed_facebook_content = Notification.parse_text(facebook_content, player)
+              parsed_facebook_title = Notification.parse_text(notification_title, player)
               facebook_user_id = PlayerAuthentication.find_by_provider_and_player_id(:facebook, player.id).try(:uid)
               if facebook_user_id.blank?
                 puts "Missing facebook id for player id [#{player.id}]"
               else
                 puts "Adding facebook job for player id [#{player.id}]"
-                Delayed::Job.enqueue FacebookNotificationJob.new(facebook_user_id, parsed_facebook_content, callback_url)
+                Delayed::Job.enqueue FacebookNotificationJob.new(facebook_user_id, parsed_facebook_title, program_notification.notification.id)
               end
             end
           end 

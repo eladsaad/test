@@ -2,10 +2,10 @@ require 'net/http'
 
 class FacebookNotificationJob
 
-	def initialize(facebook_user_id, content, callback_url)
+	def initialize(facebook_user_id, content, notification_id)
 		@facebook_user_id = facebook_user_id
 		@content = content
-		@callback_url = callback_url
+		@callback_url = "notifications/#{notification_id}/facebook"
 	end
 
 	def perform
