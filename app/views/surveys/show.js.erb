@@ -1,0 +1,61 @@
+<%= changeMainView "show" %>
+
+// Answers checkbox
+$('ul.answers li').click(function () {
+    var $radioBtn = $(this).children('input');
+    if (!$radioBtn.is(':checked')) {
+        $(this).siblings().removeClass('checked');
+        $(this).addClass('checked');
+    }
+
+    $radioBtn.prop("checked", true);
+});
+
+// questions navigation
+var $questionPanels = $('.question-panel');
+var $navNext = $('#nav-next');
+var $navPrev = $('#nav-prev');
+
+$('#nav-next, #nav-prev').click(function (e) {
+    e.preventDefault();
+
+    if ($(this).hasClass('on-edge')) {
+        return;
+    }
+
+    var $currentPanel = $questionPanels.filter('.current');
+    var $nextPanel = $currentPanel.next('.question-panel');
+    var $prevPanel = $currentPanel.prev('.question-panel');
+
+
+    // move current
+    if ($(this).attr('id') == 'nav-next') {
+        $currentPanel.removeClass('current');
+        $currentPanel.addClass('hidden');
+        $nextPanel.addClass('current');
+        $nextPanel.removeClass('hidden');
+
+        $navPrev.removeClass('on-edge');
+
+        if ($nextPanel.next('.question-panel').length == 0 ) {
+            // the next question-panel is the last one
+            $navNext.addClass('on-edge');
+            $navNext.attr('value', 'SEND');
+        }
+    } else {
+        $currentPanel.removeClass('current');
+        $currentPanel.addClass('hidden');
+        $prevPanel.addClass('current');
+        $prevPanel.removeClass('hidden');
+
+        $navNext.removeClass('on-edge');
+        $navNext.attr('value', 'NEXT >');
+
+        if ($prevPanel.prev('.question-panel').length == 0 ) {
+            // the prev question-panel is the first one
+            $navPrev.addClass('on-edge');
+        }
+    }
+
+    return false;
+});

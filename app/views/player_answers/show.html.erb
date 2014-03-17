@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Player group:</strong>
+  <%= @player_answer.player_group_id %>
+</p>
+
+<p>
+  <strong>Survey:</strong>
+  <%= @player_answer.survey_id %>
+</p>
+
+<p>
+  <strong>Question:</strong>
+  <%= @player_answer.question_id %>
+</p>
+
+<p>
+  <strong>Answer number:</strong>
+  <%= @player_answer.answer_number %>
+</p>
+
+<%= link_to 'Edit', edit_player_answer_path(@player_answer) %> |
+<%= link_to 'Back', player_answers_path %>

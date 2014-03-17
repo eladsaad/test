@@ -1,5 +1,7 @@
 Cinemadrive::Application.routes.draw do
 
+  get "questions/show"
+  get "surveys/show"
   # main site
   devise_for :players, :path => '', :controllers => {
       :sessions => 'players/sessions',
@@ -23,7 +25,15 @@ Cinemadrive::Application.routes.draw do
   get '/about' => "static_pages#about"
   get '/scores' => "scores#index"
   get '/accept_tos' => 'players#edit_accept_tos', :as => "edit_accept_tos_player"
-  put '/accept_tos' => 'players#update_accept_tos', :as => "update_accept_tos_player"  
+  put '/accept_tos' => 'players#update_accept_tos', :as => "update_accept_tos_player"
+
+  resources :surveys, only: [:show] do
+    member do
+      put :post_answers
+    end
+  end
+  resources :questions, only: [:show]
+  resources :player_answers
 
   # /admin - system administration
   namespace :admin do

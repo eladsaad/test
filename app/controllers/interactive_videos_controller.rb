@@ -1,5 +1,6 @@
 class InteractiveVideosController < BaseController
   before_action :set_interactive_video, only: [:show, :content, :post_interactive]
+  before_action :check_for_pre_survey, only: [:show]
 
   def index
     authorize! :index, InteractiveVideo
@@ -40,6 +41,25 @@ class InteractiveVideosController < BaseController
   # Use callbacks to share common setup or constraints between actions.
   def set_interactive_video
     @interactive_video = InteractiveVideo.find(params[:id])
+    #check_for_pre_survey
+  end
+
+  def check_for_pre_survey
+    pre_survey = Survey.all.joins(
+        'join online_program_interactive_videos on surveys.id = online_program_interactive_videos.pre_survey_id').
+        where('online_program_interactive_videos.id = ?', @interactive_video.id).first
+
+    if pre_survey != nil
+      player_answer =  PlayerAnswer.where("player_group_id = ? AND player_id = ? AND survey_id = ?",
+                         current_player_group.id, current_player.id, pre_survey.id).first
+
+      if player_answer == nil
+        # user didn't take this survey
+        redirect_to polymorphic_path(pre_survey) + "?post_survey=" + polymorphic_path(@interactive_video)
+      end
+    end
+
+    #current_online_program.interactive_videos.where(id: @interactive_video.id)
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

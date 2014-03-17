@@ -1,0 +1,11 @@
+<%= changeMainView "show" %>
+
+$('ul.answers li').click(function () {
+    var $radioBtn = $(this).children('input');
+    if (!$radioBtn.is(':checked')) {
+        $(this).siblings().removeClass('checked');
+        $(this).addClass('checked');
+    }
+
+    $radioBtn.prop("checked", true);
+});

@@ -1,0 +1,32 @@
+<%= changeMainView "edit_accept_tos" %>
+
+//console.log('test0');
+
+$(document).off('submit.acceptos').on('submit.acceptos', '.edit_player', function() {
+    formInProgress = true;
+
+    var valuesToSubmit = $(this).serialize();
+//    console.log('test1');
+    $.ajax({
+        type: 'GET',
+        url: $(this).attr('action'), //submits it to the given url of the form
+        data: valuesToSubmit,
+        dataType: "JSON", // you want a difference between normal and ajax-calls, and json is standard
+
+        complete: function (data, textStatus) {
+            // request completed
+
+            if (data.responseText.indexOf('episodes-view') > 0) {
+                // main content has been changed
+                window.loadRemoteScript = false;
+                History.pushState({}, '', '/interactive_videos');
+            }
+            formInProgress = false;
+        }
+    });
+
+    return false; // prevents normal behaviour
+});
+//$('#main-content submit').click(function() {
+//    History.pushState({}, '', $(this).attr('href'));
+//});

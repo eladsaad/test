@@ -16,6 +16,14 @@ class PlayerAbility
 
     can :read, Score
 
+    can :read, Survey
+
+    can :read, Question
+
+    can :read, PlayerAnswer
+    can :create, PlayerAnswer
+    can :update, PlayerAnswer
+
   end
 
 end
