@@ -23,7 +23,8 @@ Cinemadrive::Application.routes.draw do
   get '/about' => "static_pages#about"
   get '/scores' => "scores#index"
   get '/accept_tos' => 'players#edit_accept_tos', :as => "edit_accept_tos_player"
-  put '/accept_tos' => 'players#update_accept_tos', :as => "update_accept_tos_player"  
+  put '/accept_tos' => 'players#update_accept_tos', :as => "update_accept_tos_player" 
+  post '/facebook_canvas_page', :to => redirect('/facebook_canvas_page.html') 
 
   # /admin - system administration
   namespace :admin do
