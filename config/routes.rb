@@ -25,6 +25,9 @@ Cinemadrive::Application.routes.draw do
   get '/accept_tos' => 'players#edit_accept_tos', :as => "edit_accept_tos_player"
   put '/accept_tos' => 'players#update_accept_tos', :as => "update_accept_tos_player"
 
+  get '/invite' => "player_invite#invite"
+  put '/invite' => "player_invite#send_invite"
+
   resources :surveys, only: [:show] do
     member do
       put :post_answers

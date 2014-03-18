@@ -24,6 +24,8 @@ class PlayerAbility
     can :create, PlayerAnswer
     can :update, PlayerAnswer
 
+    can :send, :invite
+
   end
 
 end

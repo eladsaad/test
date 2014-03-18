@@ -1,0 +1,5 @@
+<%= changeMainView "invite" %>
+$('.banner').show();
+$('.points-view').show();
+$('.footer').html('<%= escape_javascript(render partial: "layouts/footer") %>').show();
+$('#main-content').css({'padding-bottom': '90px'});
