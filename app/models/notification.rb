@@ -24,4 +24,8 @@ class Notification < ActiveRecord::Base
 		end
 	end
 
+	def allowed_for_player(player)
+		player.current_online_program.enabled_notifications(player.current_player_group).where(notification_id: self.id).any?
+	end
+
 end

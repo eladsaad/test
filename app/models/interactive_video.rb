@@ -15,5 +15,9 @@ class InteractiveVideo < ActiveRecord::Base
   	online_program.online_program_interactive_videos.order(:start_after_days).pluck(:interactive_video_id).index(self.id)+1
   end
 
+  def allowed_for_player(player)
+    player.current_online_program.enabled_interactive_videos(player.current_player_group).where(interactive_video_id: self.id).any?
+  end
+
 
 end

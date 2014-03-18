@@ -9,7 +9,6 @@ class InteractiveVideosController < BaseController
   end
 
   def show
-    render :layout => false
     authorize! :read, @interactive_video
 
     # update player's progress
@@ -19,6 +18,8 @@ class InteractiveVideosController < BaseController
       progress.last_interactive_video_index = current_video_index
       progress.save!
     end
+
+    render :layout => false
   end
 
   def content
