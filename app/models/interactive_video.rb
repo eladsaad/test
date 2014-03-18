@@ -1,4 +1,7 @@
 class InteractiveVideo < ActiveRecord::Base
+
+  DYNAMIC_PARAMETER_REGEX = /{{(.*?)}}/
+
   # == ASSOCIATIONS ==
   belongs_to :language_code
 
@@ -19,5 +22,10 @@ class InteractiveVideo < ActiveRecord::Base
     player.current_online_program.enabled_interactive_videos(player.current_player_group).where(interactive_video_id: self.id).any?
   end
 
+  def self.parse_text(text, player)
+    text.gsub(DYNAMIC_PARAMETER_REGEX) do |match|
+      player.try(:send, "#{$1}".strip) #TODO: restrict only certain methods ?
+    end
+  end
 
 end

@@ -32,6 +32,13 @@ Cinemadrive::Application.routes.draw do
     end
   end
 
+  resources :surveys, only: [:show] do
+    member do
+      put :post_answers
+    end
+  end
+  
+
   # /admin - system administration
   namespace :admin do
     devise_for :system_admins, :controllers => {

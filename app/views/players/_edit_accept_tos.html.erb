@@ -1,0 +1,9 @@
+<%= form_for(@player, url: update_accept_tos_player_path, method: :put, remote: true) do |f| %>
+
+  	<p id="term-agree-section">
+      <%= f.check_box :tos_accepted %>
+      I agree to the <%= link_to "site terms", '#' %>
+	</p>
+    <%= f.submit "SUBMIT", class: 'button' %>
+
+<% end %>

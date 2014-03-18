@@ -1,0 +1,27 @@
+<div class="clearfix">
+    <%= form_tag post_answers_survey_path(id: @survey.id), id: 'survey-form', :method => :put, remote: true do %>
+        <%= hidden_field_tag 'post_survey', params['post_survey'] %>
+        <% @survey_questions.each_with_index do | question, question_index | %>
+            <div class="question-panel <%= question_index == 0 ? "current" : "hidden" %>" question_index="<%= question_index %>">
+                <div class="question"><%= question.question %></div>
+                <ul class="answers">
+                    <% question.answers.each_with_index do | answer, answer_index | %>
+                        <li>
+                          <input type="radio" name="player_answers[<%= question_index %>]" value="<%= answer_index %>"/><div class="radio-button"></div><%= answer %>
+                        </li>
+                    <% end %>
+                </ul>
+            </div>
+        <% end %>
+      <!--<p><%#= submit_tag "Submit" %></p>-->
+    <% end %>
+</div>
+
+<div class="questions-nav">
+  <% if @survey_questions.count > 1 %>
+      <input type="button" class="button on-edge" id="nav-prev" value="&lt; BACK">
+      <input type="button" class="button" id="nav-next" value="NEXT &gt;">
+  <% elsif @survey_questions.count == 1 %>
+      <input type="button" class="button on-edge" id="nav-next" value="SEND">
+  <% end %>
+</div>

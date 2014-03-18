@@ -11,6 +11,7 @@ $('#main-content').css({'padding-bottom': '0'});
 
 
 var formInProgress = false;
+
 $(document).off('submit.signin').on('submit.signin','#reg-signin-form', onFormSubmit);
 function onFormSubmit() {
 
@@ -55,8 +56,6 @@ $('#reg-with-facebook').click(function(e) {
     $(this).closest('form').append($(input)).submit();
     return false;
 });
-
-
 
 showRegOptions();
 $('#code-field').on('keyup input change', showRegOptions);

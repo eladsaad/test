@@ -1,0 +1,80 @@
+<%= changeMainView "show" %>
+
+// Answers checkbox
+$('ul.answers li').click(function () {
+    var $radioBtn = $(this).children('input');
+    if (!$radioBtn.is(':checked')) {
+        $(this).siblings().removeClass('checked');
+        $(this).addClass('checked');
+    }
+
+    $radioBtn.prop("checked", true);
+});
+
+// questions navigation
+var $questionPanels = $('.question-panel');
+var $navNext = $('#nav-next');
+var $navPrev = $('#nav-prev');
+
+$('#nav-next, #nav-prev').click(function (e) {
+    e.preventDefault();
+
+    var $currentPanel = $questionPanels.filter('.current');
+    var $nextPanel = $currentPanel.next('.question-panel');
+    var $prevPanel = $currentPanel.prev('.question-panel');
+
+    // check if the user answered the question before moving to the next panel
+    if ($currentPanel.find('li.checked').length == 0) {
+        // no answer selected
+        alert('please select an answer');
+        return false;
+    }
+
+    if ($(this).hasClass('on-edge')) {
+        // no panel to move to
+        if ($(this).attr('id') == 'nav-next') {
+            // This is the last panel - submit form
+            $('#survey-form').submit();
+            window.loadRemoteScript = false;
+            History.pushState({}, '', '/interactive_videos');
+        }
+
+        return false;
+    }
+
+
+
+    // move current
+    if ($(this).attr('id') == 'nav-next') {
+        switchPanel($currentPanel, $nextPanel);
+
+        $navPrev.removeClass('on-edge');
+
+        if ($nextPanel.next('.question-panel').length == 0 ) {
+            // the next question-panel is the last one
+            $navNext.addClass('on-edge');
+            $navNext.attr('value', 'SEND');
+        }
+
+    } else {
+        switchPanel($currentPanel, $prevPanel);
+
+        $navNext.removeClass('on-edge');
+        $navNext.attr('value', 'NEXT >');
+
+        if ($prevPanel.prev('.question-panel').length == 0 ) {
+            // the prev question-panel is the first one
+            $navPrev.addClass('on-edge');
+        }
+    }
+
+    return false;
+});
+
+function switchPanel(currentPanel, newPanel) {
+
+    currentPanel.removeClass('current');
+    currentPanel.addClass('hidden');
+    newPanel.addClass('current');
+    newPanel.removeClass('hidden');
+}
