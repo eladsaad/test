@@ -15,8 +15,17 @@ class Notification < ActiveRecord::Base
 
 	def self.parse_text(text, player)
 		text.gsub(DYNAMIC_PARAMETER_REGEX) do |match|
-			player.try(:send, "#{$1}".strip)
+			field_name = "#{$1}".strip 
+			if ['first_name', 'last_name', 'full_name', 'email', 'birth_date', 'gender', 'age'].include?(field_name)
+				player.try(:send, field_name) 
+			else
+				match
+			end
 		end
+	end
+
+	def allowed_for_player(player)
+		player.current_online_program.enabled_notifications(player.current_player_group).where(notification_id: self.id).any?
 	end
 
 end

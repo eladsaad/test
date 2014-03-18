@@ -9,12 +9,17 @@ class PlayerAbility
     can :new, PlayerGroupAssociation
     can :create, PlayerGroupAssociation, player_id: player.id
 
-    can :read, InteractiveVideo # TODO: player can view only interactive video's related to program he's subscribed to
-      # and only in case the group not expired
+    can :read, InteractiveVideo do |interactive_video|
+      interactive_video.allowed_for_player(player)
+    end
+
+    can :read, Notification do |notification|
+      notification.allowed_for_player(player)
+    end
 
     can :accept_tos, Player, id: player.id
 
-    can :read, Score
+    can :index, Score
 
     can :read, Survey
 

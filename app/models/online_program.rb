@@ -34,5 +34,11 @@ class OnlineProgram < ActiveRecord::Base
 		current_time = Time.now.strftime("%H:%M:%S")
 		self.online_program_interactive_videos.where('start_after_days < ? or (start_after_days = ? and start_time <= ?)', days_since_start, days_since_start, current_time)
 	end
+
+	def enabled_notifications(player_group)
+		days_since_start = (Date.today - player_group.screening_date).to_i
+		current_time = Time.now.strftime("%H:%M:%S")
+		self.online_program_notifications.where('start_after_days < ? or (start_after_days = ? and start_time <= ?)', days_since_start, days_since_start, current_time)
+	end
 	
 end

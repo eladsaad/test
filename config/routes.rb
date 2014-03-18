@@ -23,7 +23,14 @@ Cinemadrive::Application.routes.draw do
   get '/about' => "static_pages#about"
   get '/scores' => "scores#index"
   get '/accept_tos' => 'players#edit_accept_tos', :as => "edit_accept_tos_player"
-  put '/accept_tos' => 'players#update_accept_tos', :as => "update_accept_tos_player"
+  put '/accept_tos' => 'players#update_accept_tos', :as => "update_accept_tos_player" 
+
+  resources :notifications, only: [] do
+    member do
+      post :facebook
+      get :facebook
+    end
+  end
 
   get '/invite' => "player_invite#invite"
   put '/invite' => "player_invite#send_invite"
@@ -33,6 +40,7 @@ Cinemadrive::Application.routes.draw do
       put :post_answers
     end
   end
+  
 
   # /admin - system administration
   namespace :admin do

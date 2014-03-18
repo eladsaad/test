@@ -12,8 +12,8 @@ class InteractiveVideosController < BaseController
   end
 
   def show
-    render :layout => false
     authorize! :read, @interactive_video
+    render :layout => false
   end
 
   def content
@@ -32,12 +32,12 @@ class InteractiveVideosController < BaseController
       progress.save!
     end
 
-
     flash[:points] = ["You just watched an episode<br>and won extra" , '1500']
     # TODO: special rules for getting points
 
-    redirect_to '/'
+    redirect_to root_url
   end
+  
 
   private
   # Use callbacks to share common setup or constraints between actions.

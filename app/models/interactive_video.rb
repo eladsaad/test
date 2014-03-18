@@ -18,9 +18,13 @@ class InteractiveVideo < ActiveRecord::Base
   	online_program.online_program_interactive_videos.order(:start_after_days).pluck(:interactive_video_id).index(self.id)+1
   end
 
+  def allowed_for_player(player)
+    player.current_online_program.enabled_interactive_videos(player.current_player_group).where(interactive_video_id: self.id).any?
+  end
+
   def self.parse_text(text, player)
     text.gsub(DYNAMIC_PARAMETER_REGEX) do |match|
-      player.try(:send, "#{$1}".strip)
+      player.try(:send, "#{$1}".strip) #TODO: restrict only certain methods ?
     end
   end
 
