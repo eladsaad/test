@@ -48,6 +48,19 @@ function footer () {
                 window.loadRemoteScript = false;
                 History.pushState({}, '', '/');
             }
+        }).fail(function( jqxhr, settings, exception ) {
+            alert("Failed to load page");
+        });
+    });
+
+    $('.footer').on('click', '#invite_link', function() {
+        $.getScript('/invite').done(function(script, textStatus) {
+            if (textStatus == 'success') {
+                window.loadRemoteScript = false;
+                History.pushState({}, '', '/invite');
+            }
+        }).fail(function( jqxhr, settings, exception ) {
+            alert("Failed to load page");
         });
     });
 
@@ -57,6 +70,8 @@ function footer () {
                 window.loadRemoteScript = false;
                 History.pushState({}, '', '/scores');
             }
+        }).fail(function( jqxhr, settings, exception ) {
+            alert("Failed to load page");
         });
     });
 }

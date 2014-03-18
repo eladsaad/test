@@ -32,6 +32,9 @@ Cinemadrive::Application.routes.draw do
     end
   end
 
+  get '/invite' => "player_invite#invite"
+  put '/invite' => "player_invite#send_invite"
+
   resources :surveys, only: [:show] do
     member do
       put :post_answers
