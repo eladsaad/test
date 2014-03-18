@@ -28,6 +28,7 @@ Cinemadrive::Application.routes.draw do
   resources :notifications, only: [] do
     member do
       post :facebook
+      get :facebook
     end
   end
 
