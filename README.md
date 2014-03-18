@@ -20,6 +20,8 @@ These variables should be set on production environment:
 * DATABASE_USER_PASSWORD
 * DATABASE_HOST
 * DATABASE_PORT
+* HEROKU_API_KEY - used on heroku by 'workless' gem (heroku auth:token)
+* APP_NAME - used on heroku by 'workless' gem
 
 
 == RAKE TASKS

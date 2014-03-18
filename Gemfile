@@ -28,6 +28,7 @@ gem 'rails-settings-cached', '0.3.1'
 group :production do
 	gem 'rails_12factor' # heroku logging and assets
 	#gem 'rails_serve_static_assets'
+	gem 'workless' # automatic scaling of worker dynos for delayed_job
 end
 
 group :development do
