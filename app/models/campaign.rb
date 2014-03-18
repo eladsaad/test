@@ -1,8 +1,10 @@
 class Campaign < ActiveRecord::Base
 
+	MAX_VIEWS_VALUE_FOR_DEFAULT_CAMPAIGN = -1
+
 	# == VALIDATIONS ==
 	validates :name, :presence => true
-	validates :max_views, :numericality => { :greater_than => 0 }, allow_blank: true
+	validates :max_views, :numericality => { :greater_than => -2 }, allow_blank: true
 
 	# == ASSOCIATIONS ==
 	has_many :campaign_operator_programs, :inverse_of => :campaign, :dependent => :destroy
@@ -19,8 +21,8 @@ class Campaign < ActiveRecord::Base
 				online_program_id: player_group.online_program_id
 			).pluck(:campaign_id)
 
-		self.where(id: allowed_campaigns).where("views < max_views").first
-		# TODO: what to do if no banner is available ?
+		campaign = self.where(id: allowed_campaigns).where("views < max_views").first
+		campaign ||= self.get_default # default campaign if none found
 	end
 
 	def show_banner_content(banner_number)
@@ -28,6 +30,10 @@ class Campaign < ActiveRecord::Base
 		self.views += 1
 		self.save!
 		return content
+	end
+
+	def self.get_default
+		self.where(max_views: MAX_VIEWS_VALUE_FOR_DEFAULT_CAMPAIGN).first
 	end
 
 end

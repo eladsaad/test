@@ -6,7 +6,7 @@
 
     <h3><%= t(:general) %></h3>
     <%= f.input :name %>
-    <%= f.input :max_views %>
+    <%= f.input :max_views, hint: "Use [#{Campaign::MAX_VIEWS_VALUE_FOR_DEFAULT_CAMPAIGN}] to set as default campaign" %>
     <%= f.input :trophy_name %>
     <%= f.input :landing_page %>
 
