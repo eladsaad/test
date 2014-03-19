@@ -1,0 +1,29 @@
+<%= changeMainView "text_content" %>
+$('.banner').show();
+$('.points-view').show();
+$('.footer').html('<%= escape_javascript(render partial: "layouts/footer") %>').show();
+$('#main-content').css({'padding-bottom': '90px'});
+
+
+
+
+
+var $menuItems = $('#content-menu').find('li');
+var $textPages = $('#text-container').find('.text-content');
+
+
+$menuItems.click(function() {
+    $(this).addClass('selected');
+    $menuItems.not(this).removeClass('selected');
+
+    var target = $(this).attr('target');
+    var $pageToShow = $('#' + target);
+    $textPages.not($pageToShow).removeClass('active');
+    $pageToShow.addClass('active');
+});
+
+setPage('<%= @active_page%>');
+function setPage(activePage) {
+    // Set menu item
+    $menuItems.filter('[target="' + activePage + '"]').trigger('click');
+}

@@ -14,18 +14,25 @@ class StaticPagesController < ApplicationController
   end
 
   def about
-    #TODO: implement
 
-    flash[:points] = ["You just did something<br>and won extra" , '2000']
+    #flash[:points] = ["You just did something<br>and won extra" , '2000']
 
-    #respond_to do |format|
-    #  format.html { redirect_to '/about', notice: '' }
-    #  format.js   {}
-    #end
+    @active_page = 'about'
+
+    respond_to do |format|
+      format.html { render 'text_content' }
+      format.js   { render 'text_content' }
+    end
   end
 
-  def invite
-    
+  def terms
+
+    @active_page = 'terms'
+
+    respond_to do |format|
+      format.html { render 'text_content' }
+      format.js   { render 'text_content' }
+    end
   end
 
 end
