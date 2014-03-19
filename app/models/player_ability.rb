@@ -17,6 +17,8 @@ class PlayerAbility
       notification.allowed_for_player(player)
     end
 
+    can :click, Campaign
+
     can :accept_tos, Player, id: player.id
 
     can :index, Score
