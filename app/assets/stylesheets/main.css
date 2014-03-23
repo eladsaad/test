@@ -550,11 +550,13 @@ textarea, input { outline: none; }
             padding: 0 15px;
             width: 220px;
             height: 40px;
+            margin-bottom: 50px;
         }
 
         #reg-options {
             display: none;
             /*visibility: hidden;*/
+            height: 90px;
         }
 
         #reg-with-facebook {
@@ -565,7 +567,7 @@ textarea, input { outline: none; }
             padding: 0;
             background-image: url('/assets/forms.png');
             background-repeat: no-repeat;
-            background-size: 275px 104px;
+            background-size: 274px 104px;
             background-position: -61px -64px;
         }
 
@@ -577,13 +579,15 @@ textarea, input { outline: none; }
             padding: 0;
             background-image: url('/assets/forms.png');
             background-repeat: no-repeat;
-            background-size: 275px 104px;
+            background-size: 274px 104px;
             background-position: -61px -32px;
         }
 
         #email-signup {
-            text-decoration: none;
+            display: inline-block;
+            margin-top: 7px;
             color: #fff;
+            text-decoration: none;
             font-family: 'robotomedium', sans-serif;
         }
 
@@ -603,11 +607,21 @@ textarea, input { outline: none; }
         -ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#55000000, endColorstr=#55000000)";
         zoom: 1;*/
     }
-
-        .signin-portion a {
+        #signin-portion p {
+            float: left;
+            font-family: 'robotobold', sans-serif;
+            font-size: 1em;
+            text-align: left;
+            display: inline-block;
+            width: 90px;
+        }
+        #signin-portion a {
+            float: right;
             font-family: 'robotobold', sans-serif;
             text-decoration: none;
-            padding: 2px 6px;
+            float: right;
+            padding: 12px 12px 4px;
+            height: 40px;
             /*color: #1d94d7;*/
         }
 
@@ -723,7 +737,7 @@ textarea, input { outline: none; }
     height: 28px;
     background-image: url('/assets/forms.png');
     background-repeat: no-repeat;
-    background-size: 275px 104px;
+    background-size: 274px 104px;
     background-position: -29px -21px;
 }
 
@@ -1003,7 +1017,7 @@ input[type=checkbox].css-checkbox:checked label.css-label {
     height: 25px;
     background-image: url('/assets/forms.png');
     background-repeat: no-repeat;
-    background-size: 275px 104px;
+    background-size: 274px 104px;
     background-position: -23px -63px;
     cursor: pointer;
     z-index: 2;
@@ -1103,7 +1117,7 @@ li .radio-button {
 
     background-image: url('/assets/forms.png');
     background-repeat: no-repeat;
-    background-size: 275px 104px;
+    background-size: 274px 104px;
     background-position: -22px 0;
 }
 li.checked .radio-button {

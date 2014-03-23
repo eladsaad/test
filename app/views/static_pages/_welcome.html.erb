@@ -15,19 +15,11 @@
                             <%= link_to 'Sign-up with email', '#', id: 'email-signup', data: 'submit-form' %>
                         </div>
                     </div>
-                    <br><br>
-                    <p class="signin-portion">Already have an account? &nbsp;
-                        <%= link_to 'Log in', new_player_session_path, class: 'btn btn-primary btn-mini', remote: true %>
-                    </p>
-                    <!--span class="signin-portion">
-                        <h2>Sign in</h2>
-                        Already registered?
-                        <br>
-                        <%= link_to '', omniauth_authorize_path(:player, :facebook),
-                                           id: 'signin-with-facebook' %>
-                        <br>
-                        <%= link_to 'Sign-in with email', new_player_session_path %>
-                    </span-->
+
+                    <div id="signin-portion">
+                        <p>Already have an account?</p>
+                        <%= link_to 'SIGN IN', new_player_session_path, class: 'button', remote: true %>
+                    </div>
                 <% end %>
                 <!--[if lt IE 9]>
                 </div>
