@@ -10,6 +10,7 @@ Cinemadrive::Application.routes.draw do
   }
   devise_scope :player do
     get '/registrations/pre_sign_up' => 'players/registrations#pre_sign_up', :as => :player_pre_sign_up
+    get '/registrations/check_reg_code' => 'players/registrations#check_reg_code', :as => :player_check_reg_code
   end
   
   get '/campaigns/click/:id' => "campaigns#click", :as => :click_campaign

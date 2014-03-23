@@ -5,7 +5,7 @@ class Players::RegistrationsController < Devise::RegistrationsController
 	before_filter :verify_reg_code, only: [:create, :pre_sign_up]
 	after_filter :add_group_from_reg_code, only: [:create]
 
-  respond_to :html, :js
+  respond_to :html, :js, :json
 
 	def pre_sign_up
     respond_to do |format|
@@ -17,7 +17,19 @@ class Players::RegistrationsController < Devise::RegistrationsController
         format.js { redirect_to new_player_registration_path(reg_code: params[:reg_code]) }
       end
     end
-	end
+  end
+
+  def check_reg_code
+    group = PlayerGroup.find_by_reg_code(params[:reg_code])
+
+    respond_to do |format|
+      if group.nil? || !group.active?
+        format.json { render :json => "{ \"valid\": false }" }
+      else
+        format.json { render :json => "{ \"valid\": true }" }
+      end
+    end
+  end
 
   	protected
 

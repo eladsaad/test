@@ -58,7 +58,7 @@ $('#reg-with-facebook').click(function(e) {
 });
 
 showRegOptions();
-$('#code-field').on('keyup input change', showRegOptions);
+$('#code-field').on('input', showRegOptions);
 var lastValue = '';
 $('#code-field').on('keyup', function() {
     if (lastValue != this.value && /[a-z]/.test(this.value)) {
@@ -72,10 +72,27 @@ $('#code-field').on('keyup', function() {
 function showRegOptions() {
     if ($('#code-field').val().length > 6) {
         //$('#reg-options').css('visibility', 'visible');
-        $('#reg-options').show();
+        $.ajax({
+            url: "<%= player_check_reg_code_path %>" + '?reg_code=' + $('#code-field').val(),
+            dataType: "json",
+            type: "GET",
+            processData: false,
+            contentType: "application/json",
+            success: function(data){
+                console.log(data['valid']);
+                if (data['valid']) {
+                    $('#reg-options').show();
+                    $('#code-field').hide();
+                } else {
+                    $('#reg-options').hide();
+                }
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                console.log("Status: " + textStatus + "; Error: " + errorThrown);
+            }
+        });
         //$('#reg-signin-form').css({'height': '220px', marginBottom: '0' });
     } else {
-        //$('#reg-options').css('visibility', 'hidden');
         $('#reg-options').hide();
         //$('#reg-signin-form').css({'height': '190px', marginBottom: '30px' });
     }

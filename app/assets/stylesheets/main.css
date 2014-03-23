@@ -544,11 +544,12 @@ textarea, input { outline: none; }
 
         #code-field {
             /*margin: 10px 0 0 0 !important;*/
-            font-size: 0.9em;
+            font-size: 1em;
             font-size: 0.85em \0/IE8+9;
             text-align: center;
             padding: 0 15px;
             width: 220px;
+            height: 40px;
         }
 
         #reg-options {
@@ -557,15 +558,15 @@ textarea, input { outline: none; }
         }
 
         #reg-with-facebook {
-            margin-top: 10px;
+            margin-top: 0px;
             display: inline-block;
-            width: 180px;
-            height: 31px;
+            width: 213px;
+            height: 41px;
             padding: 0;
             background-image: url('/assets/forms.png');
             background-repeat: no-repeat;
-            background-size: 242px 93px;
-            background-position: -61px 0;
+            background-size: 275px 104px;
+            background-position: -61px -64px;
         }
 
         #signin-with-facebook {
@@ -576,8 +577,14 @@ textarea, input { outline: none; }
             padding: 0;
             background-image: url('/assets/forms.png');
             background-repeat: no-repeat;
-            background-size: 242px 93px;
+            background-size: 275px 104px;
             background-position: -61px -32px;
+        }
+
+        #email-signup {
+            text-decoration: none;
+            color: #fff;
+            font-family: 'robotomedium', sans-serif;
         }
 
     .signin-portion {
@@ -598,7 +605,7 @@ textarea, input { outline: none; }
     }
 
         .signin-portion a {
-            font-family: 'robotobold';
+            font-family: 'robotobold', sans-serif;
             text-decoration: none;
             padding: 2px 6px;
             /*color: #1d94d7;*/
@@ -716,7 +723,7 @@ textarea, input { outline: none; }
     height: 28px;
     background-image: url('/assets/forms.png');
     background-repeat: no-repeat;
-    background-size: 242px 93px;
+    background-size: 275px 104px;
     background-position: -29px -21px;
 }
 
@@ -996,7 +1003,7 @@ input[type=checkbox].css-checkbox:checked label.css-label {
     height: 25px;
     background-image: url('/assets/forms.png');
     background-repeat: no-repeat;
-    background-size: 242px 93px;
+    background-size: 275px 104px;
     background-position: -23px -63px;
     cursor: pointer;
     z-index: 2;
@@ -1096,7 +1103,7 @@ li .radio-button {
 
     background-image: url('/assets/forms.png');
     background-repeat: no-repeat;
-    background-size: 242px 93px;
+    background-size: 275px 104px;
     background-position: -22px 0;
 }
 li.checked .radio-button {
