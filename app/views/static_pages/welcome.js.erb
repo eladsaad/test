@@ -38,6 +38,12 @@ function onFormSubmit() {
 
     return false; // prevents normal behaviour
 }
+
+$('.main a').click(function (e) {
+    window.loadRemoteScript = false;
+    History.pushState({}, '', $(this).attr('href'));
+});
+
 $('#email-signup').click(function(e) {
     e.preventDefault();
     if (formInProgress) return false; // abort multiple clicks
@@ -58,7 +64,7 @@ $('#reg-with-facebook').click(function(e) {
 });
 
 showRegOptions();
-$('#code-field').on('input', showRegOptions);
+$('#code-field').on('keyup', showRegOptions);
 var lastValue = '';
 $('#code-field').on('keyup', function() {
     if (lastValue != this.value && /[a-z]/.test(this.value)) {
@@ -79,12 +85,14 @@ function showRegOptions() {
             processData: false,
             contentType: "application/json",
             success: function(data){
-                console.log(data['valid']);
+//                alert(data['valid']);
                 if (data['valid']) {
                     $('#reg-options').css({display: 'inline-block'});
-                    $('#code-field').hide();
+                    $('.error-msg').css({visibility: 'hidden'});
+//                    $('#code-field').hide();
                 } else {
                     $('#reg-options').hide();
+                    $('.error-msg').css({visibility: 'visible'});
                 }
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -94,6 +102,7 @@ function showRegOptions() {
         //$('#reg-signin-form').css({'height': '220px', marginBottom: '0' });
     } else {
         $('#reg-options').hide();
+        $('.error-msg').css({visibility: 'hidden'});
         //$('#reg-signin-form').css({'height': '190px', marginBottom: '30px' });
     }
 }

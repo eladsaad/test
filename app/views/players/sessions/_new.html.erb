@@ -7,10 +7,10 @@
 <p class="signin-or">or</p>
 
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), remote: true) do |f| %>
-  
-  <!--[if lt IE 9]>
-  <!--div class="ie7-fix"-->
-  <![endif]-->
+
+    <!--[if lt IE 9]>
+    <div class="ie7-fix">
+    <![endif]-->
   <span class="login-credentials">
     <%= f.text_field :email, autofocus: true, placeholder: "EMAIL" %>
 
@@ -22,6 +22,6 @@
     </div>
   </span>
   <!--[if lt IE 9]>
-  <!--/div-->
+  </div>
   <![endif]-->
 <% end %>

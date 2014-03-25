@@ -4,11 +4,12 @@
                 <div class="ie7-fix">
                 <![endif]-->
                 <%= form_tag player_pre_sign_up_path, id: 'reg-signin-form', :method => 'get', format: :js, remote: true do %>
-                    <div class="reg-portion">
+                    <div id="reg-portion">
                         <h2>Sign up</h2>
                         <!--Enter your group code-->
                         <%= text_field_tag 'reg_code', nil, placeholder: "ENTER GROUP CODE HERE", maxlength: '7',
                                            id: 'code-field', class: 'form-control', autocomplete: 'off' %>
+                        <div class="error-msg">Invalid group code, please a enter valid group code</div>
                         <div id="reg-options">
                             <%= link_to '', '#', name: 'facebook', id: 'reg-with-facebook' %>
                             <br>

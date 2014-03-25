@@ -22,13 +22,14 @@
         <div class="clearfix">
             <%= f.text_field :first_name, placeholder: "FIRST NAME"  %><!--
             --><%= f.text_field :last_name, placeholder: "LAST NAME"  %><!--
-            --><%= f.select  :age, [['AGE', nil], *8..90] %>
+            --><%= f.select  :age, [['AGE', nil], *14..90] %>
             <br>
             <%= f.email_field :email, placeholder: "EMAIL" %><!--
             --><%= f.password_field :password, placeholder: "PASSWORD", :autocomplete => "off" %>
             <%= f.password_field :password_confirmation, placeholder: "CONFIRM" %>
         </div>
-        <%= link_to "I don't have an email account", '/', class: 'gray-link' %>
+        <%#= link_to "I don't have an email account", '/', class: 'gray-link' %>
+        <br>
     <% end %>
 
     <p id="term-agree-section">

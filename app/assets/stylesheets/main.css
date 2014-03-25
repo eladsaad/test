@@ -12,6 +12,19 @@ body {
     background-color:#000;
 }
 
+div#preloaded-images {
+    position: absolute;
+    overflow: hidden;
+    left: -9999px;
+    top: -9999px;
+    height: 1px;
+    width: 1px;
+}
+
+.form-control {
+    border-radius: 0;
+}
+
 .center {
     margin-left: auto;
     margin-right: auto;
@@ -149,6 +162,19 @@ textarea, input { outline: none; }
     border-color: #fcff00 !important;
 }
 
+.error-msg {
+    visibility: hidden;
+    position: relative;
+    left: -90px;
+    width: 400px;
+    display: inline-block;
+    font-family: 'robotobold';
+    font-size: 1em;
+    color: #fcff00;
+    height: 20px;
+    margin: 10px 0 10px 0;
+}
+
 #password-area {
     text-align: center;
     float: left;
@@ -191,6 +217,7 @@ textarea, input { outline: none; }
 
 #login-btn {
     margin-top: 10px;
+    border: 0;
     /*margin-left: 10px;*/
 }
 
@@ -221,6 +248,7 @@ textarea, input { outline: none; }
 
 .main .button {
     margin: 0;
+    border: 0;
     text-transform: capitalize;
     border: 1px solid transparent;
     display: inline-block;
@@ -529,15 +557,12 @@ textarea, input { outline: none; }
     margin-right: auto;
     text-align: center;
 }
-    .reg-signin-form a {
-        display: inline-block;
-        padding-top: 8px;
-    }
-    .reg-portion {
+    #reg-portion {
         display: inline-block;
         /*float: left;*/
         width: 220px;
         margin-left: auto;
+        margin-right: auto;
         /*margin-right: 22px;*/
         text-align: center;
     }
@@ -550,7 +575,7 @@ textarea, input { outline: none; }
             padding: 0 15px;
             width: 220px;
             height: 40px;
-            margin-bottom: 50px;
+            margin-bottom: 0;
         }
 
         #reg-options {
@@ -591,21 +616,12 @@ textarea, input { outline: none; }
             font-family: 'robotomedium', sans-serif;
         }
 
-    .signin-portion {
-        /*display: inline-block;
-        width: 160px;
-        margin-left: 22px;
+    #signin-portion {
+        width: 220px;
+        margin-left: auto;
         margin-right: auto;
-        text-align: center;*/
         display: block;
         font-size: 1em !important;
-
-        /*background-color: #333;
-        background-color: rgba(0, 0, 0, 0.3);
-        filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#55000000, endColorstr=#55000000);
-        background: transparent\9;
-        -ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#55000000, endColorstr=#55000000)";
-        zoom: 1;*/
     }
         #signin-portion p {
             float: left;
@@ -622,6 +638,7 @@ textarea, input { outline: none; }
             float: right;
             padding: 12px 12px 4px;
             height: 40px;
+            *height: 27px;
             /*color: #1d94d7;*/
         }
 
@@ -635,6 +652,7 @@ textarea, input { outline: none; }
 
     #send-btn {
         margin-left: 10px;
+        border: 0;
     }
 
 /* Create new account page */
@@ -657,13 +675,12 @@ textarea, input { outline: none; }
         height: 30px;
         background: transparent;
 
-
         /*overflow: hidden;*/
         background: url(/assets/select_box_arrow.png) no-repeat right #ddd;
         background-color: rgba(0,0,0,0.4);
         color: #fff;
-        font-family: 'robotobold', sans-serif;
-        font-weight: 700;
+        font-family: sans-serif;
+        font-weight: 600;
         padding: 0 10px;
 
         outline: none;
@@ -1274,12 +1291,12 @@ ul.answers input[type='radio'] {
     padding: 60px 30px 100px 0;
 }
 .text-content {
-    display: block;
+    display: none;
     height: 100%;
     overflow-y: scroll;
 }
 .text-content.active {
-    display: none;
+    display: block;
 }
 
 /* fonts */
