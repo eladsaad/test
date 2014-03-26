@@ -12,5 +12,5 @@ $('a').click(function() {
 
 $('#new-session-form').bind("ajax:error", function (event, data, status, xhr) {
     $('.error-msg').html(data.responseText);
-    $('.error-msg').css({visibility: 'visible'});
+    $('.error-msg').show();
 });

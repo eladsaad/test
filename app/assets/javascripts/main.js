@@ -1,6 +1,22 @@
 $(function() {
     $.ajaxSetup({ cache: true });
 
+//    $(document).ajaxStart(function () {
+//        //show ajax indicator
+//        console.log('loading data.. please wait..');
+//    }).ajaxStop(function () {
+//        //hide ajax indicator
+//        console.log('finished..');
+//    });
+
+    $body = $('body');
+
+    $(document).on({
+        ajaxStart: function() { $body.addClass("loading");    },
+        ajaxStop: function() { $body.removeClass("loading"); }
+    });
+
+
     if(Modernizr.history) {
 
         $.getScript(location.href);
@@ -42,6 +58,10 @@ $(function() {
 });
 
 function footer () {
+    $('.footer').on('click', '.menuItem', function () {
+        switchActive(this);
+    });
+
     $('.footer').on('click', '#home_link, .programName', function() {
         $.getScript('/').done(function(script, textStatus) {
             if (textStatus == 'success') {
@@ -110,6 +130,11 @@ function changeMainView(content, notificationsCnt, notifications, pointsNotifica
     if (typeof(pointsNotification) != 'undefined' && pointsNotification != null) {
 
     }
+}
+
+function switchActive(item) {
+    $(item).siblings('.menuItem').removeClass('active');
+    $(item).addClass('active');
 }
 
 // Helpers

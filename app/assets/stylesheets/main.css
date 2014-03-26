@@ -163,9 +163,8 @@ textarea, input { outline: none; }
 }
 
 .error-msg {
-    visibility: hidden;
+    display: none;
     position: relative;
-    display: inline-block;
     font-family: 'robotobold';
     font-size: 1em;
     color: #fcff00;
@@ -557,7 +556,7 @@ textarea, input { outline: none; }
     text-align: center;
 }
     #reg-portion {
-        display: inline-block;
+        display: block;
         /*float: left;*/
         width: 220px;
         margin-left: auto;
@@ -577,14 +576,31 @@ textarea, input { outline: none; }
             margin-bottom: 0;
         }
 
+        .status-space {
+            display: block;
+            height: 50px;
+        }
+
+        #reg-code-loader {
+            margin-top: 10px;
+            display: none;
+            width: 32px;
+            height: 32px;
+            margin-left: auto;
+            margin-right: auto;
+            background-image:url('/assets/ajax-loader.gif');
+            background-position: 0 0;
+            background-repeat: no-repeat;
+        }
+
         #reg-options {
             display: none;
-            /*visibility: hidden;*/
+            margin-bottom: 20px;
             height: 90px;
         }
 
         #reg-with-facebook {
-            margin-top: 0px;
+            margin-top: 20px;
             display: inline-block;
             width: 213px;
             height: 41px;
@@ -839,7 +855,7 @@ input[type=checkbox].css-checkbox:checked label.css-label {
     padding: 0 0 0 28px;
 }
 
-.footer .blue {
+.footer .active {
     color: #1d94d7;
 }
 
@@ -1085,6 +1101,40 @@ input[type=checkbox].css-checkbox:checked label.css-label {
     line-height: 1em;
     font-family: 'signika_negativebold', sans-serif;
     top: 2px;
+}
+
+.loading-modal {
+    display:    none;
+    position:   fixed;
+    z-index:    2000;
+    top:        0;
+    left:       0;
+    right: 0;
+    bottom: 0;
+    height:     100%;
+    width:      100%;
+    /*background: rgba( 255, 255, 255, .8 )*/
+    /*url('http://i.stack.imgur.com/FhHRx.gif')*/
+    /*50% 50%*/
+    /*no-repeat;*/
+
+
+    background-color: #333;
+    background-color: rgba(0, 0, 0, 0.5);
+     /*For IE 5.5 - 7*/
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#7F000000, endColorstr=#7F000000);
+     /*For IE 8*/
+    background: transparent\9;
+    -ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#7F000000, endColorstr=#7F000000)";
+    zoom: 1;
+
+    background-image:url('/assets/ajax-loader.gif');
+    background-position: 50% 60%;
+    background-repeat: no-repeat;
+}
+
+body.loading .loading-modal {
+    display: block;
 }
 
 /* Surveys */

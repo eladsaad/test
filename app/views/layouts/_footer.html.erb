@@ -8,6 +8,6 @@
 <span id="account"><%= t(:hi_player, first_name: current_player.first_name).upcase %>
 	<span id="logout" class="blue"><%= link_to t(:log_out).upcase, destroy_player_session_path,
                                                :method => :delete, remote: true,
-                                               id: 'logout', class: 'blue' %></span>
+                                               id: 'logout', class: 'active' %></span>
 </span>
 <% end %>

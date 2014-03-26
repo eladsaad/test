@@ -11,7 +11,7 @@ class PlayerInviteController < BaseController
 
     flash[:notice] = "Thank you!"
 
-    redirect_to '/'#, notice: "Thank you!"
+    redirect_to '/'
     #respond_to do |format|
     #    format.html { render "invite" }
     #    format.js   { render "invite" }

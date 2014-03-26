@@ -7,16 +7,20 @@
                     <div id="reg-portion">
                         <h2>Sign up</h2>
                         <!--Enter your group code-->
-                        <%= text_field_tag 'reg_code', nil, placeholder: "ENTER GROUP CODE HERE", maxlength: '7',
-                                           id: 'code-field', class: 'form-control', autocomplete: 'off' %>
-                        <div class="error-msg">Invalid group code, please a enter valid group code</div>
+                        <div id="reg-code-container">
+                            <%= text_field_tag 'reg_code', nil, placeholder: "ENTER GROUP CODE HERE", maxlength: '7',
+                                               id: 'code-field', class: 'form-control', autocomplete: 'off' %>
+                        </div>
                         <div id="reg-options">
                             <%= link_to '', '#', name: 'facebook', id: 'reg-with-facebook' %>
                             <br>
                             <%= link_to 'Sign-up with email', '#', id: 'email-signup', data: 'submit-form' %>
                         </div>
                     </div>
-
+                    <div class="status-space">
+                      <div id="reg-code-loader"></div>
+                      <div class="error-msg">Invalid group code, please a enter valid group code</div>
+                    </div>
                     <div id="signin-portion">
                         <p>Already have an account?</p>
                         <%= link_to 'SIGN IN', new_player_session_path, class: 'button', remote: true %>

@@ -1,3 +1,7 @@
 <div class="medal"></div>
 <div class="current-points-label">MY CURRENT POINTS</div>
-<div class="user-points"><%= number_with_delimiter(current_player.score) %></div>
+<div class="user-points">
+  <% if player_signed_in? %>
+    <%= number_with_delimiter(current_player.score) %>
+  <% end %>
+</div>
