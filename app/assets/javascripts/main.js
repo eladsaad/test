@@ -42,7 +42,7 @@ $(function() {
 });
 
 function footer () {
-    $('.footer').on('click', '#home_link', function() {
+    $('.footer').on('click', '#home_link, .programName', function() {
         $.getScript('/').done(function(script, textStatus) {
             if (textStatus == 'success') {
                 window.loadRemoteScript = false;
@@ -76,15 +76,28 @@ function footer () {
     });
 
     $('.footer').on('click', '#scores_link', function() {
-        $.getScript('/scores').done(function(script, textStatus) {
+        $.getScript('/points_n_prizes').done(function(script, textStatus) {
             if (textStatus == 'success') {
                 window.loadRemoteScript = false;
-                History.pushState({}, '', '/scores');
+                History.pushState({}, '', '/points_n_prizes');
             }
         }).fail(function( jqxhr, settings, exception ) {
             bootbox.alert("Failed to load page");
         });
     });
+
+    $('.points-view').click(function () {
+        $.getScript('/points_n_prizes').done(function(script, textStatus) {
+            if (textStatus == 'success') {
+                window.loadRemoteScript = false;
+                History.pushState({}, '', '/points_n_prizes');
+            }
+        }).fail(function( jqxhr, settings, exception ) {
+            bootbox.alert("Failed to load page");
+        });
+    });
+
+
 }
 
 function changeMainView(content, notificationsCnt, notifications, pointsNotification) {
@@ -97,4 +110,12 @@ function changeMainView(content, notificationsCnt, notifications, pointsNotifica
     if (typeof(pointsNotification) != 'undefined' && pointsNotification != null) {
 
     }
+}
+
+// Helpers
+
+function numberWithCommas(x) {
+    var parts = x.toString().split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return parts.join(".");
 }

@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :set_no_cache
 
-  after_filter :flash_to_headers
+  #after_filter :flash_to_headers
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.

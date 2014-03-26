@@ -1,6 +1,8 @@
 <%= changeMainView "index" %>
-//$("#main-content").html('<%#= escape_javascript(render "index") %>');
-//$('#flash_messages').html('<%#= escape_javascript(render partial: "shared/flash_messages", flash: flash) %>');
+$('.banner').show();
+$('.points-view').show();
+$('.footer').html('<%= escape_javascript(render partial: "layouts/footer") %>').show();
+$('#main-content').css({'padding-bottom': '90px'});
 
 // update csrf token after login
 $('meta[name=csrf-token]').attr('content', '<%= form_authenticity_token.to_s %>');
@@ -9,8 +11,3 @@ $('.main a').click(function() {
     History.pushState({}, '', $(this).attr('href'));
 });
 
-
-$('.banner').show();
-$('.points-view').show();
-$('.footer').html('<%= escape_javascript(render partial: "layouts/footer") %>').show();
-$('#main-content').css({'padding-bottom': '90px'});

@@ -165,8 +165,6 @@ textarea, input { outline: none; }
 .error-msg {
     visibility: hidden;
     position: relative;
-    left: -90px;
-    width: 400px;
     display: inline-block;
     font-family: 'robotobold';
     font-size: 1em;
@@ -513,6 +511,7 @@ textarea, input { outline: none; }
     text-align: center;
     font-family: 'robotomedium', sans-serif;
     font-size: 0.9em;
+    cursor: pointer;
 }
 
 .current-points-label {
@@ -829,6 +828,7 @@ input[type=checkbox].css-checkbox:checked label.css-label {
 }
 
 .footer .programName {
+    cursor: pointer;
     border-style: solid;
     border-width: 0 1px 0 0;
     padding: 0 30px;

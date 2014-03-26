@@ -9,11 +9,12 @@ class PlayerInviteController < BaseController
     PlayerMailer.custom_email(params["friend_email"], current_player.first_name + " invited you to join Cinema-Drive!",
                               params["message"]).deliver
 
-    flash.now[:notice] = "Thank you!"
+    flash[:notice] = "Thank you!"
 
-    respond_to do |format|
-        format.html { render "invite" }
-        format.js   { render "invite" }
-    end
+    redirect_to '/'#, notice: "Thank you!"
+    #respond_to do |format|
+    #    format.html { render "invite" }
+    #    format.js   { render "invite" }
+    #end
   end
 end

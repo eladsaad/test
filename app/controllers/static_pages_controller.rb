@@ -35,4 +35,8 @@ class StaticPagesController < ApplicationController
     end
   end
 
+  def confirm_reg
+
+  end
+
 end
