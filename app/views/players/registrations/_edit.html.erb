@@ -1,0 +1,18 @@
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, remote: true }) do |f| %>
+  <%= devise_error_messages! %>
+  <div id="error_messages"></div>
+  
+  <% unless resource.current_player_group.present? %>
+    <p>
+      <%= f.text_field :reg_code, placeholder: "GROUP CODE" %><br><br>
+    </p>
+  <% end %>
+
+  <p id="term-agree-section">
+      <%= f.check_box :tos_accepted %>
+      I agree to the <%= link_to "site terms", '#' %>
+  </p>
+
+  <%= f.submit "SUBMIT", class: 'button' %>
+
+<% end %>

@@ -12,9 +12,9 @@
     <div id="error_messages"></div>
 
     <% if params[:reg_code] %>
-        <%= hidden_field_tag :reg_code, params[:reg_code] %>
+        <%= f.hidden_field :reg_code, value: params[:reg_code] %>
     <% else %>
-        <%= text_field_tag :reg_code, '', placeholder: "GROUP CODE" %><br><br>
+        <%= f.text_field :reg_code, placeholder: "GROUP CODE" %><br><br>
         <br>
     <% end %>
     <% if (params[:facebook_callback]) %>

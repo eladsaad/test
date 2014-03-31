@@ -1,0 +1,9 @@
+<% if @resource_updated %>
+    window.loadRemoteScript = false;
+    History.pushState({}, '', '<%= response['Location'] %>');
+    $.getScript('<%= response['Location'] %>');
+<% else %>
+    $('#error_messages').html('<%= escape_javascript(devise_error_messages!) %>');
+<% end %>
+
+$('#flash_messages').html('<%= escape_javascript(render partial: "shared/flash_messages", flash: flash) %>');

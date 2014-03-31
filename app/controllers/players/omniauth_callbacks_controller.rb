@@ -5,11 +5,11 @@ class Players::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 		@player = Player.find_for_facebook_oauth(request.env["omniauth.auth"], current_player, request.env["omniauth.params"]['reg_code'])
 		if @player.try(:persisted?)
 			sign_in @player
-			if @player.tos_accepted
+			if @player.registration_complete?
 				set_flash_message(:notice, :success, :kind => "Facebook") if is_navigational_format?
 				redirect_to interactive_videos_path
 			else
-				redirect_to edit_accept_tos_player_path
+				redirect_to edit_player_registration_path
 			end
 		else
 			flash[:alert] = 'Cannot sign-up via facebook'

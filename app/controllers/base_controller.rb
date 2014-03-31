@@ -1,11 +1,11 @@
 class BaseController < ApplicationController
 	before_filter :authenticate_player!
-	before_filter :tos_accepted
+	before_filter :verify_complete_player_registration
 
-	def tos_accepted
-		unless current_player.tos_accepted
+	def verify_complete_player_registration
+		unless current_player.registration_complete?
 			store_location
-          	redirect_to edit_accept_tos_player_path
+          	redirect_to edit_player_registration_path
 		end
 	end
 
