@@ -24,8 +24,6 @@ Cinemadrive::Application.routes.draw do
   get '/about' => "static_pages#about"
   get '/terms' => "static_pages#terms"
   get '/points_n_prizes' => "scores#index"
-  get '/accept_tos' => 'players#edit_accept_tos', :as => "edit_accept_tos_player"
-  put '/accept_tos' => 'players#update_accept_tos', :as => "update_accept_tos_player"
 
   get '/confirm_reg' => "static_pages#confirm_reg"
 
