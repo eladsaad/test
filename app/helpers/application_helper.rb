@@ -35,7 +35,7 @@ module ApplicationHelper
           escape_javascript(render partial: "shared/score_modal",flash: flash)
       }');")
       js_script += raw("$('.modal-view').css({visibility: 'visible'});")
-      js_script += raw("$('.user-points').html(numberWithCommas(#{ current_player.points }));")
+      js_script += raw("$('.user-points').html(numberWithCommas(#{ current_player.score }));")
     end
 
     js_script

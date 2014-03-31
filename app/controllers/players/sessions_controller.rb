@@ -14,6 +14,14 @@ class Players::SessionsController < Devise::SessionsController
 
 	# Audit player sign in
 	def after_sign_in_path_for(player)
+
+    if PlayerSession.find_by_player_id(current_player.id).nil?
+      # first login
+      # TODO: take from points rules table
+      current_player.add_points(1000)
+      flash[:points] = ["You just registered our website<br>and won extra" , '1000']
+    end
+
 		if player.is_a?(Player) # just to verify
 			# log player's sign-in
 			player_session = PlayerSession.create!({
@@ -23,7 +31,8 @@ class Players::SessionsController < Devise::SessionsController
 				session_id: request.session_options[:id]
 			});
 			session[:player_session_id] = player_session.id
-		end
+    end
+
 		interactive_videos_path
 	end
 
