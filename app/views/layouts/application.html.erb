@@ -9,7 +9,9 @@
         <title><%=t(:main_title)%></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-        
+
+        <link rel="shortcut icon" href="/assets/favicon.ico">
+
         <%= stylesheet_link_tag "application", media: "all" %>
 	    <%= csrf_meta_tags %>
         <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
