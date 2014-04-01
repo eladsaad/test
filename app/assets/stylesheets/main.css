@@ -433,7 +433,7 @@ textarea, input { outline: none; }
     display: inline-block;
     vertical-align: middle;
 }
-#path-to-present{
+#path-to-present {
     width: 71px;
     height: 2px;
     background-image: url('/assets/episodes.png');
@@ -468,7 +468,12 @@ textarea, input { outline: none; }
 
     vertical-align: middle;
 }
-
+#present p {
+    position: absolute;
+    width: 150px;
+    top: 105px;
+    left: -32px;
+}
 
 /* Gray screen when the movie is playing */
 .gray {

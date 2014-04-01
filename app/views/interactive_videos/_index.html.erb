@@ -12,13 +12,22 @@
               <div class="caption">Episode <%= episode_index %></div>
             </div><% end %>
             <p class="motivation">
-              <% i = @interactive_videos.length + 1 - episode_index %>
-              <%= raw i == 1 ? "One movie <br>is " : " #{i} more movies <br>are " %>
-              between you<br>
-              and your prize!<br>
+              press here to enjoy your current movie
             </p>
         </span><!--
     --></span><!--
     <% episode_index += 1 %>
- --><% end %><span id="path-to-present" class="<%=present_class%>"></span><span id="present"></span>
+ --><% end %><span id="path-to-present" class="<%=present_class%>"></span><span id="present"><!--
+     --><p>
+            <% episodes_left = @interactive_videos.length - @last_watched_index %>
+            <% if episodes_left > 0 %>
+              <%= raw episodes_left == 1 ? "One movie <br>is " : " #{episodes_left} more movies <br>are " %>
+              between you<br>
+              and your prize!<br>
+            <% end %>
+            <%# i = @interactive_videos.length + 1 - episode_index %>
+
+
+        </p><!--
+ --></span>
 </div>

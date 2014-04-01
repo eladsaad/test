@@ -32,7 +32,16 @@ class InteractiveVideosController < BaseController
       progress.save!
     end
 
-    flash[:points] = ["You just watched an episode<br>and won extra" , '1500']
+    # check how far from the opening time the user watched the video
+    video_program_data = OnlineProgramInteractiveVideo.where('online_program_id = ? and interactive_video_id = ?',
+                                        current_online_program.id,
+                                        @interactive_video.id).first
+    puts '>>>>>' + video_program_data.start_time.strftime("%hh:%mm")
+    puts '>>>>>' + video_program_data.start_after_days.to_s
+    OnlineProgram.first.online_program_interactive_videos.first
+
+    current_player.add_points(3000)
+    flash[:points] = ["You just watched an episode<br>and won extra" , '3000']
     # TODO: special rules for getting points
 
     redirect_to root_url
