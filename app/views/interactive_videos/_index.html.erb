@@ -1,4 +1,4 @@
-<h1>6 WEEKS INTERACTIVE PLAYER</h1><br>
+<h1>THE 6 WEEKS INTERACTIVE PLAYER</h1><br>
 <br>
 <br>
 <div class="episodes-view">
@@ -14,6 +14,11 @@
             <p class="motivation">
               press here to enjoy your current movie
             </p>
+            <% if upcoming?(episode_index)%>
+            <p class="upcoming">
+              <%= upcoming_msg(episode_index) %>
+            </p>
+            <% end %>
         </span><!--
     --></span><!--
     <% episode_index += 1 %>

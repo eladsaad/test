@@ -27,6 +27,10 @@ class SurveysController < BaseController
                          answer_number: a.to_i}
     end
 
+
+    current_player.add_points(1000)
+    flash[:points] = ["You answered a questionnaire!<br>you get extra" , '1000']
+
     respond_to do |format|
       if PlayerAnswer.create(player_answers)
         format.html { redirect_to params['post_survey'] }

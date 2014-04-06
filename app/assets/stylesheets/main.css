@@ -290,6 +290,13 @@ textarea, input { outline: none; }
 .episode.current .motivation {
     display: block;
 }
+
+.episode.upcoming .upcoming {
+    position: absolute;
+    width: 100px;
+    top: 105px;
+    left: -22px;
+}
 .episode .icon-container {
     z-index: 2;
     width: 47px;
