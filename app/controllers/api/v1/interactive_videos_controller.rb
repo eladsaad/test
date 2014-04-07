@@ -2,7 +2,6 @@ class Api::V1::InteractiveVideosController < Api::BaseApiController
 
 	def index
 		authorize! :index, InteractiveVideo
-		authorize! :index, OnlineProgramInteractiveVideo
 		@program_videos = current_player.current_online_program.online_program_interactive_videos
 	end
 

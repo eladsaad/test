@@ -59,7 +59,7 @@ Cinemadrive::Application.routes.draw do
       post 'sessions' => 'sessions#create'
       delete 'sessions' => 'sessions#destroy'
       resources :interactive_videos, only: [:index, :show]
-      resources :surveys, only: [:show, :post]      
+      resources :surveys, only: [:show, :create]   
       resources :scores, only: [:show]
       # player_progress
       # campaigns
