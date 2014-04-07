@@ -37,4 +37,6 @@
 <%= render 'videos_table', videos: @admin_online_program.online_program_interactive_videos %>
 <%= render 'notifications_table', notifications: @admin_online_program.online_program_notifications %>
 
-<%= link_to t(:edit), edit_admin_online_program_path(@admin_online_program) %>
+<br>
+<%= link_to t(:edit), edit_admin_online_program_path(@admin_online_program), class: 'edit-record-link' %>
+<%= link_to t(:back_to_list), admin_online_programs_path, class: 'back-to-list-link' %>

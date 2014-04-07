@@ -30,4 +30,6 @@
   <%= @admin_question.correct_answer %>
 </p>
 
-<%= link_to t(:edit), edit_admin_question_path(@admin_question) %>
+<br>
+<%= link_to t(:edit), edit_admin_question_path(@admin_question), class: 'edit-record-link' %>
+<%= link_to t(:back_to_list), admin_questions_path, class: 'back-to-list-link' %>

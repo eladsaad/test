@@ -19,4 +19,5 @@
 	admin_questions: @admin_survey.questions_to_add.accessible_by(current_ability, :read).paginate(page: params[:page], per_page: params[:per_page] || 10) %>
 
 <br><br>
-<%= link_to t(:edit), edit_admin_survey_path(@admin_survey) %>
+<%= link_to t(:edit), edit_admin_survey_path(@admin_survey), class: 'edit-record-link' %>
+<%= link_to t(:back_to_list), admin_surveys_path, class: 'back-to-list-link' %>

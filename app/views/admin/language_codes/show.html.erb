@@ -10,4 +10,6 @@
   <%= @admin_language_code.code %>
 </p>
 
-<%= link_to t(:edit), edit_admin_language_code_path(@admin_language_code) %>
+<br>
+<%= link_to t(:edit), edit_admin_language_code_path(@admin_language_code), class: 'edit-record-link' %>
+<%= link_to t(:back_to_list), admin_language_codes_path, class: 'back-to-list-link' %>

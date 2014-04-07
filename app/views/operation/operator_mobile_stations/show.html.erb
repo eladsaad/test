@@ -7,4 +7,6 @@
     </p>
 <% end %>
 
-<%= link_to t(:edit), edit_operation_operator_mobile_station_path(@operation_operator_mobile_station) %>
+<br>
+<%= link_to t(:edit), edit_operation_operator_mobile_station_path(@operation_operator_mobile_station), class: 'edit-record-link' %>
+<%= link_to t(:back_to_list), operation_operator_mobile_stations_path, class: 'back-to-list-link' %>

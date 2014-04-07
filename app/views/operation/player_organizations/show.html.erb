@@ -17,4 +17,6 @@
 	<% end %>
 <% end %>
 
-<%= link_to t(:edit), edit_operation_player_organization_path(@operation_player_organization) %>
+<br>
+<%= link_to t(:edit), edit_operation_player_organization_path(@operation_player_organization), class: 'edit-record-link' %>
+<%= link_to t(:back_to_list), operation_player_organizations_path, class: 'back-to-list-link' %>

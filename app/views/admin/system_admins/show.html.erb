@@ -7,4 +7,6 @@
     </p>
 <% end %>
 
-<%= link_to t(:edit), edit_admin_system_admin_path(@admin_system_admin) %>
+<br>
+<%= link_to t(:edit), edit_admin_system_admin_path(@admin_system_admin), class: 'edit-record-link' %>
+<%= link_to t(:back_to_list), admin_system_admins_path, class: 'back-to-list-link' %>
