@@ -1,1 +1,36 @@
-window.location = "<%= polymorphic_path @interactive_video %>";
+//window.location = "<%#= polymorphic_path @interactive_video %>";
+<%= changeMainView "show" %>
+$('.banner').hide();
+$('.points-view').hide();
+$('.footer').html('<%= escape_javascript(render partial: "layouts/footer") %>').show();
+$('#home_link').addClass('active');
+//$('#main-content').css({'padding-bottom': '90px'});
+
+var $flashContainer = $('#flashContainer');
+function resizeFlashContainer () {
+    var playerWidth = 1280;
+    var playerHeight = 720 + 90; // Video height + player controllers height
+    var playerAspectRatio = playerWidth / playerHeight;
+
+    var $winWidth  = $( window ).width();
+    var $winHeight = $( window ).height() - 30;
+
+    var winAspectRatio = $winWidth / $winHeight;
+    if (playerAspectRatio >= winAspectRatio) {
+        // Set player width to 100%
+        $flashContainer.width($winWidth);
+        // Adjust player height respectively
+        $flashContainer.height($winWidth * (1 / playerAspectRatio));
+        // Center vertically
+        $flashContainer.css({left: 0, top: ($winHeight - $flashContainer.height()) / 2 });
+    } else {
+        // Set player height to 100%
+        $flashContainer.height($winHeight);
+        // Adjust player width respectively
+        $flashContainer.width($winHeight *  playerAspectRatio);
+        // Center horizontally
+        $flashContainer.css({left: ($winWidth - $flashContainer.width()) / 2, top: 0 });
+    }
+}
+resizeFlashContainer();
+$( window ).resize(resizeFlashContainer);
