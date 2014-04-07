@@ -1,0 +1,18 @@
+<p>
+  <h3><%= t('activerecord.models.questions') %></h3>
+  <table id="survey-questions" class="association-table">
+    <tr>
+      <th><%= t('activerecord.attributes.question_survey.question_number') %></th>
+      <th><%= t('activerecord.attributes.question_survey.question_id') %></th>
+      <th class="action-column"></th>
+    </tr>
+    <%= f.fields_for :questions_surveys, :wrapper => false do |ff| %>
+      <tr class="fields form-inline">
+        <td><%= ff.input :question_number, label: false %></td>
+        <td><%= ff.association :question, prompt: t(:please_select), label: false %></td>
+        <td><%= ff.link_to_remove t(:remove), label: false %></td>
+      </tr>
+    <% end %>
+  </table>
+  <%= f.link_to_add t(:add), :questions_surveys, :data => { :target => "#survey-questions" } %>
+</p>

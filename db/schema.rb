@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140318144932) do
+ActiveRecord::Schema.define(version: 20140407094411) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -202,6 +202,18 @@ ActiveRecord::Schema.define(version: 20140318144932) do
 
   add_index "player_answers", ["player_id"], name: "index_player_answers_on_player_id", using: :btree
 
+  create_table "player_api_keys", force: true do |t|
+    t.string   "access_token"
+    t.datetime "expires_at"
+    t.integer  "player_id"
+    t.boolean  "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "player_api_keys", ["access_token"], name: "index_player_api_keys_on_access_token", unique: true, using: :btree
+  add_index "player_api_keys", ["player_id"], name: "index_player_api_keys_on_player_id", using: :btree
+
   create_table "player_authentications", force: true do |t|
     t.integer  "player_id"
     t.string   "provider"
@@ -361,6 +373,7 @@ ActiveRecord::Schema.define(version: 20140318144932) do
     t.integer  "survey_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "question_number"
   end
 
   create_table "registration_codes", force: true do |t|
@@ -392,7 +405,6 @@ ActiveRecord::Schema.define(version: 20140318144932) do
   create_table "surveys", force: true do |t|
     t.string   "name"
     t.integer  "language_code_id"
-    t.text     "question_ids"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

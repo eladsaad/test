@@ -59,12 +59,7 @@ Cinemadrive::Application.routes.draw do
       end
     end
     resources :questions
-    resources :surveys do
-      member do
-        put :add_question
-        put :remove_question
-      end
-    end
+    resources :surveys
     resources :notifications
     resources :images
     resources :videos

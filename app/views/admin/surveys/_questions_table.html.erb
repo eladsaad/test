@@ -1,0 +1,19 @@
+<h3><%= t('activerecord.models.questions') %></h3>
+
+<table class="association-table">
+  <thead>
+    <tr>
+      <th><%= t('activerecord.attributes.question_survey.question_number') %></th>
+      <th><%= t('activerecord.attributes.question.question') %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% questions_surveys.each do |question_survey| %>
+      <tr>
+        <td><%= question_survey.question_number %></td>
+        <td><%= question_survey.question.question %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -2,9 +2,8 @@ class Survey < ActiveRecord::Base
   # == ASSOCIATIONS ==
   belongs_to :language_code
   has_and_belongs_to_many :questions
-
-  # == FIELD SETTINGS ==
-  serialize :question_ids, JSON
+  has_many :questions_surveys, :inverse_of => :survey, :dependent => :destroy
+  accepts_nested_attributes_for :questions_surveys, allow_destroy: true, reject_if: :all_blank
 
   # == VALIDATIONS ==
   validates :name, :presence => true
