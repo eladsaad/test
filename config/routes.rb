@@ -1,6 +1,11 @@
+require 'api_constraints'
+
 Cinemadrive::Application.routes.draw do
 
+  # -------------------------------
   # main site
+  # -------------------------------
+
   devise_for :players, :path => '', :controllers => {
       :sessions => 'players/sessions',
       :passwords => 'players/passwords',
@@ -43,9 +48,40 @@ Cinemadrive::Application.routes.draw do
       put :post_answers
     end
   end
-  
 
+  # -------------------------------
+  # API
+  # -------------------------------
+
+  namespace :api, defaults: {format: 'json'} do
+    scope module: :v1, constraints: ApiConstraints.new(version: 1, default: :true) do
+      post 'sessions' => 'sessions#create'
+      delete 'sessions' => 'sessions#destroy'
+      resources :interactive_videos, only: [:index, :show] do
+        member do
+          post :done
+        end
+      end
+      resources :surveys, only: [:show] do
+        resources :answers, only: [:create], controller: :survey_answers
+      end
+      resources :scores, only: [:show]
+      # player_progress
+      # campaigns
+      # notifications
+      # player_answers ??
+      # player_invite
+      # player_choices - not yet ?
+      # registration
+      # program ??
+    end
+  end
+
+  
+  # -------------------------------
   # /admin - system administration
+  # -------------------------------
+
   namespace :admin do
     devise_for :system_admins, :controllers => {
       :sessions => 'admin/system_admins/sessions',
@@ -70,7 +106,11 @@ Cinemadrive::Application.routes.draw do
     resources :campaigns
   end
 
+
+  # -------------------------------
   # /operation - operators administration
+  # -------------------------------
+
   namespace :operation do
     devise_for :operators, :controllers => {
       :sessions => 'operation/operators/sessions',

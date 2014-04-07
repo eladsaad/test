@@ -1,13 +1,9 @@
 class ApplicationController < ActionController::Base
 
-  layout :set_layout
-
   before_filter :set_no_cache
 
   #after_filter :flash_to_headers
 
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
   # == CANCAN Authorization ==
@@ -38,20 +34,6 @@ class ApplicationController < ActionController::Base
     helper_method :sort_column, :sort_direction
   end
 
-
-  # == Current Online Program
-
-  def current_online_program
-    program = nil
-    if (current_player)
-      program ||= current_player.current_online_program
-    else
-      program ||= OnlineProgram.find_by_codename(OnlineProgram::DEFAULT_PROGRAM_CODE_NAME)
-      # TODO: change to fetch by subdomain
-    end
-    program
-  end
-
   # == Pagination Headers
 
   def self.set_pagination_headers(name, options = {})
@@ -68,12 +50,6 @@ class ApplicationController < ActionController::Base
         offset: results.offset
       }.to_json
     end
-  end
-
-  # == Layout ==
-
-  def set_layout
-    false if params[:no_layout]
   end
 
   # == Cache ==

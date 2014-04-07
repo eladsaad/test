@@ -6,9 +6,7 @@ class PlayerAbility
     
     can :read, :player_dashboard
 
-    can :new, PlayerGroupAssociation
-    can :create, PlayerGroupAssociation, player_id: player.id
-
+    can :index, InteractiveVideo
     can :read, InteractiveVideo do |interactive_video|
       interactive_video.allowed_for_player(player)
     end
@@ -21,15 +19,16 @@ class PlayerAbility
 
     can :accept_tos, Player, id: player.id
 
-    can :index, Score
+    can :index, Score, player_id: player.id
 
-    can :read, Survey
+    can :read, Survey # todo: only if belongs to available program
+    can :answer, Survey # todo: only if belongs to available program
 
     can :read, Question
 
-    can :read, PlayerAnswer
-    can :create, PlayerAnswer
-    can :update, PlayerAnswer
+    can :read, PlayerAnswer, player_id: player.id
+    can :create, PlayerAnswer, player_id: player.id
+    can :update, PlayerAnswer, player_id: player.id
 
     can :send, :invite
 
