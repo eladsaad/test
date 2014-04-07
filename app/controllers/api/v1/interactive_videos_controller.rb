@@ -1,7 +1,5 @@
 class Api::V1::InteractiveVideosController < Api::BaseApiController
 
-	skip_authorization_check
-
 	def index
 		authorize! :index, InteractiveVideo
 		authorize! :index, OnlineProgramInteractiveVideo
