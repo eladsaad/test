@@ -1,19 +1,46 @@
 class Player < ActiveRecord::Base
 
+	# == VIRTUAL ATTRIBUTES ==
+	attr_accessor :reg_code
+
 	# == VALIDATIONS ==
-	#validates :username, :presence => true, :uniqueness => true
-	#validates :email, :uniqueness => true, :format => {with: /@/}
 	validates :first_name, :presence => true
 	validates :last_name, :presence => true
   	validates :tos_accepted, :acceptance => {:accept => true}
-	#validates :gender, :inclusion => { :in => ['male', 'female'] }
+	validate :validate_reg_code
+	validate :validate_has_group
+
+	def validate_reg_code
+		if !self.reg_code.blank? && !RegistrationCode.valid_for_registration?(self.reg_code)
+			errors.add(:reg_code, I18n.translate(:is_invalid))
+		end
+	end
+
+	def validate_has_group
+		Rails.logger.info "DOR #{self.reg_code}"
+		unless self.player_group_associations.any?
+			errors.add(:reg_code, I18n.translate(:is_invalid))
+		end
+	end
+
+
+	# == HOOKS ==
+	before_validation :assign_group_from_reg_code
+
+	def assign_group_from_reg_code
+		if !self.reg_code.blank? && !self.current_player_group.present?
+			group = PlayerGroup.find_by_reg_code(self.reg_code)
+			result = self.player_group_associations.build(player_group_id: group.id)
+		end
+	end
+
 
 	# == ASSOCIATIONS ==
 	has_many :player_sessions
 	has_many :player_authentications, :dependent => :destroy
 	has_many :player_group_associations, :dependent => :destroy
 	has_and_belongs_to_many :player_groups, join_table: :player_group_associations
-  has_many :scores
+  	has_many :scores
 
 	# == DEVISE Authentication ==
 	devise :database_authenticatable, :registerable, :confirmable,
@@ -88,19 +115,18 @@ class Player < ActiveRecord::Base
 			return signed_in_player
 		
 		# unknown player registering via facebook
-		elsif !reg_code.nil?
+		else
 			player = Player.new
 			player.add_authentication_from_omni_auth(auth)
 			player.copy_missing_data_from_facebook_oauth(auth)
 			player.password = Devise.friendly_token.first(8)
 			player.skip_confirmation!
-			group = PlayerGroup.find_by_reg_code(reg_code)
-			player.player_group_associations.build(player_group_id: group.id)
+			if !reg_code.nil?
+				group = PlayerGroup.find_by_reg_code(reg_code)
+				player.player_group_associations.build(player_group_id: group.id)
+			end
 			player.save(validate: false)
 			return player
-		# unknown player and missing registration code
-		else
-			return nil
 		end
 	end
 
@@ -144,16 +170,29 @@ class Player < ActiveRecord::Base
   end
 
 
-  def add_points(points, player_group_id = self.current_player_group.id)
-    score = Score.where(player_group_id: player_group_id, player_id: self.id).first_or_initialize
-    score.score ||= 0
-    score.score += points
-    score.save!
-  end
+	# == Scores ==
 
-  def score(player_group_id = self.current_player_group.id)
-    score = Score.where(player_group_id: player_group_id, player_id: self.id).first_or_initialize
-    score.score ||= 0
-  end
+	def add_points(points, player_group_id = self.current_player_group.id)
+		score = Score.where(player_group_id: player_group_id, player_id: self.id).first_or_initialize
+		score.score ||= 0
+		score.score += points
+		score.save!
+	end
+
+	def score(player_group_id = nil)
+		player_group_id ||= self.current_player_group.try(:id)
+		return 0 if player_group_id.blank?
+		score = Score.where(player_group_id: player_group_id, player_id: self.id).first_or_initialize
+		score.score ||= 0
+	end
+
+
+	# == Registration ==
+
+	def registration_complete?
+		return self.tos_accepted && self.current_player_group.present?
+	end
+
+	
 
 end

@@ -9,6 +9,11 @@ class InteractiveVideosController < BaseController
     @interactive_videos = current_player.current_online_program.online_program_interactive_videos.order(:start_after_days)
     @last_watched_index = current_player.current_progress.last_interactive_video_index
     @last_enabled_index = current_player.current_online_program.enabled_interactive_videos(current_player.current_player_group).size
+
+    # get availability time of the next video
+
+    @current_online_program = current_online_program
+    @current_player_group = current_player_group
   end
 
   def show
@@ -32,8 +37,18 @@ class InteractiveVideosController < BaseController
       progress.save!
     end
 
-    flash[:points] = ["You just watched an episode<br>and won extra" , '1500']
-    # TODO: special rules for getting points
+    # check how far from the opening time the user watched the video
+    seconds_diff = (Time.now - OnlineProgramInteractiveVideo.interactive_available_time(current_online_program.id,
+                                                          @interactive_video.id,
+                                                          current_player_group.screening_date)).to_i
+    hours_diff = seconds_diff / 3600
+    if (hours_diff > 24 ) # TODO: make hours diff threshold configurable
+      current_player.add_points(1000) # TODO: make configurable
+      flash[:points] = ["You just watched an episode<br>and won extra" , '1000']
+    else
+      current_player.add_points(3000) # TODO: make configurable
+      flash[:points] = ["You just watched an episode<br>and won extra" , '3000']
+    end
 
     redirect_to root_url
   end

@@ -5,6 +5,7 @@ $('.footer').hide();
 $('#main-content').css({'padding-bottom': '0'});
 
 
+
 var formInProgress = false;
 
 $(document).off('submit.signin').on('submit.signin','#reg-signin-form', onFormSubmit);
@@ -34,6 +35,20 @@ function onFormSubmit() {
     return false; // prevents normal behaviour
 }
 
+$('#reg-signin-form').bind("keyup keypress", function(e) {
+    var code = e.keyCode || e.which;
+    if (code  == 13) {
+        e.preventDefault();
+
+        if ($('#code-field').val().length > 6) {
+
+        } else {
+            presentError('To participate the 6 weeks program you must have a valid group code');
+        }
+        return false;
+    }
+});
+
 $('.main a').click(function (e) {
     window.loadRemoteScript = false;
     History.pushState({}, '', $(this).attr('href'));
@@ -58,13 +73,12 @@ $('#reg-with-facebook').click(function(e) {
     return false;
 });
 
-showRegOptions();
-$('#code-field').on('keyup', showRegOptions);
-var lastValue = '';
-$('#code-field').on('keyup', function() {
-});
 
-function showRegOptions() {
+var lastValue = '';
+$('#code-field').on('keyup', showRegOptions);
+
+function showRegOptions(e) {
+
     $('.status-space').show();
 
     if (lastValue != this.value) {
@@ -100,7 +114,8 @@ function showRegOptions() {
                 error: function(XMLHttpRequest, textStatus, errorThrown) {
                     $('#reg-code-loader').hide();
                     console.log("Status: " + textStatus + "; Error: " + errorThrown);
-                    $('.error-msg').css({ display: 'inline-block' });
+                    //$('.error-msg').css({ display: 'inline-block' });
+                    presentError('To participate the 6 weeks program you must have a valid group code');
                 }
             });
         } else {
@@ -110,7 +125,10 @@ function showRegOptions() {
         }
     }
 
-
     lastValue = this.value;
+}
 
+function presentError(msg) {
+    $('.error-msg').html(msg);
+    $('.error-msg').css({ display: 'inline-block' });
 }

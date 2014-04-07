@@ -25,4 +25,6 @@
   <%= @admin_video.description %>
 </p>
 
-<%= link_to t(:edit), edit_admin_video_path(@admin_video) %>
+<br>
+<%= link_to t(:edit), edit_admin_video_path(@admin_video), class: 'edit-record-link' %>
+<%= link_to t(:back_to_list), admin_videos_path, class: 'back-to-list-link' %>

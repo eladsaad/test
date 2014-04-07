@@ -25,4 +25,6 @@
   <%= @admin_image.format %>
 </p>
 
-<%= link_to t(:edit), edit_admin_image_path(@admin_image) %>
+<br>
+<%= link_to t(:edit), edit_admin_image_path(@admin_image), class: 'edit-record-link' %>
+<%= link_to t(:back_to_list), admin_images_path, class: 'back-to-list-link' %>

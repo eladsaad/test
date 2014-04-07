@@ -66,6 +66,11 @@ body { padding-top: 70px; } // because of fixed navbar
 	@extend .btn-info;
 }
 
+.back-to-list-link {
+	@extend .btn;
+	@extend .btn-default;
+}
+
 .column-sort-asc {
 	padding-right: 12px;  
 	background-repeat: no-repeat;  

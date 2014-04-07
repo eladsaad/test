@@ -47,7 +47,7 @@ class Operation::PlayerGroupsController < Operation::OperationController
 
     respond_to do |format|
       if @operation_player_group.save
-        format.html { redirect_to @operation_player_group, notice: 'Player group was successfully created.' }
+        format.html { redirect_to @operation_player_group, notice: 'Group was successfully created.' }
         format.json { render action: 'show', status: :created, location: @operation_player_group }
       else
         format.html { render action: 'new' }
@@ -62,7 +62,7 @@ class Operation::PlayerGroupsController < Operation::OperationController
     authorize! :update, @operation_player_group
     respond_to do |format|
       if @operation_player_group.update(operation_player_group_params)
-        format.html { redirect_to @operation_player_group, notice: 'Player group was successfully updated.' }
+        format.html { redirect_to @operation_player_group, notice: 'Group was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

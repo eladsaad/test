@@ -25,8 +25,13 @@ module ApplicationHelper
   def changeMainView (partial_name)
     js_script = raw("$('#main-content').html('") + raw(escape_javascript(render partial_name)) + raw("');")
 
-    if flash[:alert] || flash[:notice] || flash[:message] || flash[:error] || flash[:success] ||flash[:warning] ||
-        flash[:failure]
+    if (flash[:alert]    &&  flash[:alert][0,1]   != '#') ||
+        (flash[:notice]  &&  flash[:notice][0,1]  != '#') ||
+        (flash[:message] &&  flash[:message][0,1] != '#') ||
+        (flash[:error]   &&  flash[:error][0,1]   != '#') ||
+        (flash[:success] &&  flash[:success][0,1] != '#') ||
+        (flash[:warning] &&  flash[:warning][0,1] != '#') ||
+        (flash[:failure] &&  flash[:failure][0,1] != '#')
       js_script += raw("bootbox.alert('#{escape_javascript(render partial: "shared/flash_messages", flash: flash)}');")
     end
 
@@ -35,7 +40,7 @@ module ApplicationHelper
           escape_javascript(render partial: "shared/score_modal",flash: flash)
       }');")
       js_script += raw("$('.modal-view').css({visibility: 'visible'});")
-      js_script += raw("$('.user-points').html(numberWithCommas(#{ current_player.points }));")
+      js_script += raw("$('.user-points').html(numberWithCommas(#{ current_player.score }));")
     end
 
     js_script

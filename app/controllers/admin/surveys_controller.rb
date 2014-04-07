@@ -1,6 +1,5 @@
 class Admin::SurveysController < Admin::AdminController
-  before_action :set_admin_survey, only: [:show, :edit, :update, :destroy,
-                                          :edit_questions, :add_question, :remove_question]
+  before_action :set_admin_survey, only: [:show, :edit, :update, :destroy, :edit_questions]
 
   allowed_sort_columns Admin::Survey
   
@@ -82,31 +81,6 @@ class Admin::SurveysController < Admin::AdminController
     end
   end
 
-  def add_question
-    authorize! :update, @admin_survey
-
-    @question = Admin::Question.find(params[:question_id])
-    if @question.nil?
-      redirect_to :back, error: 'Something went wrong.'
-    else
-      @admin_survey.questions << @question
-      redirect_to :back, notice: 'Survey was successfully updated.'
-    end
-  end
-
-  def remove_question
-    authorize! :update, @admin_survey
-
-    @question = @admin_survey.questions.where(id: params[:question_id])
-    if @question.nil?
-      redirect_to :back, error: 'Something went wrong.'
-    else
-      @admin_survey.questions.delete(@question)
-      redirect_to :back, notice: 'Survey was successfully updated.'
-    end
-  end
-
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_admin_survey
@@ -115,10 +89,15 @@ class Admin::SurveysController < Admin::AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_survey_params
-      params.require(:admin_survey).permit(:name, :language_code_id, :question_ids)
+      params.require(:admin_survey).permit(
+        :name,
+        :language_code_id,
+        :questions_surveys_attributes => [
+          :question_id,
+          :question_number,
+          :id,
+          :_destroy
+        ])
     end
 
-    def admin_question_params
-      params.require(:admin_question).permit(:name, :language_code_id, :question, :answers, :correct_answer)
-    end
 end

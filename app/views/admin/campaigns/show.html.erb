@@ -19,5 +19,6 @@
 
 <%= render 'associations_table', objects: @admin_campaign.campaign_operator_programs %>
 
-
-<%= link_to t(:edit), edit_admin_campaign_path(@admin_campaign) %>
+<br>
+<%= link_to t(:edit), edit_admin_campaign_path(@admin_campaign), class: 'edit-record-link' %>
+<%= link_to t(:back_to_list), admin_campaigns_path, class: 'back-to-list-link' %>

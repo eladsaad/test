@@ -1,5 +1,6 @@
-$("#main-content").html('<%= escape_javascript(render partial: "new") %>');
-$('#flash_messages').html('<%= escape_javascript(render partial: "shared/flash_messages", flash: flash) %>');
+<%= changeMainView "new" %>
+//$("#main-content").html('<%#= escape_javascript(render partial: "new") %>');
+//$('#flash_messages').html('<%#= escape_javascript(render partial: "shared/flash_messages", flash: flash) %>');
 
 $('.banner').hide();
 $('.points-view').hide();
