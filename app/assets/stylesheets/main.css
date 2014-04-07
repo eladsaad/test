@@ -32,6 +32,11 @@ div#preloaded-images {
 
 textarea, input { outline: none; }
 
+.scroll-box {
+    height: 400px;
+    overflow: scroll;
+}
+
 /* Solid background configurations (for non-support video browsers) */
 #bg {
     z-index: -1;

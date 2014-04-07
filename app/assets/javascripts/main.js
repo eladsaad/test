@@ -106,6 +106,25 @@ function footer () {
         });
     });
 
+    $('.footer').on('click', '#logout', function(e) {
+        e.preventDefault();
+        bootbox.confirm("Are you sure you want to logout?", function(result) {
+            if (result) {
+                $.ajax({
+                    type: 'POST',
+                    url: '/sign_out',
+                    dataType: 'json',
+                    data: {"_method": 'delete'},
+                    complete: function() {
+                        $.getScript('/');
+                    }
+                });
+            }
+        });
+
+        return false;
+    });
+
     $('.points-view').click(function () {
         $.getScript('/points_n_prizes').done(function(script, textStatus) {
             if (textStatus == 'success') {

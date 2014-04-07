@@ -23,6 +23,7 @@ Cinemadrive::Application.routes.draw do
   root :to => "static_pages#welcome"
   get '/about' => "static_pages#about"
   get '/terms' => "static_pages#terms"
+  get '/terms_modal' => "static_pages#terms_modal"
   get '/points_n_prizes' => "scores#index"
 
   get '/confirm_reg' => "static_pages#confirm_reg"

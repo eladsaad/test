@@ -58,6 +58,9 @@ $('#email-signup').click(function(e) {
     e.preventDefault();
     if (formInProgress) return false; // abort multiple clicks
 
+    window.loadRemoteScript = false;
+    History.pushState({}, '', '/sign_up');
+
     $(this).closest('form').submit();
     return false;
 });

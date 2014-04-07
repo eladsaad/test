@@ -35,6 +35,10 @@ class StaticPagesController < ApplicationController
     end
   end
 
+  def terms_modal
+
+  end
+
   def confirm_reg
 
   end
