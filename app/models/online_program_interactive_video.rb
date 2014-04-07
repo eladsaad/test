@@ -31,6 +31,35 @@ class OnlineProgramInteractiveVideo < ActiveRecord::Base
 		self.online_program.online_program_interactive_videos.pluck(:interactive_video_id).index(self.interactive_video_id)+1
 	end
 
+	def watched_by!(player)
+
+		# update player's progress
+	    progress = player.current_progress
+	    current_video_index = self.index_in_program
+	    if (progress.last_interactive_video_index < current_video_index)
+	      progress.last_interactive_video_index = current_video_index
+	      progress.save!
+	    end
+
+	    # check how far from the opening time the user watched the video
+	    seconds_diff = (Time.now - OnlineProgramInteractiveVideo.interactive_available_time(
+	    	self.online_program.id,
+	        self.interactive_video_id,
+	        player.current_player_group.screening_date)).to_i
+
+	    hours_diff = seconds_diff / 3600
+	    if (hours_diff > 24 ) # TODO: make hours diff threshold configurable
+	    	points_to_add = 1000
+    	else
+    		points_to_add = 3000
+	    end
+
+	    player.add_points(points_to_add) # TODO: make configurable
+
+		return points_to_add
+	end
+
+
   def self.interactive_available_time(online_program_id, interactive_video_id, screening_date)
     video_program_data = self.where('online_program_id = ? and interactive_video_id = ?',
                                                              online_program_id,

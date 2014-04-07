@@ -6,9 +6,14 @@ class Api::V1::InteractiveVideosController < Api::BaseApiController
 	end
 
 	def show
-		interactive_video = InteractiveVideo.find(params[:id])
-		authorize! :read, interactive_video
-		@program_video = current_player.current_online_program.online_program_interactive_videos.where(interactive_video_id: interactive_video.id).first
+		@program_video = current_player.current_online_program.online_program_interactive_videos.where(interactive_video_id: params[:id]).first
+		authorize! :read, @program_video.interactive_video
+	end
+
+	def done
+		@program_video = current_player.current_online_program.online_program_interactive_videos.where(interactive_video_id: params[:id]).first
+		authorize! :read, @program_video.interactive_video
+		@added_points = @program_video.watched_by!(current_player)
 	end
 
 end

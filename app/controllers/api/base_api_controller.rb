@@ -1,5 +1,7 @@
 class Api::BaseApiController < ApplicationController
 
+  layout 'layouts/base_api'
+
   protect_from_forgery with: :null_session
 
   before_filter :authenticate_player_by_api_key!
