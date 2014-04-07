@@ -1,7 +1,7 @@
 class Api::V1::SessionsController < Api::BaseApiController
 
 	skip_before_filter :authenticate_player_by_api_key!, only: [:create]
-
+	skip_authorization_check :only => [:create, :destroy]
 
 	def create
 	    player = Player.find_for_database_authentication(email: params[:email])
@@ -9,12 +9,12 @@ class Api::V1::SessionsController < Api::BaseApiController
 	 
 	    if player.valid_password?(params[:password])
 	      sign_in player
-	      player_api_key = PlayerApiKey.new(player_id: player.id)
+	      player_api_key = PlayerApiKey.create!(player_id: player.id)
 
 	      render :json => {
 	      	:success => true,
 	      	:authentication_token => player_api_key.access_token,
-	      	:email => resource.email
+	      	:email => player.email
 	      }
 	      # TODO: jbuilder
 	      return

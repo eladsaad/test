@@ -9,6 +9,7 @@ class PlayerAbility
     can :new, PlayerGroupAssociation
     can :create, PlayerGroupAssociation, player_id: player.id
 
+    can :index, InteractiveVideo
     can :read, InteractiveVideo do |interactive_video|
       interactive_video.allowed_for_player(player)
     end
@@ -16,6 +17,8 @@ class PlayerAbility
     can :read, Notification do |notification|
       notification.allowed_for_player(player)
     end
+
+    can :index, OnlineProgramInteractiveVideo
 
     can :click, Campaign
 

@@ -56,10 +56,19 @@ Cinemadrive::Application.routes.draw do
 
   namespace :api, defaults: {format: 'json'} do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: :true) do
-      resources :sessions, only: [:create, :destroy]
-      resources :surveys, only: [:show, :post]
+      post 'sessions' => 'sessions#create'
+      delete 'sessions' => 'sessions#destroy'
       resources :interactive_videos, only: [:index, :show]
+      resources :surveys, only: [:show, :post]      
       resources :scores, only: [:show]
+      # player_progress
+      # campaigns
+      # notifications
+      # player_answers ??
+      # player_invite
+      # player_choices - not yet ?
+      # registration
+      # program ??
     end
   end
 
