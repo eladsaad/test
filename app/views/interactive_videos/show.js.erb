@@ -5,10 +5,11 @@ $('.points-view').hide();
 $('.footer').html('<%= escape_javascript(render partial: "layouts/footer") %>').show();
 $('#home_link').addClass('active');
 //$('#main-content').css({'padding-bottom': '90px'});
+window.bvPlayer.pause();
 
 var $flashContainer = $('#flashContainer');
 function resizeFlashContainer () {
-    var playerMargin = 10;
+    var playerMargin = 30;
     var footerHeight = 30;
     var playerControllersHeight = 61;
     var videoWidth = 1280;
@@ -20,7 +21,7 @@ function resizeFlashContainer () {
 
     var winAspectRatio = ($mainWidth - (2 * playerMargin)) /
             ($mainHeight - footerHeight - playerControllersHeight - (2 * playerMargin));
-    
+
     if (videoAspectRatio >= winAspectRatio) {
         // Set player width to 100%
         var playerWidth = $mainWidth - (2 * playerMargin);

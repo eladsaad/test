@@ -43,7 +43,7 @@ module ApplicationHelper
       js_script += raw("$('.user-points').html(numberWithCommas(#{ current_player.score }));")
     end
 
-    js_script
+    js_script += "window.bvPlayer.play();"
   end
 
 end

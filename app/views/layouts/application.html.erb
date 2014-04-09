@@ -115,8 +115,8 @@
                         // browser don't support our video formats, show static background image
                         $('#bg').show();
                     }
-
-                    BV.getPlayer().on("ended", function () {
+                    window.bvPlayer = BV.getPlayer();
+                    window.bvPlayer.on("ended", function () {
                         this.currentTime(0);
                         this.play();
                     });
