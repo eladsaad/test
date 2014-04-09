@@ -1,0 +1,1 @@
+json.extract! @campaign, :landing_page

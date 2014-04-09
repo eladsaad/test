@@ -7,8 +7,7 @@ class CampaignsController < BaseController
   def click
     @campaign = Campaign.find(params[:id])
     authorize! :click, @campaign
-    @campaign.clicks += 1
-    @campaign.save!
+    @campaign.click!
 
     respond_to do |format|
       format.html { redirect_to @campaign.landing_page }

@@ -65,15 +65,22 @@ Cinemadrive::Application.routes.draw do
       resources :surveys, only: [:show] do
         resources :answers, only: [:create], controller: :survey_answers
       end
-      resources :scores, only: [:show]
-      # player_progress
-      # campaigns
+      resources :scores, only: [:index]
+      resources :campaigns, only: [] do
+        member do
+          get :click
+        end
+        collection do
+          get :current
+        end
+      end
       # notifications
-      # player_answers ??
       # player_invite
       # player_choices - not yet ?
       # registration
-      # program ??
+      # facebook
+      # password reset
+      # registration confirmation
     end
   end
 

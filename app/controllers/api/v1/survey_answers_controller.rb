@@ -5,6 +5,7 @@ class Api::V1::SurveyAnswersController < Api::BaseApiController
 		authorize! :answer, @survey
 		answers = params.require(:answers)
 		player_answers_to_create = []
+		#TODO: verify answers
 		answers.each do |index, answer|
 			player_answers_to_create << {
 				player_group_id: current_player.current_player_group.id,

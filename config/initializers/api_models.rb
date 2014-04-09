@@ -1,0 +1,1 @@
+Dir[File.join(Rails.root, "app", "models", "api", "*.rb")].each {|l| require l }

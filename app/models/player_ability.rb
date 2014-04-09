@@ -15,11 +15,13 @@ class PlayerAbility
       notification.allowed_for_player(player)
     end
 
+    can :read, Campaign
     can :click, Campaign
 
     can :accept_tos, Player, id: player.id
 
     can :index, Score, player_id: player.id
+    can :read, Score, player_id: player.id
 
     can :read, Survey # todo: only if belongs to available program
     can :answer, Survey # todo: only if belongs to available program
@@ -31,6 +33,8 @@ class PlayerAbility
     can :update, PlayerAnswer, player_id: player.id
 
     can :send, :invite
+
+    can :destroy, PlayerApiKey, player_id: player.id
 
   end
 
