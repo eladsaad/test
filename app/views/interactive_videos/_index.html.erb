@@ -6,7 +6,8 @@
   <% @interactive_videos.each do |interactive_video| %><span id="episode<%= episode_index%>" class="episode <%=episode_class(episode_index)%>"><!--
      --><% if episode_index > 1 %><span class="episode-path"></span><!--
      --><% end %><span class="icon-container"><!--
-         --><%= link_to episode_class(episode_index) != 'disabled' ? interactive_video_path(id: interactive_video.interactive_video_id) : '#', remote: true do %><span class="episode-icon">
+            <% disabled = episode_class(episode_index).match(/disabled/) %>
+         --><%= link_to disabled ? '' : interactive_video_path(id: interactive_video.interactive_video_id) , remote: !disabled do %><span class="episode-icon">
             </span>
             <div class="caption-container">
               <div class="caption">Episode <%= episode_index %></div>
