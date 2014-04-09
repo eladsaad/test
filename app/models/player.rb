@@ -41,6 +41,7 @@ class Player < ActiveRecord::Base
 	has_many :player_group_associations, :dependent => :destroy
 	has_and_belongs_to_many :player_groups, join_table: :player_group_associations
   	has_many :scores
+  	has_many :player_answers
 
 	# == DEVISE Authentication ==
 	devise :database_authenticatable, :registerable, :confirmable,

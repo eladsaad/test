@@ -36,4 +36,9 @@ class Campaign < ActiveRecord::Base
 		self.where(max_views: MAX_VIEWS_VALUE_FOR_DEFAULT_CAMPAIGN).first
 	end
 
+	def click!
+		self.clicks += 1
+    	self.save!
+	end
+
 end
