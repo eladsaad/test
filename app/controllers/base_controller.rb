@@ -5,7 +5,7 @@ class BaseController < ApplicationController
 	def verify_complete_player_registration
 		unless current_player.registration_complete?
 			store_location
-          	redirect_to edit_player_registration_path
+          	redirect_to edit_rake
 		end
 	end
 

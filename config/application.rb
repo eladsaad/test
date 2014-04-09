@@ -27,5 +27,7 @@ module Cinemadrive
         'X-Frame-Options' => 'ALLOWALL'
     }
 
+    config.autoload_paths  = %W(#{config.root}/lib)
+
   end
 end
