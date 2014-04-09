@@ -116,6 +116,8 @@ function footer () {
                     dataType: 'json',
                     data: {"_method": 'delete'},
                     complete: function() {
+                        window.loadRemoteScript = false;
+                        History.pushState({}, '', '/');
                         $.getScript('/');
                     }
                 });

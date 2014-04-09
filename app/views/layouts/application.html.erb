@@ -97,6 +97,11 @@
                     // show background video
                     var BV = new $.BigVideo();
                     BV.init();
+
+                    BV.getPlayer().ready(function () {
+                        console.log('Big video ready!')
+                    });
+
                     if (Modernizr.video.h264) {
                         BV.show('//s3.amazonaws.com/cinemadrive.herokuapp.com/static/videos/winter_traffic.mp4',
                                 {ambient:true, doLoop: true, controls: false});

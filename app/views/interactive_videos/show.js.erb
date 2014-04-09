@@ -8,28 +8,43 @@ $('#home_link').addClass('active');
 
 var $flashContainer = $('#flashContainer');
 function resizeFlashContainer () {
-    var playerWidth = 1280;
-    var playerHeight = 720 + 90; // Video height + player controllers height
-    var playerAspectRatio = playerWidth / playerHeight;
+    var playerMargin = 10;
+    var footerHeight = 30;
+    var playerControllersHeight = 61;
+    var videoWidth = 1280;
+    var videoHeight = 720; // Video height + player controllers height
+    var videoAspectRatio = videoWidth / videoHeight;
 
-    var $winWidth  = $( window ).width();
-    var $winHeight = $( window ).height() - 30;
+    var $mainWidth  = $('.main').width();
+    var $mainHeight = $('.main').height();
 
-    var winAspectRatio = $winWidth / $winHeight;
-    if (playerAspectRatio >= winAspectRatio) {
+    var winAspectRatio = ($mainWidth - (2 * playerMargin)) /
+            ($mainHeight - footerHeight - playerControllersHeight - (2 * playerMargin));
+    
+    if (videoAspectRatio >= winAspectRatio) {
         // Set player width to 100%
-        $flashContainer.width($winWidth);
+        var playerWidth = $mainWidth - (2 * playerMargin);
         // Adjust player height respectively
-        $flashContainer.height($winWidth * (1 / playerAspectRatio));
+        var playerHeight = playerWidth * (1 / videoAspectRatio) + playerControllersHeight;
+        $flashContainer.width(playerWidth);
+        $flashContainer.height(playerHeight);
         // Center vertically
-        $flashContainer.css({left: 0, top: ($winHeight - $flashContainer.height()) / 2 });
+        $flashContainer.css({
+            left: playerMargin,
+            top: ($mainHeight - footerHeight - $flashContainer.height()) / 2
+        });
     } else {
         // Set player height to 100%
-        $flashContainer.height($winHeight);
+        var playerHeight = $mainHeight - footerHeight - (2 * playerMargin);
         // Adjust player width respectively
-        $flashContainer.width($winHeight *  playerAspectRatio);
+        var playerWidth = (playerHeight - playerControllersHeight) * videoAspectRatio;
+        $flashContainer.height(playerHeight);
+        $flashContainer.width(playerWidth);
         // Center horizontally
-        $flashContainer.css({left: ($winWidth - $flashContainer.width()) / 2, top: 0 });
+        $flashContainer.css({
+            left: ($mainWidth - $flashContainer.width()) / 2,
+            top: playerMargin
+        });
     }
 }
 resizeFlashContainer();
