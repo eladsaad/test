@@ -28,8 +28,10 @@
     </div>
   </div>
   <div class="points-panel-body">
-    <div class="points-panel-body-title">HOW CAN MY GROUP EARN POINTS?</div>
+    <!--div class="points-panel-body-title">HOW CAN MY GROUP EARN POINTS?</div-->
+    <div class="points-panel-body-title">GROUP: <%= @group_name %></div>
     <p>
+      <%= @group_count %> <%= @group_count > 1 ? 'players' : 'player' %> registered to this group.<br>
       One space after a colon.<br>
       There is a traditional American practice,
       favored by some, of leaving two spaces after colons and periods.

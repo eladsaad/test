@@ -6,6 +6,9 @@ class ScoresController < BaseController
 
     @player_score = number_with_delimiter(current_player.score)
     @group_score = number_with_delimiter(current_player_group.score)
+    @group_name = current_player_group.name
+    @group_count = current_player_group.players_count
+
   end
 
 end

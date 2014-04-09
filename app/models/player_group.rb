@@ -41,6 +41,10 @@ class PlayerGroup < ActiveRecord::Base
     Score.sum(:score, conditions: { player_group_id: self.id })
   end
 
+  def players_count
+    PlayerGroup.first.players.count
+  end
+
 	private
 
 		def validate_reg_code_with_operator
