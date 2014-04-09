@@ -12,3 +12,7 @@ $('.main a').click(function() {
     History.pushState({}, '', $(this).attr('href'));
 });
 
+$('.episode.disabled a').click(function(e) {
+    e.preventDefault();
+    return null;
+});

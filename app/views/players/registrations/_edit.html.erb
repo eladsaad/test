@@ -1,3 +1,7 @@
+<h1>COMPLETE REGISTRATION</h1>
+<br>
+<p>In order to finish registration you need to read and accept the site terms</p><br>
+
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, remote: true }) do |f| %>
   <%= devise_error_messages! %>
   <div id="error_messages"></div>
@@ -10,7 +14,7 @@
 
   <p id="term-agree-section">
       <%= f.check_box :tos_accepted %>
-      I agree to the <%= link_to "site terms", '#' %>
+      I agree to the <%= link_to "site terms", '/terms_modal', remote: true %>
   </p>
 
   <%= f.submit "SUBMIT", class: 'button' %>

@@ -24,7 +24,7 @@ $('#nav-next, #nav-prev').click(function (e) {
     var $prevPanel = $currentPanel.prev('.question-panel');
 
     // check if the user answered the question before moving to the next panel
-    if ($currentPanel.find('li.checked').length == 0) {
+    if ($(this).attr('id') == 'nav-next' && $currentPanel.find('li.checked').length == 0) {
         // no answer selected
         alert('please select an answer');
         return false;
