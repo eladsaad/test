@@ -1415,6 +1415,15 @@ ul.answers input[type='radio'] {
     left: 0;
     background-color: #0a0a0a;
     position: fixed;
+
+
+    background-color: #0a0a0a;
+    background-color: rgba(0, 0, 0, 0.8);
+    /* For IE 5.5 - 7*/
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#7F000000, endColorstr=#7F000000);
+    /* For IE 8*/
+    background: transparent\9;
+    -ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#7F000000, endColorstr=#7F000000)";
 }
 #flashContainer {
     position: fixed;
