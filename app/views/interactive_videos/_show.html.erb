@@ -1,5 +1,5 @@
 
-<!--<div id="playerBackground"></div>-->
+<div id="playerBackground"></div>
 
 <script language="JavaScript">
     function statisticsJS(info) 
@@ -16,6 +16,7 @@
 <% flash_player_path = '/assets/player.swf' %>
 
 <div id="flashContainer">
+    <div id="player-close-btn"><!--&#10006;--></div>
     <div id="flashContent">
         <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="100%" height="100%" id="player" align="middle">
             <param name="movie" value="<%=flash_player_path%>?configXmlUrl=<%=content_path%>" />

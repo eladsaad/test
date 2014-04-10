@@ -50,3 +50,9 @@ function resizeFlashContainer () {
 }
 resizeFlashContainer();
 $( window ).resize(resizeFlashContainer);
+
+$('#player-close-btn').click(function () {
+    window.loadRemoteScript = false;
+    History.pushState({}, '', '/');
+    $.getScript('/');
+});
