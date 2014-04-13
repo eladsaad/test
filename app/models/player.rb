@@ -12,14 +12,13 @@ class Player < ActiveRecord::Base
 
 	def validate_reg_code
 		if !self.reg_code.blank? && !RegistrationCode.valid_for_registration?(self.reg_code)
-			errors.add(:reg_code, I18n.translate(:is_invalid))
+			errors.add(:reg_code, I18n.translate(:is_invalid)) unless errors[:reg_code].present?
 		end
 	end
 
 	def validate_has_group
-		Rails.logger.info "DOR #{self.reg_code}"
 		unless self.player_group_associations.any?
-			errors.add(:reg_code, I18n.translate(:is_invalid))
+			errors.add(:reg_code, I18n.translate(:is_invalid)) unless errors[:reg_code].present?
 		end
 	end
 
@@ -28,7 +27,7 @@ class Player < ActiveRecord::Base
 	before_validation :assign_group_from_reg_code
 
 	def assign_group_from_reg_code
-		if !self.reg_code.blank? && !self.current_player_group.present?
+		if !self.reg_code.blank? && !self.current_player_group.present? && RegistrationCode.valid_for_registration?(self.reg_code)
 			group = PlayerGroup.find_by_reg_code(self.reg_code)
 			result = self.player_group_associations.build(player_group_id: group.id)
 		end

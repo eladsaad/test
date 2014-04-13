@@ -57,6 +57,7 @@ Cinemadrive::Application.routes.draw do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: :true) do
       post 'sessions' => 'sessions#create'
       delete 'sessions' => 'sessions#destroy'
+      resources :registrations, only: [:create]
       resources :interactive_videos, only: [:index, :show] do
         member do
           post :done

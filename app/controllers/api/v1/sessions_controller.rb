@@ -1,7 +1,5 @@
 class Api::V1::SessionsController < Api::BaseApiController
 
-	layout false
-
 	skip_before_filter :authenticate_player_by_api_key!, only: [:create]
 	skip_before_filter :verify_complete_player_registration, only: [:create, :destroy]
 	skip_authorization_check :only => [:create]
