@@ -1,4 +1,7 @@
-json.data JSON.parse(yield)
+@yielded_data = JSON.parse(yield)
+if !@yielded_data.empty?
+	json.data @yielded_data
+end
 if @added_points
 	json.score do
 		json.score current_player.score

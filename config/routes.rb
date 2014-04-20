@@ -58,6 +58,7 @@ Cinemadrive::Application.routes.draw do
       post 'sessions' => 'sessions#create'
       delete 'sessions' => 'sessions#destroy'
       resources :registrations, only: [:create]
+      resources :passwords, only: [:create, :update]
       resources :interactive_videos, only: [:index, :show] do
         member do
           post :done

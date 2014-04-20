@@ -61,7 +61,6 @@ class Api::BaseApiController < ApplicationController
 	def render_error(key, data = nil)
 		error = ApiError.get(key)
 		render partial: 'api/v1/shared/errors', locals: {error_code: key, message: error[:message], data: data }, status: error[:status]
-		# render json: { errors: { key: key, message: error[:message] } }, status: error[:status]
 	end
 
 	# == Filters == 

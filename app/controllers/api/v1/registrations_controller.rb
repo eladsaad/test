@@ -12,19 +12,21 @@ class Api::V1::RegistrationsController < Api::BaseApiController
 		end
 	end
 
-	def sign_up_params
-		params.permit(
-	        :username,
-			:email,
-			:password,
-			:first_name,
-			:last_name,
-			:birth_date,
-			:gender,
-			:age,
-			:reg_code,
-			:tos_accepted,
-      	)
-	end
+	protected
+
+		def sign_up_params
+			params.permit(
+		        :username,
+				:email,
+				:password,
+				:first_name,
+				:last_name,
+				:birth_date,
+				:gender,
+				:age,
+				:reg_code,
+				:tos_accepted,
+	      	)
+		end
 
 end
