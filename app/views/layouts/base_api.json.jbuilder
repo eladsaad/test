@@ -2,9 +2,15 @@
 if !@yielded_data.empty?
 	json.data @yielded_data
 end
-if @added_points
+
+if ScoreUpdate.updates.any?
 	json.score do
-		json.score current_player.score
-		json.added_points @added_points
+		json.current current_player.score
+		json.updates do
+			json.array! ScoreUpdate.updates do |update|
+			  json.action update[:action]
+			  json.points update[:points]
+			end
+		end
 	end
 end

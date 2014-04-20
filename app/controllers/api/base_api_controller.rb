@@ -13,7 +13,6 @@ class Api::BaseApiController < ApplicationController
   	current_player.ability
   end
 
-  # rescue_from CanCan::AccessDenied, :with => { render :json => 'Access Denied', :status => 403 }
   rescue_from CanCan::AccessDenied do |exception|
   	Rails.logger.debug "Access denied on #{exception.action} #{exception.subject.inspect}"
   	render_error(:access_denied)
@@ -40,12 +39,6 @@ class Api::BaseApiController < ApplicationController
 		end
 	end
 
-	def render_unauthorized
-      self.headers['WWW-Authenticate'] = 'Token realm="Application"'
-      render_error(:not_authenticated)
-      return false
-    end
-
 	def sign_in_api_key(player_api_key)
 		sign_in player_api_key.player, store: false
 		player_api_key.postpone_expiry!
@@ -62,6 +55,12 @@ class Api::BaseApiController < ApplicationController
 		error = ApiError.get(key)
 		render partial: 'api/v1/shared/errors', locals: {error_code: key, message: error[:message], data: data }, status: error[:status]
 	end
+
+	def render_unauthorized
+      self.headers['WWW-Authenticate'] = 'Token realm="Application"'
+      render_error(:not_authenticated)
+      return false
+    end
 
 	# == Filters == 
 

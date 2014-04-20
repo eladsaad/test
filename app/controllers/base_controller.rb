@@ -5,7 +5,7 @@ class BaseController < ApplicationController
 	def verify_complete_player_registration
 		unless current_player.registration_complete?
 			store_location
-          	redirect_to edit_rake
+			redirect_to edit_rake
 		end
 	end
 
@@ -16,6 +16,14 @@ class BaseController < ApplicationController
 	def current_player_group
 		# TODO: will need to change if a player is allowed more than one online program
 		current_player.current_player_group
+	end
+
+
+	# == Score Updates ==
+
+	def redirect_to(*args)
+		add_score_updates_to_flash
+		super
 	end
 
 end

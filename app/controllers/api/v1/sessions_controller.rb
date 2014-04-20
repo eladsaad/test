@@ -8,18 +8,20 @@ class Api::V1::SessionsController < Api::BaseApiController
 	    player = Player.find_for_database_authentication(email: params[:email])
 	 
 	    if !player.nil? && player.valid_password?(params[:password])
-	      sign_in player
-	      @player_api_key = PlayerApiKey.create!(player_id: player.id)
+			@player_api_key = PlayerApiKey.create!(player_id: player.id)
+			sign_in player, store: false
+			PlayerSession.add_login(current_player.id, request, @player_api_key.access_token)
 	    else
 	    	render_error(:invliad_login_credentials)
     	end
 	  end
 
-
 	def destroy
 		authorize! :destroy, current_api_key
 		sign_out current_player
+		PlayerSession.add_logout(current_player.id, request, current_api_key.access_token)
 		current_api_key.destroy!
+
 	end
 
 end

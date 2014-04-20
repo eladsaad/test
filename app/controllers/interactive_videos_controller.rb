@@ -30,9 +30,8 @@ class InteractiveVideosController < BaseController
     authorize! :read, @interactive_video
     program_video = current_player.current_online_program.online_program_interactive_videos.where(interactive_video_id: @interactive_video.id).first
 
-    added_points = program_video.watched_by!(current_player)
+    program_video.watched_by!(current_player)
 
-    flash[:points] = ["You just watched an episode<br>and won extra" , added_points]
     redirect_to root_url
   end
   

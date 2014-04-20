@@ -172,11 +172,12 @@ class Player < ActiveRecord::Base
 
 	# == Scores ==
 
-	def add_points(points, player_group_id = self.current_player_group.id)
-		score = Score.where(player_group_id: player_group_id, player_id: self.id).first_or_initialize
+	def add_points(points, action_key = nil)
+		score = Score.where(player_group_id: self.current_player_group.id, player_id: self.id).first_or_initialize
 		score.score ||= 0
 		score.score += points
 		score.save!
+		ScoreUpdate.add(points, action_key)
 	end
 
 	def score(player_group_id = nil)
@@ -192,7 +193,5 @@ class Player < ActiveRecord::Base
 	def registration_complete?
 		return self.tos_accepted && self.current_player_group.present?
 	end
-
-	
 
 end

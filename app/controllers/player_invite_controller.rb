@@ -10,13 +10,8 @@ class PlayerInviteController < BaseController
                               params["message"]).deliver
 
     #flash[:notice] = "Thank you!"
-    current_player.add_points(2500)
-    flash[:points] = ["For inviting a friend<br>you get extra" , '2500']
+    current_player.add_points(2500, :friend_invite)
 
-    redirect_to '/'
-    #respond_to do |format|
-    #    format.html { render "invite" }
-    #    format.js   { render "invite" }
-    #end
+    redirect_to root_url
   end
 end

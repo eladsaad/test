@@ -15,7 +15,7 @@ class Api::V1::InteractiveVideosController < Api::BaseApiController
 
 	def done # post_interactive
 		authorize! :read, @program_video.interactive_video
-		@added_points = @program_video.watched_by!(current_player)
+		@program_video.watched_by!(current_player)
 	end
 
 	protected

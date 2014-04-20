@@ -25,8 +25,7 @@ class SurveysController < BaseController
     end
 
 
-    current_player.add_points(1000)
-    flash[:points] = ["You answered a questionnaire!<br>you get extra" , '1000']
+    current_player.add_points(1000, :survey_answer)
 
     respond_to do |format|
       if PlayerAnswer.create(player_answers)
