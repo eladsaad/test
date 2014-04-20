@@ -1,26 +1,57 @@
 class Api::V1::SurveyAnswersController < Api::BaseApiController
 
+	before_filter :verify_not_already_answered
+
 	def create
 		@survey = Survey.find(params[:survey_id])
 		authorize! :answer, @survey
 		answers = params.require(:answers)
-		player_answers_to_create = []
-		#TODO: verify answers
+
+		survey_question_ids = @survey.questions.pluck(:id)
+
+		errors = []
+		answers_to_create = []
+		answered_question_ids = []
+
 		answers.each do |index, answer|
-			player_answers_to_create << {
+
+			new_answer = PlayerAnswer.new(
 				player_group_id: current_player.current_player_group.id,
 				player_id: current_player.id,
 				survey_id: @survey.id,
 				question_id: answer['question_id'],
 				answer_number: answer['answer_number']
-            }
+			)
+
+			new_answer.valid?
+
+			errors << { new_answer.question_id => new_answer.errors.full_messages } if new_answer.errors.any?
+			answered_question_ids << new_answer.question_id
+
+			answers_to_create << new_answer
+            
 		end
-		if PlayerAnswer.create(player_answers_to_create)
-			render :json=> {:success=>true}
+
+		(survey_question_ids - answered_question_ids).each do |missing_question_id|
+			errors << { missing_question_id => 'missing'}
+		end
+		
+		if errors.any?
+			render_error(:unprocessable_entity, errors )
 		else
-			render :json=> {:success=>false, :message=>"Cannot save answers"}, :status=>401
+			PlayerAnswer.transaction do
+			  answers_to_create.each(&:save)
+			end
 		end
 	end
 
+
+	protected
+
+		def verify_not_already_answered
+			if PlayerAnswer.find_by_player_and_survey_id(current_player, params[:survey_id]).any?
+				render_error(:survey_already_answered)
+			end
+		end
 
 end
