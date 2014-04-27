@@ -59,6 +59,8 @@ Cinemadrive::Application.routes.draw do
       delete 'sessions' => 'sessions#destroy'
       resources :registrations, only: [:create]
       resources :passwords, only: [:create, :update]
+      get 'auth/:provider/callback', to: 'omniauth_callbacks#facebook'
+      post 'auth/:provider/callback', to: 'omniauth_callbacks#facebook'
       resources :interactive_videos, only: [:index, :show] do
         member do
           post :done

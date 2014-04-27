@@ -93,7 +93,7 @@ class Player < ActiveRecord::Base
 	end
 
 
-	def self.find_for_facebook_oauth(auth, signed_in_player=nil, reg_code=nil)
+	def self.find_for_facebook_oauth(auth, signed_in_player=nil)
 		authentication = PlayerAuthentication.find_by_provider_and_uid(auth.provider, auth.uid)
 		
 		# facebook authentication already exists in db
@@ -116,19 +116,23 @@ class Player < ActiveRecord::Base
 		
 		# unknown player registering via facebook
 		else
-			player = Player.new
-			player.add_authentication_from_omni_auth(auth)
-			player.copy_missing_data_from_facebook_oauth(auth)
-			player.password = Devise.friendly_token.first(8)
-			player.skip_confirmation!
-			if !reg_code.nil?
-				group = PlayerGroup.find_by_reg_code(reg_code)
-				player.player_group_associations.build(player_group_id: group.id)
-			end
-			player.save(validate: false)
-			return player
+			return nil
 		end
 	end
+
+
+	def self.create_for_facebook_oauth(auth, reg_code = nil, tos_accepted = nil)
+		player = Player.new
+		player.add_authentication_from_omni_auth(auth)
+		player.copy_missing_data_from_facebook_oauth(auth)
+		player.password = Devise.friendly_token.first(8)
+		player.tos_accepted = tos_accepted
+		player.skip_confirmation!
+		player.reg_code = reg_code
+		player.assign_group_from_reg_code
+		return player
+	end
+
 
 	def add_authentication_from_omni_auth(auth)
 		self.player_authentications.build(
@@ -139,15 +143,6 @@ class Player < ActiveRecord::Base
 		)
 	end
 
-
-	def self.new_with_session(params, session)
-		super.tap do |player|
-			if session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
-				player.add_authentication_from_omni_auth(session["devise.facebook_data"])
-				player.copy_missing_data_from_facebook_oauth(session["devise.facebook_data"])
-			end
-		end
-	end
 
 	def send_facebook_notifications(message, callback_url)
 		facebook_user_id = self.player_authentications.find_by_provider(:facebook).try(:uid)

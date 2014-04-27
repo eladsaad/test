@@ -23,6 +23,7 @@ class Players::SessionsController < Devise::SessionsController
 		root_url
 	end
 
+
 	# == Audit Login/Logout
 
 	def audit_player_login
@@ -34,8 +35,10 @@ class Players::SessionsController < Devise::SessionsController
 	end
 
 	def audit_player_logout
-		PlayerSession.add_logout(current_player.id, request, session[:session_key])
-		session.delete(:session_key)
+		if !signed_in?
+			PlayerSession.add_logout(current_player.id, request, session[:session_key])
+			session.delete(:session_key)
+		end
 	end
 
 end

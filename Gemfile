@@ -12,6 +12,7 @@ gem 'jbuilder', '~> 1.2' # json builder
 gem 'devise' # authentication
 gem 'cancan' # authorization
 gem 'omniauth-facebook' # authentication via facebook
+gem 'koala'
 gem 'will_paginate' # pagination
 gem 'pg' # postgresql
 gem 'simple_form'
