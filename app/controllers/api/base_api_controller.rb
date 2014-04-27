@@ -62,12 +62,30 @@ class Api::BaseApiController < ApplicationController
       return false
     end
 
+	rescue_from(ActionController::ParameterMissing) do |parameter_missing_exception|
+		error = {}
+		error[parameter_missing_exception.param] = ['parameter is required']
+		render_error(:missing_parameter, { errors: [error] })
+	end
+
+	rescue_from(ActiveRecord::RecordNotFound) do
+		render_error(:not_found)
+	end
+
+
 	# == Filters == 
 
 	def verify_complete_player_registration
 		unless current_player.registration_complete?
 			render_error(:incomplete_registration)
 		end
+	end
+
+	# == Parameters ==
+
+	def require_and_permit(param_keys)
+		param_keys.each { |key| params.require(key) }
+		params.permit(param_keys)
 	end
 
 end

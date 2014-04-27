@@ -27,11 +27,11 @@ class Api::V1::PasswordsController < Api::BaseApiController
 	protected
 
 		def reset_password_params
-			params.permit(:email)
+			require_and_permit(:email)
 		end
 
 		def update_password_params
-			params.permit(
+			require_and_permit(
 				:reset_password_token,
 				:password,
 				:password_confirmation

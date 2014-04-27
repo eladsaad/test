@@ -21,7 +21,7 @@ class Api::V1::InteractiveVideosController < Api::BaseApiController
 	protected
 
 	def set_program_video
-		@program_video = current_player.current_online_program.online_program_interactive_videos.where(interactive_video_id: params[:id]).first
+		@program_video = current_player.current_online_program.online_program_interactive_videos.where(interactive_video_id: params.require(:id)).first
 		render_error(:not_found) unless !@program_video.nil?
 	end
 

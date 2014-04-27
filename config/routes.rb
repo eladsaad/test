@@ -76,13 +76,7 @@ Cinemadrive::Application.routes.draw do
           get :current
         end
       end
-      # notifications
-      # player_invite
-      # player_choices - not yet ?
-      # registration
-      # facebook
-      # password reset
-      # registration confirmation
+      resources :invites, only: [:create]
     end
   end
 

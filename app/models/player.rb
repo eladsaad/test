@@ -194,4 +194,17 @@ class Player < ActiveRecord::Base
 		return self.tos_accepted && self.current_player_group.present?
 	end
 
+
+	# == Invites ==
+
+	def invite_friend(friend_email, message = '')
+		PlayerMailer.custom_email(
+			friend_email,
+			I18n.t(:player_invited_you_to_join, player_name: self.first_name),
+			message
+        ).deliver
+
+	    self.add_points(2500, :friend_invite)
+	end
+
 end

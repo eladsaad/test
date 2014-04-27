@@ -3,7 +3,7 @@ class Api::V1::SurveyAnswersController < Api::BaseApiController
 	before_filter :verify_not_already_answered
 
 	def create
-		@survey = Survey.find(params[:survey_id])
+		@survey = Survey.find(params.require(:survey_id))
 		authorize! :answer, @survey
 		answers = params.require(:answers)
 
@@ -50,7 +50,7 @@ class Api::V1::SurveyAnswersController < Api::BaseApiController
 	protected
 
 		def verify_not_already_answered
-			if PlayerAnswer.find_by_player_and_survey_id(current_player, params[:survey_id]).any?
+			if PlayerAnswer.find_by_player_and_survey_id(current_player, params.require(:survey_id)).any?
 				render_error(:survey_already_answered)
 			end
 		end

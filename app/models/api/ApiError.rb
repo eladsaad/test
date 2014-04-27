@@ -16,7 +16,8 @@ class ApiError
 			missing_pre_survey: { message: 'Missing Pre Survey', status: :forbidden },
 			missing_post_survey: { message: 'Missing Post Survey', status: :forbidden },
 			incomplete_registration: { message: 'Incomplete Registration', status: :forbidden },
-			survey_already_answered: { message: 'Survey Already Answered', status: :unprocessable_entity }
+			survey_already_answered: { message: 'Survey Already Answered', status: :unprocessable_entity },
+			missing_parameter: { message: 'Missing Parameter', status: :unprocessable_entity }
 		}
 	end
 

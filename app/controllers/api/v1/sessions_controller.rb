@@ -5,9 +5,9 @@ class Api::V1::SessionsController < Api::BaseApiController
 	skip_authorization_check :only => [:create]
 
 	def create
-	    player = Player.find_for_database_authentication(email: params[:email])
+	    player = Player.find_for_database_authentication(email: params.require(:email))
 	 
-	    if !player.nil? && player.valid_password?(params[:password])
+	    if !player.nil? && player.valid_password?(params.require(:password))
 			@player_api_key = PlayerApiKey.create!(player_id: player.id)
 			sign_in player, store: false
 			PlayerSession.add_login(current_player.id, request, @player_api_key.access_token)

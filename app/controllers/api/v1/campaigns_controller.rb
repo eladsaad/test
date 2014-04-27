@@ -6,7 +6,7 @@ class Api::V1::CampaignsController < Api::BaseApiController
 	end
 
 	def click
-		@campaign = Campaign.find(params[:id])
+		@campaign = Campaign.find(params.require(:id))
     	authorize! :click, @campaign
     	@campaign.click!
 	end
