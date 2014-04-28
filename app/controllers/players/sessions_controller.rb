@@ -23,22 +23,30 @@ class Players::SessionsController < Devise::SessionsController
 		root_url
 	end
 
-
-	# == Audit Login/Logout
-
-	def audit_player_login
-		if signed_in?
-			PlayerSession.add_login(current_player.id, request, request.session_options[:id])
-			session[:session_key] = request.session_options[:id]
-			add_score_updates_to_flash
-		end
+	def create
+		Rails.logger.info "DOR"
+		Rails.logger.info params
+		super
 	end
 
-	def audit_player_logout
-		if !signed_in?
-			PlayerSession.add_logout(current_player.id, request, session[:session_key])
-			session.delete(:session_key)
+
+	protected
+
+		# == Audit Login/Logout
+
+		def audit_player_login
+			if signed_in?
+				PlayerSession.add_login(current_player.id, request, request.session_options[:id])
+				session[:session_key] = request.session_options[:id]
+				add_score_updates_to_flash
+			end
 		end
-	end
+
+		def audit_player_logout
+			if !signed_in?
+				PlayerSession.add_logout(current_player.id, request, session[:session_key])
+				session.delete(:session_key)
+			end
+		end
 
 end
