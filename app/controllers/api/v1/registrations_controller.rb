@@ -15,7 +15,7 @@ class Api::V1::RegistrationsController < Api::BaseApiController
 	protected
 
 		def sign_up_params
-			require_and_permit(
+			params.permit(
 		        :username,
 				:email,
 				:password,

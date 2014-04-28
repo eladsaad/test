@@ -6,6 +6,7 @@ class Api::V1::SurveyAnswersController < Api::BaseApiController
 		@survey = Survey.find(params.require(:survey_id))
 		authorize! :answer, @survey
 		answers = params.require(:answers)
+		answers = answers.values if answers.is_a?(Hash)
 
 		survey_question_ids = @survey.questions.pluck(:id)
 
@@ -13,7 +14,7 @@ class Api::V1::SurveyAnswersController < Api::BaseApiController
 		answers_to_create = []
 		answered_question_ids = []
 
-		answers.each do |index, answer|
+		answers.each_with_index do |answer, index|
 
 			new_answer = PlayerAnswer.new(
 				player_group_id: current_player.current_player_group.id,
@@ -25,7 +26,7 @@ class Api::V1::SurveyAnswersController < Api::BaseApiController
 
 			new_answer.valid?
 
-			errors << { new_answer.question_id => new_answer.errors.full_messages } if new_answer.errors.any?
+			errors << {question_id: new_answer.question_id, errors: new_answer.errors.full_messages} if new_answer.errors.any?
 			answered_question_ids << new_answer.question_id
 
 			answers_to_create << new_answer
@@ -33,7 +34,7 @@ class Api::V1::SurveyAnswersController < Api::BaseApiController
 		end
 
 		(survey_question_ids - answered_question_ids).each do |missing_question_id|
-			errors << { missing_question_id => 'missing'}
+			errors << { question_id: missing_question_id, errors: ['Question is missing']}
 		end
 		
 		if errors.any?

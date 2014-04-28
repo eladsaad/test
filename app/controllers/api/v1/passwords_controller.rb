@@ -16,6 +16,8 @@ class Api::V1::PasswordsController < Api::BaseApiController
 	end
 
 	def update
+		update_params = update_password_params
+		update_params[:password_confirmation] = update_params[:password]
 		@player = Player.reset_password_by_token(update_password_params)
 
 		if @player.errors.any?
@@ -33,8 +35,7 @@ class Api::V1::PasswordsController < Api::BaseApiController
 		def update_password_params
 			require_and_permit(
 				:reset_password_token,
-				:password,
-				:password_confirmation
+				:password
 			)
 		end
 

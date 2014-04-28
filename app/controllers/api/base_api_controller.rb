@@ -63,9 +63,7 @@ class Api::BaseApiController < ApplicationController
     end
 
 	rescue_from(ActionController::ParameterMissing) do |parameter_missing_exception|
-		error = {}
-		error[parameter_missing_exception.param] = ['parameter is required']
-		render_error(:missing_parameter, { errors: [error] })
+		render_error(:missing_parameter, { parameter_missing_exception.param => 'parameter is required' })
 	end
 
 	rescue_from(ActiveRecord::RecordNotFound) do
@@ -83,8 +81,8 @@ class Api::BaseApiController < ApplicationController
 
 	# == Parameters ==
 
-	def require_and_permit(param_keys)
-		param_keys.each { |key| params.require(key) }
+	def require_and_permit(*param_keys)
+		Array(param_keys).each { |key| params.require(key) }
 		params.permit(param_keys)
 	end
 
