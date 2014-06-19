@@ -1,9 +1,8 @@
 class Api::V1::InvitesController < Api::BaseApiController
 
 	def create
-    authorize! :create, :invite
-    @added_points = current_player.invite_friend(params["friend_email"],
-                                          params["message"])
-  end
+		authorize! :create, :invite
+		current_player.invite_friend(params.require(:email), params.permit(:message)[:message])
+	end
 
 end

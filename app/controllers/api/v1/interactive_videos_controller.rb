@@ -15,13 +15,13 @@ class Api::V1::InteractiveVideosController < Api::BaseApiController
 
 	def done # post_interactive
 		authorize! :read, @program_video.interactive_video
-		@added_points = @program_video.watched_by!(current_player)
+		@program_video.watched_by!(current_player)
 	end
 
 	protected
 
 	def set_program_video
-		@program_video = current_player.current_online_program.online_program_interactive_videos.where(interactive_video_id: params[:id]).first
+		@program_video = current_player.current_online_program.online_program_interactive_videos.where(interactive_video_id: params.require(:id)).first
 		render_error(:not_found) unless !@program_video.nil?
 	end
 

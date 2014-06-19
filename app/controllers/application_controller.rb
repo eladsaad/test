@@ -80,4 +80,22 @@ class ApplicationController < ActionController::Base
 
     flash.discard  # don't want the flash to appear when you reload page
   end
+
+  # == Score Updates ==
+
+  before_filter :reset_score_updates
+  
+  def reset_score_updates
+    ScoreUpdate.reset!
+  end
+
+  def add_score_updates_to_flash
+    ScoreUpdate.updates.each do |update|
+      flash[:points] = [
+        I18n.t("score_updates.#{update[:action]}"),
+        update[:points]
+      ]
+    end
+  end
+
 end

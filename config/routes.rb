@@ -40,8 +40,8 @@ Cinemadrive::Application.routes.draw do
     end
   end
 
-  get '/invites' => "player_invites#invite"
-  put '/invites' => "player_invites#send_invite"
+  get '/invite' => "player_invite#invite"
+  put '/invite' => "player_invite#send_invite"
 
   resources :surveys, only: [:show] do
     member do
@@ -57,7 +57,11 @@ Cinemadrive::Application.routes.draw do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: :true) do
       post 'sessions' => 'sessions#create'
       delete 'sessions' => 'sessions#destroy'
-      post 'invites' => 'invites#create'
+      resources :registrations, only: [:create]
+      post 'password', to: 'passwords#create'
+      put 'password', to: 'passwords#update'
+      get 'auth/:provider/callback', to: 'omniauth_callbacks#facebook'
+      post 'auth/:provider/callback', to: 'omniauth_callbacks#facebook'
       resources :interactive_videos, only: [:index, :show] do
         member do
           post :done
@@ -75,13 +79,7 @@ Cinemadrive::Application.routes.draw do
           get :current
         end
       end
-      # notifications
-      # player_invites
-      # player_choices - not yet ?
-      # registration
-      # facebook
-      # password reset
-      # registration confirmation
+      resources :invites, only: [:create]
     end
   end
 

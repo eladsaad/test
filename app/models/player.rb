@@ -12,14 +12,13 @@ class Player < ActiveRecord::Base
 
 	def validate_reg_code
 		if !self.reg_code.blank? && !RegistrationCode.valid_for_registration?(self.reg_code)
-			errors.add(:reg_code, I18n.translate(:is_invalid))
+			errors.add(:reg_code, I18n.translate(:is_invalid)) unless errors[:reg_code].present?
 		end
 	end
 
 	def validate_has_group
-		Rails.logger.info "DOR #{self.reg_code}"
 		unless self.player_group_associations.any?
-			errors.add(:reg_code, I18n.translate(:is_invalid))
+			errors.add(:reg_code, I18n.translate(:is_invalid)) unless errors[:reg_code].present?
 		end
 	end
 
@@ -28,11 +27,8 @@ class Player < ActiveRecord::Base
 	before_validation :assign_group_from_reg_code
 
 	def assign_group_from_reg_code
-		if !self.reg_code.blank? && !self.current_player_group.present?
+		if !self.reg_code.blank? && !self.current_player_group.present? && RegistrationCode.valid_for_registration?(self.reg_code)
 			group = PlayerGroup.find_by_reg_code(self.reg_code)
-      if group.nil?
-        render status: :not_acceptable
-      end
 			result = self.player_group_associations.build(player_group_id: group.id)
 		end
 	end
@@ -97,7 +93,7 @@ class Player < ActiveRecord::Base
 	end
 
 
-	def self.find_for_facebook_oauth(auth, signed_in_player=nil, reg_code=nil)
+	def self.find_for_facebook_oauth(auth, signed_in_player=nil)
 		authentication = PlayerAuthentication.find_by_provider_and_uid(auth.provider, auth.uid)
 		
 		# facebook authentication already exists in db
@@ -120,19 +116,23 @@ class Player < ActiveRecord::Base
 		
 		# unknown player registering via facebook
 		else
-			player = Player.new
-			player.add_authentication_from_omni_auth(auth)
-			player.copy_missing_data_from_facebook_oauth(auth)
-			player.password = Devise.friendly_token.first(8)
-			player.skip_confirmation!
-			if !reg_code.nil?
-				group = PlayerGroup.find_by_reg_code(reg_code)
-				player.player_group_associations.build(player_group_id: group.id)
-			end
-			player.save(validate: false)
-			return player
+			return nil
 		end
 	end
+
+
+	def self.create_for_facebook_oauth(auth, reg_code = nil, tos_accepted = nil)
+		player = Player.new
+		player.add_authentication_from_omni_auth(auth)
+		player.copy_missing_data_from_facebook_oauth(auth)
+		player.password = Devise.friendly_token.first(8)
+		player.tos_accepted = tos_accepted
+		player.skip_confirmation!
+		player.reg_code = reg_code
+		player.assign_group_from_reg_code
+		return player
+	end
+
 
 	def add_authentication_from_omni_auth(auth)
 		self.player_authentications.build(
@@ -143,15 +143,6 @@ class Player < ActiveRecord::Base
 		)
 	end
 
-
-	def self.new_with_session(params, session)
-		super.tap do |player|
-			if session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
-				player.add_authentication_from_omni_auth(session["devise.facebook_data"])
-				player.copy_missing_data_from_facebook_oauth(session["devise.facebook_data"])
-			end
-		end
-	end
 
 	def send_facebook_notifications(message, callback_url)
 		facebook_user_id = self.player_authentications.find_by_provider(:facebook).try(:uid)
@@ -173,24 +164,15 @@ class Player < ActiveRecord::Base
 		http.request(fb_req) # return response
   end
 
-  def invite_friend(friend_email, message)
-    PlayerMailer.invite_email(friend_email,
-                              self.first_name,
-                              message).deliver
-
-    add_points(2500)
-  end
-
 
 	# == Scores ==
 
-	def add_points(points, player_group_id = self.current_player_group.id)
-		score = Score.where(player_group_id: player_group_id, player_id: self.id).first_or_initialize
+	def add_points(points, action_key = nil)
+		score = Score.where(player_group_id: self.current_player_group.id, player_id: self.id).first_or_initialize
 		score.score ||= 0
 		score.score += points
 		score.save!
-
-    points
+		ScoreUpdate.add(points, action_key)
 	end
 
 	def score(player_group_id = nil)
@@ -207,6 +189,17 @@ class Player < ActiveRecord::Base
 		return self.tos_accepted && self.current_player_group.present?
 	end
 
-	
+
+	# == Invites ==
+
+	def invite_friend(friend_email, message = '')
+		PlayerMailer.custom_email(
+			friend_email,
+			I18n.t(:player_invited_you_to_join, player_name: self.first_name),
+			message
+        ).deliver
+
+	    self.add_points(2500, :friend_invite)
+	end
 
 end

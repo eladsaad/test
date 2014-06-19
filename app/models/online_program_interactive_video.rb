@@ -54,9 +54,7 @@ class OnlineProgramInteractiveVideo < ActiveRecord::Base
     		points_to_add = 3000
 	    end
 
-	    player.add_points(points_to_add) # TODO: make configurable
-
-		return points_to_add
+	    player.add_points(points_to_add, :interactive_video_watch)
 	end
 
 
