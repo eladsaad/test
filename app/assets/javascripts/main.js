@@ -85,10 +85,10 @@ function footer () {
     });
 
     $('.footer').on('click', '#invite_link', function() {
-        $.getScript('/invite').done(function(script, textStatus) {
+        $.getScript('/invites').done(function(script, textStatus) {
             if (textStatus == 'success') {
                 window.loadRemoteScript = false;
-                History.pushState({}, '', '/invite');
+                History.pushState({}, '', '/invites');
             }
         }).fail(function( jqxhr, settings, exception ) {
             bootbox.alert("Failed to load page");

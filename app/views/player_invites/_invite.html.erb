@@ -2,7 +2,7 @@
 <!--[if lt IE 9]>
 <div class="ie7-fix">
 <![endif]-->
-    <%= form_tag invite_path, id: 'invite-form', :method => 'put', format: :js, remote: true do %>
+    <%= form_tag invites_path, id: 'invite-form', :method => 'put', format: :js, remote: true do %>
 
         <%= text_field_tag 'friend_email', nil, placeholder: "YOUR FRIEND'S EMAIL",
                            id: 'friends-email', class: 'form-control', autocomplete: 'off' %>

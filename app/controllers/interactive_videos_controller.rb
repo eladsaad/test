@@ -32,7 +32,14 @@ class InteractiveVideosController < BaseController
 
     added_points = program_video.watched_by!(current_player)
 
-    flash[:points] = ["You just watched an episode<br>and won extra" , added_points]
+    survey_points = 3000
+    if (params['survey'])
+      added_points += survey_points
+      flash[:points] = ["You just watched an episode and answered a questionnaire!<br>you won extra" , added_points]
+    else
+      flash[:points] = ["You just watched an episode<br>and won extra" , added_points]
+    end
+
     redirect_to root_url
   end
   

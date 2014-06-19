@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140407102424) do
+ActiveRecord::Schema.define(version: 20140413093626) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,10 +30,10 @@ ActiveRecord::Schema.define(version: 20140407102424) do
   create_table "campaigns", force: true do |t|
     t.string   "name"
     t.integer  "max_views"
-    t.integer  "views",                       default: 0
-    t.integer  "clicks",                      default: 0
+    t.integer  "views",                         default: 0
+    t.integer  "clicks",                        default: 0
     t.string   "trophy_name"
-    t.string   "landing_page",   limit: 1000
+    t.string   "landing_page",     limit: 1000
     t.text     "banner_html_01"
     t.text     "banner_html_02"
     t.text     "banner_html_03"
@@ -46,6 +46,16 @@ ActiveRecord::Schema.define(version: 20140407102424) do
     t.text     "banner_html_10"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "banner_mobile_01"
+    t.string   "banner_mobile_02"
+    t.string   "banner_mobile_03"
+    t.string   "banner_mobile_04"
+    t.string   "banner_mobile_05"
+    t.string   "banner_mobile_06"
+    t.string   "banner_mobile_07"
+    t.string   "banner_mobile_08"
+    t.string   "banner_mobile_09"
+    t.string   "banner_mobile_10"
   end
 
   add_index "campaigns", ["name"], name: "index_campaigns_on_name", using: :btree
@@ -201,6 +211,18 @@ ActiveRecord::Schema.define(version: 20140407102424) do
   end
 
   add_index "player_answers", ["player_id"], name: "index_player_answers_on_player_id", using: :btree
+
+  create_table "player_api_keys", force: true do |t|
+    t.string   "access_token"
+    t.datetime "expires_at"
+    t.integer  "player_id"
+    t.boolean  "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "player_api_keys", ["access_token"], name: "index_player_api_keys_on_access_token", unique: true, using: :btree
+  add_index "player_api_keys", ["player_id"], name: "index_player_api_keys_on_player_id", using: :btree
 
   create_table "player_authentications", force: true do |t|
     t.integer  "player_id"

@@ -7,7 +7,7 @@
   <div class="points-modal-body">
     <h1>CONGRATULATIONS!</h1>
     <p><%= raw(flash[:points][0]) %><br>
-      <span class="points-modal-points"><%= raw(flash[:points][1]) %></span><br>
+      <span class="points-modal-points"><%= raw(number_with_delimiter(flash[:points][1].to_i)) %></span><br>
       points</p>
   </div>
   <div class="points-modal-bottom">

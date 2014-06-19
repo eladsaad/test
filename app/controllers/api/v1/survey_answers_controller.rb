@@ -18,7 +18,7 @@ class Api::V1::SurveyAnswersController < Api::BaseApiController
 		if PlayerAnswer.create(player_answers_to_create)
 			render :json=> {:success=>true}
 		else
-			render :json=> {:success=>false, :message=>"Cannot save answers"}, :status=>401
+			render :json=> {:success=>false, :message=>"Can't save answers"}, :status=>401
 		end
 	end
 

@@ -15,7 +15,7 @@ class StaticPagesController < ApplicationController
 
   def about
 
-    #flash[:points] = ["You just did something<br>and won extra" , '2000']
+    #flash[:points] = ["You just did something<br>and won extra" , 2000]
 
     @active_page = 'about'
 

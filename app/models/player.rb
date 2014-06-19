@@ -30,6 +30,9 @@ class Player < ActiveRecord::Base
 	def assign_group_from_reg_code
 		if !self.reg_code.blank? && !self.current_player_group.present?
 			group = PlayerGroup.find_by_reg_code(self.reg_code)
+      if group.nil?
+        render status: :not_acceptable
+      end
 			result = self.player_group_associations.build(player_group_id: group.id)
 		end
 	end
@@ -170,6 +173,14 @@ class Player < ActiveRecord::Base
 		http.request(fb_req) # return response
   end
 
+  def invite_friend(friend_email, message)
+    PlayerMailer.invite_email(friend_email,
+                              self.first_name,
+                              message).deliver
+
+    add_points(2500)
+  end
+
 
 	# == Scores ==
 
@@ -178,6 +189,8 @@ class Player < ActiveRecord::Base
 		score.score ||= 0
 		score.score += points
 		score.save!
+
+    points
 	end
 
 	def score(player_group_id = nil)

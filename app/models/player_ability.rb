@@ -32,7 +32,7 @@ class PlayerAbility
     can :create, PlayerAnswer, player_id: player.id
     can :update, PlayerAnswer, player_id: player.id
 
-    can :send, :invite
+    can :create, :invite
 
     can :destroy, PlayerApiKey, player_id: player.id
 

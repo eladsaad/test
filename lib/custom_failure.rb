@@ -3,9 +3,9 @@ class CustomFailure < Devise::FailureApp
     if warden_options[:scope] == :player
       root_path
     elsif warden_options[:scope] == :operator
-      new_operator_user_session_path
+      new_operation_operator_session_path
     else
-      new_admin_user_session_path
+      new_admin_system_admin_session_path
     end
   end
 

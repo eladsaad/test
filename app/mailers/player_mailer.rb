@@ -1,8 +1,6 @@
 class PlayerMailer < ActionMailer::Base
   
 	def custom_email(address, subject, content)
-    puts ">>>>>>>>>>>>>>"
-    p ENV['NOTIFICATION_MAIL_SENDER']
 	    mail(
 			to: address,
 			from: ENV['NOTIFICATION_MAIL_SENDER'],
@@ -10,6 +8,11 @@ class PlayerMailer < ActionMailer::Base
 			content_type: "text/html",
 			subject: subject
          )
-  	end
+  end
+
+  def invite_email(friend_email, first_name, message)
+    self.custom_email(friend_email, first_name + " invited you to join Cinema-Drive!",
+                      message).deliver
+  end
 
 end

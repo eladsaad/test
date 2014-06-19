@@ -19,7 +19,7 @@ class Players::SessionsController < Devise::SessionsController
       # first login
       # TODO: take from points rules table
       current_player.add_points(1000)
-      flash[:points] = ["You just registered our website<br>and won extra" , '1000']
+      flash[:points] = ["You just registered our website<br>and won extra" , 1000]
     end
 
 		if player.is_a?(Player) # just to verify

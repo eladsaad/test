@@ -1,18 +1,13 @@
 <!-- Banner content -->
-<div style="width:100%; height:100%; background-image:url('/assets/cinema_drive_baner_back.png')">
-    <!--
-    <span style="position:absolute; left: 50%; height: 60px">
-        <img src="content/img/cinema_drive_baner_present.png" style="position:absolute; bottom: 0; display: inline-block; left: -97px; vertical-align: middle">
-    </span>
-    <img src="content/img/cinema_drive_baner_left.png" style="position:absolute; left:28px; bottom: 0">
-    <img src="content/img/cinema_drive_baner_right.png" style="position:absolute; right:28px; bottom: 0">
-    -->
-    <span style="position:absolute; left: 50%; height: 60px">
-        <img src="/assets/cinema_drive_banner_front.png" style="position:absolute; bottom: 0; display: inline-block; left: -339px; vertical-align: middle">
-    </span>
-</div>
+<!--<div style="width:100%; height:100%; background-image:url('/assets/cinema_drive_baner_back.png')">-->
+    <!--<span style="position:absolute; left: 50%; height: 60px">-->
+        <!--<img src="/assets/cinema_drive_banner_front.png" style="position:absolute; bottom: 0; display: inline-block; left: -339px; vertical-align: middle">-->
+    <!--</span>-->
+<!--</div>-->
 
 <!-- SWITCH TO THIS CODE FOR DYNAMIC CAMPAIGNS -->
-<%# campaign = Campaign.get_by_player_group(current_player.current_player_group) %>
-<%#= link_to campaign.show_banner_content('01').html_safe, click_campaign_path(id: campaign.id) %>
+<% if player_signed_in? && !current_player.current_player_group.nil? %>
+<% campaign = Campaign.get_by_player_group(current_player.current_player_group) %>
+<%= link_to campaign.show_banner_content('01').html_safe, click_campaign_path(id: campaign.id) %>
+<% end %>
 <!-- SWITCH TO THIS CODE FOR DYNAMIC CAMPAIGNS -->
