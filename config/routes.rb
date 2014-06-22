@@ -80,6 +80,11 @@ Cinemadrive::Application.routes.draw do
         end
       end
       resources :invites, only: [:create]
+      resources :registration_codes, only: [] do
+        collection do
+          post :verify
+        end
+      end
     end
   end
 
