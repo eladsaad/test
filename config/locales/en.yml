@@ -47,6 +47,7 @@ en:
   male: "Male"
   female: "Female"
   is_invalid: "is invalid"
+  missing_content_or_mobile_content: "Content / Mobile Content is missing"
   is_not_allowed: "is not allowed"
   from: "From"
   to: "To"

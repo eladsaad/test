@@ -20,6 +20,11 @@
   <code><%= @admin_interactive_video.content %></code>
 </p>
 
+<p>
+  <strong>Mobile Content:</strong>
+  <code><%= @admin_interactive_video.content_mobile %></code>
+</p>
+
 <br>
 <%= link_to t(:edit), edit_admin_interactive_video_path(@admin_interactive_video), class: 'edit-record-link' %>
 <%= link_to t(:back_to_list), admin_interactive_videos_path, class: 'back-to-list-link' %>

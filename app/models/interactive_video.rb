@@ -8,7 +8,14 @@ class InteractiveVideo < ActiveRecord::Base
   # == VALIDATIONS ==
   validates :name, :presence => true
   validates :language_code_id, :presence => true
-  validates :content, :presence => true
+  validate :validate_content
+
+  def validate_content
+    if (content.blank? && content_mobile.blank?)
+        errors.add(:content, I18n.translate(:missing_content_or_mobile_content))
+        errors.add(:content_mobile, I18n.translate(:missing_content_or_mobile_content))
+    end
+  end
 
   # == SEARCH ==
   search_columns [:name, :language_code]
