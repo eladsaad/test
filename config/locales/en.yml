@@ -134,6 +134,10 @@ en:
         created_at: "Created At"
         updated_at: "Updated At"
         tos_accepted: "Terms of Service"
+        age: "Age"
+        gender: "Gender"
+        profile_picture: "Profile Picture"
+        group_name: "Group Name"
       player_group:
         id: "ID"
         operator_id: "Operator ID"

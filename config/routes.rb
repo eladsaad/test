@@ -115,6 +115,7 @@ Cinemadrive::Application.routes.draw do
     resources :interactive_videos
     resources :online_programs
     resources :campaigns
+    resources :players, only: [:index, :show, :destroy]
   end
 
 

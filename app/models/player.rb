@@ -76,6 +76,9 @@ class Player < ActiveRecord::Base
 	    )
 	end
 
+	# == SEARCH ==
+	search_columns [:email, :first_name, :last_name]
+
 	# == FACEBOOK ==
 
 	def get_token(provider)

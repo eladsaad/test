@@ -41,6 +41,9 @@ class Admin::SystemAdminAbility
       # campaigns
       can :manage, Campaign
 
+      # players
+      can [:read, :destroy, :index], Player
+
     end
 
   end
