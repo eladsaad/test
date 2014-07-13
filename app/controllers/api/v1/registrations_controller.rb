@@ -12,6 +12,11 @@ class Api::V1::RegistrationsController < Api::BaseApiController
 		end
 	end
 
+	def current
+		@player = current_player
+		authorize! :read, @player		
+	end
+
 	protected
 
 		def sign_up_params

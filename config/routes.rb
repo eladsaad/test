@@ -57,7 +57,11 @@ Cinemadrive::Application.routes.draw do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: :true) do
       post 'sessions' => 'sessions#create'
       delete 'sessions' => 'sessions#destroy'
-      resources :registrations, only: [:create]
+      resources :registrations, only: [:create] do
+        collection do
+          get :current
+        end
+      end
       post 'password', to: 'passwords#create'
       put 'password', to: 'passwords#update'
       get 'auth/:provider/callback', to: 'omniauth_callbacks#facebook'

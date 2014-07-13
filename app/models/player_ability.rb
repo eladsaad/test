@@ -36,6 +36,8 @@ class PlayerAbility
 
     can :destroy, PlayerApiKey, player_id: player.id
 
+    can :read, Player, id: player.id
+
   end
 
 end
