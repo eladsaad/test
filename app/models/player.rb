@@ -76,6 +76,10 @@ class Player < ActiveRecord::Base
 	    )
 	end
 
+	def group_name
+		self.current_player_group.name
+	end
+
 	# == SEARCH ==
 	search_columns [:email, :first_name, :last_name]
 

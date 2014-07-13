@@ -1,1 +1,1 @@
-json.extract! player, :email, :first_name, :last_name, :birth_date, :gender, :age,	:tos_accepted
+json.extract! player, :email, :first_name, :last_name, :birth_date, :gender, :age, :tos_accepted, :group_name
