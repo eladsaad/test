@@ -10,6 +10,7 @@ class Api::V1::RegistrationsController < Api::BaseApiController
 		unless @player.save
 			render_error(:unprocessable_entity, @player.errors )
 		end
+		@player.reload
 	end
 
 	def current

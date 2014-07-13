@@ -77,7 +77,7 @@ class Player < ActiveRecord::Base
 	end
 
 	def group_name
-		self.current_player_group.name
+		self.current_player_group.try(:name)
 	end
 
 	# == SEARCH ==
