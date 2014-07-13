@@ -27,6 +27,11 @@ class OnlineProgramInteractiveVideo < ActiveRecord::Base
 		return self.index_in_program <= last_watched_index
 	end
 
+	def enabled_time(player_group)
+		enabled_date = player_group.screening_date + self.start_after_days.days
+		enabled_time = enabled_date.to_time.to_i + self.start_time.to_time.to_i
+	end
+
 	def index_in_program
 		self.online_program.online_program_interactive_videos.pluck(:interactive_video_id).index(self.interactive_video_id)+1
 	end
