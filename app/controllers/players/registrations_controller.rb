@@ -51,7 +51,7 @@ class Players::RegistrationsController < Devise::RegistrationsController
 		group = PlayerGroup.find_by_reg_code(params[:reg_code])
 
 		respond_to do |format|
-			if group.nil? || !group.active?
+			if group.nil?
 				format.json { render :json => "{ \"valid\": false }" }
 			else
 				format.json { render :json => "{ \"valid\": true }" }
