@@ -8,7 +8,7 @@ class RegistrationCode < ActiveRecord::Base
 	def self.valid_for_registration?(code)
 		group = nil
 		group = PlayerGroup.find_by_reg_code(code) unless code.blank?
-		return (!group.nil? && group.active?)
+		return !group.nil? # allow registration to any existing group even if it is not currently active
 	end
 
 end
