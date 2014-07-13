@@ -35,15 +35,15 @@ class PlayerGroup < ActiveRecord::Base
 	def active?
 		Time.now >= self.screening_date &&
 		Time.now <= self.screening_date + 6.weeks
-  end
+  	end
 
-  def score
-    Score.sum(:score, conditions: { player_group_id: self.id })
-  end
+	def score
+		Score.sum(:score, conditions: { player_group_id: self.id })
+	end
 
-  def players_count
-    PlayerGroup.first.players.count
-  end
+	def players_count
+		PlayerGroup.first.players.count
+	end
 
 	private
 
