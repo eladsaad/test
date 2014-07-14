@@ -26,7 +26,7 @@
         <td><%= admin_player.first_name %></td>
         <td><%= admin_player.last_name %></td>
         <td><%= admin_player.created_at %></td>
-        <td><%= admin_player.current_player_group.name %></td>
+        <td><%= admin_player.group_name %></td>
         <td><%= link_to t(:show), admin_player, class: 'show-record-link' %></td>
         <td><%= link_to t(:delete), admin_player, method: :delete, data: { confirm: 'Are you sure?' }, class: 'destroy-record-link' %></td>
       </tr>
