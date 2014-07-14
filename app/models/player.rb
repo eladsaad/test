@@ -136,7 +136,6 @@ class Player < ActiveRecord::Base
 		player.tos_accepted = tos_accepted
 		player.skip_confirmation!
 		player.reg_code = reg_code
-		player.assign_group_from_reg_code
 		return player
 	end
 

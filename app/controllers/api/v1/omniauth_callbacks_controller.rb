@@ -44,7 +44,7 @@ class Api::V1::OmniauthCallbacksController < Api::BaseApiController
 			player = Player.create_for_facebook_oauth(omnihash, reg_code, tos_accepted)
 
 			unless player.save
-				render_error(:unprocessable_entity, player.errors )
+				render_error(:unprocessable_entity, player.errors)
 				return
 			end
 			player.reload
