@@ -29,6 +29,8 @@ class ApiError
 			# facebook
 			missing_facebook_email: { message: 'Missing Facebook Email', status: :unprocessable_entity },
 			invalid_facebook_authentication: { message: 'Invalid Facebook Authentication', status: :unprocessable_entity },
+			invalid_facebook_signed_request: { message: 'Invalid Facebook Signed Request', status: :unprocessable_entity },
+			invalid_facebook_access_token: { message: 'Invalid Facebook Access Token', status: :unprocessable_entity },
 		}
 	end
 
