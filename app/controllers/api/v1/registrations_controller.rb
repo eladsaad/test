@@ -9,6 +9,7 @@ class Api::V1::RegistrationsController < Api::BaseApiController
 		@player.skip_confirmation!
 		unless @player.save
 			render_error(:unprocessable_entity, @player.errors )
+			return
 		end
 		@player.reload
 	end
