@@ -9,11 +9,26 @@ class Api::V1::OmniauthCallbacksController < Api::BaseApiController
 		
 		auth_response = params.require(:auth_response)
 
+		if auth_response.try(:[], 'signedRequest').nil?
+			render_error(:invalid_facebook_authentication, 'auth_response missing signedRequest')
+			return
+		end
+
+		if auth_response.try(:[], 'accessToken').nil?
+			render_error(:invalid_facebook_authentication, 'auth_response missing accessToken')
+			return
+		end
+
 		# get user data from facebook
 		koala_oauth = Koala::Facebook::OAuth.new(ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'])	
-      	signed_request_parsed = koala_oauth.parse_signed_request(auth_response[:signedRequest]) # verify signed_request
-      	# TODO: catch bad signed request and return a JSON response OAuth::OAuthSignatureError
-      	# TODO: render_error(:invalid_facebook_authentication)
+      	
+		begin
+      		signed_request_parsed = koala_oauth.parse_signed_request(auth_response[:signedRequest]) # verify signed_request
+      	rescue Koala::Facebook::OAuthSignatureError => e
+      		render_error(:invalid_facebook_authentication, "signedRequest - #{e.message}")
+      		return
+  		end
+
       	access_token = auth_response[:accessToken]
       	omnihash = get_omnihash_from_token(access_token)
 
