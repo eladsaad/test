@@ -95,7 +95,8 @@ class Player < ActiveRecord::Base
 		self.first_name = auth.extra.raw_info.try(:first_name) if self.first_name.blank?
 		self.last_name = auth.extra.raw_info.try(:last_name) if self.last_name.blank?
 		self.gender = auth.extra.raw_info.try(:gender).try(:downcase) if self.gender.blank?
-		self.birth_date = Date.strptime(auth.extra.raw_info.try(:birthday), '%m/%d/%Y') if self.birth_date.blank?
+		birthday = auth.extra.raw_info.try(:birthday)
+		self.birth_date = Date.strptime(birthday, '%m/%d/%Y') if self.birth_date.blank? && !birthday.blank?
 		self.profile_picture = auth.info.try(:image) if self.profile_picture.blank?
 	end
 

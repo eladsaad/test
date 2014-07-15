@@ -7,21 +7,19 @@ class Api::V1::OmniauthCallbacksController < Api::BaseApiController
 
 	def facebook
 		
-		signed_request = params.require(:signed_request)
-		access_token = params.require(:access_token)
+		# # verify given signed_request
+		# begin
+		# 	signed_request = params.require(:signed_request)
+		# 	koala_oauth = Koala::Facebook::OAuth.new(ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'])
+		# 	signed_request_parsed = koala_oauth.parse_signed_request(signed_request)
+		# rescue Koala::Facebook::OAuthSignatureError => e
+		# 	render_error(:invalid_facebook_signed_request, e.message)
+		# 	return
+		# end
 
-		koala_oauth = Koala::Facebook::OAuth.new(ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'])	
-      	
-      	# verify signed_request
-		begin
-      		signed_request_parsed = koala_oauth.parse_signed_request(signed_request)
-      	rescue Koala::Facebook::OAuthSignatureError => e
-      		render_error(:invalid_facebook_signed_request, e.message)
-      		return
-  		end
-
-  		# get user data from facebook
+  		# get user data from facebook using the given access_token
   		begin
+  			access_token = params.require(:access_token)
       		omnihash = get_omnihash_from_token(access_token)
       	rescue Koala::Facebook::APIError => e
       		render_error(:invalid_facebook_access_token, e.message)
@@ -66,7 +64,7 @@ class Api::V1::OmniauthCallbacksController < Api::BaseApiController
 
 		def get_omnihash_from_token(access_token)
 
-			graph = Koala::Facebook::API.new(access_token)
+			graph = Koala::Facebook::API.new(access_token, ENV['FACEBOOK_APP_SECRET'])
 			profile = graph.get_object('me')
 
 			# Generate omnihash
