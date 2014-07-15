@@ -80,6 +80,15 @@ class Player < ActiveRecord::Base
 		self.current_player_group.try(:name)
 	end
 
+	def age
+		age = read_attribute(:age)
+		if age.blank? && !self.birth_date.blank?
+			current_date = Time.now.utc.to_date
+  			age = current_date.year - self.birth_date.year - (self.birth_date.to_date.change(:year => current_date.year) > current_date ? 1 : 0)
+		end
+		return age
+	end
+
 	# == SEARCH ==
 	search_columns [:email, :first_name, :last_name]
 
