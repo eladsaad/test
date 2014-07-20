@@ -1,2 +1,1 @@
- json.extract! @campaign, :name, :trophy_name
- #TODO: add banner_mobile_..
+ json.extract! @campaign, :id, :name, :trophy_name, :landing_page, :banner_image

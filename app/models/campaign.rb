@@ -25,11 +25,16 @@ class Campaign < ActiveRecord::Base
 		campaign ||= self.get_default # default campaign if none found
 	end
 
-	def show_banner_content(banner_number)
-		content = self.send("banner_html_#{banner_number}")
+	def show_website_banner_content(banner_number)
+		content = self.send("website_banner_html_#{banner_number}")
 		self.views += 1
 		self.save!
 		return content
+	end
+
+	def show_banner_image
+		self.views += 1
+		self.save!
 	end
 
 	def self.get_default

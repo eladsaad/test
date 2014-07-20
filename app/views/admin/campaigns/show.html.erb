@@ -9,11 +9,11 @@
 <% end %>
 
 
-<% [:banner_html_01, :banner_html_02, :banner_html_03, :banner_html_04, :banner_html_05,
-    :banner_html_06, :banner_html_07, :banner_html_08, :banner_html_09, :banner_html_10].each do |attribute| %>
+<% [:banner_image, :website_banner_html_01, :website_banner_html_02, :website_banner_html_03, :website_banner_html_04, :website_banner_html_05,
+    :website_banner_html_06, :website_banner_html_07, :website_banner_html_08, :website_banner_html_09, :website_banner_html_10].each do |attribute| %>
   <p>
     <strong><%= t("activerecord.attributes.campaign.#{attribute}") %>:</strong>
-    <%= h @admin_campaign.send(attribute) %>
+    <code><%= h @admin_campaign.send(attribute) %></code>
   </p>
 <% end %>
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140701131616) do
+ActiveRecord::Schema.define(version: 20140717083116) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,32 +30,23 @@ ActiveRecord::Schema.define(version: 20140701131616) do
   create_table "campaigns", force: true do |t|
     t.string   "name"
     t.integer  "max_views"
-    t.integer  "views",                         default: 0
-    t.integer  "clicks",                        default: 0
+    t.integer  "views",                               default: 0
+    t.integer  "clicks",                              default: 0
     t.string   "trophy_name"
-    t.string   "landing_page",     limit: 1000
-    t.text     "banner_html_01"
-    t.text     "banner_html_02"
-    t.text     "banner_html_03"
-    t.text     "banner_html_04"
-    t.text     "banner_html_05"
-    t.text     "banner_html_06"
-    t.text     "banner_html_07"
-    t.text     "banner_html_08"
-    t.text     "banner_html_09"
-    t.text     "banner_html_10"
+    t.string   "landing_page",           limit: 1000
+    t.text     "website_banner_html_01"
+    t.text     "website_banner_html_02"
+    t.text     "website_banner_html_03"
+    t.text     "website_banner_html_04"
+    t.text     "website_banner_html_05"
+    t.text     "website_banner_html_06"
+    t.text     "website_banner_html_07"
+    t.text     "website_banner_html_08"
+    t.text     "website_banner_html_09"
+    t.text     "website_banner_html_10"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "banner_mobile_01"
-    t.string   "banner_mobile_02"
-    t.string   "banner_mobile_03"
-    t.string   "banner_mobile_04"
-    t.string   "banner_mobile_05"
-    t.string   "banner_mobile_06"
-    t.string   "banner_mobile_07"
-    t.string   "banner_mobile_08"
-    t.string   "banner_mobile_09"
-    t.string   "banner_mobile_10"
+    t.text     "banner_image"
   end
 
   add_index "campaigns", ["name"], name: "index_campaigns_on_name", using: :btree

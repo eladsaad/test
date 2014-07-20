@@ -1,7 +1,7 @@
 class CampaignOperatorProgram < ActiveRecord::Base
 
 	# == VALIDATIONS ==
-	validates :campaign_id, :presence => true
+	validates :campaign, :presence => true
 	validates :operator_id, :presence => true
 	validates :online_program_id, :presence => true
 
