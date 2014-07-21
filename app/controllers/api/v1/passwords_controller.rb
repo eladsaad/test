@@ -6,13 +6,11 @@ class Api::V1::PasswordsController < Api::BaseApiController
 
 	
 	def create
-		CustomDeviseMailer.use_api_version!
 		@player = Player.send_reset_password_instructions(reset_password_params)
 
 		if @player.errors.any?
 			render_error(:unprocessable_entity, @player.errors )
 		end
-
 	end
 
 	def update
