@@ -25,6 +25,7 @@ gem 'bootbox-rails', '~>0.2'
 gem 'delayed_job_active_record' # async jobs queue
 gem 'daemons' # required by dealyed_jobs
 gem 'rails-settings-cached', '0.3.1'
+gem 'newrelic_rpm'
 
 group :production do
 	gem 'rails_12factor' # heroku logging and assets

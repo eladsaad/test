@@ -101,6 +101,7 @@ GEM
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     nested_form (0.3.2)
+    newrelic_rpm (3.9.0.229)
     oauth2 (0.9.3)
       faraday (>= 0.8, < 0.10)
       jwt (~> 0.1.8)
@@ -221,6 +222,7 @@ DEPENDENCIES
   koala
   meta_request
   nested_form
+  newrelic_rpm
   omniauth-facebook
   pg
   rails (= 4.0.2)
