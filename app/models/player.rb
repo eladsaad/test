@@ -35,12 +35,12 @@ class Player < ActiveRecord::Base
 
 
 	# == ASSOCIATIONS ==
-	has_many :player_sessions
+	has_many :player_sessions, :dependent => :destroy
 	has_many :player_authentications, :dependent => :destroy
 	has_many :player_group_associations, :dependent => :destroy
 	has_and_belongs_to_many :player_groups, join_table: :player_group_associations
-  	has_many :scores
-  	has_many :player_answers
+  	has_many :scores, :dependent => :destroy
+  	has_many :player_answers, :dependent => :destroy
 
 	# == DEVISE Authentication ==
 	devise :database_authenticatable, :registerable, :confirmable,
