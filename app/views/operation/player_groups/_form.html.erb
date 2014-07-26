@@ -3,23 +3,7 @@
 
   <div class="form-inputs">
 
-    <%= f.input :player_organization_id, as: :hidden, required: true,
-        input_html: { id: 'player_group_player_organization_id' } %>
-    <%= f.input :player_organization_autocomplete, as: :string, required: true,
-        label: t('activerecord.attributes.player_group.player_organization_id'),
-        placeholder: t(:start_typing_for_autocomplete),
-        hint: "#{link_to 'Add new', new_operation_player_organization_path, target: '_blank'}".html_safe,
-        input_html: {
-          value: @operation_player_group.try(:player_organization).try(:name),
-          class: 'autocomplete-field',
-          data: {
-            autocomplete_source: operation_player_organizations_path(format: :json),
-            autocomplete_label_att: 'name',
-            autocomplete_value_att: 'id',
-            autocomplete_value_input_id: 'player_group_player_organization_id'
-          }
-        }
-    %>
+    <%= f.association :player_organization, prompt: t(:please_select)%>
 
     <%= f.input :reg_code, placeholder: t(:leave_empty_for_automatic), required: false %>
     <%= f.input :screening_date, as: :string, input_html: { class: 'datepicker' }%>

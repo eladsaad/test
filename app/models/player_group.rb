@@ -2,12 +2,13 @@ class PlayerGroup < ActiveRecord::Base
 
 	# == VALIDATIONS ==
 	validates :operator_id, :presence => true
-	validates :reg_code, :presence => true, :uniqueness => true
+	validates :reg_code, :presence => true, uniqueness: {case_sensitive: false}
 	validate :validate_reg_code_with_operator, :on => :create
 	validates :screening_date, :presence => true
 	validates :name, :presence => true
 	validates :player_organization_id, :presence => true
 	validate :validate_allowed_online_program
+	validates_uniqueness_of :name, scope: :operator_id
 
 	# == ASSOCIATIONS ==
 	belongs_to :operator
@@ -34,7 +35,7 @@ class PlayerGroup < ActiveRecord::Base
 
 	def active?
 		Time.now >= self.screening_date &&
-		Time.now <= self.screening_date + 6.weeks
+		Time.now <= self.screening_date + 1000.weeks
   	end
 
 	def score
@@ -43,6 +44,10 @@ class PlayerGroup < ActiveRecord::Base
 
 	def players_count
 		PlayerGroup.first.players.count
+	end
+
+	def self.find_by_reg_code(code)
+		self.where('lower(reg_code) = ?', code.downcase).first
 	end
 
 	private

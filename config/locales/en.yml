@@ -143,7 +143,7 @@ en:
         operator_id: "Operator ID"
         reg_code: "Code"
         screening_date: "Screening Date"
-        name: "Name"
+        name: "Group Name"
         description: "Comments"
         player_organization_id: "Organization"
         mobile_station_code: "Team"
