@@ -8,11 +8,11 @@ class PlayerAbility
 
     can :index, InteractiveVideo
     can :read, InteractiveVideo do |interactive_video|
-      interactive_video.allowed_for_player(player)
+      interactive_video.allowed_for_player?(player)
     end
 
     can :read, Notification do |notification|
-      notification.allowed_for_player(player)
+      notification.allowed_for_player?(player)
     end
 
     can :read, Campaign

@@ -7,11 +7,11 @@ class OnlineProgram < ActiveRecord::Base
 	validates :codename, :presence => true, :uniqueness => true
 
 	# == ASSOCIATIONS ==
-	has_many :online_program_interactive_videos, :inverse_of => :online_program, :dependent => :destroy
-  has_many :interactive_videos, through: :online_program_interactive_videos
+	has_many :online_program_interactive_videos, -> { order 'start_after_days ASC, start_time ASC' }, :inverse_of => :online_program, :dependent => :destroy
+  	has_many :interactive_videos, through: :online_program_interactive_videos
 	accepts_nested_attributes_for :online_program_interactive_videos, allow_destroy: true, reject_if: :all_blank
 
-	has_many :online_program_notifications, :inverse_of => :online_program, :dependent => :destroy
+	has_many :online_program_notifications, -> { order 'start_after_days ASC, start_time ASC' }, :inverse_of => :online_program, :dependent => :destroy
 	accepts_nested_attributes_for :online_program_notifications, allow_destroy: true, reject_if: :all_blank
 
 	belongs_to :background_image, foreign_key: :background_image_id, class_name: Image

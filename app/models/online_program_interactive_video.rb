@@ -12,7 +12,7 @@ class OnlineProgramInteractiveVideo < ActiveRecord::Base
 
 	# == ORDER ==
 
-	default_scope { order(:start_after_days) } 
+	default_scope { order(:start_after_days, :start_time) }
 
 	# == PLAYER PROGRESS ==
 
@@ -20,6 +20,13 @@ class OnlineProgramInteractiveVideo < ActiveRecord::Base
 		days_since_start = (Date.today - player_group.screening_date).to_i
 		current_time = Time.now.strftime("%H:%M:%S")
 		result = (self.start_after_days < days_since_start) || (self.start_after_days == days_since_start && self.start_time <= current_time)
+	end
+
+	def enabled_for_player?(player)
+		group_enabled = self.enabled_for_group?(player.current_player_group)
+		return false unless group_enabled
+		last_watched_index = player.current_progress.last_interactive_video_index
+		return self.index_in_program <= last_watched_index+1 
 	end
 
 	def watched?(player)

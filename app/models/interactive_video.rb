@@ -22,11 +22,13 @@ class InteractiveVideo < ActiveRecord::Base
 
   # == UTILS ==
   def index_in_program(online_program)
-  	online_program.online_program_interactive_videos.order(:start_after_days).pluck(:interactive_video_id).index(self.id)+1
+  	online_program.online_program_interactive_videos.order(:start_after_days, :start_time).pluck(:interactive_video_id).index(self.id)+1
   end
 
-  def allowed_for_player(player)
-    player.current_online_program.enabled_interactive_videos(player.current_player_group).where(interactive_video_id: self.id).any?
+  def allowed_for_player?(player)
+    program_video = player.current_online_program.online_program_interactive_videos.find_by_interactive_video_id(self.id)
+    return false if program_video.nil?
+    program_video.enabled_for_player?(player)
   end
 
   def self.parse_text(text, player)
