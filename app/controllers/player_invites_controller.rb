@@ -5,17 +5,7 @@ class PlayerInvitesController < BaseController
 
   def send_invite
     authorize! :create, :invite
-
-    points = current_player.invite_friend(params["friend_email"],
-                                 params["message"])
-
-    flash[:points] = ["For inviting a friend<br>you get extra" , points]
-
-    redirect_to '/'
-
-    #respond_to do |format|
-    #    format.html { render "invite" }
-    #    format.js   { render "invite" }
-    #end
+    current_player.invite_friend(params["friend_email"], params["message"])
+    redirect_to root_url
   end
 end
