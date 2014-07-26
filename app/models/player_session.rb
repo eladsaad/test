@@ -5,8 +5,8 @@ class PlayerSession < ActiveRecord::Base
 
 	def self.add_login(player_id, request, session_key)
 
-		if PlayerSession.find_by_player_id(player_id).nil? # first login
-			Player.find(player_id).add_points(1000, :first_registration)
+		if PlayerSession.where(player_id: player_id).empty? # first login
+			Player.find(player_id).add_points(1000, :first_login)
 		end
 
 		self.create!({
