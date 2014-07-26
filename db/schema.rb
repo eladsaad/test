@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140717083116) do
+ActiveRecord::Schema.define(version: 20140726152101) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -276,6 +276,17 @@ ActiveRecord::Schema.define(version: 20140717083116) do
   add_index "player_groups", ["operator_id"], name: "index_player_groups_on_operator_id", using: :btree
   add_index "player_groups", ["player_organization_id"], name: "index_player_groups_on_player_organization_id", using: :btree
   add_index "player_groups", ["reg_code"], name: "index_player_groups_on_reg_code", unique: true, using: :btree
+
+  create_table "player_invites", force: true do |t|
+    t.integer  "inviting_player_id"
+    t.text     "email"
+    t.string   "friend_type"
+    t.text     "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "player_invites", ["inviting_player_id"], name: "index_player_invites_on_inviting_player_id", using: :btree
 
   create_table "player_organization_exts", force: true do |t|
     t.integer  "player_organization_id"

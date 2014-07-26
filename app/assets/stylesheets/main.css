@@ -1279,6 +1279,56 @@ ul.answers input[type='radio'] {
     outline: 0;
 }
 
+#invite-form select {
+    font-size: 0.85em;
+    margin-left: auto;
+    margin-right: auto;
+    /*width: 162px;*/
+    width: 100%;
+    height: 30;
+    margin-top: 13px;
+    resize: none;
+    background: transparent;
+    background: url(/assets/select_box_arrow.png) no-repeat right #ddd;
+    background-color: rgba(0,0,0,0.4);
+    color: #fff;
+    border: 2px solid #fff;
+    font-family: sans-serif;
+    font-weight: 700;
+    padding: 5px 10px;
+    outline: 0;
+}
+
+/*#player_age {
+        margin-left: 8px;
+        width: 92px;
+        height: 30px;
+        background: transparent;
+
+        /*overflow: hidden;*/
+        background: url(/assets/select_box_arrow.png) no-repeat right #ddd;
+        background-color: rgba(0,0,0,0.4);
+        color: #fff;
+        font-family: sans-serif;
+        font-weight: 600;
+        padding: 0 10px;
+
+        outline: none;
+        -webkit-appearance: none;
+
+        border: 2px solid #fff;
+        border-style: solid;
+        -webkit-border-radius: 0px;
+        -moz-border-radius: 0px;
+        border-radius: 0px;
+    }*/
+
+#invite-form select option {
+    font-family: 'robotobold', sans-serif;
+    font-weight: 700;
+    font-size: 0.85em;
+}
+
 #friends-email {
     display: block;
     /*width: 162px;*/

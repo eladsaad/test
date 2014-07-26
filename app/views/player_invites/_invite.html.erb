@@ -4,8 +4,9 @@
 <![endif]-->
     <%= form_tag invites_path, id: 'invite-form', :method => 'put', format: :js, remote: true do %>
 
-        <%= text_field_tag 'friend_email', nil, placeholder: "YOUR FRIEND'S EMAIL",
+        <%= text_field_tag 'email', nil, placeholder: "YOUR FRIEND'S EMAIL",
                            id: 'friends-email', class: 'form-control', autocomplete: 'off' %>
+        <%= select_tag  :friend_type, options_for_select([ "School mate", "Family", "Other" ]), prompt: "TYPE OF FRIEND" %>
         <%= text_area_tag :message, "", id: 'invite-note', placeholder: "ADD A NOTE (OPTIONAL)" %>
 
         <%= submit_tag(value = "SEND INVITATION", options = { id: 'send-invite-btn', class: 'button' }) %>

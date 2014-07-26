@@ -41,6 +41,7 @@ class Player < ActiveRecord::Base
 	has_and_belongs_to_many :player_groups, join_table: :player_group_associations
   	has_many :scores, :dependent => :destroy
   	has_many :player_answers, :dependent => :destroy
+  	has_many :player_invites, :foreign_key => 'inviting_player_id', :dependent => :destroy
 
 	# == DEVISE Authentication ==
 	devise :database_authenticatable, :registerable, :confirmable,
@@ -178,7 +179,7 @@ class Player < ActiveRecord::Base
 			)
 
 		http.request(fb_req) # return response
-  end
+  	end
 
 
 	# == Scores ==
@@ -203,19 +204,6 @@ class Player < ActiveRecord::Base
 
 	def registration_complete?
 		return self.tos_accepted && self.current_player_group.present?
-	end
-
-
-	# == Invites ==
-
-	def invite_friend(friend_email, message = '')
-		PlayerMailer.custom_email(
-			friend_email,
-			I18n.t(:player_invited_you_to_join, player_name: self.first_name),
-			message
-        ).deliver
-
-	    self.add_points(2500, :friend_invite)
 	end
 
 end

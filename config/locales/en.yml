@@ -12,7 +12,7 @@ en:
 
   # score updates
   score_updates:
-    first_registration: 'You just registered our website<br>and won extra'
+    first_login: 'You just registered our website<br>and won extra'
     friend_invite: 'For inviting a friend<br>you get extra'
     survey_answer: 'You answered a questionnaire!<br>you get extra'
     interactive_video_watch: 'You just watched an episode<br>and won extra'
