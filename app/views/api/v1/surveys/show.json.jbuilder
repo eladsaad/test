@@ -1,6 +1,6 @@
 json.extract! @survey, :id, :name
 json.questions @survey.questions_surveys do |survey_question|
-	json.id survey_question.id
+	json.id survey_question.question_id
 	json.number survey_question.question_number
 	json.extract! survey_question.question, :name, :question
 	json.answers (1..survey_question.question.answers.length) do |index|
