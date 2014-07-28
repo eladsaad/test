@@ -17,9 +17,7 @@ class OnlineProgramInteractiveVideo < ActiveRecord::Base
 	# == PLAYER PROGRESS ==
 
 	def enabled_for_group?(player_group)
-		days_since_start = (Date.today - player_group.screening_date).to_i
-		current_time = Time.now.strftime("%H:%M:%S")
-		result = (self.start_after_days < days_since_start) || (self.start_after_days == days_since_start && self.start_time <= current_time)
+		Time.now.to_i >= self.enabled_time(player_group)
 	end
 
 	def enabled_for_player?(player)
@@ -36,7 +34,7 @@ class OnlineProgramInteractiveVideo < ActiveRecord::Base
 
 	def enabled_time(player_group)
 		enabled_date = player_group.screening_date + self.start_after_days.days
-		enabled_time = enabled_date.to_time.to_i + self.start_time.to_time.to_i
+		enabled_time = enabled_date.to_time.to_i + self.start_time.hour.hours + self.start_time.min.minutes + self.start_time.sec.seconds
 	end
 
 	def index_in_program
@@ -54,12 +52,8 @@ class OnlineProgramInteractiveVideo < ActiveRecord::Base
 	    end
 
 	    # check how far from the opening time the user watched the video
-	    seconds_diff = (Time.now - OnlineProgramInteractiveVideo.interactive_available_time(
-	    	self.online_program.id,
-	        self.interactive_video_id,
-	        player.current_player_group.screening_date)).to_i
+	    hours_diff = (Time.now - self.enabled_time(player.current_player_group)).hours
 
-	    hours_diff = seconds_diff / 3600
 	    if (hours_diff > 24 ) # TODO: make hours diff threshold configurable
 	    	points_to_add = 1000
     	else
@@ -68,18 +62,5 @@ class OnlineProgramInteractiveVideo < ActiveRecord::Base
 
 	    player.add_points(points_to_add, :interactive_video_watch)
 	end
-
-
-  def self.interactive_available_time(online_program_id, interactive_video_id, screening_date)
-    video_program_data = self.where('online_program_id = ? and interactive_video_id = ?',
-                                                             online_program_id,
-                                                             interactive_video_id).first
-
-    #puts '>>>>>' + current_player_group.screening_date.strftime('%a %b %d %H:%M:%S %Z %Y')
-    start_time = video_program_data.start_time
-    start_after_days =  video_program_data.start_after_days
-    opening_time = (screening_date + start_after_days.days) + start_time.hour.hours +
-        start_time.min.minutes + start_time.sec.seconds
-  end
 
 end
