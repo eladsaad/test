@@ -64,3 +64,4 @@ class OnlineProgramInteractiveVideo < ActiveRecord::Base
 	end
 
 end
+
