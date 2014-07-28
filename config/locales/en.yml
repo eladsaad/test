@@ -233,14 +233,14 @@ en:
         online_program_id: "Online Program"
         interactive_video_id: "Interactive Video"
         start_after_days: "Start After Days"
-        start_time, label: "Start Time"
+        start_time: "Start Time (UTC)"
         pre_survey_id: "Pre Survey"
         post_survey_id: "Post Survey"
       online_program_notification:
         online_program_id: "Online Program"
         notification_id: "Notification"
         start_after_days: "Start After Days"
-        start_time, label: "Start Time"
+        start_time: "Start Time (UTC)"
       campaign:
         name: "Name"
         max_views: "Max Views"
