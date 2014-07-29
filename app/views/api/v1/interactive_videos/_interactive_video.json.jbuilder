@@ -5,4 +5,6 @@ end
 json.partial! 'program_video_surveys', program_video: program_video
 json.enabled program_video.enabled_for_player?(current_player)
 json.watched program_video.watched?(current_player)
-json.available_at program_video.enabled_time(current_player.current_player_group)
+enabled_time = program_video.enabled_time(current_player.current_player_group)
+json.available_at enabled_time
+json.available_at_text enabled_time_message(enabled_time)
