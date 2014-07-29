@@ -23,13 +23,6 @@ class Players::SessionsController < Devise::SessionsController
 		root_url
 	end
 
-	def create
-		Rails.logger.info "DOR"
-		Rails.logger.info params
-		super
-	end
-
-
 	protected
 
 		# == Audit Login/Logout

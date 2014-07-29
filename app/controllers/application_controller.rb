@@ -83,19 +83,15 @@ class ApplicationController < ActionController::Base
 
   # == Score Updates ==
 
-  before_filter :reset_score_updates
-  
-  def reset_score_updates
-    ScoreUpdate.reset!
-  end
-
   def add_score_updates_to_flash
-    ScoreUpdate.updates.each do |update|
+    unreported_updates = PlayerScoreUpdate.unreported(current_player.id)
+    unreported_updates.each do |update|
       flash[:points] = [
-        I18n.t("score_updates.#{update[:action]}"),
-        update[:points]
+        I18n.t("score_updates_website.#{update.event}"),
+        update.points
       ]
     end
+    PlayerScoreUpdate.mark_reported!(unreported_updates)
   end
 
 end

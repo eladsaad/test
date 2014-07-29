@@ -13,6 +13,14 @@ class PlayerInvite < ActiveRecord::Base
 	
 	# == UTILS ==
 
+	def self.player_registered!(invited_player)
+		player_invites = PlayerInvite.where(email: invited_player.email, invited_player_id: nil)
+		player_invites.pluck(:inviting_player_id).each do |inviting_player_id|
+			Player.add_points(inviting_player_id, :invited_player_registered, {invited_player_email: invited_player.email})
+		end
+		player_invites.update_all(invited_player_id: invited_player.id)
+	end
+
 	protected
 
 		def send_invite
@@ -25,8 +33,6 @@ class PlayerInvite < ActiveRecord::Base
 	        rescue Exception => e
 	        	Rails.logger.info "Cannot send invite email to [#{self.email}] - #{e.message}"
         	end
-
-		    self.inviting_player.add_points(2500, :friend_invite)
 		end
 
 end

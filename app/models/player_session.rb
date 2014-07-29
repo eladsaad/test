@@ -5,16 +5,18 @@ class PlayerSession < ActiveRecord::Base
 
 	def self.add_login(player_id, request, session_key)
 
-		if PlayerSession.where(player_id: player_id).empty? # first login
-			Player.find(player_id).add_points(1000, :first_login)
-		end
+		first_login_points = PlayerSession.where(player_id: player_id).size == 0
 
-		self.create!({
+		new_session = self.create!({
 			player_id: player_id,
 			sign_in_at: Time.now,
 			ip_address: request.remote_ip,
 			session_id: session_key
 		});
+
+		if first_login_points
+			new_session.player.add_points(:first_login, {player_session_id: new_session.id})
+		end
 	end
 
 

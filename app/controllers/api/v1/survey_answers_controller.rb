@@ -43,7 +43,7 @@ class Api::V1::SurveyAnswersController < Api::BaseApiController
 			PlayerAnswer.transaction do
 			  answers_to_create.each(&:save)
 			end
-			current_player.add_points(1000, :survey_answer)
+			current_player.add_points(:survey_answer, {survey_id: @survey.id} )
 		end
 	end
 

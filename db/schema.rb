@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140726152101) do
+ActiveRecord::Schema.define(version: 20140729130735) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -284,6 +284,7 @@ ActiveRecord::Schema.define(version: 20140726152101) do
     t.text     "message"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "invited_player_id"
   end
 
   add_index "player_invites", ["inviting_player_id"], name: "index_player_invites_on_inviting_player_id", using: :btree
@@ -333,6 +334,18 @@ ActiveRecord::Schema.define(version: 20140726152101) do
   end
 
   add_index "player_progresses", ["player_id", "player_group_id"], name: "index_player_progresses_on_player_id_and_player_group_id", using: :btree
+
+  create_table "player_score_updates", force: true do |t|
+    t.integer  "player_id"
+    t.string   "event"
+    t.integer  "points"
+    t.boolean  "reported",   default: false
+    t.text     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "player_score_updates", ["player_id"], name: "index_player_score_updates_on_player_id", using: :btree
 
   create_table "player_sessions", force: true do |t|
     t.integer  "player_id"

@@ -53,14 +53,11 @@ class OnlineProgramInteractiveVideo < ActiveRecord::Base
 
 	    # check how far from the opening time the user watched the video
 	    hours_diff = (Time.now.to_i - self.enabled_time(player.current_player_group)).hours
-
 	    if (hours_diff > 24 ) # TODO: make hours diff threshold configurable
-	    	points_to_add = 1000
+	    	player.add_points(:interactive_video_watch, {interactive_video_id: self.interactive_video_id})
     	else
-    		points_to_add = 3000
+    		player.add_points(:interactive_video_watch_early, {interactive_video_id: self.interactive_video_id})
 	    end
-
-	    player.add_points(points_to_add, :interactive_video_watch)
 	end
 
 end

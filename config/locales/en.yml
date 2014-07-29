@@ -11,11 +11,18 @@ en:
   authentication_successful: "Authentication successful"
 
   # score updates
-  score_updates:
+  score_updates: # api
+    first_login: "You just registered our website and won extra %{points} points"
+    survey_answer: "You answered a questionnaire! You get extra %{points} points"
+    interactive_video_watch: "You just watched an episode and won extra %{points} points"
+    interactive_video_watch_early: "You just watched an episode and won extra %{points} points"
+    invited_player_registered: "Your friend %{invited_player_email} have registered and you get extra %{points} points"
+  score_updates_website:
     first_login: 'You just registered our website<br>and won extra'
-    friend_invite: 'For inviting a friend<br>you get extra'
     survey_answer: 'You answered a questionnaire!<br>you get extra'
     interactive_video_watch: 'You just watched an episode<br>and won extra'
+    interactive_video_watch_early: 'You just watched an episode<br>and won extra'
+    invited_player_registered: 'Friends you invited have registered!<br>you get extra'
 
   # actions
   choose: "Choose"

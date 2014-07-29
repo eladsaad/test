@@ -25,6 +25,8 @@ class Player < ActiveRecord::Base
 
 	# == HOOKS ==
 	before_validation :assign_group_from_reg_code
+	after_update :delete_api_keys_on_password_change
+	after_create :add_points_to_inviters
 
 	def assign_group_from_reg_code
 		if !self.reg_code.blank? && !self.current_player_group.present? && RegistrationCode.valid_for_registration?(self.reg_code)
@@ -33,9 +35,19 @@ class Player < ActiveRecord::Base
 		end
 	end
 
+	def delete_api_keys_on_password_change
+		self.player_api_keys.destroy_all if self.encrypted_password_changed?
+	end
+
+	def add_points_to_inviters
+		PlayerInvite.player_registered!(self)
+	end
+
 
 	# == ASSOCIATIONS ==
 	has_many :player_sessions, :dependent => :destroy
+	has_many :player_api_keys, :dependent => :destroy
+	has_many :player_score_updates, :dependent => :destroy
 	has_many :player_authentications, :dependent => :destroy
 	has_many :player_group_associations, :dependent => :destroy
 	has_and_belongs_to_many :player_groups, join_table: :player_group_associations
@@ -184,13 +196,18 @@ class Player < ActiveRecord::Base
 
 	# == Scores ==
 
-	def add_points(points, action_key = nil)
-		score = Score.where(player_group_id: self.current_player_group.id, player_id: self.id).first_or_initialize
-		score.score ||= 0
-		score.score += points
-		score.save!
-		ScoreUpdate.add(points, action_key)
+	def add_points(event_key, data = nil)
+		Player.add_points(self.id, event_key, data)
 	end
+
+	def self.add_points(player_id, event_key, data = nil)
+		PlayerScoreUpdate.create!({
+			player_id: player_id,
+			event: event_key,
+			data: data
+		})
+	end
+
 
 	def score(player_group_id = nil)
 		player_group_id ||= self.current_player_group.try(:id)

@@ -28,7 +28,11 @@ class Players::RegistrationsController < Devise::RegistrationsController
 				set_flash_message :notice, flash_key
 			end
 			sign_in resource_name, resource, bypass: true
+
+			PlayerSession.add_login(self.resource.id, request, request.session_options[:id])
+			session[:session_key] = request.session_options[:id]
 			respond_with resource, location: after_update_path_for(resource)
+			add_score_updates_to_flash
 		else
 			clean_up_passwords resource
 			respond_with resource

@@ -25,7 +25,7 @@ class SurveysController < BaseController
     end
 
 
-    current_player.add_points(1000, :survey_answer)
+    current_player.add_points(:survey_answer, {survey_id: @survey.id} )
 
     respond_to do |format|
       if PlayerAnswer.create(player_answers)
