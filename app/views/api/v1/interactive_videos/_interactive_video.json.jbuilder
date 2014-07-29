@@ -1,4 +1,4 @@
-json.extract! program_video.interactive_video, :id, :name, :description
+json.extract! program_video.interactive_video, :id, :name, :description, :thumbnail_url, :thumbnail_disabled_url
 if can? :read, program_video.interactive_video
 	json.extract! program_video.interactive_video, :content, :content_mobile
 end

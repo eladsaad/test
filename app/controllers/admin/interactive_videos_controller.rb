@@ -87,6 +87,6 @@ class Admin::InteractiveVideosController < Admin::AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_interactive_video_params
-      params.require(:admin_interactive_video).permit(:name, :content, :content_mobile, :language_code_id, :description)
+      params.require(:admin_interactive_video).permit(:name, :content, :content_mobile, :language_code_id, :description, :thumbnail_url, :thumbnail_disabled_url)
     end
 end

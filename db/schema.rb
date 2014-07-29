@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140729130735) do
+ActiveRecord::Schema.define(version: 20140729135459) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,6 +85,8 @@ ActiveRecord::Schema.define(version: 20140729130735) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "content_mobile"
+    t.text     "thumbnail_url"
+    t.text     "thumbnail_disabled_url"
   end
 
   create_table "language_codes", force: true do |t|

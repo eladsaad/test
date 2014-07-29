@@ -227,6 +227,8 @@ en:
         name: "Name"
         language_code: "Language Code"
         description: "Description"
+        thumbnail_url: "Thumbnail URL"
+        thumbnail_disabled_url: "Disabled Thumbnail URL"
       online_program:
         name: "Name"
         codename: "Code Name"
