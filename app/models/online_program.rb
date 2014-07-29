@@ -1,7 +1,5 @@
 class OnlineProgram < ActiveRecord::Base
 
-	DEFAULT_PROGRAM_CODE_NAME = 'cinemadrive' # TODO: remove this and usages once we have more than one program
-
 	# == VALIDATIONS ==
 	validates :name, :presence => true
 	validates :codename, :presence => true, :uniqueness => true
