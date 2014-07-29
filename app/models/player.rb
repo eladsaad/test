@@ -5,7 +5,6 @@ class Player < ActiveRecord::Base
 
 	# == VALIDATIONS ==
 	validates :first_name, :presence => true
-	validates :last_name, :presence => true
   	validates :tos_accepted, :acceptance => {:accept => true}
 	validate :validate_reg_code
 	validate :validate_has_group
@@ -60,6 +59,10 @@ class Player < ActiveRecord::Base
 	:recoverable, :rememberable, :validatable, :omniauthable,
 	:omniauth_providers => [:facebook],
 	:authentication_keys => [:email]
+
+	# def confirmation_required?
+ #      false
+ #    end
 
 	# == CANCAN Authorization ==
 	def ability

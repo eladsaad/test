@@ -18,10 +18,10 @@ class Api::V1::SessionsController < Api::BaseApiController
 
 	def destroy
 		authorize! :destroy, current_api_key
+		player_id = current_player.id
 		sign_out current_player
-		PlayerSession.add_logout(current_player.id, request, current_api_key.access_token)
+		PlayerSession.add_logout(player_id, request, current_api_key.access_token)
 		current_api_key.destroy!
-
 	end
 
 end

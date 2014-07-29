@@ -20,8 +20,7 @@
     <% if (params[:facebook_callback]) %>
     <% else %>
         <div class="clearfix">
-            <%= f.text_field :first_name, placeholder: "FIRST NAME"  %><!--
-            --><%= f.text_field :last_name, placeholder: "LAST NAME"  %><!--
+            <%= f.text_field :first_name, placeholder: "NAME / NICKNAME"  %><!--
             --><%= f.select  :age, [['AGE', nil], *14..90] %>
             <br>
             <%= f.email_field :email, placeholder: "EMAIL" %><!--

@@ -697,7 +697,7 @@ textarea, input { outline: none; }
     width: 333px;
 }
     #player_first_name {
-        width: 112px;
+        width: 162px;
     }
 
     #player_last_name {
@@ -707,7 +707,7 @@ textarea, input { outline: none; }
 
     #player_age {
         margin-left: 8px;
-        width: 92px;
+        width: 162px;
         height: 30px;
         background: transparent;
 
