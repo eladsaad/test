@@ -30,7 +30,7 @@ class Api::BaseApiController < ApplicationController
 	def authenticate_by_token
 		authenticate_with_http_token do |token, options|
 			player_api_key = PlayerApiKey.where(access_token: token).first
-			if player_api_key && !player_api_key.expired?
+			if player_api_key && !player_api_key.expired? && player_api_key.player.present?
 				sign_in_api_key(player_api_key)
 		        return true
 			else
