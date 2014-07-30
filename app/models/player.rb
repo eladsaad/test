@@ -60,9 +60,9 @@ class Player < ActiveRecord::Base
 	:omniauth_providers => [:facebook],
 	:authentication_keys => [:email]
 
-	# def confirmation_required?
- #      false
- #    end
+	def confirmation_required?
+      false
+    end
 
 	# == CANCAN Authorization ==
 	def ability

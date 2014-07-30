@@ -27,4 +27,6 @@ class BaseController < ApplicationController
 		super
 	end
 
+
+
 end

@@ -52,7 +52,6 @@ class Api::V1::OmniauthCallbacksController < Api::BaseApiController
 		if player.try(:persisted?) && player.registration_complete?
 			@player_api_key = PlayerApiKey.create!(player_id: player.id)
 			sign_in player, store: false
-			PlayerSession.add_login(current_player.id, request, @player_api_key.access_token)
 		else
 			player.destroy
 			render_error(:unprocessable_entity)

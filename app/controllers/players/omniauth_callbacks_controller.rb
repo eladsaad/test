@@ -1,7 +1,5 @@
 class Players::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   
-  	after_filter :audit_player_login, only: [:facebook]
-
   	respond_to :html, :js
 
 	def facebook
@@ -24,15 +22,6 @@ class Players::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 		else
 			flash[:alert] = 'Cannot sign-up via facebook'
 			redirect_to new_player_registration_path(reg_code: request.env["omniauth.params"]['reg_code'])
-		end
-	end
-
-
-	def audit_player_login
-		if signed_in? && current_player.registration_complete?
-			PlayerSession.add_login(current_player.id, request, request.session_options[:id])
-			session[:session_key] = request.session_options[:id]
-			add_score_updates_to_flash
 		end
 	end
 

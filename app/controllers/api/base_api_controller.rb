@@ -40,9 +40,13 @@ class Api::BaseApiController < ApplicationController
 	end
 
 	def sign_in_api_key(player_api_key)
-		sign_in player_api_key.player, store: false
 		player_api_key.postpone_expiry!
 		@current_api_key = player_api_key
+		sign_in player_api_key.player, store: false, session_key: current_api_key.access_token
+	end
+
+	def sign_out_api_key(player_api_key)
+		sign_out player_api_key.player, session_key: current_api_key.access_token
 	end
 
 	def current_api_key

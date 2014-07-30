@@ -4,6 +4,8 @@ class Players::RegistrationsController < Devise::RegistrationsController
 	before_filter :verify_reg_code, only: [:pre_sign_up]
 	before_filter :allow_edit_only_if_not_complete, only: [:edit, :update]
 
+	after_filter :add_score_updates_to_flash
+
 	respond_to :html, :js, :json
 
 	def update
@@ -29,8 +31,6 @@ class Players::RegistrationsController < Devise::RegistrationsController
 			end
 			sign_in resource_name, resource, bypass: true
 
-			PlayerSession.add_login(self.resource.id, request, request.session_options[:id])
-			session[:session_key] = request.session_options[:id]
 			respond_with resource, location: after_update_path_for(resource)
 			add_score_updates_to_flash
 		else
@@ -61,6 +61,11 @@ class Players::RegistrationsController < Devise::RegistrationsController
 				format.json { render :json => "{ \"valid\": true }" }
 			end
 		end
+	end
+
+
+	def sign_up(resource_name, resource)
+		sign_in(resource_name, resource)
 	end
 
 	protected

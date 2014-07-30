@@ -84,14 +84,44 @@ class ApplicationController < ActionController::Base
   # == Score Updates ==
 
   def add_score_updates_to_flash
-    unreported_updates = PlayerScoreUpdate.unreported(current_player.id)
-    unreported_updates.each do |update|
-      flash[:points] = [
-        I18n.t("score_updates_website.#{update.event}"),
-        update.points
-      ]
+    if current_player
+      unreported_updates = PlayerScoreUpdate.unreported(current_player.id)
+      unreported_updates.each do |update|
+        flash[:points] = [
+          I18n.t("score_updates_website.#{update.event}"),
+          update.points
+        ]
+      end
+      PlayerScoreUpdate.mark_reported!(unreported_updates)
     end
-    PlayerScoreUpdate.mark_reported!(unreported_updates)
   end
+
+
+  # == Audit Player Login/Logout
+
+  def sign_in(resource_or_scope, *args)
+    super
+    scope = Devise::Mapping.find_scope!(resource_or_scope)
+    if scope == :player && current_player
+      session_key = current_session_key(args.last)
+      PlayerSession.add_login(current_player.id, request, session_key)
+    end
+  end
+
+  def sign_out(resource_or_scope = nil, *additional_args)
+    scope = Devise::Mapping.find_scope!(resource_or_scope)
+    if scope == :player && current_player
+      session_key = current_session_key(additional_args.last)
+      PlayerSession.add_logout(current_player.id, request, session_key)
+    end
+    super(resource_or_scope)
+  end
+
+  protected
+
+    def current_session_key(args)
+      return args[:session_key] if args.is_a?(Hash)
+      return session.id
+    end
 
 end
