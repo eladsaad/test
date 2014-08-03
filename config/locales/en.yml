@@ -71,7 +71,9 @@ en:
   create_an_account: "Create An Account"
   invalid_registration_code: "Invalid Registration Code"
   hi_player: "Hi, %{first_name}"
-  player_invited_you_to_join: "%{player_name} invited you to join Cinema-Drive!"
+  
+  # player invite email
+  player_invitation_email_subject: "%{inviting_player_name} invited you to join Cinema-Drive!"
 
   # active record
   activerecord:

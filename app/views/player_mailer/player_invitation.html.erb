@@ -1,0 +1,18 @@
+Hello,<br><br>
+
+You have been invited by <%= @inviting_player.first_name %> to join Cinema-Drive!<br><br>
+
+This is your group registration code: <%= @reg_code %><br><br>
+
+You can use it to register on our website or download our mobile app:<br>
+Website: <%= link_to root_url, root_url %><br>
+Iphone: TODO<br>
+Android: TODO<br><br><br>
+
+<% unless @custom_message.blank? %>
+
+This is your friend's message:<br><br>
+
+<%= @custom_message %><br>
+
+<% end %>

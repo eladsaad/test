@@ -25,11 +25,7 @@ class PlayerInvite < ActiveRecord::Base
 
 		def send_invite
 			begin
-				PlayerMailer.custom_email(
-					self.email,
-					I18n.t(:player_invited_you_to_join, player_name: self.inviting_player.first_name),
-					self.message
-		        ).deliver
+				PlayerMailer.player_invitation(self.inviting_player, self.email, self.message).deliver
 	        rescue Exception => e
 	        	Rails.logger.info "Cannot send invite email to [#{self.email}] - #{e.message}"
         	end
