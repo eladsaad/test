@@ -716,7 +716,7 @@ textarea, input { outline: none; }
         background-color: rgba(0,0,0,0.4);
         color: #fff;
         font-family: sans-serif;
-        font-weight: 600;
+        font-weight: 700;
         padding: 0 10px;
 
         outline: none;
@@ -727,6 +727,10 @@ textarea, input { outline: none; }
         -webkit-border-radius: 0px;
         -moz-border-radius: 0px;
         border-radius: 0px;
+    }
+
+    #player_age option:first-child { 
+    	color: #808080;
     }
 
     #create-account-form #player_email {
@@ -1299,29 +1303,6 @@ ul.answers input[type='radio'] {
     outline: 0;
 }
 
-/*#player_age {
-        margin-left: 8px;
-        width: 92px;
-        height: 30px;
-        background: transparent;
-
-        /*overflow: hidden;*/
-        background: url(/assets/select_box_arrow.png) no-repeat right #ddd;
-        background-color: rgba(0,0,0,0.4);
-        color: #fff;
-        font-family: sans-serif;
-        font-weight: 600;
-        padding: 0 10px;
-
-        outline: none;
-        -webkit-appearance: none;
-
-        border: 2px solid #fff;
-        border-style: solid;
-        -webkit-border-radius: 0px;
-        -moz-border-radius: 0px;
-        border-radius: 0px;
-    }*/
 
 #invite-form select option {
     font-family: 'robotobold', sans-serif;
