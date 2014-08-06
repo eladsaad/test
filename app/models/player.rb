@@ -2,10 +2,11 @@ class Player < ActiveRecord::Base
 
 	# == VIRTUAL ATTRIBUTES ==
 	attr_accessor :reg_code
+	attr_accessor :skip_tos_validation
 
 	# == VALIDATIONS ==
 	validates :first_name, :presence => true
-  	validates :tos_accepted, :acceptance => {:accept => true}
+  	validates :tos_accepted, :acceptance => {:accept => true}, :unless => :skip_tos_validation
 	validate :validate_reg_code
 	validate :validate_has_group
 
@@ -154,14 +155,14 @@ class Player < ActiveRecord::Base
 	end
 
 
-	def self.create_for_facebook_oauth(auth, reg_code = nil, tos_accepted = nil)
+	def self.create_for_facebook_oauth(auth, reg_code, tos_accepted = nil)
 		player = Player.new
 		player.add_authentication_from_omni_auth(auth)
 		player.copy_missing_data_from_facebook_oauth(auth)
 		player.password = Devise.friendly_token.first(8)
 		player.tos_accepted = tos_accepted
-		player.skip_confirmation!
 		player.reg_code = reg_code
+		player.skip_confirmation!		
 		return player
 	end
 
@@ -215,8 +216,9 @@ class Player < ActiveRecord::Base
 	def score(player_group_id = nil)
 		player_group_id ||= self.current_player_group.try(:id)
 		return 0 if player_group_id.blank?
-		score = Score.where(player_group_id: player_group_id, player_id: self.id).first_or_initialize
-		score.score ||= 0
+		score = Score.where(player_group_id: player_group_id, player_id: self.id).try(:first)
+		return 0 if score.blank?
+		score.score
 	end
 
 

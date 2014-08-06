@@ -7,7 +7,8 @@ class Players::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 		
 		if @player.nil?
 			@player = Player.create_for_facebook_oauth(request.env["omniauth.auth"], request.env["omniauth.params"]['reg_code'])
-			@player.save(validate: false)
+			@player.skip_tos_validation = true
+			@player.save
 			@player.reload
 		end
 
