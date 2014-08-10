@@ -22,7 +22,7 @@ module ApplicationHelper
   end
 
 
-  def changeMainView (partial_name)
+  def changeMainView (partial_name, show_score_updates = false)
     js_script = raw("$('#main-content').html('") + raw(escape_javascript(render partial_name)) + raw("');")
 
     if (flash[:alert]    &&  flash[:alert][0,1]   != '#') ||
@@ -35,7 +35,7 @@ module ApplicationHelper
       js_script += raw("bootbox.alert('#{escape_javascript(render partial: "shared/flash_messages", flash: flash)}');")
     end
 
-    if current_player && current_player.registration_complete?
+    if show_score_updates && current_player && current_player.registration_complete?
       unreported_updates = PlayerScoreUpdate.unreported(current_player.id)
       if unreported_updates.any?
         js_script += raw("$('.modal-inner-content').html('#{
