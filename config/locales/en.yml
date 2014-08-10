@@ -22,7 +22,7 @@ en:
     survey_answer: 'You answered a questionnaire!<br>you get extra'
     interactive_video_watch: 'You just watched an episode<br>and won extra'
     interactive_video_watch_early: 'You just watched an episode<br>and won extra'
-    invited_player_registered: 'Friends you invited have registered!<br>you get extra'
+    invited_player_registered: 'Your friend %{invited_player_email}<br>have registered and you get extra'
 
   # actions
   choose: "Choose"

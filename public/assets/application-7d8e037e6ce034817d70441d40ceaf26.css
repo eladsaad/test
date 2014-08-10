@@ -63,12 +63,30 @@ body {
     background-color:#000;
 }
 
+div#preloaded-images {
+    position: absolute;
+    overflow: hidden;
+    left: -9999px;
+    top: -9999px;
+    height: 1px;
+    width: 1px;
+}
+
+.form-control {
+    border-radius: 0;
+}
+
 .center {
     margin-left: auto;
     margin-right: auto;
 }
 
 textarea, input { outline: none; }
+
+.scroll-box {
+    height: 400px;
+    overflow: scroll;
+}
 
 /* Solid background configurations (for non-support video browsers) */
 #bg {
@@ -200,6 +218,16 @@ textarea, input { outline: none; }
     border-color: #fcff00 !important;
 }
 
+.error-msg {
+    display: none;
+    position: relative;
+    font-family: 'robotobold';
+    font-size: 1em;
+    color: #fcff00;
+    height: 20px;
+    margin: 10px 0 10px 0;
+}
+
 #password-area {
     text-align: center;
     float: left;
@@ -242,6 +270,7 @@ textarea, input { outline: none; }
 
 #login-btn {
     margin-top: 10px;
+    border: 0;
     /*margin-left: 10px;*/
 }
 
@@ -272,6 +301,7 @@ textarea, input { outline: none; }
 
 .main .button {
     margin: 0;
+    border: 0;
     text-transform: capitalize;
     border: 1px solid transparent;
     display: inline-block;
@@ -315,6 +345,17 @@ textarea, input { outline: none; }
 }
 .episode.current .motivation {
     display: block;
+}
+
+.episode.upcoming .upcoming {
+    position: absolute;
+    width: 100px;
+    top: 105px;
+    left: -22px;
+}
+
+.episode.disabled a {
+    cursor: default;
 }
 .episode .icon-container {
     z-index: 2;
@@ -459,7 +500,7 @@ textarea, input { outline: none; }
     display: inline-block;
     vertical-align: middle;
 }
-#path-to-present{
+#path-to-present {
     width: 71px;
     height: 2px;
     background-image: url('/assets/episodes.png');
@@ -494,7 +535,12 @@ textarea, input { outline: none; }
 
     vertical-align: middle;
 }
-
+#present p {
+    position: absolute;
+    width: 150px;
+    top: 105px;
+    left: -32px;
+}
 
 /* Gray screen when the movie is playing */
 .gray {
@@ -536,6 +582,7 @@ textarea, input { outline: none; }
     text-align: center;
     font-family: 'robotomedium', sans-serif;
     font-size: 0.9em;
+    cursor: pointer;
 }
 
 .current-points-label {
@@ -580,15 +627,12 @@ textarea, input { outline: none; }
     margin-right: auto;
     text-align: center;
 }
-    .reg-signin-form a {
-        display: inline-block;
-        padding-top: 8px;
-    }
-    .reg-portion {
-        display: inline-block;
+    #reg-portion {
+        display: block;
         /*float: left;*/
         width: 220px;
         margin-left: auto;
+        margin-right: auto;
         /*margin-right: 22px;*/
         text-align: center;
     }
@@ -601,22 +645,41 @@ textarea, input { outline: none; }
             padding: 0 15px;
             width: 220px;
             height: 40px;
+            margin-bottom: 0;
+        }
+
+        .status-space {
+            display: block;
+            height: 40px;
+        }
+
+        #reg-code-loader {
+            margin-top: 10px;
+            display: none;
+            width: 32px;
+            height: 32px;
+            margin-left: auto;
+            margin-right: auto;
+            background-image:url('/assets/ajax-loader.gif');
+            background-position: 0 0;
+            background-repeat: no-repeat;
         }
 
         #reg-options {
             display: none;
-            /*visibility: hidden;*/
+            margin-bottom: 20px;
+            height: 90px;
         }
 
         #reg-with-facebook {
-            margin-top: 0px;
+            margin-top: 20px;
             display: inline-block;
             width: 213px;
             height: 41px;
             padding: 0;
             background-image: url('/assets/forms.png');
             background-repeat: no-repeat;
-            background-size: 275px 104px;
+            background-size: 274px 104px;
             background-position: -61px -64px;
         }
 
@@ -628,37 +691,41 @@ textarea, input { outline: none; }
             padding: 0;
             background-image: url('/assets/forms.png');
             background-repeat: no-repeat;
-            background-size: 275px 104px;
+            background-size: 274px 104px;
             background-position: -61px -32px;
         }
 
         #email-signup {
-            text-decoration: none;
+            display: inline-block;
+            margin-top: 7px;
             color: #fff;
+            text-decoration: none;
             font-family: 'robotomedium', sans-serif;
         }
 
-    .signin-portion {
-        /*display: inline-block;
-        width: 160px;
-        margin-left: 22px;
+    #signin-portion {
+        width: 220px;
+        margin-left: auto;
         margin-right: auto;
-        text-align: center;*/
         display: block;
         font-size: 1em !important;
-
-        /*background-color: #333;
-        background-color: rgba(0, 0, 0, 0.3);
-        filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#55000000, endColorstr=#55000000);
-        background: transparent\9;
-        -ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#55000000, endColorstr=#55000000)";
-        zoom: 1;*/
     }
-
-        .signin-portion a {
+        #signin-portion p {
+            float: left;
+            font-family: 'robotobold', sans-serif;
+            font-size: 1em;
+            text-align: left;
+            display: inline-block;
+            width: 90px;
+        }
+        #signin-portion a {
+            float: right;
             font-family: 'robotobold', sans-serif;
             text-decoration: none;
-            padding: 2px 6px;
+            float: right;
+            padding: 12px 12px 4px;
+            height: 40px;
+            *height: 27px;
             /*color: #1d94d7;*/
         }
 
@@ -672,6 +739,7 @@ textarea, input { outline: none; }
 
     #send-btn {
         margin-left: 10px;
+        border: 0;
     }
 
 /* Create new account page */
@@ -680,7 +748,7 @@ textarea, input { outline: none; }
     width: 333px;
 }
     #player_first_name {
-        width: 112px;
+        width: 162px;
     }
 
     #player_last_name {
@@ -690,16 +758,15 @@ textarea, input { outline: none; }
 
     #player_age {
         margin-left: 8px;
-        width: 92px;
+        width: 162px;
         height: 30px;
         background: transparent;
-
 
         /*overflow: hidden;*/
         background: url(/assets/select_box_arrow.png) no-repeat right #ddd;
         background-color: rgba(0,0,0,0.4);
         color: #fff;
-        font-family: 'robotobold', sans-serif;
+        font-family: sans-serif;
         font-weight: 700;
         padding: 0 10px;
 
@@ -711,6 +778,10 @@ textarea, input { outline: none; }
         -webkit-border-radius: 0px;
         -moz-border-radius: 0px;
         border-radius: 0px;
+    }
+
+    #player_age option:first-child { 
+    	color: #808080;
     }
 
     #create-account-form #player_email {
@@ -751,8 +822,7 @@ textarea, input { outline: none; }
     }
 
     #term-agree-section {
-        float: left;
-        margin-top: 15px;
+        margin-bottom: 15px;
     }
 
     #term-agree-section a {
@@ -774,7 +844,7 @@ textarea, input { outline: none; }
     height: 28px;
     background-image: url('/assets/forms.png');
     background-repeat: no-repeat;
-    background-size: 275px 104px;
+    background-size: 274px 104px;
     background-position: -29px -21px;
 }
 
@@ -849,6 +919,7 @@ input[type=checkbox].css-checkbox:checked label.css-label {
 }
 
 .footer .programName {
+    cursor: pointer;
     border-style: solid;
     border-width: 0 1px 0 0;
     padding: 0 30px;
@@ -859,7 +930,7 @@ input[type=checkbox].css-checkbox:checked label.css-label {
     padding: 0 0 0 28px;
 }
 
-.footer .blue {
+.footer .active {
     color: #1d94d7;
 }
 
@@ -1003,6 +1074,9 @@ input[type=checkbox].css-checkbox:checked label.css-label {
 #gift_points_panel .points-panel-header {
     background-color: #f43710;
 }
+.group-count {
+    font-family: 'roboto_condensedbold', sans-serif;
+}
 
 /* Modal */
 .modal-view {
@@ -1054,7 +1128,7 @@ input[type=checkbox].css-checkbox:checked label.css-label {
     height: 25px;
     background-image: url('/assets/forms.png');
     background-repeat: no-repeat;
-    background-size: 275px 104px;
+    background-size: 274px 104px;
     background-position: -23px -63px;
     cursor: pointer;
     z-index: 2;
@@ -1076,6 +1150,8 @@ input[type=checkbox].css-checkbox:checked label.css-label {
     margin-top: 15px;
     font-size: 1.1em;
     line-height: 1em;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 .points-modal-points {
     display: inline-block;
@@ -1107,7 +1183,44 @@ input[type=checkbox].css-checkbox:checked label.css-label {
     top: 2px;
 }
 
+.loading-modal {
+    display:    none;
+    position:   fixed;
+    z-index:    2000;
+    top:        0;
+    left:       0;
+    right: 0;
+    bottom: 0;
+    height:     100%;
+    width:      100%;
+    /*background: rgba( 255, 255, 255, .8 )*/
+    /*url('http://i.stack.imgur.com/FhHRx.gif')*/
+    /*50% 50%*/
+    /*no-repeat;*/
+
+
+    background-color: #333;
+    background-color: rgba(0, 0, 0, 0.5);
+     /*For IE 5.5 - 7*/
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#7F000000, endColorstr=#7F000000);
+     /*For IE 8*/
+    background: transparent\9;
+    -ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#7F000000, endColorstr=#7F000000)";
+    zoom: 1;
+
+    background-image:url('/assets/ajax-loader.gif');
+    background-position: 50% 60%;
+    background-repeat: no-repeat;
+}
+
+body.loading .loading-modal {
+    display: block;
+}
+
 /* Surveys */
+.survey-explanation {
+    font-size: 1.2em !important;
+}
 .question-panel {
     height: 160px;
 }
@@ -1154,7 +1267,7 @@ li .radio-button {
 
     background-image: url('/assets/forms.png');
     background-repeat: no-repeat;
-    background-size: 275px 104px;
+    background-size: 274px 104px;
     background-position: -22px 0;
 }
 li.checked .radio-button {
@@ -1176,7 +1289,10 @@ ul.answers input[type='radio'] {
 }
 
 .questions-nav {
+    margin-top: 23px;
     width: 560px;
+    margin-left: auto;
+    margin-right: auto;
 }
 .questions-nav .button {
     width: 70px;
@@ -1205,7 +1321,8 @@ ul.answers input[type='radio'] {
     font-size: 0.85em;
     margin-left: auto;
     margin-right: auto;
-    width: 162px;
+    /*width: 162px;*/
+    width: 100%;
     height: 143px;
 
     resize: none;
@@ -1219,16 +1336,45 @@ ul.answers input[type='radio'] {
     outline: 0;
 }
 
+#invite-form select {
+    font-size: 0.85em;
+    margin-left: auto;
+    margin-right: auto;
+    /*width: 162px;*/
+    width: 100%;
+    height: 30;
+    margin-top: 13px;
+    resize: none;
+    background: transparent;
+    background: url(/assets/select_box_arrow.png) no-repeat right #ddd;
+    background-color: rgba(0,0,0,0.4);
+    color: #fff;
+    border: 2px solid #fff;
+    font-family: sans-serif;
+    font-weight: 700;
+    padding: 5px 10px;
+    outline: 0;
+}
+
+
+#invite-form select option {
+    font-family: 'robotobold', sans-serif;
+    font-weight: 700;
+    font-size: 0.85em;
+}
+
 #friends-email {
     display: block;
-    width: 162px;
+    /*width: 162px;*/
+    width: 100%;
     margin-top: 45px;
     margin-left: auto;
     margin-right: auto;
 }
 #invite-note {
     display: block;
-    width: 162px;
+    /*width: 162px;*/
+    width: 100%;
     height: 143px;
     margin-top: 13px;
     margin-left: auto;
@@ -1236,7 +1382,8 @@ ul.answers input[type='radio'] {
 }
 #send-invite-btn {
     display: block;
-    width: 162px;
+    /*width: 162px;*/
+    width: 100%;
     margin-top: 14px;
     margin-left: auto;
     margin-right: auto;
@@ -1260,13 +1407,20 @@ ul.answers input[type='radio'] {
     -ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#7F000000, endColorstr=#7F000000)";
     zoom: 1;
 }
+#text-view {
+    width: 960px;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
 #content-menu {
-    position: absolute;
+    float: left;
     left: 0;
     top: 0;
-    right: 50%;
+    width: 480px;
+    /*right: 50%;*/
     bottom: 90px;
-    *width: 49%; /* IE7 */
+    /**width: 49%; *//* IE7 */
     font-size: 1.2em;
 
     padding: 60px 30px 0 30px;
@@ -1301,8 +1455,9 @@ ul.answers input[type='radio'] {
     cursor: default;
 }
 #text-container {
-    position: absolute;
-    left: 50%;
+    float: left;
+    /*left: 50%;*/
+    width: 480px;
     right: 0;
     top: 0;
     bottom: 90px;
@@ -1311,13 +1466,71 @@ ul.answers input[type='radio'] {
     padding: 60px 30px 100px 0;
 }
 .text-content {
-    display: block;
+    display: none;
     height: 100%;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 .text-content.active {
-    display: none;
+    display: block;
 }
+
+.text-content::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+.text-content::-webkit-scrollbar-track {
+    background-color: rgba(200,200,200,0.8);
+    -webkit-border-radius: 5px;
+}
+.text-content::-webkit-scrollbar-thumb:vertical {
+    background-color: rgba(255,255,255,0.8);
+    -webkit-border-radius: 6px;
+}
+.text-content::-webkit-scrollbar-thumb:horizontal {
+    background-color: rgba(255,255,255,0.8);
+    -webkit-border-radius: 6px;
+}
+
+/* Player */
+#playerBackground {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: #0a0a0a;
+    position: fixed;
+
+
+    background-color: #0a0a0a;
+    background-color: rgba(0, 0, 0, 0.8);
+    /* For IE 5.5 - 7*/
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#7F000000, endColorstr=#7F000000);
+    /* For IE 8*/
+    background: transparent\9;
+    -ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#7F000000, endColorstr=#7F000000)";
+}
+#flashContainer {
+    position: fixed;
+}
+    #flashContent {
+        width: 100%;
+        height: 100%;
+    }
+    #player-close-btn {
+        position: absolute;
+        right: -30px;
+        top: -30px;
+        width: 30px;
+        height: 30px;
+
+        background-image: url('/assets/forms.png');
+        background-repeat: no-repeat;
+        background-size: 274px 104px;
+        background-position: -23px -61px;
+
+        cursor: pointer;
+    }
+
 
 /* fonts */
 @font-face {
@@ -1399,9 +1612,3 @@ ul.answers input[type='radio'] {
 
 .vjs-control-bar { display:none!important; }
 #big-video-control-container { display:none!important; }
-
-
-#flashContent { 
-    width: 100%;
-    height: 100%;
-}

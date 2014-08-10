@@ -27,6 +27,10 @@ class PlayerScoreUpdate < ActiveRecord::Base
 		I18n.t("score_updates.#{self.event}", self.data.merge({points: self.points}))
 	end
 
+	def website_message
+		I18n.t("score_updates_website.#{self.event}", self.data.merge({points: self.points}))
+	end
+
 	def self.unreported(player_id)
 		self.where(player_id: player_id, reported: false)
 	end

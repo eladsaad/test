@@ -4,8 +4,6 @@ class Players::RegistrationsController < Devise::RegistrationsController
 	before_filter :verify_reg_code, only: [:pre_sign_up]
 	before_filter :allow_edit_only_if_not_complete, only: [:edit, :update]
 
-	after_filter :add_score_updates_to_flash
-
 	respond_to :html, :js, :json
 
 	def update
@@ -31,7 +29,6 @@ class Players::RegistrationsController < Devise::RegistrationsController
 			end
 			sign_in resource_name, resource, bypass: true
 
-			add_score_updates_to_flash
 			respond_with resource, location: after_update_path_for(resource)
 		else
 			clean_up_passwords resource

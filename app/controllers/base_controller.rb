@@ -1,7 +1,6 @@
 class BaseController < ApplicationController
 	before_filter :authenticate_player!
 	before_filter :verify_complete_player_registration
-	after_filter :add_score_updates_to_flash
 
 	def verify_complete_player_registration
 		unless current_player.registration_complete?
@@ -18,15 +17,5 @@ class BaseController < ApplicationController
 		# TODO: will need to change if a player is allowed more than one online program
 		current_player.current_player_group
 	end
-
-
-	# == Score Updates ==
-
-	def redirect_to(*args)
-		add_score_updates_to_flash
-		super
-	end
-
-
 
 end

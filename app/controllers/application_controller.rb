@@ -81,21 +81,6 @@ class ApplicationController < ActionController::Base
     flash.discard  # don't want the flash to appear when you reload page
   end
 
-  # == Score Updates ==
-
-  def add_score_updates_to_flash
-    if current_player
-      unreported_updates = PlayerScoreUpdate.unreported(current_player.id)
-      unreported_updates.each do |update|
-        flash[:points] = [
-          I18n.t("score_updates_website.#{update.event}"),
-          update.points
-        ]
-      end
-      PlayerScoreUpdate.mark_reported!(unreported_updates)
-    end
-  end
-
 
   # == Audit Player Login/Logout
 

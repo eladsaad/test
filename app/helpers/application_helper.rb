@@ -35,12 +35,16 @@ module ApplicationHelper
       js_script += raw("bootbox.alert('#{escape_javascript(render partial: "shared/flash_messages", flash: flash)}');")
     end
 
-    if flash[:points]
-      js_script += raw("$('.modal-inner-content').html('#{
-          escape_javascript(render partial: "shared/score_modal",flash: flash)
-      }');")
-      js_script += raw("$('.modal-view').css({visibility: 'visible'});")
-      js_script += raw("$('.user-points').html(numberWithCommas(#{ current_player.score }));")
+    if current_player && current_player.registration_complete?
+      unreported_updates = PlayerScoreUpdate.unreported(current_player.id)
+      if unreported_updates.any?
+        js_script += raw("$('.modal-inner-content').html('#{
+          escape_javascript(render partial: "shared/score_modal", locals: {score_updates: unreported_updates})
+        }');")
+        js_script += raw("$('.modal-view').css({visibility: 'visible'});")
+        js_script += raw("$('.user-points').html(numberWithCommas(#{ current_player.score }));")
+        PlayerScoreUpdate.mark_reported!(unreported_updates)
+      end      
     end
 
     js_script += "window.bvPlayer.play();"

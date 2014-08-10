@@ -1099,6 +1099,8 @@ input[type=checkbox].css-checkbox:checked label.css-label {
     margin-top: 15px;
     font-size: 1.1em;
     line-height: 1em;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 .points-modal-points {
     display: inline-block;

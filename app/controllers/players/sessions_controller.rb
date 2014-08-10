@@ -1,7 +1,5 @@
 class Players::SessionsController < Devise::SessionsController
 	
-	after_filter :add_score_updates_to_flash
-
 	respond_to :html, :js
 
 	def destroy
