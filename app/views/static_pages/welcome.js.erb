@@ -80,6 +80,10 @@ $('#reg-with-facebook').click(function(e) {
 var lastValue = '';
 $('#code-field').on('keyup', showRegOptions);
 
+if ($('#code-field').val().length > 0) {
+    $('#code-field').keyup(); // manually trigger keyup
+}
+
 function showRegOptions(e) {
 
     $('.status-space').show();

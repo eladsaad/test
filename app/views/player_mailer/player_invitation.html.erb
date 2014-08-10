@@ -5,7 +5,7 @@ You have been invited by <%= @inviting_player.first_name %> to join Cinema-Drive
 This is your group registration code: <%= @reg_code %><br><br>
 
 You can use it to register on our website or download our mobile app:<br>
-Website: <%= link_to root_url, root_url %><br>
+Website: <%= link_to root_url, root_url(reg_code: @reg_code) %><br>
 Iphone: TODO<br>
 Android: TODO<br><br><br>
 
