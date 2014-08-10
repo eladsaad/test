@@ -1080,7 +1080,7 @@ input[type=checkbox].css-checkbox:checked label.css-label {
     background-size: 274px 104px;
     background-position: -23px -63px;
     cursor: pointer;
-    z-index: 2;
+    z-index: 1500;
 }
 .points-modal-body {
     height: 251px;
