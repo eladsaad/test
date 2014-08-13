@@ -14,6 +14,20 @@ class OnlineProgramInteractiveVideo < ActiveRecord::Base
 
 	default_scope { order(:start_after_days, :start_time) }
 
+
+	# == EXTERNAL SURVEY IDS ==
+	# See "Survey" model for details
+
+	def external_pre_survey_id
+		return nil if self.pre_survey_id.blank?
+		Survey.encode_external_id(self.pre_survey_id, self.id, 'pre')
+	end
+
+	def external_post_survey_id
+		return nil if self.post_survey_id.blank?
+		Survey.encode_external_id(self.post_survey_id, self.id, 'post')
+	end
+
 	# == PLAYER PROGRESS ==
 
 	def enabled_for_group?(player_group)

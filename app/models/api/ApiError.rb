@@ -23,9 +23,6 @@ class ApiError
 			missing_pre_survey: { message: 'Missing Pre Survey', status: :forbidden },
 			missing_post_survey: { message: 'Missing Post Survey', status: :forbidden },
 
-			# surveys
-			survey_already_answered: { message: 'Survey Already Answered', status: :unprocessable_entity },
-
 			# facebook
 			missing_facebook_email: { message: 'Missing Facebook Email', status: :unprocessable_entity },
 			invalid_facebook_authentication: { message: 'Invalid Facebook Authentication', status: :unprocessable_entity },

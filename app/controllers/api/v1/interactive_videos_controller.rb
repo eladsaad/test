@@ -26,15 +26,15 @@ class Api::V1::InteractiveVideosController < Api::BaseApiController
 	end
 
 	def check_for_pre_survey
-		pre_survey_id = @program_video.pre_survey_id
-		if !pre_survey_id.blank? && !PlayerAnswer.find_by_player_and_survey_id(current_player, pre_survey_id).any?
+		pre_survey_id = @program_video.external_pre_survey_id
+		if !pre_survey_id.blank? && !PlayerAnswer.find_by_player_and_external_survey_id(current_player, pre_survey_id).any?
 			render_error(:missing_pre_survey)		 
 		end
 	end
 
 	def check_for_post_survey
-		post_survey_id = @program_video.post_survey_id
-		if !post_survey_id.blank? && !PlayerAnswer.find_by_player_and_survey_id(current_player, post_survey_id).any?
+		post_survey_id = @program_video.external_post_survey_id
+		if !post_survey_id.blank? && !PlayerAnswer.find_by_player_and_external_survey_id(current_player, post_survey_id).any?
 			render_error(:missing_post_survey)		
 		end
 	end

@@ -1,7 +1,7 @@
 class InteractiveVideosController < BaseController
+
   before_action :set_interactive_video, only: [:show, :content, :post_interactive]
   before_action :check_for_pre_survey, only: [:show]
-
   before_action :check_for_post_survey, only: [:post_interactive]
 
   def index
@@ -29,58 +29,32 @@ class InteractiveVideosController < BaseController
   def post_interactive
     authorize! :read, @interactive_video
     program_video = current_player.current_online_program.online_program_interactive_videos.where(interactive_video_id: @interactive_video.id).first
-
     program_video.watched_by!(current_player)
-
     redirect_to root_url
   end
   
 
   private
-  # Use callbacks to share common setup or constraints between actions.
+
+
   def set_interactive_video
-    @interactive_video = InteractiveVideo.find(params[:id])
-    #check_for_pre_survey
+    @program_video = current_player.current_online_program.online_program_interactive_videos.where(interactive_video_id: params[:id]).first
+    @interactive_video = @program_video.interactive_video
   end
 
+
   def check_for_pre_survey
-    pre_survey = Survey.all.joins(
-        'join online_program_interactive_videos on surveys.id = online_program_interactive_videos.pre_survey_id').
-        where('online_program_interactive_videos.id = ?', @interactive_video.id).first
-
-    if pre_survey != nil
-      player_answer =  PlayerAnswer.where("player_group_id = ? AND player_id = ? AND survey_id = ?",
-                         current_player_group.id, current_player.id, pre_survey.id).first
-
-      if player_answer == nil
-        # user didn't take this survey
-        redirect_to polymorphic_path(pre_survey) + "?post_survey=" + polymorphic_path(@interactive_video)
-      end
+    pre_survey_id = @program_video.external_pre_survey_id
+    if !pre_survey_id.blank? && !PlayerAnswer.find_by_player_and_external_survey_id(current_player, pre_survey_id).any?
+      redirect_to survey_url(id: pre_survey_id, post_survey: interactive_video_url(@interactive_video) )   
     end
-
-    #current_online_program.interactive_videos.where(id: @interactive_video.id)
   end
 
   def check_for_post_survey
-    # Check if there's a survey planed after the interactive video
-    post_survey = Survey.all.joins(
-        'join online_program_interactive_videos on surveys.id = online_program_interactive_videos.post_survey_id').
-        where('online_program_interactive_videos.id = ?', @interactive_video.id).first
-
-    if post_survey != nil
-      player_answer =  PlayerAnswer.where("player_group_id = ? AND player_id = ? AND survey_id = ?",
-                                          current_player_group.id, current_player.id, post_survey.id).first
-
-      if player_answer == nil
-        # user didn't take this survey
-        redirect_to polymorphic_path(post_survey) + "?post_survey=" +
-                        post_interactive_interactive_video_path(params[:id])
-      end
+    post_survey_id = @program_video.external_post_survey_id
+    if !post_survey_id.blank? && !PlayerAnswer.find_by_player_and_external_survey_id(current_player, post_survey_id).any?
+      redirect_to survey_url(id: post_survey_id, post_survey: post_interactive_interactive_video_path(params[:id]) ) 
     end
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
-  #def interactive_video_params
-  #  params.require(:interactive_video).permit(:name, :content, :language_code_id, :description)
-  #end
 end

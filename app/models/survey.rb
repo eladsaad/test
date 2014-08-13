@@ -1,4 +1,5 @@
 class Survey < ActiveRecord::Base
+  
   # == ASSOCIATIONS ==
   belongs_to :language_code
   has_and_belongs_to_many :questions
@@ -11,4 +12,25 @@ class Survey < ActiveRecord::Base
 
   # == SEARCH ==
   search_columns [:name, :language_code]
+
+  # == EXTERNAL SURVEY ID ==
+  # This is needed so that the same survey id can be used as a pre/post survey for different interactive
+  # videos and online programs, and still be identified uniquely in player's answers.
+
+  def self.encode_external_id(survey_id, online_program_interactive_video_id, pre_post)
+    return nil if survey_id.blank?
+    return [survey_id, online_program_interactive_video_id, pre_post].join('_')
+  end
+
+  # returns array [survey_id, online_program_interactive_video_id, pre_post] 
+  def self.decode_external_id(external_id)
+    return external_id.split('_')
+  end
+
+  def self.find_by_external_id(external_id)
+    survey_id = self.decode_external_id(external_id).first
+    find(survey_id)
+  end
+
+
 end

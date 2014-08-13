@@ -1,2 +1,0 @@
-module Operation::PlayerOrganizationsHelper
-end

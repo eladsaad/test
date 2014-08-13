@@ -1,7 +1,8 @@
 class Api::V1::SurveysController < Api::BaseApiController
 
 	def show
-		@survey = Survey.find(params.require(:id))
+		@external_survey_id = params.require(:id)
+		@survey = Survey.find_by_external_id(@external_survey_id)
 		authorize! :read, @survey
 	end
 

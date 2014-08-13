@@ -1,4 +1,5 @@
-json.extract! @survey, :id, :name
+json.id @external_survey_id
+json.extract! @survey, :name
 json.questions @survey.questions_surveys do |survey_question|
 	json.id survey_question.question_id
 	json.number survey_question.question_number
