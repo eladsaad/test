@@ -2,13 +2,14 @@ class Player < ActiveRecord::Base
 
 	# == VIRTUAL ATTRIBUTES ==
 	attr_accessor :reg_code
+	attr_accessor :allow_facebook_signup_without_reg_code
 	attr_accessor :skip_tos_validation
 
 	# == VALIDATIONS ==
 	validates :first_name, :presence => true
   	validates :tos_accepted, :acceptance => {:accept => true}, :unless => :skip_tos_validation
-  	validate :validate_has_group
-	validate :validate_reg_code
+  	validate :validate_has_group, :unless => :allow_facebook_signup_without_reg_code
+	validate :validate_reg_code, :unless => :allow_facebook_signup_without_reg_code
 
 	def validate_has_group
 		unless self.player_group.present?
@@ -205,7 +206,7 @@ class Player < ActiveRecord::Base
 
 
 	def score
-		score = Score.where(player_group_id: self.player_group_id, player_id: self.id).try(:first)
+		score = Score.where(player_id: self.id).try(:first)
 		return 0 if score.blank?
 		score.score
 	end

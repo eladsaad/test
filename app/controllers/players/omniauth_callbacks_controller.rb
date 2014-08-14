@@ -4,10 +4,12 @@ class Players::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
 	def facebook
 		@player = Player.find_for_facebook_oauth(request.env["omniauth.auth"], current_player)
+		reg_code = request.env["omniauth.params"]['reg_code']
 		
 		if @player.nil?
-			@player = Player.create_for_facebook_oauth(request.env["omniauth.auth"], request.env["omniauth.params"]['reg_code'])
+			@player = Player.create_for_facebook_oauth(request.env["omniauth.auth"], reg_code)
 			@player.skip_tos_validation = true
+			@player.allow_facebook_signup_without_reg_code = true if @player.reg_code.blank?
 			@player.save
 			@player.reload
 		end

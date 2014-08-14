@@ -39,7 +39,7 @@ class PlayerGroup < ActiveRecord::Base
   	end
 
 	def score
-		Score.sum(:score, conditions: { player_group_id: self.id })
+		Score.sum(:score, conditions: { player_id: self.players.pluck(:id) })
 	end
 
 	def self.find_by_reg_code(code)
