@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140814095316) do
+ActiveRecord::Schema.define(version: 20140814141136) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -195,7 +195,6 @@ ActiveRecord::Schema.define(version: 20140814095316) do
   add_index "operators", ["reset_password_token"], name: "index_operators_on_reset_password_token", unique: true, using: :btree
 
   create_table "player_answers", force: true do |t|
-    t.integer  "player_group_id"
     t.string   "external_survey_id"
     t.integer  "question_id"
     t.integer  "answer_number"
@@ -230,17 +229,6 @@ ActiveRecord::Schema.define(version: 20140814095316) do
   end
 
   add_index "player_authentications", ["player_id"], name: "index_player_authentications_on_player_id", unique: true, using: :btree
-
-  create_table "player_group_associations", force: true do |t|
-    t.integer  "player_id"
-    t.integer  "player_group_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "player_group_associations", ["player_group_id", "player_id"], name: "index_player_group_assoc_on_player_group_id_and_player_id", unique: true, using: :btree
-  add_index "player_group_associations", ["player_group_id"], name: "index_player_group_associations_on_player_group_id", using: :btree
-  add_index "player_group_associations", ["player_id"], name: "index_player_group_associations_on_player_id", using: :btree
 
   create_table "player_group_exts", force: true do |t|
     t.integer  "player_group_id"
@@ -330,13 +318,10 @@ ActiveRecord::Schema.define(version: 20140814095316) do
 
   create_table "player_progresses", force: true do |t|
     t.integer  "player_id"
-    t.integer  "player_group_id"
     t.integer  "last_interactive_video_index", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "player_progresses", ["player_id", "player_group_id"], name: "index_player_progresses_on_player_id_and_player_group_id", using: :btree
 
   create_table "player_score_updates", force: true do |t|
     t.integer  "player_id"
@@ -380,6 +365,7 @@ ActiveRecord::Schema.define(version: 20140814095316) do
     t.string   "profile_picture"
     t.integer  "age"
     t.boolean  "tos_accepted",           default: false
+    t.integer  "player_group_id"
   end
 
   add_index "players", ["confirmation_token"], name: "index_players_on_confirmation_token", unique: true, using: :btree

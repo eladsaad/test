@@ -7,8 +7,14 @@ class Player < ActiveRecord::Base
 	# == VALIDATIONS ==
 	validates :first_name, :presence => true
   	validates :tos_accepted, :acceptance => {:accept => true}, :unless => :skip_tos_validation
+  	validate :validate_has_group
 	validate :validate_reg_code
-	validate :validate_has_group
+
+	def validate_has_group
+		unless self.player_group.present?
+			errors.add(:reg_code, I18n.translate(:is_invalid)) unless errors[:reg_code].present?
+		end
+	end
 
 	def validate_reg_code
 		if !self.reg_code.blank? && !RegistrationCode.valid_for_registration?(self.reg_code)
@@ -16,22 +22,15 @@ class Player < ActiveRecord::Base
 		end
 	end
 
-	def validate_has_group
-		unless self.player_group_associations.any?
-			errors.add(:reg_code, I18n.translate(:is_invalid)) unless errors[:reg_code].present?
-		end
-	end
-
-
 	# == HOOKS ==
 	before_validation :assign_group_from_reg_code
 	after_update :delete_api_keys_on_password_change
 	after_create :add_points_to_inviters
 
 	def assign_group_from_reg_code
-		if !self.reg_code.blank? && !self.current_player_group.present? && RegistrationCode.valid_for_registration?(self.reg_code)
+		if !self.reg_code.blank? && !self.player_group.present? && RegistrationCode.valid_for_registration?(self.reg_code)
 			group = PlayerGroup.find_by_reg_code(self.reg_code)
-			result = self.player_group_associations.build(player_group_id: group.id)
+			self.player_group_id = group.id
 		end
 	end
 
@@ -45,12 +44,12 @@ class Player < ActiveRecord::Base
 
 
 	# == ASSOCIATIONS ==
+	belongs_to :player_group
+	has_one :player_progress
 	has_many :player_sessions, :dependent => :destroy
 	has_many :player_api_keys, :dependent => :destroy
 	has_many :player_score_updates, :dependent => :destroy
 	has_many :player_authentications, :dependent => :destroy
-	has_many :player_group_associations, :dependent => :destroy
-	has_and_belongs_to_many :player_groups, join_table: :player_group_associations
   	has_many :scores, :dependent => :destroy
   	has_many :player_answers, :dependent => :destroy
   	has_many :player_invites, :foreign_key => 'inviting_player_id', :dependent => :destroy
@@ -78,23 +77,16 @@ class Player < ActiveRecord::Base
 		"#{self.first_name} #{self.last_name}"
 	end
 
-	def current_player_group
-		self.player_groups.last
-	end
-
 	def current_online_program
-		self.current_player_group.online_program
+		self.player_group.online_program
 	end
 
-	def current_progress
-		PlayerProgress.find_or_create_by(
-	      player_id: self.id,
-	      player_group_id: self.current_player_group.id
-	    )
+	def player_progress
+		super || build_player_progress
 	end
 
 	def group_name
-		self.current_player_group.try(:name)
+		self.player_group.try(:name)
 	end
 
 	def age
@@ -201,22 +193,19 @@ class Player < ActiveRecord::Base
 	# == Scores ==
 
 	def add_points(event_key, data = nil)
-		Player.add_points(self.id, event_key, data)
+		self.player_score_updates.create!(
+			event: event_key,
+			data: data
+		)
 	end
 
 	def self.add_points(player_id, event_key, data = nil)
-		PlayerScoreUpdate.create!({
-			player_id: player_id,
-			event: event_key,
-			data: data
-		})
+		Player.find(player_id).add_points(event_key, data)
 	end
 
 
-	def score(player_group_id = nil)
-		player_group_id ||= self.current_player_group.try(:id)
-		return 0 if player_group_id.blank?
-		score = Score.where(player_group_id: player_group_id, player_id: self.id).try(:first)
+	def score
+		score = Score.where(player_group_id: self.player_group_id, player_id: self.id).try(:first)
 		return 0 if score.blank?
 		score.score
 	end
@@ -225,7 +214,7 @@ class Player < ActiveRecord::Base
 	# == Registration ==
 
 	def registration_complete?
-		return self.tos_accepted && self.current_player_group.present?
+		return self.tos_accepted && self.player_group.present?
 	end
 
 end

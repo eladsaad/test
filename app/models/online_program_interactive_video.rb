@@ -35,14 +35,14 @@ class OnlineProgramInteractiveVideo < ActiveRecord::Base
 	end
 
 	def enabled_for_player?(player)
-		group_enabled = self.enabled_for_group?(player.current_player_group)
+		group_enabled = self.enabled_for_group?(player.player_group)
 		return false unless group_enabled
-		last_watched_index = player.current_progress.last_interactive_video_index
+		last_watched_index = player.player_progress.last_interactive_video_index
 		return self.index_in_program <= last_watched_index+1 
 	end
 
 	def watched?(player)
-		last_watched_index = player.current_progress.last_interactive_video_index
+		last_watched_index = player.player_progress.last_interactive_video_index
 		return self.index_in_program <= last_watched_index
 	end
 
@@ -60,7 +60,7 @@ class OnlineProgramInteractiveVideo < ActiveRecord::Base
 		first_watch = false
 
 		# update player's progress
-	    progress = player.current_progress
+	    progress = player.player_progress
 	    current_video_index = self.index_in_program
 	    if (progress.last_interactive_video_index < current_video_index)
 	      first_watch = true
@@ -71,7 +71,7 @@ class OnlineProgramInteractiveVideo < ActiveRecord::Base
 	    # add points
 	    if first_watch 
 		    # check how far from the opening time the user watched the video
-		    hours_diff = (Time.now.to_i - self.enabled_time(player.current_player_group)).hours
+		    hours_diff = (Time.now.to_i - self.enabled_time(player.player_group)).hours
 		    if (hours_diff > 24 ) # TODO: make hours diff threshold configurable
 		    	player.add_points(:interactive_video_watch, {interactive_video_id: self.interactive_video_id})
 	    	else

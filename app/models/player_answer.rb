@@ -1,7 +1,6 @@
 class PlayerAnswer < ActiveRecord::Base
 
 	# == VALIDATIONS ==
-	validates :player_group_id, :presence => true
 	validates :external_survey_id, :presence => true
   	validates :question_id, :presence => true
 	validates :player_id, :presence => true
@@ -10,7 +9,6 @@ class PlayerAnswer < ActiveRecord::Base
 	validate :validate_question_in_survey
 
 	# == ASSOCIATIONS ==
-	belongs_to :player_group
 	belongs_to :player
 	belongs_to :question
 
@@ -27,7 +25,6 @@ class PlayerAnswer < ActiveRecord::Base
 	def self.find_by_player_and_external_survey_id(player, external_survey_id)
 		self.where(
 			player_id: player.id,
-			player_group_id: player.current_player_group.id,
 			external_survey_id: external_survey_id
 		)
 	end
@@ -37,9 +34,6 @@ class PlayerAnswer < ActiveRecord::Base
 		survey = Survey.find_by_external_id(external_survey_id)
 		survey_question_ids = survey.questions.pluck(:id)
 
-		player_id = player.id
-		player_group_id = player.current_player_group.id
-
 		errors = []
 		answers_to_create = []
 		answered_question_ids = []
@@ -47,8 +41,7 @@ class PlayerAnswer < ActiveRecord::Base
 		answers.each_with_index do |answer, index|
 
 			new_answer = PlayerAnswer.new(
-				player_group_id: player_group_id,
-				player_id: player_id,
+				player_id: player.id,
 				external_survey_id: external_survey_id,
 				question_id: answer['question_id'],
 				answer_number: answer['answer_number']

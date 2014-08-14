@@ -6,7 +6,7 @@
   <%= devise_error_messages! %>
   <div id="error_messages"></div>
   
-  <% unless resource.current_player_group.present? %>
+  <% unless resource.player_group.present? %>
     <p>
       <%= f.text_field :reg_code, placeholder: "GROUP CODE" %><br><br>
     </p>

@@ -13,7 +13,7 @@ class PlayerMailer < ActionMailer::Base
 
   	def player_invitation(inviting_player, invited_email, custom_message)
   		@inviting_player = inviting_player
-  		@reg_code = @inviting_player.current_player_group.reg_code
+  		@reg_code = @inviting_player.player_group.reg_code
   		@invited_email = invited_email
   		@custom_message = custom_message
   		mail(

@@ -6,8 +6,8 @@
 <!--</div>-->
 
 <!-- SWITCH TO THIS CODE FOR DYNAMIC CAMPAIGNS -->
-<% if player_signed_in? && !current_player.current_player_group.nil? %>
-<% campaign = Campaign.get_by_player_group(current_player.current_player_group) %>
+<% if player_signed_in? && !current_player.player_group.nil? %>
+<% campaign = Campaign.get_by_player_group(current_player.player_group) %>
 <%= link_to campaign.show_website_banner_content('01').html_safe, click_campaign_path(id: campaign.id) unless campaign.nil? %>
 <% end %>
 <!-- SWITCH TO THIS CODE FOR DYNAMIC CAMPAIGNS -->

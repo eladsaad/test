@@ -82,6 +82,6 @@ class PlayerAnswersController < BaseController
       puts ">>>"
       puts params
       puts ">>>"
-      params.require(:player_answer).permit(:player_group_id, :survey_id, :question_id, :answer_number, :player_answer)
+      params.require(:player_answer).permit(:survey_id, :question_id, :answer_number, :player_answer)
     end
 end

@@ -15,7 +15,7 @@ class PlayerScoreUpdate < ActiveRecord::Base
 	end
 
  	def update_player_score
- 		score = Score.where(player_group_id: self.player.current_player_group.id, player_id: self.player.id).first_or_initialize
+ 		score = Score.where(player_group_id: self.player.player_group.id, player_id: self.player.id).first_or_initialize
 		score.score ||= 0
 		score.score += self.points
 		score.save!
