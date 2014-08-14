@@ -49,7 +49,7 @@ $(function() {
 
 
     // Score modal
-    $('.modal-view').on('click','.modal-close-btn', function() {
+    $('#score-update-modal').on('click','.modal-close-btn', function() {
         $(this).closest('.modal-view').css({ visibility: 'hidden' });
     });
 

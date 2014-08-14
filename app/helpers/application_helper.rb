@@ -38,7 +38,7 @@ module ApplicationHelper
     if show_score_updates && current_player && current_player.registration_complete?
       unreported_updates = PlayerScoreUpdate.unreported(current_player.id)
       if unreported_updates.any?
-        js_script += raw("$('.modal-inner-content').html('#{
+        js_script += raw("$('#score-update-modal').html('#{
           escape_javascript(render partial: "shared/score_modal", locals: {score_updates: unreported_updates})
         }');")
         js_script += raw("$('.modal-view').css({visibility: 'visible'});")

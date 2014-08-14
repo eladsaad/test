@@ -1,24 +1,32 @@
-<%
-  # TODO: CHANGE DESGIN AND IMPLEMENTATION SO THAT ALL UPDATES WILL BE DISPLAYED!!
-  update_to_display = score_updates.try(:last)
-%>
+<% score_updates.reverse_each do |update_to_display| %>
+  <% unless update_to_display.blank? %>
 
-<% unless update_to_display.blank? %>
-  <div class="points-modal">
-    <div class="points-modal-confetti"></div>
-    <div class="points-modal-top">
-      <div class="modal-close-btn"></div>
-    </div>
-    <div class="points-modal-body">
-      <h1>CONGRATULATIONS!</h1>
-      <p><%= raw(update_to_display.website_message) %><br>
-        <span class="points-modal-points"><%= raw(number_with_delimiter(update_to_display.points)) %></span><br>
-        points</p>
-    </div>
-    <div class="points-modal-bottom">
-      <div class="medal-big"></div>
-      <span class="points-modal-bottom-title">YOUR CURRENT SCORE IS:</span>
-      <span class="points-modal-bottom-points"><%= number_with_delimiter(current_player.score) %></span>
-    </div>
-  </div>
+    <span class="modal-view">
+      <span class="centered">
+        <div class="modal-inner-content">
+          <div class="points-modal">
+            <div class="points-modal-confetti"></div>
+            <div class="points-modal-top">
+              <div class="modal-close-btn"></div>
+            </div>
+            <div class="points-modal-body">
+              <h1>CONGRATULATIONS!</h1>
+              <p><%= raw(update_to_display.website_message) %><br>
+              <span class="points-modal-points"><%= raw(number_with_delimiter(update_to_display.points)) %></span><br>
+              points</p>
+            </div>
+            <div class="points-modal-bottom">
+              <div class="medal-big"></div>
+              <span class="points-modal-bottom-title">YOUR CURRENT SCORE IS:</span>
+              <span class="points-modal-bottom-points"><%= number_with_delimiter(current_player.score) %></span>
+            </div>
+          </div>
+        </div>
+      </span>
+      <!--[if lte IE 7]>
+      <span class="ie7-fix-centered"></span>
+      <![endif]-->
+    </span>
+
+  <% end %>
 <% end %>

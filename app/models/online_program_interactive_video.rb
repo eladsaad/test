@@ -57,21 +57,29 @@ class OnlineProgramInteractiveVideo < ActiveRecord::Base
 
 	def watched_by!(player)
 
+		first_watch = false
+
 		# update player's progress
 	    progress = player.current_progress
 	    current_video_index = self.index_in_program
 	    if (progress.last_interactive_video_index < current_video_index)
+	      first_watch = true
 	      progress.last_interactive_video_index = current_video_index
 	      progress.save!
 	    end
 
-	    # check how far from the opening time the user watched the video
-	    hours_diff = (Time.now.to_i - self.enabled_time(player.current_player_group)).hours
-	    if (hours_diff > 24 ) # TODO: make hours diff threshold configurable
-	    	player.add_points(:interactive_video_watch, {interactive_video_id: self.interactive_video_id})
-    	else
-    		player.add_points(:interactive_video_watch_early, {interactive_video_id: self.interactive_video_id})
-	    end
+	    # add points
+	    if first_watch 
+		    # check how far from the opening time the user watched the video
+		    hours_diff = (Time.now.to_i - self.enabled_time(player.current_player_group)).hours
+		    if (hours_diff > 24 ) # TODO: make hours diff threshold configurable
+		    	player.add_points(:interactive_video_watch, {interactive_video_id: self.interactive_video_id})
+	    	else
+	    		player.add_points(:interactive_video_watch_early, {interactive_video_id: self.interactive_video_id})
+		    end
+	    else
+	    	player.add_points(:interactive_video_watch_again, {interactive_video_id: self.interactive_video_id})
+    	end
 	end
 
 end
