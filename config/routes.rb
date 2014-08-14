@@ -26,6 +26,7 @@ Cinemadrive::Application.routes.draw do
     end
   end
   root :to => "static_pages#welcome"
+  get '/mobile' => "static_pages#mobile", :as => :mobile_root 
   get '/about' => "static_pages#about"
   get '/terms' => "static_pages#terms"
   get '/terms_modal' => "static_pages#terms_modal"

@@ -1,10 +1,18 @@
 class ApplicationController < ActionController::Base
 
   before_filter :set_no_cache
-
-  #after_filter :flash_to_headers
-
   protect_from_forgery with: :exception
+
+  # MOBILE IDENTIFICATION
+
+  has_mobile_fu false
+  before_filter :redirect_mobile_devices
+  
+  def redirect_mobile_devices
+    if is_mobile_device? || is_tablet_device?
+      redirect_to mobile_root_path
+    end
+  end
 
   # == CANCAN Authorization ==
   check_authorization :unless => :check_authorization_controllers

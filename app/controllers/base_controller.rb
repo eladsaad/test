@@ -1,4 +1,5 @@
 class BaseController < ApplicationController
+
 	before_filter :authenticate_player!
 	before_filter :verify_complete_player_registration
 

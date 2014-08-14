@@ -4,6 +4,7 @@ class Api::BaseApiController < ApplicationController
 
   protect_from_forgery with: :null_session
 
+  skip_before_filter :redirect_mobile_devices
   before_filter :authenticate_player_by_api_key!
   before_filter :verify_complete_player_registration
 

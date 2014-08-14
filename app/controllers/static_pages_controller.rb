@@ -1,5 +1,7 @@
 class StaticPagesController < ApplicationController
 
+  skip_before_filter :redirect_mobile_devices, only: :mobile
+
 
   # GET /players/dashboard
   def welcome
@@ -9,7 +11,6 @@ class StaticPagesController < ApplicationController
   end
 
   def about
-
     @active_page = 'about'
 
     respond_to do |format|
@@ -19,7 +20,6 @@ class StaticPagesController < ApplicationController
   end
 
   def terms
-
     @active_page = 'terms'
 
     respond_to do |format|
@@ -29,11 +29,13 @@ class StaticPagesController < ApplicationController
   end
 
   def terms_modal
-
   end
 
   def confirm_reg
+  end
 
+  def mobile
+    render :layout => false
   end
 
 end
