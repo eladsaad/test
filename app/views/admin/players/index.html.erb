@@ -12,6 +12,7 @@
       <th><%= sortable_column :email, t('activerecord.attributes.player.email') %></th>
       <th><%= sortable_column :first_name, t('activerecord.attributes.player.first_name') %></th>
       <th><%= sortable_column :last_name, t('activerecord.attributes.player.last_name') %></th>
+      <th><%= sortable_column :score, t('activerecord.attributes.player.score') %></th>
       <th><%= sortable_column :created_at, t('activerecord.attributes.player.created_at') %></th>
       <th><%= t('activerecord.attributes.player.group_name') %></th>
       <th class="action-column"></th>
@@ -25,6 +26,7 @@
         <td><%= admin_player.email %></td>
         <td><%= admin_player.first_name %></td>
         <td><%= admin_player.last_name %></td>
+        <td><%= admin_player.score %></td>
         <td><%= admin_player.created_at %></td>
         <td><%= admin_player.group_name %></td>
         <td><%= link_to t(:show), admin_player, class: 'show-record-link' %></td>

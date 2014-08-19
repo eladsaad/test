@@ -1,6 +1,6 @@
 <h1><%= t('activerecord.models.player') %></h1>
 
-<% [:email, :first_name, :last_name, :birth_date, :age, :gender, :profile_picture, :tos_accepted, :created_at, :updated_at, :confirmed_at, :confirmation_sent_at, :unconfirmed_email, :group_name].each do |attribute| %>
+<% [:email, :first_name, :last_name, :birth_date, :age, :gender, :profile_picture, :tos_accepted, :created_at, :updated_at, :confirmed_at, :confirmation_sent_at, :unconfirmed_email, :group_name, :score].each do |attribute| %>
     <p>
       <strong><%= t("activerecord.attributes.player.#{attribute}") %>:</strong>
       <%= @admin_player.send(attribute) %>

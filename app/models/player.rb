@@ -51,7 +51,6 @@ class Player < ActiveRecord::Base
 	has_many :player_api_keys, :dependent => :destroy
 	has_many :player_score_updates, :dependent => :destroy
 	has_many :player_authentications, :dependent => :destroy
-  	has_many :scores, :dependent => :destroy
   	has_many :player_answers, :dependent => :destroy
   	has_many :player_invites, :foreign_key => 'inviting_player_id', :dependent => :destroy
 
@@ -202,13 +201,6 @@ class Player < ActiveRecord::Base
 
 	def self.add_points(player_id, event_key, data = nil)
 		Player.find(player_id).add_points(event_key, data)
-	end
-
-
-	def score
-		score = Score.where(player_id: self.id).try(:first)
-		return 0 if score.blank?
-		score.score
 	end
 
 

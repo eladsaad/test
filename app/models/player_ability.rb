@@ -20,9 +20,6 @@ class PlayerAbility
 
     can :accept_tos, Player, id: player.id
 
-    can :index, Score, player_id: player.id
-    can :read, Score, player_id: player.id
-
     can :read, Survey # todo: only if belongs to available program
     can :answer, Survey # todo: only if belongs to available program
 
