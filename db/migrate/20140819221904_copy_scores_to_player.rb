@@ -12,8 +12,8 @@ class CopyScoresToPlayer < ActiveRecord::Migration
 	Player.reset_column_information
 
   	Player.all.each do |player|
-  		current_score = ActiveRecord::Base.connection.execute("select score from scores where player_id = #{player.id};");
-      current_score = current_score.first['score'] unless current_score.first.nil?
+  		tmp_score = ActiveRecord::Base.connection.execute("select score from scores where player_id = #{player.id};");
+      current_score = tmp_score.first['score'] unless tmp_score.first.nil?
       current_score ||= 0
   		scores_tmp[player.id] = current_score
   		player.score = current_score
