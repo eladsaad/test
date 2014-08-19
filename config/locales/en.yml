@@ -149,6 +149,7 @@ en:
         gender: "Gender"
         profile_picture: "Profile Picture"
         group_name: "Group Name"
+        score: "Score"
       player_group:
         id: "ID"
         operator_id: "Operator ID"
@@ -161,6 +162,7 @@ en:
         online_program_id: "Online Program"
         created_at: "Created At"
         updated_at: "Updated At"
+        score: "Score"
       player_organization:
         id: "ID"
         org_type: "Type"
