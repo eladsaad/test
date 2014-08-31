@@ -7,7 +7,7 @@ if player_signed_in?
 	@score_updates = PlayerScoreUpdate.unreported(current_player.id)
 	if @score_updates.any?
 		json.score do
-			json.current current_player.score
+			json.current current_player.reload.score
 			json.updates do
 				json.array! @score_updates do |update|
 				  json.action update.event

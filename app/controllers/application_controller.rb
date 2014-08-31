@@ -98,6 +98,7 @@ class ApplicationController < ActionController::Base
     if scope == :player && current_player
       session_key = current_session_key(args.last)
       PlayerSession.add_login(current_player.id, request, session_key)
+      current_player.reload
     end
   end
 
