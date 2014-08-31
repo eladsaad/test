@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
   
   def self.allowed_sort_columns(model_class)
     define_method :sort_column do
-      model_class.column_names.include?(params[:sort]) ? params[:sort] : nil
+      (model_class.column_names + model_class.try(:additional_sort_columns).to_a).include?(params[:sort]) ? params[:sort] : nil
     end
     define_method :sort_direction do
       ['asc', 'desc'].include?(params[:direction]) ?  params[:direction] : "asc"

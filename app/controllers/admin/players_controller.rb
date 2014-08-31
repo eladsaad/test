@@ -9,7 +9,7 @@ class Admin::PlayersController < Admin::AdminController
   # GET /admin/players.json
   def index
     authorize! :index, Player
-    @admin_players = Admin::Player.accessible_by(current_ability, :read)
+    @admin_players = Admin::Player.accessible_by(current_ability, :read).includes(:player_group)
     @admin_players = @admin_players.search(params[:search]) unless params[:search].blank?
     @admin_players = @admin_players.order("#{sort_column} #{sort_direction}") unless sort_column.blank?
     @admin_players = @admin_players.paginate(page: params[:page], per_page: params[:per_page] || 100)
