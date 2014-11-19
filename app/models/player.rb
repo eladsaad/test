@@ -193,10 +193,17 @@ class Player < ActiveRecord::Base
 	# == Scores ==
 
 	def add_points(event_key, data = nil)
-		self.player_score_updates.create!(
+		score_update = self.player_score_updates.new(
 			event: event_key,
 			data: data
 		)
+		score_update.set_points_if_missing
+		
+		if score_update.points.present? && score_update.points > 0
+			score_update.save!
+		else
+			Rails.logger.info "No points set for event [#{event_key}]"
+		end
 	end
 
 	def self.add_points(player_id, event_key, data = nil)
