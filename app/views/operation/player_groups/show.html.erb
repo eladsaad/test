@@ -37,3 +37,4 @@
 <br>
 <%= link_to t(:edit), edit_operation_player_group_path(@operation_player_group), class: 'edit-record-link' %>
 <%= link_to t(:back_to_list), operation_player_groups_path, class: 'back-to-list-link' %>
+<%= link_to t("activerecord.attributes.player_group.players"), operation_players_path(search: @operation_player_group.name), class: 'back-to-list-link' %>

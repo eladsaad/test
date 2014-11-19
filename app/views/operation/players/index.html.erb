@@ -2,7 +2,7 @@
 
 <div class="table-toolbar">
   <div class="table-toolbar-left">
-    <%= render 'shared/search_table_form', objects_index_path: admin_players_path %>
+    <%= render 'shared/search_table_form', objects_index_path: operation_players_path %>
   </div>
 </div>
 
@@ -21,20 +21,20 @@
   </thead>
 
   <tbody>
-    <% @admin_players.each do |admin_player| %>
+    <% @operation_players.each do |operation_player| %>
       <tr>
-        <td><%= admin_player.email %></td>
-        <td><%= admin_player.first_name %></td>
-        <td><%= admin_player.last_name %></td>
-        <td><%= admin_player.score %></td>
-        <td><%= admin_player.created_at %></td>
-        <td><%= admin_player.group_name %></td>
-        <td><%= link_to t(:show), admin_player, class: 'show-record-link' %></td>
-        <td><%= link_to t(:delete), admin_player, method: :delete, data: { confirm: 'Are you sure?' }, class: 'destroy-record-link' %></td>
+        <td><%= operation_player.email %></td>
+        <td><%= operation_player.first_name %></td>
+        <td><%= operation_player.last_name %></td>
+        <td><%= operation_player.score %></td>
+        <td><%= operation_player.created_at %></td>
+        <td><%= operation_player.group_name %></td>
+        <td><%= link_to t(:show), operation_player, class: 'show-record-link' %></td>
+        <td><%= link_to t(:delete), operation_player, method: :delete, data: { confirm: 'Are you sure?' }, class: 'destroy-record-link' %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= will_paginate @admin_players %>
+<%= will_paginate @operation_players %>
 

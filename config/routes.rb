@@ -120,7 +120,6 @@ Cinemadrive::Application.routes.draw do
     resources :interactive_videos
     resources :online_programs
     resources :campaigns
-    resources :players, only: [:index, :show, :destroy]
     resources :score_updates, only: [] do
         collection do
           get :edit
@@ -144,6 +143,7 @@ Cinemadrive::Application.routes.draw do
     resources :player_organizations
     resources :player_groups
     resources :operator_mobile_stations
+    resources :players, only: [:index, :show, :destroy]
     get '/registration_codes/fetch/:amount' => "registration_codes#fetch", :as => :fetch_registration_codes
   end
 

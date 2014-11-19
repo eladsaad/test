@@ -27,6 +27,11 @@ class Operation::OperatorAbility
       # allowed online programs
       can :read, OnlineProgram, id: operator.online_programs.pluck(:id)
 
+      # players
+      can [:read, :destroy, :index], Player, operator.players do |player|
+        player.player_group.operator_id == operator.id
+      end
+      
     end
 
   end

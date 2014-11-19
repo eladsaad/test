@@ -171,6 +171,7 @@ en:
         created_at: "Created At"
         updated_at: "Updated At"
         score: "Score"
+        players: "Group's Players"
       player_organization:
         id: "ID"
         org_type: "Type"

@@ -1,4 +1,4 @@
-class Admin::Player < Player
+class Operation::Player < Player
 
 	def self.additional_sort_columns
 		['player_groups.name']

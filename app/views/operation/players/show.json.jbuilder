@@ -1,0 +1,1 @@
+json.extract! @operation_player, :email, :first_name, :last_name, :birth_date, :age, :gender, :profile_picture, :tos_accepted, :created_at, :updated_at, :confirmed_at, :confirmation_sent_at, :unconfirmed_email

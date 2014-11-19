@@ -3,9 +3,9 @@
 <% [:email, :first_name, :last_name, :birth_date, :age, :gender, :profile_picture, :tos_accepted, :created_at, :updated_at, :confirmed_at, :confirmation_sent_at, :unconfirmed_email, :group_name, :score].each do |attribute| %>
     <p>
       <strong><%= t("activerecord.attributes.player.#{attribute}") %>:</strong>
-      <%= @admin_player.send(attribute) %>
+      <%= @operation_player.send(attribute) %>
     </p>
 <% end %>
 
 <br>
-<%= link_to t(:back_to_list), admin_players_path, class: 'back-to-list-link' %>
+<%= link_to t(:back_to_list), operation_players_path, class: 'back-to-list-link' %>

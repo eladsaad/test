@@ -10,6 +10,7 @@ class Operator < ActiveRecord::Base
 	has_many :player_groups
 	has_many :player_organizations
 	has_many :operator_mobile_stations
+	has_many :players, through: :player_groups
 	has_and_belongs_to_many :online_programs
 	accepts_nested_attributes_for :online_programs, allow_destroy: true, reject_if: :all_blank
 

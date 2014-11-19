@@ -99,7 +99,7 @@ class Player < ActiveRecord::Base
 	end
 
 	# == SEARCH ==
-	search_columns [:email, :first_name, :last_name]
+	search_columns [:email, :first_name, :last_name, 'player_groups.name']
 
 	# == FACEBOOK ==
 
