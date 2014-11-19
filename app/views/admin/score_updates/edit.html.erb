@@ -1,0 +1,19 @@
+<p>
+	Here you can set the amount of points that should be given to a player after different events.<br>
+	To disable a specific event, set its value to a negative number.
+</p>
+<br>
+
+<%= simple_form_for :score_updates, { url: admin_score_updates_path } do |f| %>
+
+	<div class="form-inputs">
+		<% @score_updates.each do |key, value| %>
+			<%= f.input key, as: :string, label: t("score_updates_labels.#{key}"), input_html: {value: value} %>
+	 	<% end %>
+ 	</div>
+
+ 	<div class="form-actions">
+		<%= f.button :submit %>
+	</div>
+
+<% end %>

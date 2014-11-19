@@ -121,6 +121,12 @@ Cinemadrive::Application.routes.draw do
     resources :online_programs
     resources :campaigns
     resources :players, only: [:index, :show, :destroy]
+    resources :score_updates, only: [] do
+        collection do
+          get :edit
+          post :update
+        end
+      end
   end
 
 

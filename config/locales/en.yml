@@ -25,6 +25,13 @@ en:
     interactive_video_watch_early: 'You just watched an episode<br>and won extra'
     interactive_video_watch_again: "You just rewatched an episode<br>and won extra"
     invited_player_registered: 'Your friend %{invited_player_email}<br>have registered and you get extra'
+  score_updates_labels:
+    first_login: "Registration"
+    survey_answer: "Take the survey after each movie"
+    interactive_video_watch: "Play a movie later"
+    interactive_video_watch_early: "Play a movie - 24 hours opp"
+    interactive_video_watch_again: "Replay a movie - explore it again"
+    invited_player_registered: "Friend invite"
 
   # actions
   choose: "Choose"
@@ -48,6 +55,7 @@ en:
   log_out: "Log Out"
 
   # other
+  score_updates_label: "Score Updates"
   leave_empty_for_automatic: "Leave empty for automatic"
   are_you_sure_?: "Are you sure ?"
   error: "Error"

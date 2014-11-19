@@ -44,6 +44,9 @@ class Admin::SystemAdminAbility
       # players
       can [:read, :destroy, :index], Player
 
+      # score updates
+      can [:edit, :update], :score_updates
+
     end
 
   end
