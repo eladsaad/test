@@ -32,5 +32,10 @@ class Survey < ActiveRecord::Base
     find(survey_id)
   end
 
+  def allowed_for_player?(player)
+    allowed_survey_ids = player.current_online_program.online_program_interactive_videos.pluck(:pre_survey_id, :post_survey_id).flatten
+    allowed_survey_ids.include?(self.id)
+  end
+
 
 end

@@ -20,8 +20,9 @@ class PlayerAbility
 
     can :accept_tos, Player, id: player.id
 
-    can :read, Survey # todo: only if belongs to available program
-    can :answer, Survey # todo: only if belongs to available program
+    can [:read, :answer], Survey do |survey|
+      survey.allowed_for_player?(player)
+    end
 
     can :read, Question
 
