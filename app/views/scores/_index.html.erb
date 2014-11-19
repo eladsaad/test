@@ -10,12 +10,10 @@
   <div class="points-panel-body">
     <div class="points-panel-body-title">HOW CAN I EARN POINTS?</div>
     <ul>
-      <li>Sign up<span class="action-points"><%=PlayerScoreUpdate.default_points_for(:first_login)%></span></li>
-      <li>Watch a movie<span class="action-points"><%=PlayerScoreUpdate.default_points_for(:interactive_video_watch_early)%></span></li>
-      <li>Watch a movie later than planned<span class="action-points"><%=PlayerScoreUpdate.default_points_for(:interactive_video_watch)%></span></li>
-      <li>Watch a movie again<span class="action-points"><%=PlayerScoreUpdate.default_points_for(:interactive_video_watch_again)%></span></li>
-      <li>Invite a friend for my group<span class="action-points"><%=PlayerScoreUpdate.default_points_for(:invited_player_registered)%></span></li>
-      <li>Answer a questionnaire<span class="action-points"><%=PlayerScoreUpdate.default_points_for(:survey_answer)%></span></li>
+      <li>Play a movie - 24 hours opp<span class="action-points"><%=PlayerScoreUpdate.default_points_for(:interactive_video_watch_early)%></span></li>
+      <li>Play a movie later<span class="action-points"><%=PlayerScoreUpdate.default_points_for(:interactive_video_watch)%></span></li>
+      <li>Take the survey after each movie<span class="action-points"><%=PlayerScoreUpdate.default_points_for(:survey_answer)%></span></li>
+      <li>Replay a movie - explore it again<span class="action-points"><%=PlayerScoreUpdate.default_points_for(:interactive_video_watch_again)%></span></li>
     </ul>
   </div>
 </div>
@@ -33,11 +31,7 @@
     <p>
       <span class="group-count"><%= @group_count %> <%= @group_count > 1 ? 'players' : 'player' %> registered to this group.<br></span>
       <br>
-      One space after a colon.<br>
-      There is a traditional American practice,
-      favored by some, of leaving two spaces after colons and periods.
-      This practice is discouraged by the University of Chicago Press,
-      especially for formally published works and the manuscripts from which they are published.
+      Group scoring is accumulative and calculated according to individual scores. The greater participation rate – the higher the group score will be.
     </p>
   </div>
 </div>
@@ -48,11 +42,7 @@
   <div class="points-panel-body">
     <div class="points-panel-body-title">HOW CAN MY GROUP WIN THE PRIZE?</div>
     <p>
-      I have confusion regarding the correct spacing after periods and other closing punctuation.
-      My company uses the font Arial and consistently uses a flush-left margin.
-      We are an engineering company.
-      My job consists in preparing documents and letters for customers.
-      Everything I read in manuals and from technical writers directs me to use one space after  periods.
+      The winners will get cinema tickets for the entire group, e.g. for all participants from the same school. In order to win, all group participants must complete viewing all episodes.
     </p>
   </div>
 </div>
