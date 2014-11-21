@@ -172,6 +172,8 @@ en:
         updated_at: "Updated At"
         score: "Score"
         players: "Group's Players"
+        max_players: "Maximum number of Players"
+        relative_score: "Relative Score"
       player_organization:
         id: "ID"
         org_type: "Type"

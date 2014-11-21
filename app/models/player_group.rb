@@ -42,6 +42,10 @@ class PlayerGroup < ActiveRecord::Base
 		self.players.sum(:score)
 	end
 
+	def relative_score
+		self.score.to_f / self.max_players.to_f unless (self.max_players.blank? || self.max_players <= 0)
+	end
+
 	def self.find_by_reg_code(code)
 		self.where('lower(reg_code) = ?', code.downcase).first
 	end

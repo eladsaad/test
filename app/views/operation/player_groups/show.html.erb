@@ -17,7 +17,7 @@
   <%= @operation_player_group.online_program.try(:name) %>
 </p>
 
-<% [:mobile_station_code, :score, :created_at, :updated_at].each do |attribute| %>
+<% [:mobile_station_code, :score, :relative_score, :max_players, :created_at, :updated_at].each do |attribute| %>
   <p>
     <strong><%= t("activerecord.attributes.player_group.#{attribute}") %>:</strong>
     <%= @operation_player_group.send(attribute) %>

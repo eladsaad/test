@@ -21,7 +21,8 @@
       <th><%= sortable_column :mobile_station_code, t('activerecord.attributes.player_group.mobile_station_code') %></th>
       <th><%= sortable_column :online_program_id, t('activerecord.attributes.player_group.online_program_id') %></th> 
       <th><%= t('activerecord.attributes.player_group.description') %></th>
-      <th><%= t('activerecord.attributes.player_group.score') %></th> 
+      <th><%= t('activerecord.attributes.player_group.score') %></th>
+      <th><%= t('activerecord.attributes.player_group.relative_score') %></th>  
       <th class="action-column"></th>
       <th class="action-column"></th>
       <th class="action-column"></th>
@@ -39,6 +40,7 @@
         <td><%= operation_player_group.online_program.try(:name) %></td>
         <td><%= operation_player_group.description %></td>
         <td><%= operation_player_group.score %></td>
+        <td><%= operation_player_group.relative_score %></td>
         <td><%= link_to t(:show), operation_player_group, class: 'show-record-link' %></td>
         <td><%= link_to t(:edit), edit_operation_player_group_path(operation_player_group), class: 'edit-record-link' %></td>
         <td><%= link_to t(:delete), operation_player_group, method: :delete, data: { confirm: t(:are_you_sure_?) }, class: 'destroy-record-link' %></td>

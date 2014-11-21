@@ -9,6 +9,7 @@
     <%= f.input :screening_date, as: :string, input_html: { class: 'datepicker' }%>
     <%= f.input :name %>
     <%= f.input :description %>
+    <%= f.input :max_players %>    
 
     <%= f.input :mobile_station_code,
       collection: Operation::OperatorMobileStation.accessible_by(current_ability, :read).pluck(:code),
