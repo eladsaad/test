@@ -61,7 +61,12 @@ class PlayerGroup < ActiveRecord::Base
 	end
 
 	def relative_score
-		self.score.to_f / self.max_players.to_f unless (self.max_players.blank? || self.max_players <= 0)
+		unless (self.max_players.blank? || self.max_players <= 0)
+      self.score.to_f / self.max_players.to_f * 100 # Dror asked to multiple the result in 100 to make it higher
+    else
+      # If max player is blank the relative score should be -1
+      -1
+    end
 	end
 
 	def self.find_by_reg_code(code)
