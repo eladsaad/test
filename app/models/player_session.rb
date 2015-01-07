@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: player_sessions
+#
+#  id          :integer          not null, primary key
+#  player_id   :integer
+#  sign_in_at  :datetime
+#  sign_out_at :datetime
+#  ip_address  :string(255)
+#  session_id  :string(255)
+#
+
 class PlayerSession < ActiveRecord::Base
 
 	# == ASSOCIATIONS ==
