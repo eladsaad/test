@@ -27,6 +27,7 @@ class  Admin::ScoreUpdatesController < Admin::AdminController
 	      	:survey_answer,
 	      	:interactive_video_watch,
 	      	:interactive_video_watch_early,
+          :extra_for_movie
 	      )
 	    end
 
