@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: player_invites
+#
+#  id                 :integer          not null, primary key
+#  inviting_player_id :integer
+#  email              :text
+#  friend_type        :string(255)
+#  message            :text
+#  created_at         :datetime
+#  updated_at         :datetime
+#  invited_player_id  :integer
+#
+
 class PlayerInvite < ActiveRecord::Base
 
 	# == VALIDATIONS ==

@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: online_program_interactive_videos
+#
+#  id                   :integer          not null, primary key
+#  online_program_id    :integer
+#  interactive_video_id :integer
+#  start_after_days     :integer
+#  start_time           :time
+#  pre_survey_id        :integer
+#  post_survey_id       :integer
+#  created_at           :datetime
+#  updated_at           :datetime
+#
+
 class OnlineProgramInteractiveVideo < ActiveRecord::Base
 
 	# == VALIDATIONS ==

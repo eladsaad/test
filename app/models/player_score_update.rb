@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: player_score_updates
+#
+#  id         :integer          not null, primary key
+#  player_id  :integer
+#  event      :string(255)
+#  points     :integer
+#  reported   :boolean          default(FALSE)
+#  data       :text
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class PlayerScoreUpdate < ActiveRecord::Base
 
 	# == ASSOCIATIONS ==

@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: player_authentications
+#
+#  id           :integer          not null, primary key
+#  player_id    :integer
+#  provider     :string(255)
+#  uid          :string(255)
+#  token        :string(255)
+#  token_secret :string(255)
+#  created_at   :datetime
+#  updated_at   :datetime
+#
+
 class PlayerAuthentication < ActiveRecord::Base
 
 	# == ASSOCIATIONS ==

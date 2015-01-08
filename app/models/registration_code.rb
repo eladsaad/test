@@ -1,3 +1,11 @@
+# == Schema Information
+#
+# Table name: registration_codes
+#
+#  id   :integer          not null, primary key
+#  code :string(255)
+#
+
 class RegistrationCode < ActiveRecord::Base
 
 	def self.fetch(amount, greater_than_id = 0)

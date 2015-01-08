@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: player_answers
+#
+#  id                 :integer          not null, primary key
+#  external_survey_id :string(255)
+#  question_id        :integer
+#  answer_number      :integer
+#  created_at         :datetime
+#  updated_at         :datetime
+#  player_id          :integer
+#
+
 class PlayerAnswer < ActiveRecord::Base
 
 	# == VALIDATIONS ==

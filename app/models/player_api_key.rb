@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: player_api_keys
+#
+#  id           :integer          not null, primary key
+#  access_token :string(255)
+#  expires_at   :datetime
+#  player_id    :integer
+#  active       :boolean
+#  created_at   :datetime
+#  updated_at   :datetime
+#
+
 class PlayerApiKey < ActiveRecord::Base
 
 	before_create :generate_access_token
