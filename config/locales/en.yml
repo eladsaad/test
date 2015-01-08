@@ -16,6 +16,12 @@ en:
     survey_answer: "You answered a questionnaire! You get extra %{points} points"
     interactive_video_watch: "You just watched an episode and won extra %{points} points"
     interactive_video_watch_early: "You just watched an episode and won extra %{points} points"
+    extra_for_first_movie: "You just got extra %{points} points to watch this video"
+    extra_for_second_movie: "You just got extra %{points} points to watch this video"
+    extra_for_third_movie: "You just got extra %{points} points to watch this video"
+    extra_for_fourth_movie: "You just got extra %{points} points to watch this video"
+    extra_for_fifth_movie: "You just got extra %{points} points to watch this video"
+    extra_for_sixth_movie: "You just got extra %{points} points to watch this video"
     interactive_video_watch_again: "You just rewatched an episode and won extra %{points} points"
     invited_player_registered: "Your friend %{invited_player_email} have registered and you get extra %{points} points"
   score_updates_website:
@@ -32,7 +38,12 @@ en:
     interactive_video_watch_early: "Play a movie - 24 hours opp"
     interactive_video_watch_again: "Replay a movie - explore it again"
     invited_player_registered: "Friend invite"
-
+    extra_for_first_movie: "Extra for first movie"
+    extra_for_second_movie: "Extra for second movie"
+    extra_for_third_movie: "Extra for third movie"
+    extra_for_fourth_movie: "Extra for fourth movie"
+    extra_for_fifth_movie: "Extra for fifth movie"
+    extra_for_sixth_movie: "Extra for sixth movie"
   # actions
   choose: "Choose"
   search: "Search"
