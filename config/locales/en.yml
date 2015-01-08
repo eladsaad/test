@@ -16,14 +16,14 @@ en:
     survey_answer: "You answered a questionnaire! You get extra %{points} points"
     interactive_video_watch: "You just watched an episode and won extra %{points} points"
     interactive_video_watch_early: "You just watched an episode and won extra %{points} points"
+    interactive_video_watch_again: "You just rewatched an episode and won extra %{points} points"
+    invited_player_registered: "Your friend %{invited_player_email} have registered and you get extra %{points} points"
     extra_for_first_movie: "You just got extra %{points} points to watch this video"
     extra_for_second_movie: "You just got extra %{points} points to watch this video"
     extra_for_third_movie: "You just got extra %{points} points to watch this video"
     extra_for_fourth_movie: "You just got extra %{points} points to watch this video"
     extra_for_fifth_movie: "You just got extra %{points} points to watch this video"
     extra_for_sixth_movie: "You just got extra %{points} points to watch this video"
-    interactive_video_watch_again: "You just rewatched an episode and won extra %{points} points"
-    invited_player_registered: "Your friend %{invited_player_email} have registered and you get extra %{points} points"
   score_updates_website:
     first_login: 'You just registered our website<br>and won extra'
     survey_answer: 'You answered a questionnaire!<br>you get extra'
@@ -31,6 +31,12 @@ en:
     interactive_video_watch_early: 'You just watched an episode<br>and won extra'
     interactive_video_watch_again: "You just rewatched an episode<br>and won extra"
     invited_player_registered: 'Your friend %{invited_player_email}<br>have registered and you get extra'
+    extra_for_first_movie: "You just got extra %{points} points to watch this video"
+    extra_for_second_movie: "You just got extra %{points} points to watch this video"
+    extra_for_third_movie: "You just got extra %{points} points to watch this video"
+    extra_for_fourth_movie: "You just got extra %{points} points to watch this video"
+    extra_for_fifth_movie: "You just got extra %{points} points to watch this video"
+    extra_for_sixth_movie: "You just got extra %{points} points to watch this video"
   score_updates_labels:
     first_login: "Registration"
     survey_answer: "Take the survey after each movie"
