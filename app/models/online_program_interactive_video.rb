@@ -86,21 +86,7 @@ class OnlineProgramInteractiveVideo < ActiveRecord::Base
 	    # add points
 	    if first_watch
 
-        # Increase the player points by the amount specified for the specific video number event
-        case current_video_index
-          when 1
-            player.add_points(:extra_for_first_movie, {interactive_video_id: self.interactive_video_id})
-          when 2
-            player.add_points(:extra_for_second_movie, {interactive_video_id: self.interactive_video_id})
-          when 3
-            player.add_points(:extra_for_third_movie, {interactive_video_id: self.interactive_video_id})
-          when 4
-            player.add_points(:extra_for_fourth_movie, {interactive_video_id: self.interactive_video_id})
-          when 5
-            player.add_points(:extra_for_fifth_movie, {interactive_video_id: self.interactive_video_id})
-          when 6
-            player.add_points(:extra_for_sixth_movie, {interactive_video_id: self.interactive_video_id})
-        end
+
 
 
 
@@ -109,9 +95,41 @@ class OnlineProgramInteractiveVideo < ActiveRecord::Base
 		    # check how far from the opening time the user watched the video
 		    hours_diff = (Time.now.to_i - self.enabled_time(player.player_group)) / 1.hour
 		    if (hours_diff > 24 ) # TODO: make hours diff threshold configurable
-		    	player.add_points(:interactive_video_watch, {interactive_video_id: self.interactive_video_id})
-	    	else
-	    		player.add_points(:interactive_video_watch_early, {interactive_video_id: self.interactive_video_id})
+
+          # Increase the player points by the amount specified for the specific video number event
+          case current_video_index
+            when 1
+              player.add_points(:extra_for_first_movie, {interactive_video_id: self.interactive_video_id})
+            when 2
+              player.add_points(:extra_for_second_movie, {interactive_video_id: self.interactive_video_id})
+            when 3
+              player.add_points(:extra_for_third_movie, {interactive_video_id: self.interactive_video_id})
+            when 4
+              player.add_points(:extra_for_fourth_movie, {interactive_video_id: self.interactive_video_id})
+            when 5
+              player.add_points(:extra_for_fifth_movie, {interactive_video_id: self.interactive_video_id})
+            when 6
+              player.add_points(:extra_for_sixth_movie, {interactive_video_id: self.interactive_video_id})
+          end
+
+        else
+
+          # Increase the player points by the amount specified for the specific video number event
+          case current_video_index
+            when 1
+              player.add_points(:extra_for_first_movie_early, {interactive_video_id: self.interactive_video_id})
+            when 2
+              player.add_points(:extra_for_second_movie_early, {interactive_video_id: self.interactive_video_id})
+            when 3
+              player.add_points(:extra_for_third_movie_early, {interactive_video_id: self.interactive_video_id})
+            when 4
+              player.add_points(:extra_for_fourth_movie_early, {interactive_video_id: self.interactive_video_id})
+            when 5
+              player.add_points(:extra_for_fifth_movie_early, {interactive_video_id: self.interactive_video_id})
+            when 6
+              player.add_points(:extra_for_sixth_movie_early, {interactive_video_id: self.interactive_video_id})
+          end
+
 		    end
 	    else
 	    	player.add_points(:interactive_video_watch_again, {interactive_video_id: self.interactive_video_id})

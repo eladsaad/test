@@ -24,6 +24,12 @@ en:
     extra_for_fourth_movie: "You just got extra %{points} points to watch this video"
     extra_for_fifth_movie: "You just got extra %{points} points to watch this video"
     extra_for_sixth_movie: "You just got extra %{points} points to watch this video"
+    extra_for_first_movie_early: "You just got extra %{points} points to watch this video early"
+    extra_for_second_movie_early: "You just got extra %{points} points to watch this video early"
+    extra_for_third_movie_early: "You just got extra %{points} points to watch this video early"
+    extra_for_fourth_movie_early: "You just got extra %{points} points to watch this video early"
+    extra_for_fifth_movie_early: "You just got extra %{points} points to watch this video early"
+    extra_for_sixth_movie_early: "You just got extra %{points} points to watch this video early"
   score_updates_website:
     first_login: 'You just registered our website<br>and won extra'
     survey_answer: 'You answered a questionnaire!<br>you get extra'
@@ -37,6 +43,12 @@ en:
     extra_for_fourth_movie: "You just got extra %{points} points to watch this video"
     extra_for_fifth_movie: "You just got extra %{points} points to watch this video"
     extra_for_sixth_movie: "You just got extra %{points} points to watch this video"
+    extra_for_first_movie_early: "You just got extra %{points} points to watch this video early"
+    extra_for_second_movie_early: "You just got extra %{points} points to watch this video early"
+    extra_for_third_movie_early: "You just got extra %{points} points to watch this video early"
+    extra_for_fourth_movie_early: "You just got extra %{points} points to watch this video early"
+    extra_for_fifth_movie_early: "You just got extra %{points} points to watch this video early"
+    extra_for_sixth_movie_early: "You just got extra %{points} points to watch this video early"
   score_updates_labels:
     first_login: "Registration"
     survey_answer: "Take the survey after each movie"
@@ -50,6 +62,12 @@ en:
     extra_for_fourth_movie: "Extra for fourth movie"
     extra_for_fifth_movie: "Extra for fifth movie"
     extra_for_sixth_movie: "Extra for sixth movie"
+    extra_for_first_movie_early: "Extra for first movie early"
+    extra_for_second_movie_early: "Extra for second movie early"
+    extra_for_third_movie_early: "Extra for third movie early"
+    extra_for_fourth_movie_early: "Extra for fourth movie early"
+    extra_for_fifth_movie_early: "Extra for fifth movie early"
+    extra_for_sixth_movie_early: "Extra for sixth movie early"
   # actions
   choose: "Choose"
   search: "Search"
