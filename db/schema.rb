@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150109123608) do
+ActiveRecord::Schema.define(version: 20150112154323) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -368,6 +368,10 @@ ActiveRecord::Schema.define(version: 20150109123608) do
     t.boolean  "tos_accepted",           default: false
     t.integer  "player_group_id"
     t.integer  "score",                  default: 0
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "players", ["confirmation_token"], name: "index_players_on_confirmation_token", unique: true, using: :btree

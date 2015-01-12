@@ -27,6 +27,9 @@
 
 class Player < ActiveRecord::Base
 
+  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
+  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+
 	# == VIRTUAL ATTRIBUTES ==
 	attr_accessor :reg_code
 	attr_accessor :allow_facebook_signup_without_reg_code
