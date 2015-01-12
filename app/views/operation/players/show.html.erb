@@ -7,5 +7,10 @@
     </p>
 <% end %>
 
+<%if @operation_player.avatar.present?  %>
+    <p>
+    <img src="<%=@operation_player.avatar.url(:original)%>">
+    </p>
+<%end%>
 <br>
 <%= link_to t(:back_to_list), operation_players_path, class: 'back-to-list-link' %>
