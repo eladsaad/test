@@ -43,7 +43,7 @@ class Api::V1::OmniauthCallbacksController < Api::BaseApiController
 
 			if player.save
         if omnihash.info.image.present?
-          Delayed::Job.enqueue DownloadFacebookImageJob.new(@player.id,omnihash.info.image)
+          Delayed::Job.enqueue DownloadFacebookImageJob.new(player.id,omnihash.info.image)
         end
       else
 				render_error(:unprocessable_entity, player.errors)
