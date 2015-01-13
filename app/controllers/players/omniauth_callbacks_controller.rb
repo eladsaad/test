@@ -1,6 +1,6 @@
 class Players::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
-  require "open-uri"
+
   	respond_to :html, :js
 
 	def facebook
@@ -11,11 +11,12 @@ class Players::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 			@player = Player.create_for_facebook_oauth(request.env["omniauth.auth"], reg_code)
 			@player.skip_tos_validation = true
 			@player.allow_facebook_signup_without_reg_code = true if @player.reg_code.blank?
-			if request.env["omniauth.auth"].info.image.present?
-        @player.avatar = open(request.env["omniauth.auth"].info.image.gsub('http','https')+"?type=square")
-      end
+
       @player.save
-			@player.reload
+      if request.env["omniauth.auth"].info.image.present?
+        Delayed::Job.enqueue DownloadFacebookImageJob.new(@player.id,request.env["omniauth.auth"].info.image)
+      end
+      @player.reload
 		end
 
 		if @player.try(:persisted?)
