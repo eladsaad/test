@@ -9,7 +9,14 @@
 
 <%if @operation_player.avatar.present?  %>
     <p>
+      original
+      <br>
     <img src="<%=@operation_player.avatar.url(:original).gsub('operation/','')%>">
+    </p>
+    <p>
+      small 200x200
+      <br>
+      <img src="<%=@operation_player.avatar.url(:small).gsub('operation/','')%>">
     </p>
 <%end%>
 <br>
