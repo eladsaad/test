@@ -117,7 +117,16 @@ class Player < ActiveRecord::Base
 
 	def group_name
 		self.player_group.try(:name)
-	end
+  end
+
+  def avatar_original
+    if self.avatar.present?
+      self.avatar.url(:original)
+    else
+      ''
+    end
+  end
+
 
 	def age
 		age = read_attribute(:age)
