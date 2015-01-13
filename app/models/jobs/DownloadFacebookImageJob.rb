@@ -8,10 +8,8 @@ class DownloadFacebookImageJob
 	end
 
 	def perform
-		Rails.logger.debug "Download image for player id: #{@player.id} , image url: #{@image_url}"
-    full_url = @image_url+"?type=square"
-    p full_url
-    @player.avatar = HTTParty.get(full_url)
+    p "Download image for player id: #{@player.id} , image url: #{@image_url}"
+    @player.avatar = open(@image_url)
 
     @player.save
 	end
