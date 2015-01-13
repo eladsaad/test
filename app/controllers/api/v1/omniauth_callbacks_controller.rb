@@ -40,7 +40,7 @@ class Api::V1::OmniauthCallbacksController < Api::BaseApiController
 			raise(ActionController::ParameterMissing.new(:reg_code)) if reg_code.blank?
 			raise(ActionController::ParameterMissing.new(:tos_accepted)) unless tos_accepted
 			player = Player.create_for_facebook_oauth(omnihash, reg_code, tos_accepted)
-      player.avatar = open(omnihash.info.image.gsub('http','https'))
+      #player.avatar = open(omnihash.info.image.gsub('http','https'))
 			unless player.save
 				render_error(:unprocessable_entity, player.errors)
 				return
