@@ -243,6 +243,7 @@ DEPENDENCIES
   delayed_job_active_record
   devise
   historyjs-rails
+  httparty
   jbuilder (~> 1.2)
   jquery-rails
   jquery-ui-rails

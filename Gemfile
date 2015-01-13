@@ -29,6 +29,8 @@ gem 'newrelic_rpm'
 gem 'mobile-fu'
 gem "paperclip", "~> 4.2"
 gem 'aws-sdk', '~> 1.5.7'
+gem 'httparty'
+
 
 group :production do
 	gem 'rails_12factor' # heroku logging and assets
