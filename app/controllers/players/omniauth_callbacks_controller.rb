@@ -13,7 +13,7 @@ class Players::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 			@player.allow_facebook_signup_without_reg_code = true if @player.reg_code.blank?
 
       @player.save
-      if request.env["omniauth.auth"].info.image.present?
+      if @player.save && request.env["omniauth.auth"].info.image.present?
         Delayed::Job.enqueue DownloadFacebookImageJob.new(@player.id,request.env["omniauth.auth"].info.image)
       end
       @player.reload
