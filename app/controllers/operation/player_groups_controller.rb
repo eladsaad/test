@@ -82,6 +82,14 @@ class Operation::PlayerGroupsController < Operation::OperationController
     end
   end
 
+  def survey_report
+    authorize! :index, PlayerGroup
+
+
+
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_operation_player_group
