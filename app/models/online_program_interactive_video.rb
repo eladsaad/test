@@ -125,8 +125,9 @@ class OnlineProgramInteractiveVideo < ActiveRecord::Base
           end
 
 		    end
-	    else
-	    	player.add_points(:interactive_video_watch_again, {interactive_video_id: self.interactive_video_id})
+			else
+        #  Limit reply points to 9 times.
+	    	player.add_points(:interactive_video_watch_again, {interactive_video_id: self.interactive_video_id}) unless player.player_score_updates.where(event:"interactive_video_watch_again").size > 9
       end
 
 
