@@ -18,6 +18,7 @@ class InteractiveVideosController < BaseController
 
   def show
     authorize! :read, @interactive_video
+    @current_player = current_player
     #render :layout => false
   end
 
