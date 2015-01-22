@@ -1,18 +1,25 @@
 Hello,<br><br>
 
-You have been invited by <%= @inviting_player.first_name %> to join Cinema-Drive!<br><br>
+<%= @inviting_player.first_name %> invites you to call the shots and direct your very own "Cinema Drive Revolving Doors" experience.<br><br>
 
-This is your group registration code: <%= @reg_code %><br><br>
+Log in with your personal code and start the episode.<br><br>
 
-You can use it to register on our website or download our mobile app:<br>
-Website: <%= link_to root_url, root_url(reg_code: @reg_code) %><br>
-Iphone: TODO<br>
-Android: TODO<br><br><br>
+Just enter this code when asked: <%= @reg_code %><br><br><br>
+
+
+Access the experience via our website or download the app using any mobile phone.<br><br>
+
+Website: <%= root_url(reg_code: @reg_code) %><br><br>
+
+Google Play store: https://play.google.com/store/search?q=cinemadrive&c=apps<br><br>
+
+Apple App Store: https://itunes.apple.com/il/app/cinema-drive/id955064102?mt=8<br><br>
+
+Our YouTube movie explains it all: http://youtu.be/X7GYpVaWriw<br><br>
 
 <% unless @custom_message.blank? %>
 
-This is your friend's message:<br><br>
-
+Your friend wants you to know:<br>
 <%= @custom_message %><br>
 
 <% end %>
