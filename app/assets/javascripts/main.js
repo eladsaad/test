@@ -106,6 +106,12 @@ function footer () {
         });
     });
 
+
+    $('.footer').on('click', '#instructions_movie', function() {
+        window.open("http://youtu.be/X7GYpVaWriw", "_blank")
+    });
+
+
     $('.footer').on('click', '#logout', function(e) {
         e.preventDefault();
         bootbox.confirm("Are you sure you want to logout?", function(result) {
